@@ -1,0 +1,97 @@
+import Link from 'next/link';
+import { Mail, Phone, MapPin, Instagram, MessageCircle, Star, Utensils } from 'lucide-react';
+
+const Footer = () => {
+  return (
+    <footer className="bg-white border-t-4 border-[#FFCB05] pt-12 pb-6 px-4 flex flex-col items-center">
+      <div className="max-w-7xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 w-full">
+        
+        {/* Brand Section */}
+        <div className="space-y-4">
+          <div className="flex flex-col">
+            <h2 className="text-2xl font-black text-[#F26522] uppercase tracking-tight">
+              Little Jalebis
+            </h2>
+            <span className="text-sm font-bold text-[#333333]">
+              Kids Party House & Catering Co.
+            </span>
+          </div>
+          <p className="text-[#333333] font-medium leading-relaxed italic">
+            "Creating magical memories, one party at a time!"
+          </p>
+        </div>
+
+        {/* Registered Address */}
+        <div className="space-y-4">
+          <h3 className="text-lg font-black text-[#F26522] pb-1 inline-block">
+            Registered Address
+          </h3>
+          <div className="flex gap-3 text-[#333333] font-bold">
+            <MapPin className="shrink-0 text-[#F26522]" size={20} />
+            <address className="not-italic text-sm leading-6">
+              E 5 Kalindi Colony<br />
+              Near New Friends Colony<br />
+              New Delhi 110065
+            </address>
+          </div>
+        </div>
+
+        {/* Party Venue */}
+        <div className="space-y-4">
+          <h3 className="text-lg font-black text-[#F26522] pb-1 inline-block">
+            Party Venue
+          </h3>
+          <div className="flex gap-3 text-[#333333] font-bold">
+            <MapPin className="shrink-0 text-[#F26522]" size={20} />
+            <address className="not-italic text-sm leading-6">
+              17, Arjun Marg<br />
+              DLF Phase-1<br />
+              Gurgaon 122002
+            </address>
+          </div>
+        </div>
+
+        {/* Contact Section */}
+        <div className="space-y-4">
+          <h3 className="text-lg font-black text-[#F26522] pb-1 inline-block">
+            Get In Touch
+          </h3>
+          <div className="space-y-3 font-bold text-[#333333]">
+            <a href="tel:+918130964374" className="flex items-center gap-3 hover:text-[#F26522] transition-colors">
+              <Phone size={18} className="text-[#F26522]" />
+              +91 81309 64374
+            </a>
+            <a href="mailto:sales@littlejalebis.com" className="flex items-center gap-3 hover:text-[#F26522] transition-colors">
+              <Mail size={18} className="text-[#F26522]" />
+              sales@littlejalebis.com
+            </a>
+          </div>
+          <div className="flex gap-4 pt-4">
+            {/* Social Links Icons */}
+            <Link href="https://www.instagram.com/littlejalebis/?hl=en" target="_blank" rel="noopener noreferrer" className=" p-2 rounded-lg">
+              <Instagram size={18} className="text-[#F26522]" />
+            </Link>
+            <Link href="https://www.zomato.com/ncr/little-jalebis-kids-catering-delivery-co-friends-colony-new-delhi" target="_blank" rel="noopener noreferrer" className=" p-2 rounded-lg">
+              <Utensils size={18} className="text-[#F26522]" />
+            </Link>
+            <Link href="https://wa.me/918130964374" target="_blank" rel="noopener noreferrer" className=" p-2 rounded-lg">
+              <MessageCircle size={18} className="text-[#F26522]" />
+            </Link>
+            <Link href="https://g.co/kgs/nDc2ox6" target="_blank" rel="noopener noreferrer" className=" p-2 rounded-lg">
+              <Star size={18} className="text-[#F26522]" />
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* Copyright Line */}
+      <div className="max-w-7xl mt-12 pt-6 border-t border-gray-100 text-center w-full">
+        <p className="text-xs md:text-sm font-bold text-[#333333] opacity-80">
+          © 2026 Little Jalebis. All rights reserved. | Kids Party House & Catering Co.
+        </p>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
