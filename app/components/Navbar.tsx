@@ -27,22 +27,26 @@ const Navbar = () => {
           />
         </Link>
 
-        {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-8">
+        {/* Desktop Menu - Centered */}
+        <div className="hidden md:flex items-center gap-8 flex-1 justify-center">
           {navLinks.map((link) => (
             <Link 
               key={link.name} 
               href={link.href}
-              className="font-bold text-[#333333] hover:text-[#F26522] transition-colors duration-300"
+              className="font-bold text-sm text-[#F26522] hover:text-[#333333] transition-colors duration-300 uppercase"
             >
               {link.name}
             </Link>
           ))}
+        </div>
+
+        {/* CTA Button - Right */}
+        <div className="hidden md:block shrink-0">
           <Link 
-            href="/quote" 
+            href="/booking" 
             className="bg-[#F26522] text-white font-black px-6 py-2 rounded-full shadow-[4px_4px_0px_#FFCB05] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_#FFCB05] transition-all"
           >
-            Get A Quote
+            Book a Party
           </Link>
         </div>
 
@@ -71,11 +75,11 @@ const Navbar = () => {
             </Link>
           ))}
           <Link 
-            href="/quote"
+            href="/booking"
             onClick={() => setIsOpen(false)}
             className="mx-auto bg-[#F26522] text-white font-black px-8 py-3 rounded-full shadow-[4px_4px_0px_#FFCB05]"
           >
-            Get A Quote
+            Book a Party
           </Link>
         </div>
       </div>
