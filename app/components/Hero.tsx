@@ -24,8 +24,14 @@ function SceneContent() {
       meshRef.current.rotation.x = scrollOffset * Math.PI
       meshRef.current.rotation.y = scrollOffset * Math.PI * 2
       
-      // Move the object to the left as we scroll down to make room for text
-      meshRef.current.position.x = THREE.MathUtils.lerp(0, -2, scrollOffset)
+      // Responsive positioning: Move left on desktop, stay central but slightly higher on mobile
+      const isMobile = state.viewport.width < 6
+      meshRef.current.position.x = isMobile ? 0 : THREE.MathUtils.lerp(0, -2.5, scrollOffset)
+      meshRef.current.position.y = isMobile ? THREE.MathUtils.lerp(1, 1.5, scrollOffset) : 0
+      
+      // Scale down slightly on mobile
+      const s = isMobile ? 0.6 : 1
+      meshRef.current.scale.set(s, s, s)
     }
   })
 
@@ -46,24 +52,68 @@ function SceneContent() {
 }
 
 const ScrollContent = memo(() => (
-  <div className="w-screen text-[#333333]" style={{ fontFamily: "'Comic Neue', cursive, sans-serif" }}>
+  <div className="w-screen text-[#333333] selection:bg-[#FFCB05]" style={{ fontFamily: "'Comic Neue', cursive, sans-serif" }}>
     
-    <section className="h-screen flex flex-col justify-center px-[10%]">
-      <h1 className="text-[5vw] m-0 font-bold" style={{ color: '#333333' }}>Little Jalebis</h1>
-      <h2 className="text-[3vw]" style={{ color: '#F26522' }}>Your Sweet Success</h2>
+    {/* --- Hero Section --- */}
+    <section className="h-screen flex flex-col justify-center px-6 md:px-[10%]">
+      <div className="max-w-2xl mt-20 md:mt-0">
+        <h1 className="text-5xl md:text-[5vw] font-black leading-tight">
+          Little <span className="text-[#F26522]">Jalebis</span>
+        </h1>
+        <p className="text-xl md:text-[2vw] mt-4 font-bold opacity-80">
+          Big Smiles, Sweet Memories & Zero Stress for Parents.
+        </p>
+        <button className="mt-8 px-8 py-3 bg-[#F26522] text-white rounded-full font-bold hover:bg-[#d6561d] transition-colors w-fit">
+          Plan Your Party ↓
+        </button>
+      </div>
     </section>
     
-    <section className="h-screen flex flex-col justify-center items-end px-[10%]">
-      <h1 className="text-[4vw] text-right font-bold" style={{ color: '#333333' }}>
-        Taste the Difference.<br/>
-        <span style={{ color: '#F26522' }}>Sweetness in Every Bite.</span>
-      </h1>
+    {/* --- Services Section --- */}
+    <section className="h-[200vh] md:h-screen flex flex-col justify-center items-end px-6 md:px-[10%]">
+      <div className="w-full md:w-1/2 flex flex-col gap-12">
+        <h2 className="text-4xl md:text-[3.5vw] font-bold text-right leading-tight">
+          The Full <span className="text-[#F26522]">Party Circle</span>
+        </h2>
+
+        <div className="space-y-8">
+          {/* Service 1 */}
+          <div className="group cursor-pointer text-right">
+            <h3 className="text-2xl md:text-3xl font-bold group-hover:text-[#F26522] transition-colors">01. Dreamy Party Venues</h3>
+            <p className="text-sm md:text-base mt-2 opacity-70">Magical spaces designed for play, laughter, and safe exploration.</p>
+            <div className="h-1 w-full bg-[#FFCB05] mt-2 origin-right scale-x-50 group-hover:scale-x-100 transition-transform" />
+          </div>
+
+          {/* Service 2 */}
+          <div className="group cursor-pointer text-right">
+            <h3 className="text-2xl md:text-3xl font-bold group-hover:text-[#F26522] transition-colors">02. Gourmet Catering</h3>
+            <p className="text-sm md:text-base mt-2 opacity-70">Delicious, kid-approved menus that adults will sneak bites of too.</p>
+            <div className="h-1 w-full bg-[#FFCB05] mt-2 origin-right scale-x-50 group-hover:scale-x-100 transition-transform" />
+          </div>
+
+          {/* Service 3 */}
+          <div className="group cursor-pointer text-right">
+            <h3 className="text-2xl md:text-3xl font-bold group-hover:text-[#F26522] transition-colors">03. Nutritious Lunch Boxes</h3>
+            <p className="text-sm md:text-base mt-2 opacity-70">Fresh, fun, and balanced meals delivered straight to your event.</p>
+            <div className="h-1 w-full bg-[#FFCB05] mt-2 origin-right scale-x-50 group-hover:scale-x-100 transition-transform" />
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section className="h-screen flex items-center justify-center">
-      <p className="max-w-[600px] text-center text-[1.5rem]" style={{ color: '#333333' }}>
-        Crafted with passion and tradition, Little Jalebis brings you authentic flavors and unforgettable moments.
-      </p>
+    {/* --- CTA / Footer Section --- */}
+    <section className="h-screen flex flex-col items-center justify-center px-6 text-center">
+      <div className="bg-white/50 backdrop-blur-md p-8 md:p-16 rounded-[3rem] border-4 border-[#FFCB05] max-w-3xl">
+        <h2 className="text-3xl md:text-5xl font-black mb-6">Ready to Host the Best Party Ever?</h2>
+        <p className="text-lg md:text-xl mb-10 opacity-80">
+          From the first invite to the last jalebi, we handle everything so you can focus on the birthday hugs.
+        </p>
+        <div className="flex flex-col md:flex-row gap-4 justify-center">
+          <a href="/venues" className="px-8 py-4 border-2 border-[#F26522] text-[#F26522] rounded-full font-bold hover:bg-[#F26522] hover:text-white transition-all">Explore Venues</a>
+          <a href="/catering" className="px-8 py-4 bg-[#333333] text-white rounded-full font-bold hover:scale-105 transition-transform">See Menus</a>
+        </div>
+      </div>
+      <p className="mt-12 text-sm font-bold opacity-50 uppercase tracking-widest">© 2024 Little Jalebis Hospitality</p>
     </section>
   </div>
 ))
@@ -72,7 +122,7 @@ ScrollContent.displayName = 'ScrollContent'
 
 export default function Hero() {
   return (
-    <div style={{ height: '100vh', background: '#FFF9F2', color: '#333333', fontFamily: "'Comic Neue', cursive, sans-serif" }}>
+    <div style={{ height: '100vh', background: '#FFF9F2', color: '#333333', overflow: 'hidden' }}>
       <Canvas shadows>
         <PerspectiveCamera makeDefault position={[0, 0, 5]} fov={50} />
         <Environment preset="city" />
