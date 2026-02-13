@@ -12,6 +12,16 @@ import {
 } from '@react-three/drei'
 import * as THREE from 'three'
 
+// Adding the Google Font import via a style tag for the Comic Neue look
+const FontStyle = () => (
+  <style jsx global>{`
+    @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,700&display=swap');
+    body {
+      font-family: 'Comic Neue', cursive;
+    }
+  `}</style>
+)
+
 function SceneContent() {
   const meshRef = useRef<THREE.Mesh>(null)
   const scroll = useScroll()
@@ -20,17 +30,16 @@ function SceneContent() {
     const scrollOffset = scroll.offset 
     
     if (meshRef.current) {
-      // Smoothly rotate the object as you scroll
       meshRef.current.rotation.x = scrollOffset * Math.PI
       meshRef.current.rotation.y = scrollOffset * Math.PI * 2
       
-      // Responsive positioning: Move left on desktop, stay central but slightly higher on mobile
       const isMobile = state.viewport.width < 6
-      meshRef.current.position.x = isMobile ? 0 : THREE.MathUtils.lerp(0, -2.5, scrollOffset)
-      meshRef.current.position.y = isMobile ? THREE.MathUtils.lerp(1, 1.5, scrollOffset) : 0
+      // On mobile, keep the "jalebi" centered but push it up to make room for bottom text
+      // On desktop, slide it to the left
+      meshRef.current.position.x = isMobile ? 0 : THREE.MathUtils.lerp(0, -2.8, scrollOffset)
+      meshRef.current.position.y = isMobile ? THREE.MathUtils.lerp(0.8, 1.2, scrollOffset) : 0
       
-      // Scale down slightly on mobile
-      const s = isMobile ? 0.6 : 1
+      const s = isMobile ? 0.5 : 1
       meshRef.current.scale.set(s, s, s)
     }
   })
@@ -42,9 +51,9 @@ function SceneContent() {
         <meshStandardMaterial
           color="#F26522"
           emissive="#FFCB05"
-          emissiveIntensity={0.35}
+          emissiveIntensity={0.4}
           metalness={0.1}
-          roughness={0.45}
+          roughness={0.3}
         />
       </mesh>
     </Float>
@@ -52,68 +61,76 @@ function SceneContent() {
 }
 
 const ScrollContent = memo(() => (
-  <div className="w-screen text-[#333333] selection:bg-[#FFCB05]" style={{ fontFamily: "'Comic Neue', cursive, sans-serif" }}>
+  <div className="w-screen text-[#333333] selection:bg-[#FFCB05]">
     
-    {/* --- Hero Section --- */}
-    <section className="h-screen flex flex-col justify-center px-6 md:px-[10%]">
-      <div className="max-w-2xl mt-20 md:mt-0">
-        <h1 className="text-5xl md:text-[5vw] font-black leading-tight" style={{ color: '#333333' }}>
+    {/* --- Section 1: Hero --- */}
+    <section className="h-screen flex flex-col justify-center px-6 md:px-[12%]">
+      <div className="max-w-3xl mt-24 md:mt-0">
+        <span className="bg-[#FFCB05] px-4 py-1 rounded-full text-sm font-bold uppercase tracking-wider mb-4 inline-block">
+          The Sweetest Host in Town
+        </span>
+        <h1 className="text-6xl md:text-[6vw] font-bold leading-[0.9] tracking-tight">
           Little <span className="text-[#F26522]">Jalebis</span>
         </h1>
-        <p className="text-xl md:text-[2vw] mt-4 font-bold text-[#333333] opacity-90">
-          Big Smiles, Sweet Memories & Zero Stress for Parents.
+        <p className="text-xl md:text-[2.2vw] mt-6 font-bold opacity-90 leading-relaxed max-w-lg">
+          Big Smiles, Sweet Memories & <br className="hidden md:block"/>
+          <span className="underline decoration-[#FFCB05] decoration-4">Zero Stress</span> for Parents.
         </p>
-        <button className="mt-8 px-8 py-3 bg-[#F26522] text-white rounded-full font-black hover:bg-[#d6561d] transition-colors w-fit shadow-[4px_4px_0px_#FFCB05] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_#FFCB05]">
+        <button className="mt-10 px-10 py-4 bg-[#F26522] text-white rounded-full font-bold text-lg hover:bg-[#d6561d] transition-all w-fit shadow-[6px_6px_0px_#333333] active:translate-y-1 active:shadow-none">
           Plan Your Party ↓
         </button>
       </div>
     </section>
     
-    {/* --- Services Section --- */}
-    <section className="h-[200vh] md:h-screen flex flex-col justify-center items-end px-6 md:px-[10%]">
-      <div className="w-full md:w-1/2 flex flex-col gap-12">
-        <h2 className="text-4xl md:text-[3.5vw] font-black text-right leading-tight" style={{ color: '#333333' }}>
-          The Full <span className="text-[#F26522]">Party Circle</span>
-        </h2>
+    {/* --- Section 2: Services --- */}
+    <section className="h-[150vh] md:h-screen flex flex-col justify-center items-end px-6 md:px-[12%]">
+      <div className="w-full md:w-1/2 flex flex-col gap-8">
+        <div className="text-right">
+            <h2 className="text-4xl md:text-[4vw] font-bold leading-tight">
+              One Stop <br/>
+              <span className="text-[#F26522]">Party Magic</span>
+            </h2>
+            <p className="font-bold opacity-70 mt-2">Everything you need, all in one loop.</p>
+        </div>
 
-        <div className="space-y-8">
-          {/* Service 1 */}
-          <div className="group cursor-pointer text-right">
-            <h3 className="text-2xl md:text-3xl font-black group-hover:text-[#F26522] transition-colors" style={{ color: '#333333' }}>01. Dreamy Party Venues</h3>
-            <p className="text-sm md:text-base mt-2 font-bold text-[#333333] opacity-80">Magical spaces designed for play, laughter, and safe exploration.</p>
-            <div className="h-1 w-full bg-[#FFCB05] mt-2 origin-right scale-x-50 group-hover:scale-x-100 transition-transform" />
-          </div>
-
-          {/* Service 2 */}
-          <div className="group cursor-pointer text-right">
-            <h3 className="text-2xl md:text-3xl font-black group-hover:text-[#F26522] transition-colors" style={{ color: '#333333' }}>02. Gourmet Catering</h3>
-            <p className="text-sm md:text-base mt-2 font-bold text-[#333333] opacity-80">Delicious, kid-approved menus that adults will sneak bites of too.</p>
-            <div className="h-1 w-full bg-[#FFCB05] mt-2 origin-right scale-x-50 group-hover:scale-x-100 transition-transform" />
-          </div>
-
-          {/* Service 3 */}
-          <div className="group cursor-pointer text-right">
-            <h3 className="text-2xl md:text-3xl font-black group-hover:text-[#F26522] transition-colors" style={{ color: '#333333' }}>03. Nutritious Lunch Boxes</h3>
-            <p className="text-sm md:text-base mt-2 font-bold text-[#333333] opacity-80">Fresh, fun, and balanced meals delivered straight to your event.</p>
-            <div className="h-1 w-full bg-[#FFCB05] mt-2 origin-right scale-x-50 group-hover:scale-x-100 transition-transform" />
-          </div>
+        <div className="space-y-6 mt-4">
+          {/* Service Cards */}
+          {[
+            { title: "Dreamy Party Venues", desc: "Magical spaces designed for play and laughter.", link: "/venues" },
+            { title: "Gourmet Catering", desc: "Kid-approved menus that adults love too.", link: "/catering" },
+            { title: "Nutritious Lunch Boxes", desc: "Fresh, fun, and balanced meals delivered.", link: "/lunch-boxes" }
+          ].map((service, i) => (
+            <div key={i} className="group cursor-pointer text-right flex flex-col items-end">
+              <h3 className="text-2xl md:text-3xl font-bold group-hover:text-[#F26522] transition-colors">
+                0{i+1}. {service.title}
+              </h3>
+              <p className="text-sm md:text-base mt-1 font-bold opacity-60 max-w-xs">{service.desc}</p>
+              <div className="h-1.5 w-24 bg-[#FFCB05] mt-3 group-hover:w-full transition-all duration-500 rounded-full" />
+            </div>
+          ))}
         </div>
       </div>
     </section>
 
-    {/* --- CTA / Footer Section --- */}
+    {/* --- Section 3: Final Call --- */}
     <section className="h-screen flex flex-col items-center justify-center px-6 text-center">
-      <div className="bg-white/50 backdrop-blur-md p-8 md:p-16 rounded-[3rem] border-4 border-[#FFCB05] max-w-3xl">
-        <h2 className="text-3xl md:text-5xl font-black mb-6" style={{ color: '#333333' }}>Ready to Host the Best Party Ever?</h2>
-        <p className="text-lg md:text-xl mb-10 font-bold text-[#333333] opacity-80">
-          From the first invite to the last jalebi, we handle everything so you can focus on the birthday hugs.
+      <div className="relative bg-white p-10 md:p-20 rounded-[3rem] shadow-[12px_12px_0px_#FFCB05] border-4 border-[#333333] max-w-4xl">
+        <h2 className="text-4xl md:text-6xl font-bold mb-6">Host the Best Party Ever</h2>
+        <p className="text-lg md:text-2xl mb-12 font-bold opacity-80 max-w-2xl mx-auto">
+          From the first invite to the last jalebi, we handle the details while you make the memories.
         </p>
-        <div className="flex flex-col md:flex-row gap-4 justify-center">
-          <a href="/venues" className="px-8 py-4 border-2 border-[#F26522] text-[#F26522] rounded-full font-black hover:bg-[#F26522] hover:text-white transition-all">Explore Venues</a>
-          <a href="/catering" className="px-8 py-4 bg-[#333333] text-white rounded-full font-black hover:scale-105 transition-transform">See Menus</a>
+        <div className="flex flex-col sm:flex-row gap-6 justify-center">
+          <a href="/venues" className="px-10 py-4 border-4 border-[#F26522] text-[#F26522] rounded-2xl font-bold text-xl hover:bg-[#F26522] hover:text-white transition-all transform hover:-rotate-2">
+            Explore Venues
+          </a>
+          <a href="/catering" className="px-10 py-4 bg-[#333333] text-white rounded-2xl font-bold text-xl hover:scale-105 transition-all transform hover:rotate-2">
+            See Menus
+          </a>
         </div>
       </div>
-      <p className="mt-12 text-sm font-bold text-[#333333] opacity-50 uppercase tracking-widest">© 2024 Little Jalebis Hospitality</p>
+      <p className="mt-16 text-sm font-bold opacity-40 uppercase tracking-[0.3em]">
+        © 2026 Little Jalebis • Happiness Redefined
+      </p>
     </section>
   </div>
 ))
@@ -128,24 +145,25 @@ export default function Hero() {
   }, [])
 
   return (
-    <div className="h-screen bg-[#FFF9F2] text-[#333333] overflow-hidden" style={{ fontFamily: "'Comic Neue', cursive, sans-serif" }}>
-      <Canvas shadows>
-        <PerspectiveCamera makeDefault position={[0, 0, 5]} fov={50} />
-        <Environment preset="city" />
-        
-        <Suspense fallback={null}>
-          <ScrollControls pages={3} damping={0.2}>
-            
-            <SceneContent />
-
-            {mounted && (
-              <Scroll html>
-                <ScrollContent />
-              </Scroll>
-            )}
-          </ScrollControls>
-        </Suspense>
-      </Canvas>
-    </div>
+    <>
+      <FontStyle />
+      <div className="h-screen bg-[#FFF9F2] text-[#333333] overflow-hidden">
+        <Canvas shadows>
+          <PerspectiveCamera makeDefault position={[0, 0, 5]} fov={50} />
+          <Environment preset="city" />
+          
+          <Suspense fallback={null}>
+            <ScrollControls pages={3} damping={0.15}>
+              <SceneContent />
+              {mounted && (
+                <Scroll html>
+                  <ScrollContent />
+                </Scroll>
+              )}
+            </ScrollControls>
+          </Suspense>
+        </Canvas>
+      </div>
+    </>
   )
 }
