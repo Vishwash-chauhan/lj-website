@@ -16,7 +16,7 @@ const Navbar = () => {
 
   return (
     <nav className="sticky top-0 z-[1000] bg-white border-b-4 border-[#FFCB05] px-4 md:px-8 py-3 flex justify-center">
-      <div className="max-w-7xl flex justify-between items-center w-full">
+      <div className="max-w-7xl flex justify-between items-center w-screen">
         
         {/* Logo */}
         <Link href="/" className="shrink-0">

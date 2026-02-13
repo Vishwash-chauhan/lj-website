@@ -13,18 +13,20 @@ import {
 import * as THREE from 'three'
 
 function SceneContent() {
-  const meshRef = useRef()
+  const meshRef = useRef<THREE.Mesh>(null)
   const scroll = useScroll()
 
   useFrame((state) => {
     const scrollOffset = scroll.offset 
     
-    // Smoothly rotate the object as you scroll
-    meshRef.current.rotation.x = scrollOffset * Math.PI
-    meshRef.current.rotation.y = scrollOffset * Math.PI * 2
-    
-    // Move the object to the left as we scroll down to make room for text
-    meshRef.current.position.x = THREE.MathUtils.lerp(0, -2, scrollOffset)
+    if (meshRef.current) {
+      // Smoothly rotate the object as you scroll
+      meshRef.current.rotation.x = scrollOffset * Math.PI
+      meshRef.current.rotation.y = scrollOffset * Math.PI * 2
+      
+      // Move the object to the left as we scroll down to make room for text
+      meshRef.current.position.x = THREE.MathUtils.lerp(0, -2, scrollOffset)
+    }
   })
 
   return (
@@ -45,7 +47,7 @@ function SceneContent() {
 
 export default function Hero() {
   return (
-    <div style={{ height: '100vh', width: '100vw', background: '#FFF9F2', color: '#333333', fontFamily: "'Comic Neue', cursive, sans-serif" }}>
+    <div style={{ height: '100vh', background: '#FFF9F2', color: '#333333', fontFamily: "'Comic Neue', cursive, sans-serif" }}>
       <Canvas shadows>
         <PerspectiveCamera makeDefault position={[0, 0, 5]} fov={50} />
         <Environment preset="city" />

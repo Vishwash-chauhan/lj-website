@@ -1,73 +1,34 @@
 @import "tailwindcss";
 
-:root {
-  /* Little Jalebis Brand Colors */
-  --lj-orange: #F26522;
-  --lj-yellow: #FFCB05;
-  --lj-charcoal: #333333;
-  --lj-bg: #FFF9F2;
-  
-  --background: #FFF9F2;
-  --foreground: #333333;
-}
+@layer base {
+  :root {
+    --font-sans: 'Comic Neue', cursive, sans-serif;
+    --font-mono: var(--font-geist-mono);
+  }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: 'Comic Neue', cursive, sans-serif;
-  --font-mono: var(--font-geist-mono);
-}
+  html {
+    @apply scroll-smooth;
+  }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: 'Comic Neue', cursive, sans-serif;
-  line-height: 1.6;
-}
-
-/* Smooth scrolling for anchor links */
-a {
-  color: var(--lj-orange);
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-a:hover {
-  color: var(--lj-charcoal);
-}
-
-/* CTA Button Styles */
-.cta-button {
-  background-color: var(--lj-orange);
-  color: white;
-  padding: 12px 24px;
-  border-radius: 8px;
-  font-weight: bold;
-  transition: all 0.3s ease;
-  border: none;
-  cursor: pointer;
-  box-shadow: 4px 4px 0 var(--lj-yellow);
-}
-
-.cta-button:hover {
-  background-color: var(--lj-charcoal);
-  transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0 var(--lj-yellow);
-}
-
-/* Responsive */
-@media (max-width: 768px) {
   body {
-    padding: 10px;
+    @apply bg-[#FFF9F2] text-[#333333] font-[family:'Comic_Neue',cursive,sans-serif] leading-relaxed;
+  }
+
+  a {
+    @apply text-[#F26522] no-underline transition-colors duration-300;
+  }
+
+  a:hover {
+    @apply text-[#333333];
+  }
+}
+
+@layer components {
+  .cta-button {
+    @apply bg-[#F26522] text-white px-6 py-3 rounded-lg font-bold transition-all duration-300 border-none cursor-pointer shadow-[4px_4px_0px_#FFCB05];
+  }
+
+  .cta-button:hover {
+    @apply bg-[#333333] -translate-x-0.5 -translate-y-0.5 shadow-[6px_6px_0px_#FFCB05];
   }
 }

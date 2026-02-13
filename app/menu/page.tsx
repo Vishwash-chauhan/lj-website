@@ -192,8 +192,10 @@ function matchesItem(item: MenuItem, label: string): boolean {
 export default function MenuPage() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isMobile, setIsMobile] = useState(false)
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+    setMounted(true)
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768)
     }
@@ -218,214 +220,86 @@ export default function MenuPage() {
   const label = categories[currentIndex]
   const items = menuItems.filter((item) => matchesItem(item, label))
 
-  const styles = {
-    body: {
-      fontFamily: "'Comic Neue', cursive, sans-serif",
-      backgroundColor: '#FFF9F2',
-      color: '#333333',
-      margin: 0,
-      padding: '20px',
-    },
-    container: {
-      maxWidth: '1000px',
-      margin: '0 auto',
-      textAlign: 'center' as const,
-    },
-    header: {
-      display: 'flex' as const,
-      flexDirection: 'column' as const,
-      alignItems: 'center',
-      marginBottom: '20px',
-    },
-    logo: {
-      maxWidth: '180px',
-      height: 'auto',
-      display: 'block',
-    },
-    nav: {
-      display: 'flex' as const,
-      alignItems: 'center',
-      gap: '12px',
-      marginTop: '20px',
-    },
-    navButton: {
-      background: '#FFCB05',
-      border: '3px solid #FFCB05',
-      padding: '8px 12px',
-      borderRadius: '12px',
-      fontWeight: 'bold' as const,
-      cursor: 'pointer',
-      boxShadow: '6px 6px 0 #F26522',
-      fontFamily: 'inherit',
-      fontSize: '1rem',
-    },
-    categoryHeader: {
-      color: '#F26522',
-      fontSize: '1.8rem',
-      margin: 0,
-      textTransform: 'uppercase' as const,
-      textShadow: '2px 2px #FFCB05',
-      flex: 1,
-    },
-    grid: {
-      display: 'grid' as const,
-      gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-      gap: '25px',
-      padding: '0px',
-      marginBottom: '30px',
-    },
-    dishCard: {
-      background: 'white',
-      borderRadius: '25px',
-      padding: '20px',
-      border: '3px solid #FFCB05',
-      boxShadow: '8px 8px 0px #F26522',
-      transition: 'transform 0.3s ease',
-      display: 'flex' as const,
-      flexDirection: 'column' as const,
-      justifyContent: 'space-between',
-      position: 'relative' as const,
-      overflow: 'hidden' as const,
-    },
-    dishCardHover: {
-      transform: 'scale(1.03) rotate(1deg)',
-    },
-    dishName: {
-      color: '#F26522',
-      fontSize: '1.5rem',
-      margin: '10px 0',
-      fontWeight: '900' as const,
-      display: 'flex' as const,
-      alignItems: 'center' as const,
-      gap: '8px',
-    },
-    dishDesc: {
-      fontSize: '1.2rem',
-      lineHeight: '1.4',
-      color: '#333333',
-      marginBottom: '15px',
-      fontWeight: '700' as const,
-    },
-    dishFooter: {
-      display: 'flex' as const,
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      borderTop: '2px dashed #FFCB05',
-      paddingTop: '15px',
-    },
-    portion: {
-      background: '#FFCB05',
-      padding: '5px 12px',
-      borderRadius: '15px',
-      fontWeight: 'bold' as const,
-      fontSize: '0.8rem',
-    },
-    price: {
-      fontSize: '1.2rem',
-      fontWeight: '800' as const,
-      color: '#333333',
-      marginLeft: 'auto',
-      textAlign: 'right' as const,
-    },
-    vegDot: {
-      width: '12px',
-      height: '12px',
-      borderRadius: '50%',
-      display: 'inline-block',
-      flexShrink: 0,
-    },
-    vegDotVeg: {
-      background: '#1abc9c',
-    },
-    vegDotNonVeg: {
-      background: '#e74c3c',
-    },
-    noItems: {
-      gridColumn: '1 / -1',
-      padding: '40px',
-      border: '2px dashed rgba(0,0,0,0.06)',
-      borderRadius: '12px',
-      color: '#666',
-      background: 'rgba(255,255,255,0.6)',
-    },
-  }
-
   return (
-    <div style={styles.body}>
-      <div style={styles.container}>
-        <header style={styles.header}>
-          <div style={styles.nav}>
+    <div className="bg-[#FFF9F2] text-[#333333] min-h-screen p-5 md:p-8">
+      <div className="w-[1000px] max-w-[1000px] mx-auto text-center">
+        {/* Header Navigation */}
+        <header className="flex flex-col items-center mb-6">
+          <div className="flex items-center gap-3">
             <button
-              style={styles.navButton}
               onClick={() => setCurrentIndex((prev) => (prev - 1 + categories.length) % categories.length)}
               aria-label="Previous category"
+              className="bg-[#FFCB05] border-3 border-[#FFCB05] px-3 py-2 rounded-2xl font-bold cursor-pointer shadow-[6px_6px_0_#F26522] text-lg hover:scale-105 transition-transform"
             >
               ←
             </button>
-            <h2 style={styles.categoryHeader}>✨ {formatLabel(label)} ✨</h2>
+            <h2 className="text-[1.8rem] md:text-3xl font-black text-[#F26522] uppercase my-0 flex-1" style={{ textShadow: '2px 2px #FFCB05' }}>
+              ✨ {formatLabel(label)} ✨
+            </h2>
             <button
-              style={styles.navButton}
               onClick={() => setCurrentIndex((prev) => (prev + 1) % categories.length)}
               aria-label="Next category"
+              className="bg-[#FFCB05] border-3 border-[#FFCB05] px-3 py-2 rounded-2xl font-bold cursor-pointer shadow-[6px_6px_0_#F26522] text-lg hover:scale-105 transition-transform"
             >
               →
             </button>
           </div>
         </header>
 
+        {/* Menu Items Grid */}
         {items.length === 0 ? (
-          <div style={styles.noItems}>No items in this category yet.</div>
+          <div className="col-span-full p-10 border-2 border-dashed border-opacity-10 rounded-lg text-gray-400 bg-opacity-60 bg-white">
+            No items in this category yet.
+          </div>
         ) : (
-          <div style={isMobile ? { display: 'block' } : styles.grid}>
+          <div className={mounted && isMobile ? 'space-y-4' : 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8'}>
             {items.map((item, idx) => (
               <div
                 key={idx}
-                style={
-                  isMobile
-                    ? {
-                        background: 'white',
-                        padding: '0',
-                        marginBottom: '15px',
-                        borderBottom: '1px dashed #ccc',
-                        paddingBottom: '15px',
-                        display: 'flex' as const,
-                        flexDirection: 'column' as const,
-                        alignItems: 'flex-start' as const,
-                      }
-                    : styles.dishCard
-                }
+                className={mounted && isMobile ? 'flex flex-col border-b border-dashed border-gray-300 pb-4' : 'flex flex-col bg-white rounded-3xl p-5 border-4 border-[#FFCB05] shadow-[8px_8px_0px_#F26522] hover:scale-105 hover:rotate-1 transition-transform'}
               >
-                <div
-                  style={
-                    isMobile
-                      ? { display: 'flex' as const, justifyContent: 'space-between' as const, width: '100%', marginBottom: '8px' }
-                      : { marginBottom: '10px' }
-                  }
-                >
-                  <div style={styles.dishName}>
+                {/* Item Name with Veg/Non-Veg Dot */}
+                <div className={mounted && isMobile ? 'flex justify-between items-start w-full mb-2' : 'flex justify-center items-center mb-3'}>
+                  <div className="flex items-center gap-2 text-[#F26522] text-2xl font-black">
                     <span
-                      style={{
-                        ...styles.vegDot,
-                        ...(item.VegNonVeg?.toLowerCase().startsWith('non') ? styles.vegDotNonVeg : styles.vegDotVeg),
-                      }}
+                      className={`w-3 h-3 rounded-full flex-shrink-0 ${
+                        item.VegNonVeg?.toLowerCase().startsWith('non') ? 'bg-red-500' : 'bg-teal-500'
+                      }`}
                     />
                     <span>{item.Name}</span>
                   </div>
-                  {isMobile && <div style={{ fontSize: '1rem', fontWeight: 'bold', color: '#F26522' }}>{item.Rate === 0 ? (item.CustomPrice ? item.CustomPrice.split(' ')[0] : 'N/A') : '₹' + item.Rate + '/-'}</div>}
+                  {mounted && isMobile && (
+                    <div className="text-sm font-bold text-[#F26522]">
+                      {item.Rate === 0 ? (item.CustomPrice ? item.CustomPrice.split(' ')[0] : 'N/A') : '₹' + item.Rate + '/-'}
+                    </div>
+                  )}
                 </div>
 
-                {isMobile ? (
-                  <div style={{ display: 'flex' as const, justifyContent: 'space-between' as const, width: '100%', alignItems: 'center', gap: '8px' }}>
-                    <p style={{ ...styles.dishDesc, margin: 0, flex: 1, paddingRight: '10px' }}>{item.Description}</p>
-                    {item.PcsDisplay && <span style={{ ...styles.portion, whiteSpace: 'nowrap', flexShrink: 0 }}>{item.PcsDisplay}</span>}
+                {/* Description and Price Section */}
+                {mounted && isMobile ? (
+                  <div className="flex justify-between items-center w-full gap-2">
+                    <p className="text-base font-bold leading-relaxed text-[#333333] flex-1">
+                      {item.Description}
+                    </p>
+                    {item.PcsDisplay && (
+                      <span className="bg-[#FFCB05] px-3 py-1 rounded-2xl font-bold text-xs whitespace-nowrap flex-shrink-0">
+                        {item.PcsDisplay}
+                      </span>
+                    )}
                   </div>
                 ) : (
                   <>
-                    <p style={styles.dishDesc}>{item.Description}</p>
-                    <div style={styles.dishFooter}>
-                      {item.PcsDisplay && <span style={styles.portion}>{item.PcsDisplay}</span>}
-                      <span style={styles.price}>
-                        {item.Rate === 0 && item.CustomPrice ?item.CustomPrice : '₹' + item.Rate + '/-'}
+                    <p className="text-lg font-bold leading-relaxed text-[#333333] mb-4 flex-1">
+                      {item.Description}
+                    </p>
+                    <div className="flex justify-between items-center border-t-2 border-dashed border-[#FFCB05] pt-4">
+                      {item.PcsDisplay && (
+                        <span className="bg-[#FFCB05] px-3 py-1 rounded-2xl font-bold text-xs">
+                          {item.PcsDisplay}
+                        </span>
+                      )}
+                      <span className="text-lg font-black text-[#333333] ml-auto">
+                        {item.Rate === 0 && item.CustomPrice ? item.CustomPrice : '₹' + item.Rate + '/-'}
                       </span>
                     </div>
                   </>
@@ -437,46 +311,17 @@ export default function MenuPage() {
       </div>
 
       {/* WhatsApp Chat Widget */}
-      <div
-        style={{
-          position: 'fixed',
-          bottom: '15px',
-          right: '15px',
-          zIndex: 99999999,
-        }}
+      <button
+        onClick={() => window.open('https://wa.me/918130964374', '_blank')}
+        className="fixed bottom-4 right-4 w-14 h-14 bg-[#25D366] rounded-full p-3 cursor-pointer shadow-lg hover:shadow-xl hover:scale-110 transition-all flex items-center justify-center z-[99999999]"
+        aria-label="Chat on WhatsApp"
       >
-        <button
-          onClick={() => window.open('https://wa.me/918130964374', '_blank')}
-          style={{
-            background: '#25D366',
-            border: 'none',
-            borderRadius: '50%',
-            width: '56px',
-            height: '56px',
-            padding: '14px',
-            cursor: 'pointer',
-            boxShadow: '0px 0px 11px rgba(0,0,0,.5)',
-            transition: 'all 0.3s ease',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.boxShadow = '0px 0px 15px rgba(0,0,0,.6)'
-            e.currentTarget.style.transform = 'scale(1.1)'
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.boxShadow = '0px 0px 11px rgba(0,0,0,.5)'
-            e.currentTarget.style.transform = 'scale(1)'
-          }}
-        >
-          <svg width="40px" height="40px" viewBox="0 0 1219.547 1225.016">
-            <path fill="#E0E0E0" d="M1041.858 178.02C927.206 63.289 774.753.07 612.325 0 277.617 0 5.232 272.298 5.098 606.991c-.039 106.986 27.915 211.42 81.048 303.476L0 1225.016l321.898-84.406c88.689 48.368 188.547 73.855 290.166 73.896h.258.003c334.654 0 607.08-272.346 607.222-607.023.056-162.208-63.052-314.724-177.689-429.463zm-429.533 933.963h-.197c-90.578-.048-179.402-24.366-256.878-70.339l-18.438-10.93-191.021 50.083 51-186.176-12.013-19.087c-50.525-80.336-77.198-173.175-77.16-268.504.111-278.186 226.507-504.503 504.898-504.503 134.812.056 261.519 52.604 356.814 147.965 95.289 95.36 147.728 222.128 147.688 356.948-.118 278.195-226.522 504.543-504.693 504.543z" />
-            <path fill="#25D366" d="M27.875 1190.114l82.211-300.18c-50.719-87.852-77.391-187.523-77.359-289.602.133-319.398 260.078-579.25 579.469-579.25 155.016.07 300.508 60.398 409.898 169.891 109.414 109.492 169.633 255.031 169.57 409.812-.133 319.406-260.094 579.281-579.445 579.281-.023 0 .016 0 0 0h-.258c-96.977-.031-192.266-24.375-276.898-70.5l-307.188 80.548z" />
-            <path fill="#FFF" fillRule="evenodd" clipRule="evenodd" d="M462.273 349.294c-11.234-24.977-23.062-25.477-33.75-25.914-8.742-.375-18.75-.352-28.742-.352-10 0-26.25 3.758-39.992 18.766-13.75 15.008-52.5 51.289-52.5 125.078 0 73.797 53.75 145.102 61.242 155.117 7.5 10 103.758 166.266 256.203 226.383 126.695 49.961 152.477 40.023 179.977 37.523s88.734-36.273 101.234-71.297c12.5-35.016 12.5-65.031 8.75-71.305-3.75-6.25-13.75-10-28.75-17.5s-88.734-43.789-102.484-48.789-23.75-7.5-33.75 7.516c-10 15-38.727 48.773-47.477 58.773-8.75 10.023-17.5 11.273-32.5 3.773-15-7.523-63.305-23.344-120.609-74.438-44.586-39.75-74.688-88.844-83.438-103.859-8.75-15-.938-23.125 6.586-30.602 6.734-6.719 15-17.508 22.5-26.266 7.484-8.758 9.984-15.008 14.984-25.008 5-10.016 2.5-18.773-1.25-26.273s-32.898-81.67-46.234-111.326z" />
-          </svg>
-        </button>
-      </div>
+        <svg width="40px" height="40px" viewBox="0 0 1219.547 1225.016">
+          <path fill="#E0E0E0" d="M1041.858 178.02C927.206 63.289 774.753.07 612.325 0 277.617 0 5.232 272.298 5.098 606.991c-.039 106.986 27.915 211.42 81.048 303.476L0 1225.016l321.898-84.406c88.689 48.368 188.547 73.855 290.166 73.896h.258.003c334.654 0 607.08-272.346 607.222-607.023.056-162.208-63.052-314.724-177.689-429.463zm-429.533 933.963h-.197c-90.578-.048-179.402-24.366-256.878-70.339l-18.438-10.93-191.021 50.083 51-186.176-12.013-19.087c-50.525-80.336-77.198-173.175-77.16-268.504.111-278.186 226.507-504.503 504.898-504.503 134.812.056 261.519 52.604 356.814 147.965 95.289 95.36 147.728 222.128 147.688 356.948-.118 278.195-226.522 504.543-504.693 504.543z" />
+          <path fill="#25D366" d="M27.875 1190.114l82.211-300.18c-50.719-87.852-77.391-187.523-77.359-289.602.133-319.398 260.078-579.25 579.469-579.25 155.016.07 300.508 60.398 409.898 169.891 109.414 109.492 169.633 255.031 169.57 409.812-.133 319.406-260.094 579.281-579.445 579.281-.023 0 .016 0 0 0h-.258c-96.977-.031-192.266-24.375-276.898-70.5l-307.188 80.548z" />
+          <path fill="#FFF" fillRule="evenodd" clipRule="evenodd" d="M462.273 349.294c-11.234-24.977-23.062-25.477-33.75-25.914-8.742-.375-18.75-.352-28.742-.352-10 0-26.25 3.758-39.992 18.766-13.75 15.008-52.5 51.289-52.5 125.078 0 73.797 53.75 145.102 61.242 155.117 7.5 10 103.758 166.266 256.203 226.383 126.695 49.961 152.477 40.023 179.977 37.523s88.734-36.273 101.234-71.297c12.5-35.016 12.5-65.031 8.75-71.305-3.75-6.25-13.75-10-28.75-17.5s-88.734-43.789-102.484-48.789-23.75-7.5-33.75 7.516c-10 15-38.727 48.773-47.477 58.773-8.75 10.023-17.5 11.273-32.5 3.773-15-7.523-63.305-23.344-120.609-74.438-44.586-39.75-74.688-88.844-83.438-103.859-8.75-15-.938-23.125 6.586-30.602 6.734-6.719 15-17.508 22.5-26.266 7.484-8.758 9.984-15.008 14.984-25.008 5-10.016 2.5-18.773-1.25-26.273s-32.898-81.67-46.234-111.326z" />
+        </svg>
+      </button>
     </div>
   )
 }
