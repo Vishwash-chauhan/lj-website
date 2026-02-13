@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useRef, Suspense } from 'react'
+import React, { useRef, Suspense, memo } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { 
   Float, 
@@ -45,6 +45,31 @@ function SceneContent() {
   )
 }
 
+const ScrollContent = memo(() => (
+  <div className="w-screen text-[#333333]" style={{ fontFamily: "'Comic Neue', cursive, sans-serif" }}>
+    
+    <section className="h-screen flex flex-col justify-center px-[10%]">
+      <h1 className="text-[5vw] m-0 font-bold" style={{ color: '#333333' }}>Little Jalebis</h1>
+      <h2 className="text-[3vw]" style={{ color: '#F26522' }}>Your Sweet Success</h2>
+    </section>
+    
+    <section className="h-screen flex flex-col justify-center items-end px-[10%]">
+      <h1 className="text-[4vw] text-right font-bold" style={{ color: '#333333' }}>
+        Taste the Difference.<br/>
+        <span style={{ color: '#F26522' }}>Sweetness in Every Bite.</span>
+      </h1>
+    </section>
+
+    <section className="h-screen flex items-center justify-center">
+      <p className="max-w-[600px] text-center text-[1.5rem]" style={{ color: '#333333' }}>
+        Crafted with passion and tradition, Little Jalebis brings you authentic flavors and unforgettable moments.
+      </p>
+    </section>
+  </div>
+))
+
+ScrollContent.displayName = 'ScrollContent'
+
 export default function Hero() {
   return (
     <div style={{ height: '100vh', background: '#FFF9F2', color: '#333333', fontFamily: "'Comic Neue', cursive, sans-serif" }}>
@@ -58,26 +83,7 @@ export default function Hero() {
             <SceneContent />
 
             <Scroll html>
-              <div className="w-screen text-[#333333]" style={{ fontFamily: "'Comic Neue', cursive, sans-serif" }}>
-                
-                <section className="h-screen flex flex-col justify-center px-[10%]">
-                  <h1 className="text-[5vw] m-0 font-bold" style={{ color: '#333333' }}>Little Jalebis</h1>
-                  <h2 className="text-[3vw]" style={{ color: '#F26522' }}>Your Sweet Success</h2>
-                </section>
-                
-                <section className="h-screen flex flex-col justify-center items-end px-[10%]">
-                  <h1 className="text-[4vw] text-right font-bold" style={{ color: '#333333' }}>
-                    Taste the Difference.<br/>
-                    <span style={{ color: '#F26522' }}>Sweetness in Every Bite.</span>
-                  </h1>
-                </section>
-
-                <section className="h-screen flex items-center justify-center">
-                  <p className="max-w-[600px] text-center text-[1.5rem]" style={{ color: '#333333' }}>
-                    Crafted with passion and tradition, Little Jalebis brings you authentic flavors and unforgettable moments.
-                  </p>
-                </section>
-              </div>
+              <ScrollContent />
             </Scroll>
           </ScrollControls>
         </Suspense>
