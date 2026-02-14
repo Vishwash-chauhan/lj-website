@@ -2,124 +2,176 @@
 
 import React from 'react'
 
-const FoodBoxesMenu = () => {
-  const boxTypes = [
-    { name: "Happy Box", price: "RS. 385", items: "Snacks + 1 Main + 1 Dessert" },
-    { name: "Super Happy Box", price: "RS. 445", items: "1 Treat + 2 Snacks + 1 Main + 1 Dessert" }
-  ]
-
-  const menuSections = [
-    {
-      title: "Treats",
-      note: "Choose any one",
-      items: ["French Fries", "Peri Peri Fries", "Popcorn Party Pops", "Roasted Butter Makhanas"]
+const CompactFoodMenu = () => {
+  const tiers = [
+    { 
+      name: "Happy Box", 
+      price: "₹385", 
+      detail: "Snacks + 1 Main + 1 Dessert",
+      bestFor: "Perfect for lighter appetites"
     },
-    {
-      title: "Snacks",
-      note: "Choose any two (2-pcs each)",
-      veg: ["Mini Pizza", "Veg Springrolls", "Cigar Rolls", "Veggie Finger Bites", "Cheese Corn Nuggets", "Cheese Delight Balls", "Hara Bhara Kebabs", "Mini Bata Vadas"],
-      nonVeg: ["Starship Chicken Nuggets", "Chicken Popcorn Crunchies", "Crispy Chicken Adventure Strips", "Chicken Wings of Wonder"]
-    },
-    {
-      title: "Main Course",
-      note: "Choose any one",
-      veg: ["Masala Maggi", "Veg Haaka Noodles", "Veg Puffs (2)", "Mac in Cheese", "White/Red/Mix Sauce Pasta", "Vegetable Sandwich", "Veg Hotdog", "Veg Snacker Burger"],
-      nonVeg: ["Chicken Sandwich", "Chicken Zippy Burger", "Chicken Mayo Roll", "Chicken Hot Dog", "Egg-Fried Rice", "Chicken Noodles"]
-    },
-    {
-      title: "Desserts",
-      note: "Choose any one",
-      items: ["Chocolava Cake Delight", "Chocolate Donut", "Chocolate Brownie", "Chocolate Mouse Cups", "Muffin Cakes (Vanilla/Choc)", "Large Cookie"]
+    { 
+      name: "Super Happy Box", 
+      price: "₹445", 
+      detail: "1 Treat + 2 Snacks + 1 Main + 1 Dessert",
+      bestFor: "The ultimate party feast"
     }
   ]
 
   return (
-    <section className="py-20 px-6 bg-[#FFF9F2]" style={{ fontFamily: "'Comic Neue', cursive" }}>
+    <section className="py-12 px-4 bg-[#FFF9F2]" style={{ fontFamily: "'Comic Neue', cursive" }}>
       <div className="max-w-6xl mx-auto">
         
-        {/* --- Box Tier Selection --- */}
-        <div className="text-center mb-16">
-          <h2 className="text-5xl font-black text-[#333333] mb-6">Tailored <span className="text-[#F26522]">Kiddie Boxes</span></h2>
-          <div className="flex flex-col md:flex-row justify-center gap-8">
-            {boxTypes.map((box, i) => (
-              <div key={i} className="bg-white border-4 border-[#333333] p-8 rounded-[2rem] shadow-[8px_8px_0px_#F26522] flex-1">
-                <h3 className="text-3xl font-black text-[#F26522] uppercase">{box.name}</h3>
-                <p className="text-xl font-bold opacity-70 mt-2 mb-4">{box.items}</p>
-                <div className="inline-block bg-[#FFCB05] px-6 py-2 rounded-full font-black text-2xl border-2 border-[#333333]">
-                  {box.price}
-                </div>
+        {/* Header - Richer Text to Fill Space */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-6 border-b-4 border-[#333333] pb-8">
+          <div className="max-w-xl">
+            <h2 className="text-4xl md:text-5xl font-black text-[#333333] leading-tight">
+              Tailored <span className="text-[#F26522]">Kiddie Boxes</span>
+            </h2>
+            <p className="font-bold text-lg opacity-80 mt-2">
+              Tailoured catering for little explorers.
+            </p>
+          </div>
+          <div className="flex gap-4">
+            {tiers.map((t, i) => (
+              <div key={i} className="bg-white border-2 border-[#333333] p-4 rounded-2xl shadow-[6px_6px_0px_#FFCB05] flex flex-col items-center min-w-[140px]">
+                <span className="text-xs font-black uppercase text-[#F26522] mb-1">{t.name}</span>
+                <span className="text-3xl font-black text-[#333333]">{t.price}</span>
+                <span className="text-[10px] font-bold opacity-60 mt-1">{t.bestFor}</span>
               </div>
             ))}
           </div>
         </div>
 
-        {/* --- Menu Options Grid --- */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {menuSections.map((section, idx) => (
-            <div key={idx} className="bg-white border-4 border-[#333333] rounded-[2.5rem] p-8 shadow-[8px_8px_0px_#333333] flex flex-col">
-              <div className="flex justify-between items-start mb-6">
-                <div>
-                  <h4 className="text-3xl font-black text-[#333333]">{section.title}</h4>
-                  <p className="text-[#F26522] font-bold text-sm uppercase tracking-wider">{section.note}</p>
-                </div>
-                <div className="text-4xl">
-                  {section.title === "Treats" && "🍟"}
-                  {section.title === "Snacks" && "🥟"}
-                  {section.title === "Main Course" && "🍔"}
-                  {section.title === "Desserts" && "🍩"}
+        {/* The Grid - Packed with Content */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          {/* Column 1: The Fun Extras */}
+          <div className="flex flex-col gap-6">
+            <div className="bg-white border-2 border-[#333333] rounded-[2rem] p-6 shadow-[6px_6px_0px_#333333] hover:translate-y-[-4px] transition-transform">
+              <div className="flex justify-between items-center mb-4">
+                <h4 className="font-black text-xl text-[#F26522]">🍟 TREATS</h4>
+                <span className="text-[10px] bg-[#FFCB05] px-2 py-1 rounded-md font-black italic">Salty & Crunchy</span>
+              </div>
+              <ul className="text-sm font-bold space-y-2 opacity-80">
+                <li className="flex items-center gap-2"><span>✨</span> French Fries</li>
+                <li className="flex items-center gap-2"><span>✨</span> Peri Peri Fries</li>
+                <li className="flex items-center gap-2"><span>✨</span> Popcorn Party Pops</li>
+                <li className="flex items-center gap-2"><span>✨</span> Roasted Butter Makhanas</li>
+              </ul>
+            </div>
+
+            <div className="bg-white border-2 border-[#333333] rounded-[2rem] p-6 shadow-[6px_6px_0px_#333333] hover:translate-y-[-4px] transition-transform">
+              <div className="flex justify-between items-center mb-4">
+                <h4 className="font-black text-xl text-[#F26522]">🍩 DESSERTS</h4>
+                <span className="text-[10px] bg-[#FFCB05] px-2 py-1 rounded-md font-black italic">Sweet Finisher</span>
+              </div>
+              <ul className="text-sm font-bold space-y-2 opacity-80">
+                <li className="flex items-center gap-2"><span>🍭</span> Chocolava Cake Delight</li>
+                <li className="flex items-center gap-2"><span>🍭</span> Chocolate Donut</li>
+                <li className="flex items-center gap-2"><span>🍭</span> Chocolate Brownie</li>
+                <li className="flex items-center gap-2"><span>🍭</span> Chocolate Mouse Cups</li>
+                <li className="flex items-center gap-2"><span>🍭</span> Muffin Cakes (Any Flavor)</li>
+                <li className="flex items-center gap-2"><span>🍭</span> Signature Large Cookie</li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Column 2: The Snacks (Veg & Non-Veg) */}
+          <div className="bg-white border-2 border-[#333333] rounded-[2rem] p-6 shadow-[6px_6px_0px_#333333] hover:translate-y-[-4px] transition-transform flex flex-col">
+            <div className="flex justify-between items-center mb-4">
+              <h4 className="font-black text-xl text-[#F26522]">🥟 SNACKS</h4>
+              <span className="text-[10px] bg-[#FFCB05] px-2 py-1 rounded-md font-black italic">Perfect Bites</span>
+            </div>
+            
+            <div className="space-y-6">
+              <div>
+                <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-[10px] font-black uppercase mb-3 inline-block">Garden Fresh (Veg)</span>
+                <div className="grid grid-cols-1 gap-2 text-xs font-bold opacity-80">
+                  <span>• Mini Pizza Rounds</span>
+                  <span>• Crispy Veg Springrolls</span>
+                  <span>• Cheese Cigar Rolls</span>
+                  <span>• Veggie Finger Bites</span>
+                  <span>• Cheese Corn Nuggets</span>
+                  <span>• Cheese Delight Balls</span>
+                  <span>• Hara Bhara Kebabs</span>
+                  <span>• Mini Bata Vadas</span>
                 </div>
               </div>
-
-              {/* Items List */}
-              <div className="space-y-4">
-                {section.items ? (
-                  <div className="grid grid-cols-1 gap-2">
-                    {section.items.map((item, i) => (
-                      <div key={i} className="flex items-center gap-2 font-bold opacity-80">
-                        <span className="text-[#FFCB05] font-black">●</span> {item}
-                      </div>
-                    ))}
-                  </div>
-                ) : (
-                  <>
-                    {/* Veg Section */}
-                    <div>
-                      <span className="bg-green-100 text-green-700 px-3 py-1 rounded-md text-xs font-black uppercase mb-3 inline-block">Veg</span>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                        {section.veg?.map((item, i) => (
-                          <div key={i} className="text-sm font-bold opacity-80 flex items-center gap-2">
-                            <span className="w-1.5 h-1.5 bg-[#F26522] rounded-full"></span> {item}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                    {/* Non-Veg Section */}
-                    <div className="mt-4 pt-4 border-t-2 border-dashed border-[#333333]/10">
-                      <span className="bg-red-100 text-red-700 px-3 py-1 rounded-md text-xs font-black uppercase mb-3 inline-block">Non-Veg</span>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                        {section.nonVeg?.map((item, i) => (
-                          <div key={i} className="text-sm font-bold opacity-80 flex items-center gap-2">
-                            <span className="w-1.5 h-1.5 bg-[#333333] rounded-full"></span> {item}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </>
-                )}
+              <div className="border-t-2 border-dashed border-[#333333]/10 pt-4">
+                <span className="bg-red-100 text-red-700 px-3 py-1 rounded-full text-[10px] font-black uppercase mb-3 inline-block">Protein Packed (Non-Veg)</span>
+                <div className="grid grid-cols-1 gap-2 text-xs font-bold opacity-80">
+                  <span>• Starship Chicken Nuggets</span>
+                  <span>• Chicken Popcorn Crunchies</span>
+                  <span>• Chicken Adventure Strips</span>
+                  <span>• Chicken Wings of Wonder</span>
+                </div>
               </div>
             </div>
-          ))}
+          </div>
+
+          {/* Column 3: The Main Event */}
+          <div className="bg-white border-2 border-[#333333] rounded-[2rem] p-6 shadow-[6px_6px_0px_#333333] hover:translate-y-[-4px] transition-transform flex flex-col">
+             <div className="flex justify-between items-center mb-4">
+              <h4 className="font-black text-xl text-[#F26522]">🍔 MAIN COURSE</h4>
+              <span className="text-[10px] bg-[#FFCB05] px-2 py-1 rounded-md font-black italic">The Big Meal</span>
+            </div>
+
+            <div className="space-y-6">
+              <div>
+                <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-[10px] font-black uppercase mb-3 inline-block">Veggie Classics</span>
+                <div className="grid grid-cols-1 gap-2 text-xs font-bold opacity-80">
+                  <span>• Classic Masala Maggi</span>
+                  <span>• Veg Haaka Noodles</span>
+                  <span>• Golden Veg Puffs (2)</span>
+                  <span>• Creamy Mac in Cheese</span>
+                  <span>• White/Red/Mix Sauce Pasta</span>
+                  <span>• Fresh Vegetable Sandwich</span>
+                  <span>• Veggie Delight Hotdog</span>
+                  <span>• Veg Snacker Burger</span>
+                </div>
+              </div>
+              <div className="border-t-2 border-dashed border-[#333333]/10 pt-4">
+                <span className="bg-red-100 text-red-700 px-3 py-1 rounded-full text-[10px] font-black uppercase mb-3 inline-block">Non-Veg Favorites</span>
+                <div className="grid grid-cols-1 gap-2 text-xs font-bold opacity-80">
+                  <span>• Classic Chicken Sandwich</span>
+                  <span>• Chicken Zippy Burger</span>
+                  <span>• Creamy Chicken Mayo Roll</span>
+                  <span>• Jumbo Chicken Hot Dog</span>
+                  <span>• Savory Egg-Fried Rice</span>
+                  <span>• Authentic Chicken Noodles</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        {/* --- Footer Note --- */}
-        <div className="mt-16 bg-[#333333] text-white p-8 rounded-[2rem] text-center border-4 border-[#FFCB05]">
-          <p className="text-xl font-bold italic">
-            "Mixing and matching is encouraged! Contact us for bespoke kiddie boxes tailored to your party theme."
-          </p>
+        {/* New "How it Works" Bottom Bar to fill space professionally */}
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-4 border-t-4 border-[#333333] pt-8">
+           <div className="flex items-center gap-4">
+              <span className="text-2xl">📦</span>
+              <p className="text-xs font-bold leading-tight">Minimum order of 10 boxes per event.</p>
+           </div>
+           <div className="flex items-center gap-4">
+              <span className="text-2xl">🚚</span>
+              <p className="text-xs font-bold leading-tight">Freshly prepared and delivered 30 mins before party time.</p>
+           </div>
+           <div className="flex items-center gap-4">
+              <span className="text-2xl">🎨</span>
+              <p className="text-xs font-bold leading-tight">Custom theme stickers available on bulk orders!</p>
+           </div>
+        </div>
+
+        {/* Final CTA */}
+        <div className="mt-12 flex flex-col sm:flex-row items-center justify-between bg-[#333333] text-white p-6 rounded-[2rem] gap-4">
+          <p className="font-bold text-center sm:text-left">Ready to build your custom kiddie box menu?</p>
+          <button className="bg-[#F26522] text-white px-10 py-3 rounded-full font-black hover:scale-105 transition-transform shadow-[4px_4px_0px_#FFCB05]">
+            Order Now
+          </button>
         </div>
       </div>
     </section>
   )
 }
 
-export default FoodBoxesMenu
+export default CompactFoodMenu

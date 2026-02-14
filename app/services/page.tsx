@@ -1,6 +1,7 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { createPortal } from 'react-dom'
 
 import { motion, AnimatePresence } from 'framer-motion'
 import ServiceTabButton from '../components/ServiceTabButton'
@@ -12,6 +13,11 @@ import FoodBoxesMenu from '../components/FoodBoxesMenu'
 const ServicesPage = () => {
   const [activeTab, setActiveTab] = useState('venue')
   const [isFoodBoxesOpen, setIsFoodBoxesOpen] = useState(false)
+  const [isMounted, setIsMounted] = useState(false)
+
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
 
   const services = {
     venue: {
@@ -120,29 +126,31 @@ const ServicesPage = () => {
       {/* --- Trust Section --- */}
       <TrustSection />
 
-      {isFoodBoxesOpen && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4 py-8"
-          onClick={() => setIsFoodBoxesOpen(false)}
-        >
+      {isFoodBoxesOpen && isMounted &&
+        createPortal(
           <div
-            className="w-full max-w-6xl max-h-[90vh] overflow-y-auto rounded-[2.5rem]"
-            onClick={(event) => event.stopPropagation()}
+            className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 px-4 py-8"
+            onClick={() => setIsFoodBoxesOpen(false)}
           >
-            <div className="relative">
-              <button
-                type="button"
-                aria-label="Close food boxes menu"
-                className="absolute right-4 top-4 z-10 rounded-full border-2 border-[#333333] bg-white px-3 py-1 text-sm font-black text-[#333333] hover:bg-[#FFCB05]"
-                onClick={() => setIsFoodBoxesOpen(false)}
-              >
-                Close
-              </button>
-              <FoodBoxesMenu />
+            <div
+              className="w-full max-w-6xl max-h-[90vh] overflow-y-auto rounded-[2.5rem]"
+              onClick={(event) => event.stopPropagation()}
+            >
+              <div className="relative">
+                <button
+                  type="button"
+                  aria-label="Close food boxes menu"
+                  className="absolute right-4 top-4 z-10 rounded-full border-2 border-[#333333] bg-white px-3 py-1 text-sm font-black text-[#333333] hover:bg-[#FFCB05]"
+                  onClick={() => setIsFoodBoxesOpen(false)}
+                >
+                  Close
+                </button>
+                <FoodBoxesMenu />
+              </div>
             </div>
-          </div>
-        </div>
-      )}
+          </div>,
+          document.body
+        )}
     </div>
   )
 }
