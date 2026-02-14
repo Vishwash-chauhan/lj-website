@@ -21,8 +21,9 @@ const ServicesPage = () => {
       color: "#F26522",
       image: "🏠",
       location: {
-        name: "Little Jalebis HQ",
-        address: "456 Food Ave, Cityville",
+        type: "Party Venue",
+        name: "Little Jalebis Party Venue",
+        address: "17, Lower Ground Floor, Arjun Marg, DLF Phase 1, Gurugram",
         mapUrl: "https://maps.app.goo.gl/7YjPaUq7rVTPLbf57",
         mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d448438.52523130283!2d76.84306747170939!3d28.586994984112522!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4ca7759edc3c0c6f%3A0x40987779a61a0f66!2sLittle%20Jalebis%20-%20Kids%20Catering%20%26%20Delivery%20Co.!5e0!3m2!1sen!2sin!4v1771054463453!5m2!1sen!2sin"
       }
@@ -36,8 +37,9 @@ const ServicesPage = () => {
       color: "#FFCB05",
       image: "🍕",
       location: {
+        type: "Head Office",
         name: "Little Jalebis HQ",
-        address: "456 Food Ave, Cityville",
+        address: "E 5 Kalindi Colony, Near New Friends Colony, New Delhi",
         mapUrl: "https://maps.app.goo.gl/7YjPaUq7rVTPLbf57",
         mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d448438.52523130283!2d76.84306747170939!3d28.586994984112522!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4ca7759edc3c0c6f%3A0x40987779a61a0f66!2sLittle%20Jalebis%20-%20Kids%20Catering%20%26%20Delivery%20Co.!5e0!3m2!1sen!2sin!4v1771054463453!5m2!1sen!2sin"
       }

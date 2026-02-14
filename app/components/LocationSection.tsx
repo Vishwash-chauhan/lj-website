@@ -3,6 +3,7 @@
 
 
 interface Location {
+  type: string;
   name: string;
   address: string;
   mapUrl: string;
@@ -32,7 +33,7 @@ const LocationSection: React.FC<LocationSectionProps> = ({ location }) => {
         <div className="lg:w-1/3 p-8 md:p-12 flex flex-col justify-center bg-[#FFF9F2] border-b-4 lg:border-b-0 lg:border-r-4 border-[#333333]">
           <div className="mb-8">
             <span className="bg-[#F26522] text-white px-4 py-1 rounded-full text-xs font-black uppercase tracking-widest">
-              Main Center
+              {location.type}
             </span>
             <h3 className="text-3xl font-black text-[#333333] mt-4 mb-2">{location.name}</h3>
             <p className="text-lg font-bold opacity-80 leading-relaxed" style={{ whiteSpace: 'pre-line' }}>
@@ -44,13 +45,13 @@ const LocationSection: React.FC<LocationSectionProps> = ({ location }) => {
               <div className="w-10 h-10 rounded-xl bg-[#FFCB05] flex items-center justify-center border-2 border-[#333333] shadow-[2px_2px_0px_#333333]">
                 📞
               </div>
-              <span className="font-bold text-[#333333]">+1 (555) JALEBIS</span>
+              <span className="font-bold text-[#333333]">+91 81309 64374</span>
             </div>
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center border-2 border-[#333333] shadow-[2px_2px_0px_#333333]">
                 ✉️
               </div>
-              <span className="font-bold text-[#333333]">hello@littlejalebis.com</span>
+              <span className="font-bold text-[#333333]">sales@littlejalebis.com</span>
             </div>
           </div>
 
@@ -65,12 +66,12 @@ const LocationSection: React.FC<LocationSectionProps> = ({ location }) => {
         </div>
 
         {/* Right Side: Map */}
-        <div className="lg:w-2/3 h-[400px] lg:h-auto min-h-[350px] relative">
+        <div className="lg:w-2/3 h-[400px] lg:h-auto min-h-[350px] relative group">
           {location.mapEmbed ? (
             <iframe
               title={`${location.name} map`}
               src={location.mapEmbed}
-              className="w-full h-full"
+              className="w-full h-full transition-all duration-300 filter grayscale group-hover:grayscale-0"
               style={{ border: 0 }}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
