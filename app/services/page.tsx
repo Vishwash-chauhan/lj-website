@@ -19,7 +19,13 @@ const ServicesPage = () => {
       features: ["Themed Decor Packages", "Dedicated Party Hosts", "Safe & Clean Play Zones", "Sound & Lighting Systems"],
       cta: "View Our Locations",
       color: "#F26522",
-      image: "🏠" 
+      image: "🏠",
+      location: {
+        name: "Little Jalebis HQ",
+        address: "456 Food Ave, Cityville",
+        mapUrl: "https://maps.app.goo.gl/7YjPaUq7rVTPLbf57",
+        mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d448438.52523130283!2d76.84306747170939!3d28.586994984112522!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4ca7759edc3c0c6f%3A0x40987779a61a0f66!2sLittle%20Jalebis%20-%20Kids%20Catering%20%26%20Delivery%20Co.!5e0!3m2!1sen!2sin!4v1771054463453!5m2!1sen!2sin"
+      }
     },
     catering: {
       title: "Gourmet Party Catering",
@@ -28,7 +34,13 @@ const ServicesPage = () => {
       features: ["Custom Cake Design", "Live Food Counters", "Allergy-Friendly Options", "Adult Grazing Platters"],
       cta: "Download Menu",
       color: "#FFCB05",
-      image: "🍕"
+      image: "🍕",
+      location: {
+        name: "Little Jalebis HQ",
+        address: "456 Food Ave, Cityville",
+        mapUrl: "https://maps.app.goo.gl/7YjPaUq7rVTPLbf57",
+        mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d448438.52523130283!2d76.84306747170939!3d28.586994984112522!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4ca7759edc3c0c6f%3A0x40987779a61a0f66!2sLittle%20Jalebis%20-%20Kids%20Catering%20%26%20Delivery%20Co.!5e0!3m2!1sen!2sin!4v1771054463453!5m2!1sen!2sin"
+      }
     },
     boxes: {
       title: "Fun Lunch Boxes",
@@ -37,7 +49,8 @@ const ServicesPage = () => {
       features: ["Individual Portioning", "Eco-friendly Packaging", "Nut-Free Facilities", "Custom Branding Available"],
       cta: "Order Bulk Boxes",
       color: "#333333",
-      image: "🍱"
+      image: "🍱",
+      location: null
     }
   }
 
@@ -85,7 +98,7 @@ const ServicesPage = () => {
         </AnimatePresence>
 
         {/* --- Location Section --- */}
-        <LocationSection />
+        <LocationSection location={services[activeTab as keyof typeof services].location} />
       </div>
 
       {/* --- Trust Section --- */}
