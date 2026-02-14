@@ -96,7 +96,7 @@ const ScrollContent = memo(() => (
         <div className="space-y-6 mt-4">
           {/* Service Cards */}
           {[
-            { title: "Dreamy Party Venues", desc: "Magical spaces designed for play and laughter.", link: "/venues" },
+            { title: "Dreamy Party Venue", desc: "Magical spaces designed for play and laughter.", link: "/venue" },
             { title: "Gourmet Catering", desc: "Kid-approved menus that adults love too.", link: "/catering" },
             { title: "Nutritious Lunch Boxes", desc: "Fresh, fun, and balanced meals delivered.", link: "/lunch-boxes" }
           ].map((service, i) => (
@@ -120,8 +120,8 @@ const ScrollContent = memo(() => (
           From the first invite to the last jalebi, we handle the details while you make the memories.
         </p>
         <div className="flex flex-col sm:flex-row gap-6 justify-center">
-          <a href="/venues" className="px-10 py-4 border-4 border-[#F26522] text-[#F26522] rounded-2xl font-bold text-xl hover:bg-[#F26522] hover:text-white transition-all transform hover:-rotate-2">
-            Explore Venues
+          <a href="/venue" className="px-10 py-4 border-4 border-[#F26522] text-[#F26522] rounded-2xl font-bold text-xl hover:bg-[#F26522] hover:text-white transition-all transform hover:-rotate-2">
+            Explore Venue
           </a>
           <a href="/catering" className="px-10 py-4 bg-[#333333] text-white rounded-2xl font-bold text-xl hover:scale-105 transition-all transform hover:rotate-2">
             See Menus

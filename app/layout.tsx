@@ -11,7 +11,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Little Jalebis | Kids Party House & Catering Co. | New Delhi & Gurgaon",
-  description: "Award-winning kids party house and catering company in Delhi & Gurgaon. Unforgettable parties with delicious food, entertainment packages, and party venues.",
+  description: "Award-winning kids party house and catering company in Delhi & Gurgaon. Unforgettable parties with delicious food, entertainment packages, and party venue.",
   keywords: "kids party, catering, party house, Delhi catering, Gurgaon party venue, children's parties, event catering, party planner",
   authors: [{ name: "Little Jalebis" }],
   openGraph: {
