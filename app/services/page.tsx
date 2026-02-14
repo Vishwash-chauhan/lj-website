@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import ServiceTabButton from '../components/ServiceTabButton'
 import ServiceTabContent from '../components/ServiceTabContent'
 import TrustSection from '../components/TrustSection'
+import LocationSection from '../components/LocationSection'
 
 const ServicesPage = () => {
   const [activeTab, setActiveTab] = useState('venue')
@@ -82,6 +83,9 @@ const ServicesPage = () => {
             />
           </motion.div>
         </AnimatePresence>
+
+        {/* --- Location Section --- */}
+        <LocationSection />
       </div>
 
       {/* --- Trust Section --- */}
