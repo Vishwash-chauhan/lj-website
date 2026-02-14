@@ -6,6 +6,8 @@ interface Location {
   type: string;
   name: string;
   address: string;
+  heading: string;
+  subheading: string;
   mapUrl: string;
   mapEmbed: string;
 }
@@ -21,10 +23,10 @@ const LocationSection: React.FC<LocationSectionProps> = ({ location }) => {
       {/* Header for Location */}
       <div className="text-center mb-12">
         <h2 className="text-4xl md:text-5xl font-black text-[#333333] mb-4">
-          Visit Our <span className="text-[#F26522]">{location.name}</span>
+          {location.heading} <span className="text-[#F26522]">{location.name}</span>
         </h2>
         <p className="text-xl font-bold opacity-70" style={{ fontFamily: "'Comic Neue', cursive" }}>
-          Come over for a tasting or to tour our magical venues!
+          {location.subheading}
         </p>
       </div>
 
