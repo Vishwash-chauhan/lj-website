@@ -7,12 +7,15 @@ import ServiceTabButton from '../components/ServiceTabButton'
 import ServiceTabContent from '../components/ServiceTabContent'
 import TrustSection from '../components/TrustSection'
 import LocationSection from '../components/LocationSection'
+import FoodBoxesMenu from '../components/FoodBoxesMenu'
 
 const ServicesPage = () => {
   const [activeTab, setActiveTab] = useState('venue')
+  const [isFoodBoxesOpen, setIsFoodBoxesOpen] = useState(false)
 
   const services = {
     venue: {
+      tabTitle: "Party Venue",
       title: "Dreamy Party Venue",
       tagline: "Where Imagination Meets Celebration",
       description: "Our venue are more than just rooms—they are immersive playgrounds designed for safe, high-energy fun. From soft-play corners to themed decor setups, we provide the perfect backdrop for your child's big day.",
@@ -31,6 +34,7 @@ const ServicesPage = () => {
       }
     },
     catering: {
+      tabTitle: "Catering",
       title: "Gourmet Party Catering",
       tagline: "Deliciously Fun, Nutritiously Balanced",
       description: "Fully Customisable Catering Options. Our menus are designed keeping children in mind — kid-friendly, hygienic, and flavour-balanced. Our kitchen focuses on fresh ingredients and playful presentation.",
@@ -49,11 +53,12 @@ const ServicesPage = () => {
       }
     },
     boxes: {
+      tabTitle: "Food Boxes",
       title: "Fun Lunch Boxes",
       tagline: "Healthy Meals, Delivered in Style",
       description: "Perfect for school events, birthday picnics, or outdoor trips. Our lunch boxes are packed with love, nutrition, and playful presentation to make healthy bites feel like a treat.",
       features: ["Individual Portioning", "Hygienic Packaging", "Fully Customisable", "On-Demand Delivery"],
-      cta: "Order Bulk Boxes",
+      cta: "View Food Box Menu",
       color: "#333333",
       image: "🍱",
       location: null
@@ -76,7 +81,7 @@ const ServicesPage = () => {
           {Object.entries(services).map(([id, service]) => (
             <ServiceTabButton
               key={id}
-              title={service.title.split(' ')[service.title.split(' ').length - 1]}
+              title={service.tabTitle}
               active={activeTab === id}
               onClick={() => setActiveTab(id)}
             />
@@ -99,6 +104,11 @@ const ServicesPage = () => {
               description={services[activeTab as keyof typeof services].description}
               features={services[activeTab as keyof typeof services].features}
               cta={services[activeTab as keyof typeof services].cta}
+              onCtaClick={
+                activeTab === 'boxes'
+                  ? () => setIsFoodBoxesOpen(true)
+                  : undefined
+              }
             />
           </motion.div>
         </AnimatePresence>
@@ -109,6 +119,30 @@ const ServicesPage = () => {
 
       {/* --- Trust Section --- */}
       <TrustSection />
+
+      {isFoodBoxesOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4 py-8"
+          onClick={() => setIsFoodBoxesOpen(false)}
+        >
+          <div
+            className="w-full max-w-6xl max-h-[90vh] overflow-y-auto rounded-[2.5rem]"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="relative">
+              <button
+                type="button"
+                aria-label="Close food boxes menu"
+                className="absolute right-4 top-4 z-10 rounded-full border-2 border-[#333333] bg-white px-3 py-1 text-sm font-black text-[#333333] hover:bg-[#FFCB05]"
+                onClick={() => setIsFoodBoxesOpen(false)}
+              >
+                Close
+              </button>
+              <FoodBoxesMenu />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

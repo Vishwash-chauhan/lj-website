@@ -7,6 +7,7 @@ interface ServiceTabContentProps {
   description: string;
   features: string[];
   cta: string;
+  onCtaClick?: () => void;
 }
 
 const ServiceTabContent: React.FC<ServiceTabContentProps> = ({
@@ -16,6 +17,7 @@ const ServiceTabContent: React.FC<ServiceTabContentProps> = ({
   description,
   features,
   cta,
+  onCtaClick,
 }) => (
   <div className="bg-white border-4 border-[#333333] rounded-[3rem] p-8 md:p-16 flex flex-col md:flex-row gap-12 items-center shadow-[12px_12px_0px_#FFCB05]">
     {/* Visual Placeholder/Icon */}
@@ -35,7 +37,11 @@ const ServiceTabContent: React.FC<ServiceTabContentProps> = ({
           </div>
         ))}
       </div>
-      <button className="w-full sm:w-auto px-10 py-4 bg-[#333333] text-white rounded-2xl font-bold text-lg hover:bg-[#F26522] transition-all transform hover:-rotate-1 active:scale-95">
+      <button
+        type="button"
+        onClick={onCtaClick}
+        className="w-full sm:w-auto px-10 py-4 bg-[#333333] text-white rounded-2xl font-bold text-lg hover:bg-[#F26522] transition-all transform hover:-rotate-1 active:scale-95"
+      >
         {cta}
       </button>
     </div>
