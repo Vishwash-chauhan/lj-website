@@ -29,7 +29,8 @@ const CompactFoodMenu = () => {
               Tailored <span className="text-[#F26522]">Kiddie Boxes</span>
             </h2>
             <p className="font-bold text-lg opacity-80 mt-2">
-              Tailoured catering for little explorers.
+              Delicious, nutritious, and mess-free meals delivered in our signature eco-friendly packaging. 
+              Pick your tier and customize your flavors below!
             </p>
           </div>
           <div className="flex gap-4">
@@ -37,7 +38,7 @@ const CompactFoodMenu = () => {
               <div key={i} className="bg-white border-2 border-[#333333] p-4 rounded-2xl shadow-[6px_6px_0px_#FFCB05] flex flex-col items-center min-w-[140px]">
                 <span className="text-xs font-black uppercase text-[#F26522] mb-1">{t.name}</span>
                 <span className="text-3xl font-black text-[#333333]">{t.price}</span>
-                <span className="text-[10px] font-bold opacity-60 mt-1">{t.bestFor}</span>
+                <span className="text-[10px] font-bold opacity-60 mt-1">{t.detail}</span>
               </div>
             ))}
           </div>

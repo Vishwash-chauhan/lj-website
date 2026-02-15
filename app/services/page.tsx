@@ -60,7 +60,7 @@ const ServicesPage = () => {
     },
     boxes: {
       tabTitle: "Food Boxes",
-      title: "Fun Lunch Boxes",
+      title: "Fun Food Boxes",
       tagline: "Healthy Meals, Delivered in Style",
       description: "Perfect for school events, birthday picnics, or outdoor trips. Our lunch boxes are packed with love, nutrition, and playful presentation to make healthy bites feel like a treat.",
       features: ["Individual Portioning", "Hygienic Packaging", "Fully Customisable", "On-Demand Delivery"],
