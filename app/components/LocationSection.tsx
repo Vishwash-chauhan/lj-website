@@ -19,7 +19,7 @@ interface LocationSectionProps {
 const LocationSection: React.FC<LocationSectionProps> = ({ location }) => {
   if (!location) return null;
   return (
-    <section className="mt-24 max-w-5xl mx-auto px-4 pb-20">
+    <section id="location-section" className="mt-24 max-w-5xl mx-auto px-4 pb-20 scroll-mt-24">
       {/* Header for Location */}
       <div className="text-center mb-12">
         <h2 className="text-4xl md:text-5xl font-black text-[#333333] mb-4">

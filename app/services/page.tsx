@@ -80,6 +80,13 @@ const ServicesPage = () => {
     }
   }, [searchParams])
 
+  const handleScrollToLocation = () => {
+    const target = document.getElementById('location-section')
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }
+
   return (
     <div className="min-h-screen bg-[#FFF9F2] pt-24 pb-20 px-6 md:px-12" style={{ fontFamily: "'Comic Neue', cursive" }}>
       {/* --- Header --- */}
@@ -122,14 +129,16 @@ const ServicesPage = () => {
               onCtaClick={
                 activeTab === 'boxes'
                   ? () => setIsFoodBoxesOpen(true)
-                  : undefined
+                  : activeTab === 'venue'
+                    ? handleScrollToLocation
+                    : undefined
               }
             />
           </motion.div>
         </AnimatePresence>
 
         {/* --- Location Section --- */}
-        <LocationSection location={SERVICES[activeTab].location} />
+        <LocationSection location={activeTab === 'catering' ? null : SERVICES[activeTab].location} />
       </div>
 
       {/* --- Trust Section --- */}

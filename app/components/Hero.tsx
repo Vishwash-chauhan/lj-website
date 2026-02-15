@@ -76,9 +76,9 @@ const ScrollContent = memo(() => (
           Big Smiles, Sweet Memories & <br className="hidden md:block"/>
           <span className="underline decoration-[#FFCB05] decoration-4">Zero Stress</span> for Parents.
         </p>
-        <button className="mt-10 px-10 py-4 bg-[#F26522] text-white rounded-full font-bold text-lg hover:bg-[#d6561d] transition-all w-fit shadow-[6px_6px_0px_#333333] active:translate-y-1 active:shadow-none">
+        <a href="/contact" className="mt-10 px-10 py-4 bg-[#F26522] text-white rounded-full font-bold text-lg hover:bg-[#d6561d] transition-all w-fit shadow-[6px_6px_0px_#333333] active:translate-y-1 active:shadow-none inline-block">
           Plan Your Party ↓
-        </button>
+        </a>
       </div>
     </section>
     
@@ -123,12 +123,15 @@ const ScrollContent = memo(() => (
         <p className="text-lg md:text-2xl mb-12 font-bold opacity-80 max-w-2xl mx-auto">
           From the first invite to the last jalebi, we handle the details while you make the memories.
         </p>
-        <div className="flex flex-col sm:flex-row gap-6 justify-center">
-          <a href="/venue" className="px-10 py-4 border-4 border-[#F26522] text-[#F26522] rounded-2xl font-bold text-xl hover:bg-[#F26522] hover:text-white transition-all transform hover:-rotate-2">
+        <div className="flex flex-col sm:flex-row flex-wrap gap-6 justify-center">
+          <a href="/services?tab=venue" className="px-10 py-4 border-4 border-[#F26522] text-[#F26522] rounded-2xl font-bold text-xl hover:bg-[#F26522] hover:text-white transition-all transform hover:-rotate-2">
             Explore Venue
           </a>
-          <a href="/catering" className="px-10 py-4 bg-[#333333] text-white rounded-2xl font-bold text-xl hover:scale-105 transition-all transform hover:rotate-2">
-            See Menus
+          <a href="/services?tab=catering" className="px-10 py-4 border-4 border-[#333333] text-[#333333] rounded-2xl font-bold text-xl hover:bg-[#333333] hover:text-white transition-all transform hover:-rotate-2">
+            Catering
+          </a>
+          <a href="/services?tab=boxes" className="px-10 py-4 border-4 border-[#FFCB05] text-[#333333] rounded-2xl font-bold text-xl hover:bg-[#FFCB05] transition-all transform hover:-rotate-2">
+            View Food Boxes
           </a>
         </div>
       </div>

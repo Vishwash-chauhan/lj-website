@@ -1,10 +1,12 @@
 "use client";
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
 
   // Add a slight shadow/background change on scroll
   useEffect(() => {
@@ -20,6 +22,9 @@ const Navbar = () => {
     { name: 'About', href: '/about' },
     { name: 'Contact', href: '/contact' },
   ];
+
+  const isActiveLink = (href: string) =>
+    href === '/' ? pathname === '/' : pathname.startsWith(href);
 
   return (
     <nav 
@@ -45,7 +50,11 @@ const Navbar = () => {
             <Link 
               key={link.name} 
               href={link.href}
-              className="font-bold text-[15px] text-[#333333] hover:text-[#F26522] transition-colors duration-300 uppercase tracking-wider"
+              className={`font-bold text-[15px] uppercase tracking-wider transition-colors duration-300 ${
+                isActiveLink(link.href)
+                  ? 'text-[#F26522] underline decoration-[#FFCB05] decoration-4 underline-offset-[6px]'
+                  : 'text-[#333333] hover:text-[#F26522]'
+              }`}
             >
               {link.name}
             </Link>
@@ -55,7 +64,7 @@ const Navbar = () => {
         {/* CTA Button */}
         <div className="hidden md:block">
           <Link 
-            href="/booking" 
+            href="/contact" 
             className="bg-[#F26522] text-white font-bold px-7 py-3 rounded-full shadow-[4px_4px_0px_#333333] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all inline-block text-sm uppercase tracking-widest"
           >
             Book a Party
@@ -83,7 +92,11 @@ const Navbar = () => {
               key={link.name} 
               href={link.href}
               onClick={() => setIsOpen(false)}
-              className={`font-bold text-4xl text-[#333333] hover:text-[#F26522] transition-all ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
+              className={`font-bold text-4xl transition-all ${
+                isActiveLink(link.href)
+                  ? 'text-[#F26522] underline decoration-[#FFCB05] decoration-8 underline-offset-[10px]'
+                  : 'text-[#333333] hover:text-[#F26522]'
+              } ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
               style={{ transitionDelay: `${i * 100}ms` }}
             >
               {link.name}
