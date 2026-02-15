@@ -42,18 +42,18 @@ const ContactUs = () => {
             <div className="space-y-4">
               <h2 className="text-3xl font-black text-[#333333]">Get in Touch</h2>
               <p className="font-bold text-lg opacity-80 leading-relaxed">
-                Our party planners respond to all inquiries within 24 hours. Let's make it legendary!
+                Our team will respond to your inquiries within 24 hours.
               </p>
             </div>
 
-            <div className="pt-6 border-t-2 border-dashed border-[#333333]/10 space-y-3">
+            <div className="hidden lg:block pt-6 border-t-2 border-dashed border-[#333333]/10 space-y-3">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-[#FFCB05] flex items-center justify-center font-black">📞</div>
-                <span className="font-black text-[#333333]">+91 81309 64374</span>
+              <div className="w-8 h-8 rounded-full bg-[#FFCB05] flex items-center justify-center font-black">📞</div>
+              <span className="font-black text-[#333333]">+91 81309 64374</span>
               </div>
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-[#F26522] flex items-center justify-center font-black text-white">📍</div>
-                <span className="font-black text-[#333333]">New Delhi, India</span>
+              <div className="w-8 h-8 rounded-full bg-[#F26522] flex items-center justify-center font-black text-white">📍</div>
+              <span className="font-black text-[#333333]">New Delhi, India</span>
               </div>
             </div>
           </div>

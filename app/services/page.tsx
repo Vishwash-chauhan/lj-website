@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { createPortal } from 'react-dom'
 
 import { motion, AnimatePresence } from 'framer-motion'
@@ -10,16 +11,7 @@ import TrustSection from '../components/TrustSection'
 import LocationSection from '../components/LocationSection'
 import FoodBoxesMenu from '../components/FoodBoxesMenu'
 
-const ServicesPage = () => {
-  const [activeTab, setActiveTab] = useState('venue')
-  const [isFoodBoxesOpen, setIsFoodBoxesOpen] = useState(false)
-  const [isMounted, setIsMounted] = useState(false)
-
-  useEffect(() => {
-    setIsMounted(true)
-  }, [])
-
-  const services = {
+const SERVICES = {
     venue: {
       tabTitle: "Party Venue",
       title: "Dreamy Party Venue",
@@ -71,6 +63,23 @@ const ServicesPage = () => {
     }
   }
 
+const ServicesPage = () => {
+  const searchParams = useSearchParams()
+  const [activeTab, setActiveTab] = useState<keyof typeof SERVICES>('venue')
+  const [isFoodBoxesOpen, setIsFoodBoxesOpen] = useState(false)
+  const [isMounted, setIsMounted] = useState(false)
+
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
+
+  useEffect(() => {
+    const tab = searchParams.get('tab')
+    if (tab && tab in SERVICES) {
+      setActiveTab(tab as keyof typeof SERVICES)
+    }
+  }, [searchParams])
+
   return (
     <div className="min-h-screen bg-[#FFF9F2] pt-24 pb-20 px-6 md:px-12" style={{ fontFamily: "'Comic Neue', cursive" }}>
       {/* --- Header --- */}
@@ -84,12 +93,12 @@ const ServicesPage = () => {
       {/* --- Tabs --- */}
       <div className="max-w-5xl mx-auto">
         <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {Object.entries(services).map(([id, service]) => (
+          {Object.entries(SERVICES).map(([id, service]) => (
             <ServiceTabButton
               key={id}
               title={service.tabTitle}
               active={activeTab === id}
-              onClick={() => setActiveTab(id)}
+              onClick={() => setActiveTab(id as keyof typeof SERVICES)}
             />
           ))}
         </div>
@@ -104,12 +113,12 @@ const ServicesPage = () => {
             transition={{ duration: 0.3 }}
           >
             <ServiceTabContent
-              image={services[activeTab as keyof typeof services].image}
-              tagline={services[activeTab as keyof typeof services].tagline}
-              title={services[activeTab as keyof typeof services].title}
-              description={services[activeTab as keyof typeof services].description}
-              features={services[activeTab as keyof typeof services].features}
-              cta={services[activeTab as keyof typeof services].cta}
+              image={SERVICES[activeTab].image}
+              tagline={SERVICES[activeTab].tagline}
+              title={SERVICES[activeTab].title}
+              description={SERVICES[activeTab].description}
+              features={SERVICES[activeTab].features}
+              cta={SERVICES[activeTab].cta}
               onCtaClick={
                 activeTab === 'boxes'
                   ? () => setIsFoodBoxesOpen(true)
@@ -120,7 +129,7 @@ const ServicesPage = () => {
         </AnimatePresence>
 
         {/* --- Location Section --- */}
-        <LocationSection location={services[activeTab as keyof typeof services].location} />
+        <LocationSection location={SERVICES[activeTab].location} />
       </div>
 
       {/* --- Trust Section --- */}

@@ -96,17 +96,21 @@ const ScrollContent = memo(() => (
         <div className="space-y-6 mt-4">
           {/* Service Cards */}
           {[
-            { title: "Dreamy Party Venue", desc: "Magical spaces designed for play and laughter.", link: "/venue" },
-            { title: "Gourmet Catering", desc: "Kid-approved menus that adults love too.", link: "/catering" },
-            { title: "Nutritious Lunch Boxes", desc: "Fresh, fun, and balanced meals delivered.", link: "/lunch-boxes" }
+            { title: "Dreamy Party Venue", desc: "Magical spaces designed for play and laughter.", link: "/services?tab=venue" },
+            { title: "Gourmet Catering", desc: "Kid-approved menus that adults love too.", link: "/services?tab=catering" },
+            { title: "Nutritious Food Boxes", desc: "Fresh, fun, and balanced meals delivered.", link: "/services?tab=boxes" }
           ].map((service, i) => (
-            <div key={i} className="group cursor-pointer text-right flex flex-col items-end">
+            <a
+              key={i}
+              href={service.link}
+              className="group cursor-pointer text-right flex flex-col items-end"
+            >
               <h3 className="text-2xl md:text-3xl font-bold group-hover:text-[#F26522] transition-colors">
                 0{i+1}. {service.title}
               </h3>
               <p className="text-sm md:text-base mt-1 font-bold opacity-60 max-w-xs">{service.desc}</p>
               <div className="h-1.5 w-24 bg-[#FFCB05] mt-3 group-hover:w-full transition-all duration-500 rounded-full" />
-            </div>
+            </a>
           ))}
         </div>
       </div>
