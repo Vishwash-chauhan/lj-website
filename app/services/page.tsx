@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import { useSearchParams } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { createPortal } from 'react-dom'
 
 import { motion, AnimatePresence } from 'framer-motion'
@@ -37,7 +37,7 @@ const SERVICES = {
       tagline: "Deliciously Fun, Nutritiously Balanced",
       description: "Fully Customisable Catering Options. Our menus are designed keeping children in mind — kid-friendly, hygienic, and flavour-balanced. Our kitchen focuses on fresh ingredients and playful presentation.",
       features: ["Fully Customisable", "Live Food Counters", "Allergy-Friendly Options", "Hygienic"],
-      cta: "Download Menu",
+      cta: "View Menu",
       color: "#FFCB05",
       image: "🍕",
       location: {
@@ -64,6 +64,7 @@ const SERVICES = {
   }
 
 const ServicesPage = () => {
+  const router = useRouter()
   const searchParams = useSearchParams()
   const [activeTab, setActiveTab] = useState<keyof typeof SERVICES>('venue')
   const [isFoodBoxesOpen, setIsFoodBoxesOpen] = useState(false)
@@ -85,6 +86,12 @@ const ServicesPage = () => {
     if (target) {
       target.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
+  }
+
+  const secondaryCtasByTab: Record<keyof typeof SERVICES, { label: string; href: string }[]> = {
+    venue: [{ label: 'Book Venue', href: '/contact' }],
+    catering: [{ label: 'Get a Quotation', href: '/contact' }],
+    boxes: [{ label: 'Order Now', href: '/contact' }],
   }
 
   return (
@@ -126,12 +133,15 @@ const ServicesPage = () => {
               description={SERVICES[activeTab].description}
               features={SERVICES[activeTab].features}
               cta={SERVICES[activeTab].cta}
+              secondaryCtas={secondaryCtasByTab[activeTab]}
               onCtaClick={
                 activeTab === 'boxes'
                   ? () => setIsFoodBoxesOpen(true)
                   : activeTab === 'venue'
                     ? handleScrollToLocation
-                    : undefined
+                    : activeTab === 'catering'
+                      ? () => router.push('/menu')
+                      : undefined
               }
             />
           </motion.div>

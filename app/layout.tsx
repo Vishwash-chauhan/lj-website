@@ -3,6 +3,7 @@ import { Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import WhatsAppWidget from "./components/WhatsAppWidget";
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -61,6 +62,7 @@ export default function RootLayout({
           {children}
         </main>
 
+        <WhatsAppWidget />
         <Footer />
       </body>
     </html>
