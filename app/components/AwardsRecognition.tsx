@@ -63,13 +63,6 @@ const AwardsRecognition = () => {
             </div>
           </div>
         </div>
-
-        {/* --- Footer Tagline --- */}
-        <div className="mt-12 text-center">
-          <p className="text-2xl font-black italic text-[#333333]/40">
-            "Voted by kids, trusted by parents, loved by all!"
-          </p>
-        </div>
       </div>
     </section>
   )
