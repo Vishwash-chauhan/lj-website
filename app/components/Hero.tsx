@@ -90,7 +90,7 @@ const ScrollContent = memo(() => (
               One Stop <br/>
               <span className="text-[#F26522]">Party Magic</span>
             </h2>
-            <p className="font-bold opacity-70 mt-2">Everything you need, all in one loop.</p>
+            <p className="font-bold opacity-100 mt-2">Everything you need, all in one loop.</p>
         </div>
 
         <div className="space-y-6 mt-4">
@@ -108,7 +108,7 @@ const ScrollContent = memo(() => (
               <h3 className="text-2xl md:text-3xl font-bold group-hover:text-[#F26522] transition-colors">
                 0{i+1}. {service.title}
               </h3>
-              <p className="text-sm md:text-base mt-1 font-bold opacity-60 max-w-xs">{service.desc}</p>
+              <p className="text-sm md:text-base mt-1 font-bold opacity-95 max-w-xs">{service.desc}</p>
               <div className="h-1.5 w-24 bg-[#FFCB05] mt-3 group-hover:w-full transition-all duration-500 rounded-full" />
             </a>
           ))}
