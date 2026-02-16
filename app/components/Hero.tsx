@@ -147,6 +147,7 @@ ScrollContent.displayName = 'ScrollContent'
 export default function Hero() {
   const [mounted, setMounted] = React.useState(false)
   const [pages, setPages] = React.useState(3)
+  const [damping, setDamping] = React.useState(0.1) // lower = snappier (faster) scroll
 
   React.useLayoutEffect(() => {
     setMounted(true)
@@ -156,6 +157,8 @@ export default function Hero() {
     const handleResize = () => {
       const isMobile = window.innerWidth < 768
       setPages(isMobile ? 3.5 : 3)
+      // reduce damping on mobile so scrolling feels faster/snappier
+      setDamping(isMobile ? 0.01 : 0.1)
     }
 
     handleResize()
@@ -172,7 +175,7 @@ export default function Hero() {
           <Environment preset="city" />
           
           <Suspense fallback={null}>
-            <ScrollControls pages={pages} damping={0.15}>
+            <ScrollControls pages={pages} damping={damping}>
               <SceneContent />
               {mounted && (
                 <Scroll html>
