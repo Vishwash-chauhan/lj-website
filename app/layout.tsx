@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+import ConditionalFooter from "./components/ConditionalFooter";
 import WhatsAppWidget from "./components/WhatsAppWidget";
 
 const geistMono = Geist_Mono({
@@ -63,7 +63,7 @@ export default function RootLayout({
         </main>
 
         <WhatsAppWidget />
-        <Footer />
+        <ConditionalFooter />
       </body>
     </html>
   );
