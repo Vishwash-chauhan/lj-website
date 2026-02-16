@@ -18,7 +18,7 @@ const SERVICES = {
       tagline: "Where Imagination Meets Celebration",
       description: "Our venue are more than just rooms—they are immersive playgrounds designed for safe, high-energy fun. From soft-play corners to themed decor setups, we provide the perfect backdrop for your child's big day.",
       features: ["Themed Decor Packages", "Dedicated Party Hosts", "Safe & Clean Play Zones", "Sound & Lighting Systems"],
-      cta: "View Our Locations",
+      cta: "View Our Location",
       color: "#F26522",
       image: "🏠",
       location: {
