@@ -5,24 +5,24 @@ import React from 'react'
 const CoreValues = () => {
   const values = [
     {
-      icon: "🥦",
-      title: "Kid-Safe First",
-      desc: "Nut-free facilities and ultra-fresh ingredients. No nasties or artificial junk allowed."
+      icon: "🎉",
+      title: "Party Perfection",
+      desc: "Every detail is crafted to make your celebration unforgettable and stress-free."
     },
     {
-      icon: "🎨",
-      title: "Theme Magic",
-      desc: "We match our food and decor to whatever your little one imagines, from Space to Safaris."
+      icon: "🌟",
+      title: "Premium Quality",
+      desc: "Only the finest ingredients sourced from trusted suppliers for exceptional taste."
     },
     {
-      icon: "⚡",
-      title: "Super Fresh",
-      desc: "Prepared fresh for every event and delivered in eco-friendly, heat-retaining boxes."
+      icon: "🚀",
+      title: "Lightning Fast",
+      desc: "Quick turnaround times without compromising on quality or freshness."
     },
     {
-      icon: "💪",
-      title: "Healthy & Nutritious",
-      desc: "Wholesome, balanced bites made with fresh produce and kid-approved flavors for happy, energized celebrations."
+      icon: "❤️",
+      title: "Made with Love",
+      desc: "Every dish is prepared with care and attention to bring joy to your guests."
     }
   ]
 

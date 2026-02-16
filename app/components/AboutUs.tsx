@@ -7,7 +7,7 @@ const AboutUs = () => {
   const stats = [
     { label: "Parties Hosted", value: "500+", icon: "🎉" },
     { label: "Happy Kiddos", value: "10k+", icon: "🧒" },
-    { label: "Magic Recipes", value: "100%", icon: "✨" },
+    { label: "Hygienic Food", value: "100%", icon: "✨" },
   ]
 
   return (
@@ -77,7 +77,7 @@ const AboutUs = () => {
                 <div className="text-3xl">🥦</div>
                 <div>
                   <h4 className="font-black text-xl mb-1">Kid-Safe First</h4>
-                  <p className="font-bold opacity-80 text-sm text-white/90">Nut-free facilities and ultra-fresh ingredients. No nasties allowed.</p>
+                  <p className="font-bold opacity-80 text-sm text-white/90">Ultra-fresh ingredients. No nasties allowed.</p>
                 </div>
               </div>
               <div className="flex gap-4">
