@@ -3,7 +3,7 @@ import { Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import ConditionalFooter from "./components/ConditionalFooter";
-import WhatsAppWidget from "./components/WhatsAppWidget";
+import ConditionalWhatsApp from "./components/ConditionalWhatsApp";
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -62,7 +62,7 @@ export default function RootLayout({
           {children}
         </main>
 
-        <WhatsAppWidget />
+        <ConditionalWhatsApp />
         <ConditionalFooter />
       </body>
     </html>
