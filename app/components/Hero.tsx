@@ -146,9 +146,21 @@ ScrollContent.displayName = 'ScrollContent'
 
 export default function Hero() {
   const [mounted, setMounted] = React.useState(false)
+  const [pages, setPages] = React.useState(3)
 
   React.useLayoutEffect(() => {
     setMounted(true)
+  }, [])
+
+  React.useEffect(() => {
+    const handleResize = () => {
+      const isMobile = window.innerWidth < 768
+      setPages(isMobile ? 3.5 : 3)
+    }
+
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
   }, [])
 
   return (
@@ -160,7 +172,7 @@ export default function Hero() {
           <Environment preset="city" />
           
           <Suspense fallback={null}>
-            <ScrollControls pages={3} damping={0.15}>
+            <ScrollControls pages={pages} damping={0.15}>
               <SceneContent />
               {mounted && (
                 <Scroll html>
