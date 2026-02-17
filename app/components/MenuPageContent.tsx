@@ -272,7 +272,7 @@ export default function MenuPageContent() {
 
                 {mounted && isMobile ? (
                   <div className="flex justify-between items-start w-full gap-2">
-                    <p className="text-xs sm:text-sm font-bold leading-relaxed text-[#333333] flex-1">
+                    <p className="text-xs sm:text-sm font-bold leading-relaxed text-[#333333] flex-1 text-left">
                       {item.Description}
                     </p>
                     {item.PcsDisplay && (
