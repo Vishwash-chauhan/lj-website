@@ -45,7 +45,7 @@ const CoreValues = () => {
                 What We <br /> Stand For
               </h3>
               <p className="font-bold text-white/80 text-lg">
-                We believe that food should be the highlight of the party, not an afterthought.
+                India's first tech-driven, kids centric catering company
               </p>
             </div>
 

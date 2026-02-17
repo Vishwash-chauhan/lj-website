@@ -43,9 +43,9 @@ const AboutUs = () => {
               We ditched the boring and embraced the bold. From star-shaped nuggets to magical fairy fries, every box we pack is a mission to turn a meal into a memory. We are the architects of fun, fueled by sugar, spice, and everything nice.
             </p>
             
-            <button className="px-8 py-4 bg-[#333333] text-white rounded-2xl font-black text-lg hover:bg-[#F26522] transition-all shadow-[6px_6px_0px_#FFCB05] active:shadow-none active:translate-y-1">
-              Meet The Chefs →
-            </button>
+            <a href="/contact" className="inline-block px-8 py-4 bg-[#333333] text-white rounded-2xl font-black text-lg hover:bg-[#F26522] transition-all shadow-[6px_6px_0px_#FFCB05] active:shadow-none active:translate-y-1">
+              Get A Quote →
+            </a>
           </div>
         </div>
 

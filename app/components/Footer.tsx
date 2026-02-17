@@ -17,7 +17,7 @@ const Footer = () => {
             </span>
           </div>
           <p className="text-[#333333] font-medium leading-relaxed italic">
-            "Creating magical memories, one party at a time!"
+            India's first tech-driven, kids centric catering company
           </p>
         </div>
 
