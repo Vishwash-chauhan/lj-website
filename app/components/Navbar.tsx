@@ -113,11 +113,6 @@ const Navbar = () => {
             Book a Party
           </Link>
         </div>
-        
-        {/* Playful background element for mobile menu */}
-        <div className="absolute bottom-10 opacity-10 pointer-events-none">
-             <img src="https://littlejalebis.com/wp-content/uploads/2025/04/LJ_Logo_M-2.svg" className="w-40 h-auto" alt="" />
-        </div>
       </div>
     </>
   );

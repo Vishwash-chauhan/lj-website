@@ -178,7 +178,7 @@ const ServicesClient = () => {
       {isFoodBoxesOpen && isMounted &&
         createPortal(
           <div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4 py-8"
+            className="fixed inset-0 z-[70] flex items-center justify-center bg-black/60 px-4 py-8" /* must sit above the navbar (z-60) */
             onClick={() => setIsFoodBoxesOpen(false)}
           >
             <div
