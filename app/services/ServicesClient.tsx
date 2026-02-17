@@ -11,6 +11,7 @@ import TrustSection from '../components/TrustSection'
 import LocationSection from '../components/LocationSection'
 import FoodBoxesMenu from '../components/FoodBoxesMenu'
 import CateringProcess from '../components/CateringProcess'
+import PartyHouseConcept from '../components/PartyHouseConcept'
 
 const SERVICES = {
     catering: {
@@ -146,6 +147,11 @@ const ServicesClient = () => {
                       : undefined
               }
             />
+            {activeTab === 'venue' && (
+              <div className="mt-12">
+                <PartyHouseConcept />
+              </div>
+            )}
             {activeTab === 'catering' && (
               <div className="mt-12">
                 <CateringProcess />
