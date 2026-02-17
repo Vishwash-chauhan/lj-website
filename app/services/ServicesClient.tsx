@@ -13,28 +13,9 @@ import FoodBoxesMenu from '../components/FoodBoxesMenu'
 import CateringProcess from '../components/CateringProcess'
 
 const SERVICES = {
-    venue: {
-      tabTitle: "Party Venue",
-      title: "Dreamy Party Venue",
-      tagline: "Where Imagination Meets Celebration",
-      description: "Our venue are more than just rooms—they are immersive playgrounds designed for safe, high-energy fun. From soft-play corners to themed decor setups, we provide the perfect backdrop for your child's big day.",
-      features: ["Themed Decor Packages", "Dedicated Party Hosts", "Safe & Clean Play Zones", "Sound & Lighting Systems"],
-      cta: "View Our Location",
-      color: "#F26522",
-      image: "🏠",
-      location: {
-        type: "Party Venue",
-        name: "Little Jalebis Party Venue",
-        address: "17, Lower Ground Floor, Arjun Marg, DLF Phase 1, Gurugram",
-        heading: "Visit Our",
-        subheading: "Come over for a tasting or to plan your next event!",
-        mapUrl: "https://maps.app.goo.gl/7YjPaUq7rVTPLbf57",
-        mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d448438.52523130283!2d76.84306747170939!3d28.586994984112522!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4ca7759edc3c0c6f%3A0x40987779a61a0f66!2sLittle%20Jalebis%20-%20Kids%20Catering%20%26%20Delivery%20Co.!5e0!3m2!1sen!2sin!4v1771054463453!5m2!1sen!2sin"
-      }
-    },
     catering: {
       tabTitle: "Catering",
-      title: "Gourmet Party Catering",
+      title: "Catering",
       tagline: "Deliciously Fun, Nutritiously Balanced",
       description: "Fully Customisable Catering Options. Our menus are designed keeping children in mind — kid-friendly, hygienic, and flavour-balanced. Our kitchen focuses on fresh ingredients and playful presentation.",
       features: ["Fully Customisable", "Live Food Counters", "Allergy-Friendly Options", "Hygienic"],
@@ -51,8 +32,27 @@ const SERVICES = {
         mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d448438.52523130283!2d76.84306747170939!3d28.586994984112522!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4ca7759edc3c0c6f%3A0x40987779a61a0f66!2sLittle%20Jalebis%20-%20Kids%20Catering%20%26%20Delivery%20Co.!5e0!3m2!1sen!2sin!4v1771054463453!5m2!1sen!2sin"
       }
     },
+  venue: {
+      tabTitle: "Party Venue",
+      title: "Party Venue",
+      tagline: "Where Imagination Meets Celebration",
+      description: "Our venue are more than just rooms—they are immersive playgrounds designed for safe, high-energy fun. From soft-play corners to themed decor setups, we provide the perfect backdrop for your child's big day.",
+      features: ["Themed Decor Packages", "Dedicated Party Hosts", "Safe & Clean Play Zones", "Sound & Lighting Systems"],
+      cta: "View Our Location",
+      color: "#F26522",
+      image: "🏠",
+      location: {
+        type: "Party Venue",
+        name: "Little Jalebis Party Venue",
+        address: "17, Lower Ground Floor, Arjun Marg, DLF Phase 1, Gurugram",
+        heading: "Visit Our",
+        subheading: "Come over for a tasting or to plan your next event!",
+        mapUrl: "https://maps.app.goo.gl/7YjPaUq7rVTPLbf57",
+        mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d448438.52523130283!2d76.84306747170939!3d28.586994984112522!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4ca7759edc3c0c6f%3A0x40987779a61a0f66!2sLittle%20Jalebis%20-%20Kids%20Catering%20%26%20Delivery%20Co.!5e0!3m2!1sen!2sin!4v1771054463453!5m2!1sen!2sin"
+      }
+    },
     boxes: {
-      tabTitle: "Food Boxes",
+      tabTitle: "Food Delivery & Food Boxes",
       title: "Fun Food Boxes",
       tagline: "Healthy Meals, Delivered in Style",
       description: "Perfect for school events, birthday picnics, or outdoor trips. Our lunch boxes are packed with love, nutrition, and playful presentation to make healthy bites feel like a treat.",
