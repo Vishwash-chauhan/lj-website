@@ -27,8 +27,9 @@ const Navbar = () => {
     href === '/' ? pathname === '/' : pathname.startsWith(href);
 
   return (
+    <>
     <nav 
-      className={`fixed top-0 left-0 right-0 z-1000 transition-all duration-300 px-4 md:px-12 py-4 ${
+      className={`fixed top-0 left-0 right-0 z-60 transition-all duration-300 px-4 md:px-12 py-4 ${
         scrolled ? 'bg-white/80 backdrop-blur-md border-b-4 border-[#FFCB05] py-2' : 'bg-transparent'
       }`}
       style={{ fontFamily: "'Comic Neue', cursive" }}
@@ -36,7 +37,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         
         {/* Logo */}
-        <Link href="/" className="relative z-1001 shrink-0 hover:scale-105 transition-transform">
+        <Link href="/" className="relative z-60 shrink-0 hover:scale-105 transition-transform">
           <img 
             src="https://littlejalebis.com/wp-content/uploads/2025/04/LJ_Logo_M-2.svg" 
             alt="Little Jalebis Logo" 
@@ -73,7 +74,7 @@ const Navbar = () => {
 
         {/* Mobile Toggle Button */}
         <button 
-          className="md:hidden relative z-1001 w-10 h-10 flex flex-col justify-center items-center gap-1.5 bg-[#FFCB05] rounded-xl shadow-[3px_3px_0px_#333333]"
+          className="md:hidden relative z-60 w-10 h-10 flex flex-col justify-center items-center gap-1.5 bg-[#FFCB05] rounded-xl shadow-[3px_3px_0px_#333333]"
           onClick={() => setIsOpen(!isOpen)}
         >
           <span className={`w-6 h-0.5 bg-[#333333] transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
@@ -81,11 +82,12 @@ const Navbar = () => {
           <span className={`w-6 h-0.5 bg-[#333333] transition-all duration-300 ${isOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
         </button>
       </div>
+    </nav>
 
-      {/* Mobile Menu Overlay */}
-      <div className={`fixed inset-0 bg-[#FFF9F2] z-1000 flex flex-col items-center justify-center transition-all duration-500 md:hidden ${
-        isOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
-      }`}>
+    {/* Mobile Menu Overlay */}
+    <div className={`fixed inset-0 bg-[#FFF9F2] z-50 flex flex-col items-center justify-center transition-all duration-500 md:hidden ${
+      isOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
+    }`}>
         <div className="flex flex-col gap-8 text-center">
           {navLinks.map((link, i) => (
             <Link 
@@ -117,7 +119,7 @@ const Navbar = () => {
              <img src="https://littlejalebis.com/wp-content/uploads/2025/04/LJ_Logo_M-2.svg" className="w-40 h-auto" alt="" />
         </div>
       </div>
-    </nav>
+    </>
   );
 };
 
