@@ -23,7 +23,7 @@ const ServiceTabContent: React.FC<ServiceTabContentProps> = ({
 }) => (
   <div className="bg-white border-4 border-[#333333] rounded-[3rem] p-8 md:p-16 flex flex-col md:flex-row gap-12 items-center shadow-[12px_12px_0px_#FFCB05]">
     {/* Visual Placeholder/Icon */}
-    <div className="w-full md:w-1/3 aspect-square bg-[#FFF9F2] rounded-[2rem] flex items-center justify-center text-[8rem] border-2 border-dashed border-[#F26522]/30">
+    <div className="w-full md:w-1/3 aspect-square bg-[#FFF9F2] rounded-4xl flex items-center justify-center text-[8rem] border-2 border-dashed border-[#F26522]/30">
       {image}
     </div>
     {/* Text Content */}

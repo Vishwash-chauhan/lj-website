@@ -46,7 +46,7 @@ const CateringProcess = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 relative">
           
           {/* Connecting Line (Desktop Only) */}
-          <div className="hidden lg:block absolute top-1/2 left-0 w-full h-1 border-t-4 border-dashed border-[#333333]/20 -z-0" />
+          <div className="hidden lg:block absolute top-1/2 left-0 w-full h-1 border-t-4 border-dashed border-[#333333]/20 z-0" />
 
           {steps.map((step, index) => (
             <motion.div 
