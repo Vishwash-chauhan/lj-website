@@ -96,9 +96,9 @@ const ScrollContent = memo(() => (
         <div className="space-y-6 mt-4">
           {/* Service Cards */}
           {[
-            { title: "Dreamy Party Venue", desc: "Magical spaces designed for play and laughter.", link: "/services?tab=venue" },
-            { title: "Gourmet Catering", desc: "Kid-approved menus that adults love too.", link: "/services?tab=catering" },
-            { title: "Nutritious Food Boxes", desc: "Fresh, fun, and balanced meals delivered.", link: "/services?tab=boxes" }
+            { title: "Catering", desc: "Kid-approved menus that adults love too.", link: "/services?tab=catering" },
+            { title: "Party House", desc: "Magical spaces designed for play and laughter.", link: "/services?tab=venue" },
+            { title: "Food Delivery & Food Boxes", desc: "Fresh, fun, and balanced meals delivered.", link: "/services?tab=boxes" }
           ].map((service, i) => (
             <a
               key={i}
@@ -124,14 +124,14 @@ const ScrollContent = memo(() => (
           From the first invite to the last jalebi, we handle the details while you make the memories.
         </p>
         <div className="flex flex-col sm:flex-row flex-wrap gap-6 justify-center">
-          <a href="/services?tab=venue" className="px-10 py-4 border-4 border-[#F26522] text-[#F26522] rounded-2xl font-bold text-xl hover:bg-[#F26522] hover:text-white transition-all transform hover:-rotate-2">
-            Explore Venue
-          </a>
-          <a href="/services?tab=catering" className="px-10 py-4 border-4 border-[#333333] text-[#333333] rounded-2xl font-bold text-xl hover:bg-[#333333] hover:text-white transition-all transform hover:-rotate-2">
+          <a href="/services?tab=catering" className="px-10 py-4 border-4 border-[#F26522] text-[#F26522] rounded-2xl font-bold text-xl hover:bg-[#F26522] hover:text-white transition-all transform hover:-rotate-2">
             Catering
           </a>
+          <a href="/services?tab=venue" className="px-10 py-4 border-4 border-[#333333] text-[#333333] rounded-2xl font-bold text-xl hover:bg-[#333333] hover:text-white transition-all transform hover:-rotate-2">
+            Party House
+          </a>
           <a href="/services?tab=boxes" className="px-10 py-4 border-4 border-[#FFCB05] text-[#333333] rounded-2xl font-bold text-xl hover:bg-[#FFCB05] transition-all transform hover:-rotate-2">
-            View Food Boxes
+            Food Delivery & Food Boxes
           </a>
         </div>
       </div>
