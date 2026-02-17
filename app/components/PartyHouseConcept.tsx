@@ -12,9 +12,6 @@ const PartyHouseConcept = () => {
           
           {/* Content (full-width after removing visual side) */}
           <div className="w-full p-12 md:p-16 space-y-8">
-            <div className="inline-block bg-[#333333] text-white px-4 py-2 rounded-xl font-black text-sm uppercase tracking-widest">
-              17, Lower Ground Floor, Arjun Marg, DLF Phase 1, Gurugram
-            </div>
             <div className="space-y-4">
               <h3 className="text-3xl md:text-4xl font-black text-[#333333]">
                 Your Vision, <span className="text-[#F26522]">Our Space.</span>

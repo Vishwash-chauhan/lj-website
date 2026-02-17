@@ -37,8 +37,8 @@ const SERVICES = {
       tabTitle: "Party Venue",
       title: "Party Venue",
       tagline: "Where Imagination Meets Celebration",
-      description: "Our venue are more than just rooms—they are immersive playgrounds designed for safe, high-energy fun. From soft-play corners to themed decor setups, we provide the perfect backdrop for your child's big day.",
-      features: ["Themed Decor Packages", "Dedicated Party Hosts", "Safe & Clean Play Zones", "Sound & Lighting Systems"],
+      description: "A thoughtfully designed venue perfect for hosting celebrations of up to 80 guests. The space features a warm indoor party area complemented by an open-air extension, giving you the ultimate flexibility to design your own themes, décor, and activities.",
+      features: ["Signature In-House Catering", "Hygienic Food.", "Safe & Clean Play Zones", "Fully Customisable"],
       cta: "View Our Location",
       color: "#F26522",
       image: "🏠",
@@ -147,11 +147,11 @@ const ServicesClient = () => {
                       : undefined
               }
             />
-            {activeTab === 'venue' && (
+            {/* {activeTab === 'venue' && (
               <div className="mt-12">
                 <PartyHouseConcept />
               </div>
-            )}
+            )} */}
             {activeTab === 'catering' && (
               <div className="mt-12">
                 <CateringProcess />
