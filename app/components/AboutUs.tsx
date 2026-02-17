@@ -25,7 +25,7 @@ const AboutUs = () => {
             {/* Floating Badge */}
             <div className="absolute -bottom-6 -right-6 bg-white border-4 border-[#333333] p-6 rounded-2xl shadow-[6px_6px_0px_#333333] -rotate-3">
               <p className="font-black text-[#F26522] text-xl text-center leading-tight">
-                ESTD <br /> 2023
+                ESTD <br /> 2020
               </p>
             </div>
           </div>
@@ -37,10 +37,10 @@ const AboutUs = () => {
               We make <span className="underline decoration-[#FFCB05] decoration-8">magic</span> edible.
             </h2>
             <p className="text-xl font-bold opacity-80 leading-relaxed mb-6">
-              Little Jalebis started with a simple question: Why can't kids' party food be as exciting as the games? 
+              Whether it’s a birthday, playdate, big party in a farm - we cater to all types of gatherings - so you can enjoy the day stress-free. 
             </p>
             <p className="text-xl font-bold opacity-80 leading-relaxed mb-10">
-              We ditched the boring and embraced the bold. From star-shaped nuggets to magical fairy fries, every box we pack is a mission to turn a meal into a memory. We are the architects of fun, fueled by sugar, spice, and everything nice.
+              Our menus are thoughtfully designed for kids—full of flavour, made with fresh ingredients, and secretly loved by adults too! Whether you're hosting at home or at a venue, we make sure the food is one less thing to worry about.
             </p>
             
             <a href="/contact" className="inline-block px-8 py-4 bg-[#333333] text-white rounded-2xl font-black text-lg hover:bg-[#F26522] transition-all shadow-[6px_6px_0px_#FFCB05] active:shadow-none active:translate-y-1">
