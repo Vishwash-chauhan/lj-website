@@ -73,8 +73,8 @@ const ScrollContent = memo(() => (
           Little <span className="text-[#F26522]">Jalebis</span>
         </h1>
         <p className="text-xl md:text-[2.2vw] mt-6 font-bold opacity-90 leading-relaxed max-w-lg">
-          Big Smiles, Sweet Memories & <br className="hidden md:block"/>
-          <span className="underline decoration-[#FFCB05] decoration-4">Zero Stress</span> for Parents.
+          India's First Tech-Driven, <br className="hidden md:block"/>
+          <span className="underline decoration-[#FFCB05] decoration-4">Kids Centric</span> Catering Company.
         </p>
         <a href="/contact" className="mt-10 px-10 py-4 bg-[#F26522] text-white rounded-full font-bold text-lg hover:bg-[#d6561d] transition-all w-fit shadow-[6px_6px_0px_#333333] active:translate-y-1 active:shadow-none inline-block">
           Plan Your Party ↓
