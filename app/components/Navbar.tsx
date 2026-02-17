@@ -28,7 +28,7 @@ const Navbar = () => {
 
   return (
     <nav 
-      className={`fixed top-0 left-0 right-0 z-[1000] transition-all duration-300 px-4 md:px-12 py-4 ${
+      className={`fixed top-0 left-0 right-0 z-1000 transition-all duration-300 px-4 md:px-12 py-4 ${
         scrolled ? 'bg-white/80 backdrop-blur-md border-b-4 border-[#FFCB05] py-2' : 'bg-transparent'
       }`}
       style={{ fontFamily: "'Comic Neue', cursive" }}
@@ -36,7 +36,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         
         {/* Logo */}
-        <Link href="/" className="relative z-[1001] shrink-0 hover:scale-105 transition-transform">
+        <Link href="/" className="relative z-1001 shrink-0 hover:scale-105 transition-transform">
           <img 
             src="https://littlejalebis.com/wp-content/uploads/2025/04/LJ_Logo_M-2.svg" 
             alt="Little Jalebis Logo" 
@@ -65,7 +65,7 @@ const Navbar = () => {
         <div className="hidden md:block">
           <Link 
             href="/contact" 
-            className="bg-[#F26522] text-white font-bold px-7 py-3 rounded-full shadow-[4px_4px_0px_#333333] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all inline-block text-sm uppercase tracking-widest"
+            className="bg-[#F26522] text-white font-bold px-7 py-3 rounded-full shadow-[4px_4px_0px_#333333] hover:shadow-none hover:translate-x-0.5 hover:translate-y-0.5 transition-all inline-block text-sm uppercase tracking-widest"
           >
             Book a Party
           </Link>
@@ -73,7 +73,7 @@ const Navbar = () => {
 
         {/* Mobile Toggle Button */}
         <button 
-          className="md:hidden relative z-[1001] w-10 h-10 flex flex-col justify-center items-center gap-1.5 bg-[#FFCB05] rounded-xl shadow-[3px_3px_0px_#333333]"
+          className="md:hidden relative z-1001 w-10 h-10 flex flex-col justify-center items-center gap-1.5 bg-[#FFCB05] rounded-xl shadow-[3px_3px_0px_#333333]"
           onClick={() => setIsOpen(!isOpen)}
         >
           <span className={`w-6 h-0.5 bg-[#333333] transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
@@ -83,7 +83,7 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menu Overlay */}
-      <div className={`fixed inset-0 bg-[#FFF9F2] z-[1000] flex flex-col items-center justify-center transition-all duration-500 md:hidden ${
+      <div className={`fixed inset-0 bg-[#FFF9F2] z-1000 flex flex-col items-center justify-center transition-all duration-500 md:hidden ${
         isOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
       }`}>
         <div className="flex flex-col gap-8 text-center">
@@ -94,7 +94,7 @@ const Navbar = () => {
               onClick={() => setIsOpen(false)}
               className={`font-bold text-4xl transition-all ${
                 isActiveLink(link.href)
-                  ? 'text-[#F26522] underline decoration-[#FFCB05] decoration-8 underline-offset-[10px]'
+                  ? 'text-[#F26522] underline decoration-[#FFCB05] decoration-8 underline-offset-10'
                   : 'text-[#333333] hover:text-[#F26522]'
               } ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
               style={{ transitionDelay: `${i * 100}ms` }}

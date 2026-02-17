@@ -33,8 +33,8 @@ const CoreValues = () => {
         <div className="bg-[#F26522] border-4 border-[#333333] rounded-[3rem] p-10 md:p-16 text-white relative overflow-hidden shadow-[12px_12px_0px_#333333]">
           
           {/* Background Decorative Circles */}
-          <div className="absolute top-[-50px] right-[-50px] w-64 h-64 bg-[#FFCB05] rounded-full opacity-20 animate-pulse" />
-          <div className="absolute bottom-[-30px] left-[-30px] w-40 h-40 bg-white rounded-full opacity-10" />
+          <div className="absolute -top-12.5 -right-12.5 w-64 h-64 bg-[#FFCB05] rounded-full opacity-20 animate-pulse" />
+          <div className="absolute -bottom-7.5 -left-7.5 w-40 h-40 bg-white rounded-full opacity-10" />
           
           <div className="relative z-10 flex flex-col lg:flex-row gap-12">
             
@@ -53,7 +53,7 @@ const CoreValues = () => {
             <div className="lg:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-12">
               {values.map((val, index) => (
                 <div key={index} className="flex gap-5 group">
-                  <div className="flex-shrink-0 w-14 h-14 bg-white border-2 border-[#333333] rounded-2xl flex items-center justify-center text-3xl shadow-[4px_4px_0px_#333333] group-hover:rotate-6 transition-transform">
+                  <div className="shrink-0 w-14 h-14 bg-white border-2 border-[#333333] rounded-2xl flex items-center justify-center text-3xl shadow-[4px_4px_0px_#333333] group-hover:rotate-6 transition-transform">
                     {val.icon}
                   </div>
                   <div>

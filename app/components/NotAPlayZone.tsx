@@ -5,7 +5,7 @@ import React from 'react'
 const PartyHouseNote = () => {
   return (
     <div className="max-w-3xl mx-auto my-12 px-6" style={{ fontFamily: "'Comic Neue', cursive" }}>
-      <div className="bg-[#FFF9F2] border-4 border-dashed border-[#F26522] p-8 rounded-[2rem]">
+      <div className="bg-[#FFF9F2] border-4 border-dashed border-[#F26522] p-8 rounded-4xl">
         
         {/* "Not a Play Zone" Sticker Badge */}
 
