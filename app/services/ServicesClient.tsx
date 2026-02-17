@@ -10,6 +10,7 @@ import ServiceTabContent from '../components/ServiceTabContent'
 import TrustSection from '../components/TrustSection'
 import LocationSection from '../components/LocationSection'
 import FoodBoxesMenu from '../components/FoodBoxesMenu'
+import CateringProcess from '../components/CateringProcess'
 
 const SERVICES = {
     venue: {
@@ -126,6 +127,7 @@ const ServicesClient = () => {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
           >
+            <>
             <ServiceTabContent
               image={SERVICES[activeTab].image}
               tagline={SERVICES[activeTab].tagline}
@@ -144,6 +146,12 @@ const ServicesClient = () => {
                       : undefined
               }
             />
+            {activeTab === 'catering' && (
+              <div className="mt-12">
+                <CateringProcess />
+              </div>
+            )}
+            </>
           </motion.div>
         </AnimatePresence>
 
