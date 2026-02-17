@@ -12,6 +12,7 @@ import LocationSection from '../components/LocationSection'
 import FoodBoxesMenu from '../components/FoodBoxesMenu'
 import CateringProcess from '../components/CateringProcess'
 import PartyHouseConcept from '../components/PartyHouseConcept'
+import NotAPlayzone from '../components/NotAPlayZone'
 
 const SERVICES = {
     catering: {
@@ -19,7 +20,7 @@ const SERVICES = {
       title: "Catering",
       tagline: "Deliciously Fun, Nutritiously Balanced",
       description: "Fully Customisable Catering Options. Our menus are designed keeping children in mind — kid-friendly, hygienic, and flavour-balanced. Our kitchen focuses on fresh ingredients and playful presentation.",
-      features: ["Fully Customisable", "Live Food Counters", "Allergy-Friendly Options", "Hygienic"],
+      features: ["Fully Customisable", "Live Food Counters", "Signature In-House Catering", "Hygienic"],
       cta: "View Menu",
       color: "#FFCB05",
       image: "🍕",
@@ -151,7 +152,13 @@ const ServicesClient = () => {
               <div className="mt-12">
                 <PartyHouseConcept />
               </div>
-            )} */}
+            )}  */}
+
+            {activeTab === 'venue' && (
+              <div className="mt-12">
+                <NotAPlayzone />
+              </div>
+            )}
             {activeTab === 'catering' && (
               <div className="mt-12">
                 <CateringProcess />
