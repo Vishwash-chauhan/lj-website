@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 
 interface MenuItem {
   Name: string
@@ -192,6 +192,14 @@ export default function MenuPageContent() {
   const [isMobile, setIsMobile] = useState(false)
   const [mounted, setMounted] = useState(false)
 
+  const tabsRef = useRef<HTMLDivElement | null>(null)
+
+  useEffect(() => {
+    if (!tabsRef.current) return
+    const activeBtn = tabsRef.current.querySelector<HTMLButtonElement>(`[data-index="${currentIndex}"]`)
+    activeBtn?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' })
+  }, [currentIndex, mounted])
+
   useEffect(() => {
     setMounted(true)
     const handleResize = () => {
@@ -222,25 +230,39 @@ export default function MenuPageContent() {
     <div className="pt-20 md:pt-24 lg:pt-28 bg-[#FFF9F2] text-[#333333] min-h-screen px-3 sm:px-5 md:p-8">
       <div className="w-full max-w-[1000px] mx-auto text-center">
         <header className="flex flex-col items-center mb-4 sm:mb-6">
-          <div className="flex items-center gap-2 sm:gap-3 w-full">
-            <button
-              onClick={() => setCurrentIndex((prev) => (prev - 1 + categories.length) % categories.length)}
-              aria-label="Previous category"
-              className="bg-[#FFCB05] border-2 sm:border-3 border-[#FFCB05] px-2 sm:px-3 py-1.5 sm:py-2 rounded-xl sm:rounded-2xl font-bold cursor-pointer shadow-[3px_3px_0_#F26522] sm:shadow-[6px_6px_0_#F26522] text-sm sm:text-lg hover:scale-105 transition-transform flex-shrink-0"
+          <div className="w-full mb-3">
+            <div
+              ref={tabsRef}
+              role="tablist"
+              aria-label="Categories"
+              className="flex gap-2 overflow-x-auto py-1 px-1 sm:px-0"
             >
-              ←
-            </button>
-            <h2 className="text-base sm:text-xl md:text-2xl lg:text-3xl font-black text-[#F26522] uppercase my-0 flex-1 line-clamp-2" style={{ textShadow: '1px 1px #FFCB05' }}>
-              ✨ {formatLabel(label)} ✨
-            </h2>
-            <button
-              onClick={() => setCurrentIndex((prev) => (prev + 1) % categories.length)}
-              aria-label="Next category"
-              className="bg-[#FFCB05] border-2 sm:border-3 border-[#FFCB05] px-2 sm:px-3 py-1.5 sm:py-2 rounded-xl sm:rounded-2xl font-bold cursor-pointer shadow-[3px_3px_0_#F26522] sm:shadow-[6px_6px_0_#F26522] text-sm sm:text-lg hover:scale-105 transition-transform flex-shrink-0"
-            >
-              →
-            </button>
+              {categories.map((cat, i) => {
+                const isActive = i === currentIndex
+                return (
+                  <button
+                    key={cat}
+                    data-index={i}
+                    role="tab"
+                    aria-selected={isActive}
+                    tabIndex={0}
+                    onClick={() => setCurrentIndex(i)}
+                    className={`flex-shrink-0 px-3 py-1 rounded-full font-black text-sm sm:text-base whitespace-nowrap transition-transform ${
+                      isActive
+                        ? 'bg-[#F26522] text-white shadow-[4px_4px_0_#F26522] scale-105'
+                        : 'bg-white border-2 border-[#FFCB05] text-[#F26522] hover:scale-105'
+                    }`}
+                  >
+                    {formatLabel(cat)}
+                  </button>
+                )
+              })}
+            </div>
           </div>
+
+          <h2 className="text-base sm:text-xl md:text-2xl lg:text-3xl font-black text-[#F26522] uppercase my-0 line-clamp-2" style={{ textShadow: '1px 1px #FFCB05' }}>
+            ✨ {formatLabel(label)} ✨
+          </h2>
         </header>
 
         {items.length === 0 ? (
