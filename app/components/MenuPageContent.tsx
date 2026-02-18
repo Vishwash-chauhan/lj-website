@@ -283,7 +283,7 @@ export default function MenuPageContent() {
                         item.VegNonVeg?.toLowerCase().startsWith('non') ? 'bg-red-500' : 'bg-teal-500'
                       }`}
                     />
-                    <span className="line-clamp-2 text-left">{item.Name}</span>
+                    <span className="line-clamp-2 text-left md:text-center">{item.Name}</span>
                   </div>
                   {mounted && isMobile && (
                     <div className="text-xs sm:text-sm font-bold text-[#F26522] ml-2 flex-shrink-0">
@@ -305,7 +305,7 @@ export default function MenuPageContent() {
                   </div>
                 ) : (
                   <>
-                    <p className="text-sm md:text-lg font-bold leading-relaxed text-[#333333] mb-3 sm:mb-4 flex-1 text-left">
+                    <p className="text-sm md:text-lg font-bold leading-relaxed text-[#333333] mb-3 sm:mb-4 flex-1 text-left md:text-center">
                       {item.Description}
                     </p>
                     <div className="flex justify-between items-center border-t-2 border-dashed border-[#FFCB05] pt-3 sm:pt-4">
