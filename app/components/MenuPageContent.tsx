@@ -228,7 +228,7 @@ export default function MenuPageContent() {
 
   return (
     <div className="pt-20 md:pt-24 lg:pt-28 bg-[#FFF9F2] text-[#333333] min-h-screen px-3 sm:px-5 md:p-8">
-      <div className="w-full max-w-[1000px] mx-auto text-center">
+      <div className="w-full max-w-[1000px] mx-auto">
         <header className="flex flex-col items-center mb-4 sm:mb-6">
           <div className="w-full mb-3">
             <div
@@ -283,7 +283,7 @@ export default function MenuPageContent() {
                         item.VegNonVeg?.toLowerCase().startsWith('non') ? 'bg-red-500' : 'bg-teal-500'
                       }`}
                     />
-                    <span className="line-clamp-2">{item.Name}</span>
+                    <span className="line-clamp-2 text-left">{item.Name}</span>
                   </div>
                   {mounted && isMobile && (
                     <div className="text-xs sm:text-sm font-bold text-[#F26522] ml-2 flex-shrink-0">
@@ -305,7 +305,7 @@ export default function MenuPageContent() {
                   </div>
                 ) : (
                   <>
-                    <p className="text-sm md:text-lg font-bold leading-relaxed text-[#333333] mb-3 sm:mb-4 flex-1">
+                    <p className="text-sm md:text-lg font-bold leading-relaxed text-[#333333] mb-3 sm:mb-4 flex-1 text-left">
                       {item.Description}
                     </p>
                     <div className="flex justify-between items-center border-t-2 border-dashed border-[#FFCB05] pt-3 sm:pt-4">
