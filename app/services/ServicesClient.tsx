@@ -69,7 +69,7 @@ const SERVICES = {
 const ServicesClient = () => {
   const router = useRouter()
   const searchParams = useSearchParams()
-  const [activeTab, setActiveTab] = useState<keyof typeof SERVICES>('venue')
+  const [activeTab, setActiveTab] = useState<keyof typeof SERVICES>('catering')
   const [isFoodBoxesOpen, setIsFoodBoxesOpen] = useState(false)
   const [isMounted, setIsMounted] = useState(false)
 
