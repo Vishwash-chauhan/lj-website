@@ -10,7 +10,7 @@ const PartyHouseNote = () => {
         {/* "Not a Play Zone" Sticker Badge */}
 
         <p className="text-2xl md:text-3xl font-black text-[#333333] leading-tight">
-          We are <span className="text-[#F26522]">not a play zone</span> — we are a customizable party house where families bring their <span className="underline decoration-[#FFCB05] decoration-4">vision to life</span>.
+          We are <span className="text-[#F26522]">not a play zone</span> — we are a customizable Kids Party House where families bring their <span className="underline decoration-[#FFCB05] decoration-4">vision to life</span>.
         </p>
         
 

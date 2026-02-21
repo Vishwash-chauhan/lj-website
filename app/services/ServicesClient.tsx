@@ -35,8 +35,8 @@ const SERVICES = {
       }
     },
   venue: {
-      tabTitle: "Party Venue",
-      title: "Party Venue",
+      tabTitle: "Kids Party House",
+      title: "Kids Party House",
       tagline: "Where Imagination Meets Celebration",
       description: "A thoughtfully designed venue perfect for hosting celebrations of up to 80 guests. The space features a warm indoor party area complemented by an open-air extension, giving you the ultimate flexibility to design your own themes, décor, and activities.",
       features: ["Signature In-House Catering", "Hygienic Food.", "Safe & Clean Play Zones", "Fully Customisable"],
@@ -44,8 +44,8 @@ const SERVICES = {
       color: "#F26522",
       image: "🏠",
       location: {
-        type: "Party Venue",
-        name: "Little Jalebis Party Venue",
+        type: "Kids Party House",
+        name: "Little Jalebis Kids Party House",
         address: "17, Lower Ground Floor, Arjun Marg, DLF Phase 1, Gurugram",
         heading: "Visit Our",
         subheading: "Come over for a tasting or to plan your next event!",
@@ -54,7 +54,7 @@ const SERVICES = {
       }
     },
     boxes: {
-      tabTitle: "Food Delivery & Food Boxes",
+      tabTitle: "Food Delivery & Boxes",
       title: "Fun Food Boxes",
       tagline: "Healthy Meals, Delivered in Style",
       description: "Perfect for school events, birthday picnics, or outdoor trips. Our lunch boxes are packed with love, nutrition, and playful presentation to make healthy bites feel like a treat.",

@@ -36,10 +36,10 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Party Venue */}
+        {/* Kids Party House */}
         <div className="space-y-4">
           <h3 className="text-lg font-black text-[#F26522] pb-1 inline-block">
-            Party Venue
+            Kids Party House
           </h3>
           <div className="flex gap-3 text-[#333333] font-bold">
             <MapPin className="shrink-0 text-[#F26522]" size={20} />

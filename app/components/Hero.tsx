@@ -96,9 +96,9 @@ const ScrollContent = memo(() => (
         <div className="space-y-6 mt-4">
           {/* Service Cards */}
           {[
-            { title: "Catering", desc: "Kid-approved menus that adults love too.", link: "/services?tab=catering" },
-            { title: "Party House", desc: "Magical spaces designed for play and laughter.", link: "/services?tab=venue" },
-            { title: "Food Delivery & Food Boxes", desc: "Fresh, fun, and balanced meals delivered.", link: "/services?tab=boxes" }
+            { emoji: '🍕', title: "Catering", desc: "Kid-approved menus that adults love too.", link: "/services?tab=catering" },
+            { emoji: '🏠', title: "Kids Party House", desc: "Magical spaces designed for play and laughter.", link: "/services?tab=venue" },
+            { emoji: '🍱', title: "Food Delivery & Boxes", desc: "Fresh, fun, and balanced meals delivered.", link: "/services?tab=boxes" }
           ].map((service, i) => (
             <a
               key={i}
@@ -106,7 +106,7 @@ const ScrollContent = memo(() => (
               className="group cursor-pointer text-right flex flex-col items-end"
             >
               <h3 className="text-2xl md:text-3xl font-bold group-hover:text-[#F26522] transition-colors">
-                0{i+1}. {service.title}
+                {service.emoji} {service.title}
               </h3>
               <p className="text-sm md:text-base mt-1 font-bold opacity-95 max-w-xs">{service.desc}</p>
               <div className="h-1.5 w-24 bg-[#FFCB05] mt-3 group-hover:w-full transition-all duration-500 rounded-full" />
@@ -128,10 +128,10 @@ const ScrollContent = memo(() => (
             Catering
           </a>
           <a href="/services?tab=venue" className="px-10 py-4 border-4 border-[#333333] text-[#333333] rounded-2xl font-bold text-xl hover:bg-[#333333] hover:text-white transition-all transform hover:-rotate-2">
-            Party House
+            Kids Party House
           </a>
           <a href="/services?tab=boxes" className="px-10 py-4 border-4 border-[#FFCB05] text-[#333333] rounded-2xl font-bold text-xl hover:bg-[#FFCB05] transition-all transform hover:-rotate-2">
-            Food Delivery & Food Boxes
+            Food Delivery & Boxes
           </a>
         </div>
       </div>
