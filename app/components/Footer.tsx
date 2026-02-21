@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Mail, Phone, MapPin, Instagram, MessageCircle, Star, Utensils } from 'lucide-react';
+import { Mail, Phone, MapPin, Instagram, MessageCircle, Star, Youtube } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -71,8 +71,8 @@ const Footer = () => {
             <Link href="https://www.instagram.com/littlejalebis/?hl=en" target="_blank" rel="noopener noreferrer" className=" p-2 rounded-lg">
               <Instagram size={18} className="text-[#F26522]" />
             </Link>
-            <Link href="https://www.zomato.com/ncr/little-jalebis-kids-catering-delivery-co-friends-colony-new-delhi" target="_blank" rel="noopener noreferrer" className=" p-2 rounded-lg">
-              <Utensils size={18} className="text-[#F26522]" />
+            <Link href="https://www.youtube.com/@LittleJalebis" target="_blank" rel="noopener noreferrer" className=" p-2 rounded-lg">
+              <Youtube size={18} className="text-[#F26522]" />
             </Link>
             <Link href="https://wa.me/918130964374" target="_blank" rel="noopener noreferrer" className=" p-2 rounded-lg">
               <MessageCircle size={18} className="text-[#F26522]" />
@@ -88,6 +88,9 @@ const Footer = () => {
       <div className="max-w-7xl mt-12 pt-6 border-t border-gray-100 text-center w-full">
         <p className="text-xs md:text-sm font-bold text-[#333333] opacity-80">
           © 2026 Little Jalebis. All rights reserved. | Kids Party House & Catering Co.
+        </p>
+        <p className="text-xs md:text-sm font-bold text-[#333333] opacity-80">
+          Unit of NC Hospitality Pvt Ltd CIN : U55101DL2009PTC188581
         </p>
       </div>
     </footer>
