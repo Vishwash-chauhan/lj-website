@@ -85,7 +85,7 @@ const Navbar = () => {
     </nav>
 
     {/* Mobile Menu Overlay */}
-    <div className={`fixed inset-0 bg-[#FFF9F2] z-50 flex flex-col items-center justify-center transition-all duration-500 md:hidden ${
+    <div className={`fixed inset-0 bg-[#FFF9F2] z-55 flex flex-col items-center justify-center transition-all duration-500 md:hidden ${
       isOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
     }`}>
         <div className="flex flex-col gap-8 text-center">
