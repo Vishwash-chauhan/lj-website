@@ -1,6 +1,7 @@
 'use client'
 
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState } from 'react'
+import CategoryHeader from './CategoryHeader'
 
 interface MenuItem {
   Name: string
@@ -205,13 +206,9 @@ export default function MenuPageContent() {
   const [isMobile, setIsMobile] = useState(false)
   const [mounted, setMounted] = useState(false)
 
-  const tabsRef = useRef<HTMLDivElement | null>(null)
+  // CategoryHeader handles tab scrolling internally
 
-  useEffect(() => {
-    if (!tabsRef.current) return
-    const activeBtn = tabsRef.current.querySelector<HTMLButtonElement>(`[data-index="${currentIndex}"]`)
-    activeBtn?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' })
-  }, [currentIndex, mounted])
+
 
   useEffect(() => {
     setMounted(true)
@@ -242,41 +239,14 @@ export default function MenuPageContent() {
   return (
     <div className="pt-20 md:pt-24 lg:pt-28 bg-[#FFF9F2] text-[#333333] min-h-screen px-3 sm:px-5 md:p-8">
       <div className="w-full max-w-[1000px] mx-auto">
-        <header className="flex flex-col items-center mb-4 sm:mb-6">
-          <div className="w-full mb-3">
-            <div
-              ref={tabsRef}
-              role="tablist"
-              aria-label="Categories"
-              className="flex gap-2 overflow-x-auto py-1 px-1 sm:px-0"
-            >
-              {categories.map((cat, i) => {
-                const isActive = i === currentIndex
-                return (
-                  <button
-                    key={cat}
-                    data-index={i}
-                    role="tab"
-                    aria-selected={isActive}
-                    tabIndex={0}
-                    onClick={() => setCurrentIndex(i)}
-                    className={`flex-shrink-0 px-3 py-1 rounded-full font-black text-sm sm:text-base whitespace-nowrap transition-transform ${
-                      isActive
-                        ? 'bg-[#F26522] text-white shadow-[4px_4px_0_#F26522] scale-105'
-                        : 'bg-white border-2 border-[#FFCB05] text-[#F26522] hover:scale-105'
-                    }`}
-                  >
-                    {formatLabel(cat)}
-                  </button>
-                )
-              })}
-            </div>
-          </div>
-
-          <h2 className="text-base sm:text-xl md:text-2xl lg:text-3xl font-black text-[#F26522] uppercase my-0 line-clamp-2" style={{ textShadow: '1px 1px #FFCB05' }}>
-            ✨ {formatLabel(label)} ✨
-          </h2>
-        </header>
+        {/* header is now a separate sticky component */}
+        <CategoryHeader
+          categories={categories}
+          currentIndex={currentIndex}
+          setCurrentIndex={setCurrentIndex}
+          label={label}
+          formatLabel={formatLabel}
+        />
 
         {items.length === 0 ? (
           <div className="col-span-full p-6 sm:p-10 border-2 border-dashed border-opacity-10 rounded-lg text-gray-400 bg-opacity-60 bg-white text-sm sm:text-base">
