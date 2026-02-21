@@ -102,7 +102,7 @@ const menuItems: MenuItem[] = [
     {Name: "Stir Fried Vegetables in Butter Garlic Sauce/Hot Garlic Sauce", Description: "Veggies tossed in a non-spicy smooth, buttery garlic sauce with a hint of herbs.", PcsDisplay: "", Unit: "", Calculate: "0", Rate: 499, Category: "Main Course", VegNonVeg: "Veg"},
  
     // MAIN COURSE - NON-VEG
-    {Name: "Green/Red/Yellow Thai Curry With Fragrant Jasmine Rice", Description: "Rich and creamy Thai curry in green, red, or yellow, with a perfect balance of spices and herbs.", PcsDisplay: "", Unit: "", Calculate: "0", Rate: 699, Category: "Main Course", VegNonVeg: "Non-Veg"},
+    {Name: "Green/Red/Yellow Thai Curry With Fragrant Jasmine Rice", Description: "Rich and creamy Thai curry in green, red, or yellow, with a perfect balance of spices and herbs.", PcsDisplay: "", Unit: "", Calculate: "0", Rate: 659, Category: "Main Course", VegNonVeg: "Non-Veg"},
     {Name: "Savory Shredded Chicken in Butter Garlic Sauce/Hot Garlic Sauce", Description: "Tender shredded chicken tossed in a smooth, garlic sauce with a hint of herbs.", PcsDisplay: "", Unit: "", Calculate: "0", Rate: 599, Category: "Main Course", VegNonVeg: "Non-Veg"},
     {Name: "Dynamite Chicken Chili (Gravy)", Description: "Cosmos of flavors! Spicy and scrumptious. Succulent chicken pieces in a thick, savory gravy.", PcsDisplay: "", Unit: "", Calculate: "0", Rate: 499, Category: "Main Course", VegNonVeg: "Non-Veg"},
     {Name: "Sizzling Chicken Manchurian", Description: "Juicy chicken balls cooked in a zesty soy-garlic sauce, pairs wonderfully with fried rice or noodles!", PcsDisplay: "", Unit: "", Calculate: "0", Rate: 499, Category: "Main Course", VegNonVeg: "Non-Veg"},
@@ -146,14 +146,14 @@ const menuItems: MenuItem[] = [
     {Name: "Marshmallows with Hot Chocolate Fondue", Description: "Soft, fluffy marshmallows dipped in rich, velvety hot chocolate fondue for a sweet and indulgent treat.", PcsDisplay: "30", Unit: "PCS", Calculate: "1", Rate: 1999, Category: "Dessert", VegNonVeg: "Veg"},
 
 // DRINKS & SOUPS
-    {Name: "Fresh Lemonade", Description: "A refreshing blend of lemons, chilled water, and a hint of sweetness, perfect thirst-quenching drink.", PcsDisplay: "200", Unit: "ML", Calculate: "0", Rate: 39, Category: "Drinks", VegNonVeg: "Veg"},
-    {Name: "Lemon Ice Tea", Description: "A crisp and refreshing iced tea infused with a zesty lemon flavor, served cold for a cool experience.", PcsDisplay: "200", Unit: "ML", Calculate: "0", Rate: 49, Category: "Drinks", VegNonVeg: "Veg"},
-    {Name: "Blue Curacao", Description: "Blue curacao is like a splash of tropical paradise! Perfect for adding a fun twist to any drink!", PcsDisplay: "200", Unit: "ML", Calculate: "0", Rate: 79, Category: "Drinks", VegNonVeg: "Veg"},
-    {Name: "Vanilla/Chocolate/Strawberry Smoothies", Description: "Choise of Vanilla, Chocolate, or Strawberry. Perfectly blended for a smooth, indulgent treat that's fully satisfying.", PcsDisplay: "200", Unit: "ML", Calculate: "0", Rate: 99, Category: "Drinks", VegNonVeg: "Veg"},
-    {Name: "Hot Tea", Description: "Perfectly brewed, perfect for any time of the day.", PcsDisplay: "200", Unit: "ML", Calculate: "0", Rate: 49, Category: "Drinks", VegNonVeg: "Veg"},
-    {Name: "Hot Coffee", Description: "Comforting cup of rich, aromatic coffee, brewed to perfection.", PcsDisplay: "200", Unit: "ML", Calculate: "0", Rate: 79, Category: "Drinks", VegNonVeg: "Veg"},
-    {Name: "Hot Chocolate", Description: "A warm, sweet drink made with rich, melted chocolate and smooth milk.", PcsDisplay: "200", Unit: "ML", Calculate: "0", Rate: 89, Category: "Drinks", VegNonVeg: "Veg"},
-    {Name: "Classic Tomato Soup", Description: "A warm and comforting cup of velvety tomato goodness, seasoned with just the right blend of spices.", PcsDisplay: "200", Unit: "ML", Calculate: "0", Rate: 89, Category: "Drinks", VegNonVeg: "Veg"},
+    {Name: "Fresh Lemonade", Description: "A refreshing blend of lemons, chilled water, and a hint of sweetness, perfect thirst-quenching drink.", PcsDisplay: "200 ML", Unit: "ML", Calculate: "0", Rate: 39, Category: "Drinks", VegNonVeg: "Veg"},
+    {Name: "Lemon Ice Tea", Description: "A crisp and refreshing iced tea infused with a zesty lemon flavor, served cold for a cool experience.", PcsDisplay: "200 ML", Unit: "ML", Calculate: "0", Rate: 49, Category: "Drinks", VegNonVeg: "Veg"},
+    {Name: "Blue Curacao", Description: "Blue curacao is like a splash of tropical paradise! Perfect for adding a fun twist to any drink!", PcsDisplay: "200 ML", Unit: "ML", Calculate: "0", Rate: 79, Category: "Drinks", VegNonVeg: "Veg"},
+    {Name: "Vanilla/Chocolate/Strawberry Smoothies", Description: "Choise of Vanilla, Chocolate, or Strawberry. Perfectly blended for a smooth, indulgent treat that's fully satisfying.", PcsDisplay: "200 ML", Unit: "ML", Calculate: "0", Rate: 99, Category: "Drinks", VegNonVeg: "Veg"},
+    {Name: "Hot Tea", Description: "Perfectly brewed, perfect for any time of the day.", PcsDisplay: "200 ML", Unit: "ML", Calculate: "0", Rate: 49, Category: "Drinks", VegNonVeg: "Veg"},
+    {Name: "Hot Coffee", Description: "Comforting cup of rich, aromatic coffee, brewed to perfection.", PcsDisplay: "200 ML", Unit: "ML", Calculate: "0", Rate: 79, Category: "Drinks", VegNonVeg: "Veg"},
+    {Name: "Hot Chocolate", Description: "A warm, sweet drink made with rich, melted chocolate and smooth milk.", PcsDisplay: "200 ML", Unit: "ML", Calculate: "0", Rate: 89, Category: "Drinks", VegNonVeg: "Veg"},
+    {Name: "Classic Tomato Soup", Description: "A warm and comforting cup of velvety tomato goodness, seasoned with just the right blend of spices.", PcsDisplay: "200 ML", Unit: "ML", Calculate: "0", Rate: 89, Category: "Drinks", VegNonVeg: "Veg"},
 
     // LIVE STATIONS
     {Name: "LIVE Waffle Station", Description: "Freshly cooked golden waffles with a delightful array of toppings including chocolates, syrups, nuts, and ice cream.", PcsDisplay: "", Unit: "", Calculate: "0", Rate: 0, Category: "Live Stations", VegNonVeg: "Veg"},
@@ -233,6 +233,11 @@ export default function MenuPageContent() {
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [])
 
+  // auto-scroll to top whenever category changes (click or arrow keys)
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [currentIndex])
+
   const label = categories[currentIndex]
   const items = menuItems.filter((item) => matchesItem(item, label))
 
@@ -309,17 +314,6 @@ export default function MenuPageContent() {
         )}
       </div>
 
-      <button
-        onClick={() => window.open('https://wa.me/918130964374', '_blank')}
-        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 w-12 sm:w-14 h-12 sm:h-14 bg-[#25D366] rounded-full p-2.5 sm:p-3 cursor-pointer shadow-lg hover:shadow-xl hover:scale-110 transition-all flex items-center justify-center z-[99999999]"
-        aria-label="Chat on WhatsApp"
-      >
-        <svg width="100%" height="100%" viewBox="0 0 1219.547 1225.016" style={{ maxWidth: '40px' }}>
-          <path fill="#E0E0E0" d="M1041.858 178.02C927.206 63.289 774.753.07 612.325 0 277.617 0 5.232 272.298 5.098 606.991c-.039 106.986 27.915 211.42 81.048 303.476L0 1225.016l321.898-84.406c88.689 48.368 188.547 73.855 290.166 73.896h.258.003c334.654 0 607.08-272.346 607.222-607.023.056-162.208-63.052-314.724-177.689-429.463zm-429.533 933.963h-.197c-90.578-.048-179.402-24.366-256.878-70.339l-18.438-10.93-191.021 50.083 51-186.176-12.013-19.087c-50.525-80.336-77.198-173.175-77.16-268.504.111-278.186 226.507-504.503 504.898-504.503 134.812.056 261.519 52.604 356.814 147.965 95.289 95.36 147.728 222.128 147.688 356.948-.118 278.195-226.522 504.543-504.693 504.543z" />
-          <path fill="#25D366" d="M27.875 1190.114l82.211-300.18c-50.719-87.852-77.391-187.523-77.359-289.602.133-319.398 260.078-579.25 579.469-579.25 155.016.07 300.508 60.398 409.898 169.891 109.414 109.492 169.633 255.031 169.57 409.812-.133 319.406-260.094 579.281-579.445 579.281-.023 0 .016 0 0 0h-.258c-96.977-.031-192.266-24.375-276.898-70.5l-307.188 80.548z" />
-          <path fill="#FFF" fillRule="evenodd" clipRule="evenodd" d="M462.273 349.294c-11.234-24.977-23.062-25.477-33.75-25.914-8.742-.375-18.75-.352-28.742-.352-10 0-26.25 3.758-39.992 18.766-13.75 15.008-52.5 51.289-52.5 125.078 0 73.797 53.75 145.102 61.242 155.117 7.5 10 103.758 166.266 256.203 226.383 126.695 49.961 152.477 40.023 179.977 37.523s88.734-36.273 101.234-71.297c12.5-35.016 12.5-65.031 8.75-71.305-3.75-6.25-13.75-10-28.75-17.5s-88.734-43.789-102.484-48.789-23.75-7.5-33.75 7.516c-10 15-38.727 48.773-47.477 58.773-8.75 10.023-17.5 11.273-32.5 3.773-15-7.523-63.305-23.344-120.609-74.438-44.586-39.75-74.688-88.844-83.438-103.859-8.75-15-.938-23.125 6.586-30.602 6.734-6.719 15-17.508 22.5-26.266 7.484-8.758 9.984-15.008 14.984-25.008 5-10.016 2.5-18.773-1.25-26.273s-32.898-81.67-46.234-111.326z" />
-        </svg>
-      </button>
     </div>
   )
 }

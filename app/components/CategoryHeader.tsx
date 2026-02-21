@@ -22,7 +22,7 @@ const CategoryHeader: React.FC<Props> = ({ categories, currentIndex, setCurrentI
   }, [currentIndex])
 
   return (
-    <header className="sticky top-19 md:top-20 z-50 bg-[#FFF9F2] pt-4 pb-2 border-3 sm:border-4 border-[#FFCB05] rounded-2xl sm:rounded-3xl shadow-[4px_4px_0px_#F26522]">
+    <header className="sticky top-19 md:top-20 z-50 bg-[#FFF9F2] pt-4 pb-2 px-4 sm:px-6 mb-6 border-3 sm:border-4 border-[#FFCB05] rounded-2xl sm:rounded-3xl shadow-[4px_4px_0px_#F26522]">
       <div className="w-full max-w-[1000px] mx-auto flex flex-col items-center">
         <div className="w-full mb-3">
           <div
