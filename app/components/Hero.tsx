@@ -180,7 +180,7 @@ export default function Hero() {
   return (
     <>
       <FontStyle />
-      <div className="h-screen bg-[#FEEFEA] text-[#333333] overflow-hidden">
+      <div className="h-screen bg-[#FFF9F2] text-[#333333] overflow-hidden">
         <Canvas shadows>
           <PerspectiveCamera makeDefault position={[0, 0, 5]} fov={50} />
           <Environment preset="city" />
