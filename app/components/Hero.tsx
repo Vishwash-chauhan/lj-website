@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useRef, Suspense, memo } from 'react'
+import React, { useRef, Suspense, memo, useMemo } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { 
   Float, 
@@ -12,7 +12,44 @@ import {
 } from '@react-three/drei'
 import * as THREE from 'three'
 
-// Adding the Google Font import via a style tag for the Comic Neue look
+// --- Custom Jalebi Geometry (Sized to match TorusKnot) ---
+function JalebiShape() {
+  const shape = useMemo(() => {
+    const points = []
+    const loops = 4.5 
+    const pointsPerLoop = 64
+    const totalPoints = loops * pointsPerLoop
+    
+    for (let i = 0; i <= totalPoints; i++) {
+      const angle = (i / pointsPerLoop) * Math.PI * 2
+      // Reduced max radius to ~1.1 to match the original torus scale
+      const radius = 0.1 + (i / totalPoints) * 1.5 
+      const x = Math.cos(angle) * radius
+      const y = Math.sin(angle) * radius
+      // Subtle organic wobble
+      const z = Math.sin(i * 0.5) * 0.04 
+      
+      points.push(new THREE.Vector3(x, y, z))
+    }
+    
+    const path = new THREE.CatmullRomCurve3(points)
+    // Radius set to 0.12 for a sleeker "piped" look that fits the smaller scale
+    return new THREE.TubeGeometry(path, 500, 0.15, 12, false)
+  }, [])
+
+  return (
+    <mesh geometry={shape}>
+      <meshStandardMaterial
+        color="#F26522" 
+        emissive="#FFCB05" 
+        emissiveIntensity={0.6}
+        roughness={0.2}
+        metalness={0.1}
+      />
+    </mesh>
+  )
+}
+
 const FontStyle = () => (
   <style jsx global>{`
     @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,700&display=swap');
@@ -23,7 +60,7 @@ const FontStyle = () => (
 )
 
 function SceneContent() {
-  const meshRef = useRef<THREE.Mesh>(null)
+  const meshRef = useRef<THREE.Group>(null)
   const scroll = useScroll()
 
   useFrame((state) => {
@@ -34,8 +71,8 @@ function SceneContent() {
       meshRef.current.rotation.y = scrollOffset * Math.PI * 2
       
       const isMobile = state.viewport.width < 6
-      // On mobile, keep the "jalebi" centered but push it up to make room for bottom text
-      // On desktop, slide it to the left
+      
+      // Matching your original positioning logic exactly
       meshRef.current.position.x = isMobile ? 0 : THREE.MathUtils.lerp(0, -2.8, scrollOffset)
       meshRef.current.position.y = isMobile ? THREE.MathUtils.lerp(0.8, 1.2, scrollOffset) : 0
       
@@ -46,16 +83,9 @@ function SceneContent() {
 
   return (
     <Float speed={2} rotationIntensity={1} floatIntensity={2}>
-      <mesh ref={meshRef}>
-        <torusKnotGeometry args={[1, 0.3, 128, 32]} />
-        <meshStandardMaterial
-          color="#F26522"
-          emissive="#FFCB05"
-          emissiveIntensity={0.4}
-          metalness={0.1}
-          roughness={0.3}
-        />
-      </mesh>
+      <group ref={meshRef}>
+        <JalebiShape />
+      </group>
     </Float>
   )
 }
@@ -94,7 +124,6 @@ const ScrollContent = memo(() => (
         </div>
 
         <div className="space-y-6 mt-4">
-          {/* Service Cards */}
           {[
             { emoji: '🍕', title: "Catering", desc: "Kid-approved menus that adults love too.", link: "/services?tab=catering" },
             { emoji: '🏠', title: "Kids Party House", desc: "Magical spaces designed for play and laughter.", link: "/services?tab=venue" },
@@ -147,7 +176,7 @@ ScrollContent.displayName = 'ScrollContent'
 export default function Hero() {
   const [mounted, setMounted] = React.useState(false)
   const [pages, setPages] = React.useState(3)
-  const [damping, setDamping] = React.useState(0.1) // lower = snappier (faster) scroll
+  const [damping, setDamping] = React.useState(0.1)
 
   React.useLayoutEffect(() => {
     setMounted(true)
@@ -157,7 +186,6 @@ export default function Hero() {
     const handleResize = () => {
       const isMobile = window.innerWidth < 768
       setPages(isMobile ? 3.5 : 3)
-      // reduce damping on mobile so scrolling feels faster/snappier
       setDamping(isMobile ? 0.01 : 0.1)
     }
 
@@ -169,7 +197,7 @@ export default function Hero() {
   return (
     <>
       <FontStyle />
-      <div className="h-screen bg-[#FFF9F2] text-[#333333] overflow-hidden">
+      <div className="h-screen bg-[#FEEFEA] text-[#333333] overflow-hidden">
         <Canvas shadows>
           <PerspectiveCamera makeDefault position={[0, 0, 5]} fov={50} />
           <Environment preset="city" />
