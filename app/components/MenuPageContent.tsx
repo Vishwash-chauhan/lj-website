@@ -285,11 +285,14 @@ export default function MenuPageContent() {
                     <p className="text-xs sm:text-sm font-bold leading-relaxed text-[#333333] flex-1 text-left">
                       {item.Description}
                     </p>
-                    {item.PcsDisplay && (
-                      <span className="bg-[#FFCB05] px-2.5 py-1 rounded-lg sm:rounded-2xl font-bold text-xs whitespace-nowrap flex-shrink-0">
-                        {item.PcsDisplay}
-                      </span>
-                    )}
+                      {item.PcsDisplay && (
+                        <span className="bg-[#FFCB05] px-2.5 py-1 rounded-lg sm:rounded-2xl font-bold text-xs whitespace-nowrap flex-shrink-0">
+                          {item.PcsDisplay}
+                          {item.Unit && (
+                            <span className="ml-1">{item.Unit}</span>
+                          )}
+                        </span>
+                      )}
                   </div>
                 ) : (
                   <>
@@ -297,11 +300,14 @@ export default function MenuPageContent() {
                       {item.Description}
                     </p>
                     <div className="flex justify-between items-center border-t-2 border-dashed border-[#FFCB05] pt-3 sm:pt-4">
-                      {item.PcsDisplay && (
-                        <span className="bg-[#FFCB05] px-2.5 sm:px-3 py-1 rounded-lg sm:rounded-2xl font-bold text-xs">
-                          {item.PcsDisplay}
-                        </span>
-                      )}
+                        {item.PcsDisplay && (
+                          <span className="bg-[#FFCB05] px-2.5 sm:px-3 py-1 rounded-lg sm:rounded-2xl font-bold text-xs">
+                            {item.PcsDisplay}
+                            {item.Unit && (
+                              <span className="ml-1">{item.Unit}</span>
+                            )}
+                          </span>
+                        )}
                       <span className="text-sm md:text-lg font-black text-[#333333] ml-auto">
                         {item.Rate === 0 && item.CustomPrice ? item.CustomPrice : '₹' + item.Rate + '/-'}
                       </span>
