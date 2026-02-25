@@ -20,7 +20,7 @@ const Testimonials = () => {
     {
       name: "Deepika Mehta",
       role: "Birthday Mom",
-      text: "I hosted birthday party at my house and took catering services from Little jalebi. The experience was very very good ! Each and every person was extremely helpful and cordial ! The food was very good and kid friendly ! Also special mention for Devi Prasad ji .. he was extremely helpful and service was exceptional !! 😊😊 I totally recommend to all to try their services !",
+      text: "I hosted birthday party at my house and took catering services from Little jalebi. The experience was very very good ! Each and every person was extremely helpful and cordial ! The food was very good and kid friendly ! Also special mention for Devi Prasad ji",
       avatar: "https://placehold.co/100x100?text=DM"
     },
     {
@@ -86,7 +86,7 @@ const Testimonials = () => {
           </div>
           <div className="w-full lg:w-1/2">
             <h2 className="text-5xl md:text-6xl font-black text-[#333333] leading-tight">
-              Hear from our <span className="text-[#F26522]">Little Fans</span>
+              Hear from our <span className="text-[#F26522]">Clients</span>
             </h2>
           </div>
         </div>
