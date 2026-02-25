@@ -47,7 +47,8 @@ const Navbar = () => {
     { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
     { name: 'Menu', href: '/menu' },
-    { name: 'Contact', href: '/contact' },
+    // { name: 'Contact', href: '/contact' },
+    { name: 'Testimonials', href: '/testimonials' },
   ];
 
   const isActiveLink = (href: string) =>
@@ -195,7 +196,8 @@ const Navbar = () => {
             </div>
 
             <Link href="/menu" onClick={() => setIsOpen(false)} className="text-[#333333] font-bold text-3xl uppercase tracking-tight">Menu</Link>
-            <Link href="/contact" onClick={() => setIsOpen(false)} className="text-[#333333] font-bold text-3xl uppercase tracking-tight">Contact</Link>
+            {/* <Link href="/contact" onClick={() => setIsOpen(false)} className="text-[#333333] font-bold text-3xl uppercase tracking-tight">Contact</Link> */}
+            <Link href="/testimonials" onClick={() => setIsOpen(false)} className="text-[#333333] font-bold text-3xl uppercase tracking-tight">Testimonials</Link>
             
             <Link 
               href="/booking"

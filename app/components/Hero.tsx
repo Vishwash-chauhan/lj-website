@@ -41,7 +41,7 @@ function JalebiShape() {
     <mesh geometry={shape}>
       <meshStandardMaterial
         color="#F26522" 
-        emissive="#FFCB05" 
+        emissive="#e38b19" 
         emissiveIntensity={0.6}
         roughness={0.2}
         metalness={0.1}
