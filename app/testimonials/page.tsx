@@ -8,7 +8,6 @@ export default function TestimonialsPage() {
   return (
     <main>
       <Testimonials />
-      <CoreValues />
       <LiveCateringCarousel />
       <FinalCall />
     </main>

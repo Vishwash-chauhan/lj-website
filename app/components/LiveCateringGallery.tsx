@@ -4,26 +4,26 @@ import React, { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const LiveCateringCarousel = () => {
-  const images = [
+  const content = [
     {
-      url: "https://res.cloudinary.com/dwffrfajl/image/upload/v1772008185/Catering-Sample-Images_o2wuv8.png",
-      title: "The Full Spread",
+      url: "/videos/Because every celebration deserves great food, smiling faces, and zero stress 💛You enjoy, we make!.mp4",
+      title: "Zero Stress Hosting",
     },
     {
-      url: "https://res.cloudinary.com/dwffrfajl/image/upload/v1772008184/image-4-2_mxkbti.webp",
-      title: "Happy Guests",
+      url: "/videos/K-pop energy meets a fun Demon-Hunters twist 💜⚡ - Little Jalebis - Kids Catering & Delivery Co. (1080p, h264).mp4",
+      title: "K-Pop & Demon Hunters",
     },
     {
-      url: "https://res.cloudinary.com/dwffrfajl/image/upload/v1772008184/image-3_puhn6h.webp",
-      title: "Live Counter Fun",
+      url: "/videos/Little Jalebis brought the magic to a spook-tacular Halloween celebration! - Little Jalebis - Kids Catering & Delivery Co. (1080p, h264).mp4",
+      title: "Spook-tacular Halloween",
     },
     {
-      url: "https://res.cloudinary.com/dwffrfajl/image/upload/v1772008184/image-6-1_iyfxdc.webp",
-      title: "Themed Setups",
+      url: "/videos/Our_car-themed_catering_zoomed_into_this_birthday_with_a_themed_based_setup_live_burgers_station_720P.mp4",
+      title: "Car-Themed Party",
     },
     {
-      url: "https://res.cloudinary.com/dwffrfajl/image/upload/v1772008184/image-5-1_akqbfg.webp",
-      title: "Kid-Approved Bites",
+      url: "/videos/Roblox_Themed_Event_Catered_by_Little_Jalebis_-_Kids_Catering_Delivery_Co_720P.mp4",
+      title: "Roblox Themed Event",
     }
   ]
 
@@ -32,21 +32,21 @@ const LiveCateringCarousel = () => {
 
   const nextStep = useCallback(() => {
     setDirection(1)
-    setCurrentIndex((prev) => (prev + 1) % images.length)
-  }, [images.length])
+    setCurrentIndex((prev) => (prev + 1) % content.length)
+  }, [content.length])
 
   const prevStep = useCallback(() => {
     setDirection(-1)
-    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length)
-  }, [images.length])
+    setCurrentIndex((prev) => (prev - 1 + content.length) % content.length)
+  }, [content.length])
 
   useEffect(() => {
     const timer = setInterval(nextStep, 5000)
     return () => clearInterval(timer)
   }, [nextStep])
 
-  const getVisibleImages = () => {
-    return images.map((_, i) => images[(currentIndex + i) % images.length])
+  const getVisibleItems = () => {
+    return content.map((_, i) => content[(currentIndex + i) % content.length])
   }
 
   return (
@@ -61,14 +61,12 @@ const LiveCateringCarousel = () => {
           </h2>
         </div>
 
-        {/* --- Carousel Body --- */}
         <div className="relative">
-          
           {/* Navigation Buttons */}
           <div className="absolute top-1/2 -translate-y-1/2 -left-4 md:-left-12 z-30">
             <button 
               onClick={prevStep}
-              className="w-12 h-12 md:w-16 md:h-16 bg-white border-4 border-[#333333] rounded-2xl shadow-[4px_4px_0px_#333333] hover:bg-[#FFCB05] active:translate-y-1 active:shadow-none transition-all flex items-center justify-center text-2xl"
+              className="w-12 h-12 md:w-16 md:h-16 bg-white border-4 border-[#333333] rounded-2xl shadow-[4px_4px_0px_#333333] hover:bg-[#FFCB05] active:translate-y-1 transition-all flex items-center justify-center text-2xl"
             >
               ←
             </button>
@@ -77,36 +75,39 @@ const LiveCateringCarousel = () => {
           <div className="absolute top-1/2 -translate-y-1/2 -right-4 md:-right-12 z-30">
             <button 
               onClick={nextStep}
-              className="w-12 h-12 md:w-16 md:h-16 bg-white border-4 border-[#333333] rounded-2xl shadow-[4px_4px_0px_#333333] hover:bg-[#F26522] hover:text-white active:translate-y-1 active:shadow-none transition-all flex items-center justify-center text-2xl"
+              className="w-12 h-12 md:w-16 md:h-16 bg-white border-4 border-[#333333] rounded-2xl shadow-[4px_4px_0px_#333333] hover:bg-[#F26522] hover:text-white active:translate-y-1 transition-all flex items-center justify-center text-2xl"
             >
               →
             </button>
           </div>
 
-          {/* Photo Display Area - Vertical Reels Ratio */}
           <div className="relative min-h-[500px] md:min-h-[600px]">
             <AnimatePresence mode="popLayout" custom={direction}>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {getVisibleImages().slice(0, 3).map((img, idx) => (
+                {getVisibleItems().slice(0, 3).map((item, idx) => (
                   <motion.div 
-                    key={`${img.url}-${currentIndex}-${idx}`}
+                    key={`${item.url}-${currentIndex}-${idx}`}
                     className={`relative bg-white border-4 border-[#333333] p-4 rounded-[2.5rem] shadow-[10px_10px_0px_#333333] flex flex-col ${idx > 0 ? 'hidden md:flex' : 'flex'}`}
                     initial={{ opacity: 0, x: direction * 100 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: direction * -100 }}
                     transition={{ duration: 0.5, ease: "anticipate" }}
                   >
-                    {/* ASPECT RATIO 9:16 (REELS) */}
-                    <div className="overflow-hidden rounded-[1.8rem] aspect-[9/16] w-full bg-[#333333]">
-                      <img 
-                        src={img.url} 
-                        alt={img.title} 
+                    {/* VIDEO CONTAINER - Clean Look */}
+                    <div className="overflow-hidden rounded-[1.8rem] aspect-[9/16] w-full">
+                      <video 
+                        key={item.url} // Forces video to reload when source changes
+                        src={item.url} 
+                        autoPlay 
+                        muted 
+                        loop 
+                        playsInline
                         className="w-full h-full object-cover"
                       />
                     </div>
                     
                     <div className="mt-6 text-center">
-                      <p className="font-black text-xl text-[#333333] italic">"{img.title}"</p>
+                      <p className="font-black text-xl text-[#333333] italic">"{item.title}"</p>
                     </div>
 
                     {/* Decorative Tape */}
@@ -118,9 +119,9 @@ const LiveCateringCarousel = () => {
           </div>
         </div>
 
-        {/* --- Dots Indicators --- */}
+        {/* --- Dots --- */}
         <div className="flex justify-center gap-3 mt-16">
-          {images.map((_, i) => (
+          {content.map((_, i) => (
             <button
               key={i}
               onClick={() => {
@@ -133,7 +134,6 @@ const LiveCateringCarousel = () => {
             />
           ))}
         </div>
-
       </div>
     </section>
   )
