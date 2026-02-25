@@ -84,13 +84,6 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Simple footer navigation */}
-      <nav className="w-full flex justify-center mt-8 space-x-6">
-        <Link href="/testimonials" className="text-[#333333] font-bold hover:text-[#F26522]">
-          Testimonials
-        </Link>
-      </nav>
-
       {/* Copyright Line */}
       <div className="max-w-7xl mt-12 pt-6 border-t border-gray-100 text-center w-full">
         <p className="text-xs md:text-sm font-bold text-[#333333] opacity-80">
