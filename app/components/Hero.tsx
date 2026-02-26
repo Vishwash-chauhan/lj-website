@@ -100,9 +100,9 @@ const ScrollContent = memo(() => (
         <span className="bg-[#FFCB05] px-4 py-1 rounded-full text-sm font-bold uppercase tracking-wider mb-4 inline-block">
           The Sweetest Host in Town
         </span>
-        <h1 className="text-6xl md:text-[6vw] font-bold leading-[0.9] tracking-tight">
-          Little <span className="text-[#F26522]">Jalebis</span>
-        </h1>
+          <h1 className="text-6xl md:text-[6vw] font-bold leading-[0.9] tracking-tight drop-shadow-[0_2px_8px_rgba(255,255,255,0.35)]">
+            Little <span className="text-[#F26522] drop-shadow-[0_2px_8px_rgba(255,255,255,0.35)]">Jalebis</span>
+          </h1>
         <p className="text-xl md:text-[2.2vw] mt-6 font-bold opacity-90 leading-relaxed max-w-lg">
           India's First Tech-Driven, <br className="hidden md:block"/>
           <span className="underline decoration-[#FFCB05] decoration-4">Kids Centric</span> Catering Company.
@@ -119,7 +119,7 @@ const ScrollContent = memo(() => (
         <div className="text-right">
             <h2 className="text-4xl md:text-[4vw] font-bold leading-tight">
               One Stop <br/>
-              <span className="text-[#F26522]">Party Magic</span>
+              <span className="text-[#F26522] drop-shadow-[0_2px_8px_rgba(255,255,255,0.35)]">Party Magic</span>
             </h2>
             <p className="font-bold opacity-100 mt-2">Everything you need, all in one loop.</p>
         </div>
@@ -135,10 +135,10 @@ const ScrollContent = memo(() => (
               href={service.link}
               className="group cursor-pointer text-right flex flex-col items-end"
             >
-              <h3 className="text-2xl md:text-3xl font-bold group-hover:text-[#F26522] transition-colors">
+              <h3 className="text-2xl font-bold group-hover:text-[#F26522] transition-colors drop-shadow-[0_2px_8px_rgba(255,255,255,0.35)] md:text-3xl md:drop-shadow-none">
                 {service.emoji} {service.title}
               </h3>
-              <p className="text-sm md:text-base mt-1 font-bold opacity-95 max-w-xs">{service.desc}</p>
+              <p className="text-sm md:text-base mt-1 font-bold opacity-95 max-w-xs text-[#333333] md:text-[#F26522]">{service.desc}</p>
               <div className="h-1.5 w-24 bg-[#FFCB05] mt-3 group-hover:w-full transition-all duration-500 rounded-full" />
             </a>
           ))}
