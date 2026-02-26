@@ -138,7 +138,7 @@ const ScrollContent = memo(() => (
               <h3 className="text-2xl font-bold group-hover:text-[#F26522] transition-colors drop-shadow-[0_2px_8px_rgba(255,255,255,0.35)] md:text-3xl md:drop-shadow-none">
                 {service.emoji} {service.title}
               </h3>
-              <p className="text-sm md:text-base mt-1 font-bold opacity-95 max-w-xs text-[#333333] md:text-[#F26522]">{service.desc}</p>
+              <p className="text-sm md:text-base mt-1 font-bold opacity-95 max-w-xs text-[#333333] md:text-[#F26522] md:group-hover:text-[#333333]">{service.desc}</p>
               <div className="h-1.5 w-24 bg-[#FFCB05] mt-3 group-hover:w-full transition-all duration-500 rounded-full" />
             </a>
           ))}
