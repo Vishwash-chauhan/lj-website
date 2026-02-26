@@ -77,7 +77,7 @@ const Testimonials = () => {
           <div className="w-full lg:w-1/2">
             <div className="relative">
               <div className="relative z-10 overflow-hidden rounded-[3rem] border-4 border-[#333333] shadow-[12px_12px_0px_#FFCB05]">
-                <img src="https://placehold.co/600x400?text=Happy+Little+Jalebis" alt="Party" className="w-full h-auto" />
+                <img src="https://res.cloudinary.com/dwffrfajl/image/upload/v1772107546/Clients_k3tlnj.jpg" alt="Party" className="w-full h-auto" />
               </div>
               <div className="absolute -bottom-6 -left-6 bg-[#F26522] text-white px-6 py-3 rounded-2xl font-black text-xl rotate-[-5deg] border-2 border-[#333333] z-20">
                 Best. Day. Ever! 🍭
