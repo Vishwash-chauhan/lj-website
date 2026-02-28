@@ -67,7 +67,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link href="/" className="relative z-[80] shrink-0 hover:scale-105 transition-transform">
             <img 
-              src="https://littlejalebis.com/wp-content/uploads/2025/04/LJ_Logo_M-2.svg" 
+              src="https://res.cloudinary.com/dwffrfajl/image/upload/v1770034621/Little_Jalebis_Logo_lmpaxo.svg" 
               alt="Little Jalebis Logo" 
               className="h-10 md:h-14 w-auto"
             />
