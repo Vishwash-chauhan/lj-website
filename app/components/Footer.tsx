@@ -10,11 +10,8 @@ const Footer = () => {
         <div className="space-y-4">
           <div className="flex flex-col">
             <h2 className="text-2xl font-black text-[#F26522] uppercase tracking-tight">
-              Little Jalebis
+              Little Jalebis Kids Party House & Catering Co.
             </h2>
-            <span className="text-sm font-bold text-[#333333]">
-              Kids Party House & Catering Co.
-            </span>
           </div>
           <p className="text-[#333333] font-medium leading-relaxed italic">
             India's first tech-driven, kids centric catering company
