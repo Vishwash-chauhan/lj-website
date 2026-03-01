@@ -13,6 +13,7 @@ interface MenuItem {
   Unit?: string
   Calculate?: string
   CustomPrice?: string
+  Setup?: number
 }
 
 const categories = [
@@ -156,17 +157,17 @@ const menuItems: MenuItem[] = [
     {Name: "Classic Tomato Soup", Description: "A warm and comforting cup of velvety tomato goodness, seasoned with just the right blend of spices.", PcsDisplay: "200 ML", Unit: "ML", Calculate: "0", Rate: 89, Category: "Drinks", VegNonVeg: "Veg"},
 
     // LIVE STATIONS
-    {Name: "LIVE Waffle Station", Description: "Freshly cooked golden waffles with a delightful array of toppings including chocolates, syrups, nuts, and ice cream.", PcsDisplay: "", Unit: "", Calculate: "0", Rate: 0, Category: "Live Stations", VegNonVeg: "Veg"},
-    {Name: "LIVE Churros Station", Description: "Delicious churros served with a variety of dipping sauces.", PcsDisplay: "", Unit: "", Calculate: "0", Rate: 0, Category: "Live Stations", VegNonVeg: "Veg"},
-    {Name: "LIVE Mini Pancakes", Description: "Fluffy mini pancakes served with syrup and toppings.", PcsDisplay: "", Unit: "", Calculate: "0", Rate: 0, Category: "Live Stations", VegNonVeg: "Veg"},
-    {Name: "LIVE Popcorn Station", Description: "A guaranteed crowd-puller for movie nights, birthdays, or any fun gathering!", PcsDisplay: "", Unit: "", Calculate: "0", Rate: 0, Category: "Live Stations", VegNonVeg: "Veg"},
-    {Name: "LIVE Cotton Candy Station", Description: "Clouds of sugary sweetness spin right before your eyes, creating a magical treat that delights kids and adults alike.", PcsDisplay: "", Unit: "", Calculate: "0", Rate: 0, Category: "Live Stations", VegNonVeg: "Veg"},
-    {Name: "LIVE Chocolate Fountain", Description: "Big chocolate fountain with assortments like marshmallows, brownies, strawberries on skewers.", PcsDisplay: "", Unit: "", Calculate: "0", Rate: 0, Category: "Live Stations", VegNonVeg: "Veg"},
-    {Name: "LIVE Potato Spiral", Description: "Crispy spiraled potato on a stick, a crunchy treat perfect for snacking on the go.", PcsDisplay: "", Unit: "", Calculate: "0", Rate: 0, Category: "Live Stations", VegNonVeg: "Veg"},
-    {Name: "LIVE Burger Station", Description: "Mini burger station with a variety of fillings and toppings to choose from.", PcsDisplay: "", Unit: "", Calculate: "0", Rate: 300, Category: "Live Stations", VegNonVeg: "Veg"},
-    {Name: "LIVE Pizza Station", Description: "Create your own mini pizzas with a variety of toppings and sauces.", PcsDisplay: "", Unit: "", Calculate: "0", Rate: 500, Category: "Live Stations", VegNonVeg: "Veg"},
-    {Name: "LIVE Pasta Station", Description: "Fresh, hot pasta cooked live with your choice of sauce - Pink, White or Red Sauce.", PcsDisplay: "", Unit: "", Calculate: "0", Rate: 300, Category: "Live Stations", VegNonVeg: "Veg"},
-    {Name: "LIVE Dim-Sum Station", Description: "Steamed dim-sums made live with a variety of fillings.", PcsDisplay: "", Unit: "", Calculate: "0", Rate: 200, Category: "Live Stations", VegNonVeg: "Veg"},
+    {Name: "LIVE Waffle Station", Description: "Freshly cooked golden waffles with a delightful array of toppings including chocolates, syrups, nuts, and ice cream.", PcsDisplay: "", Unit: "", Calculate: "0", Rate: 0, Category: "Live Stations", VegNonVeg: "Veg", Setup: 9999},
+    {Name: "LIVE Churros Station", Description: "Delicious churros served with a variety of dipping sauces.", PcsDisplay: "", Unit: "", Calculate: "0", Rate: 0, Category: "Live Stations", VegNonVeg: "Veg", Setup: 9999},
+    {Name: "LIVE Mini Pancakes", Description: "Fluffy mini pancakes served with syrup and toppings.", PcsDisplay: "", Unit: "", Calculate: "0", Rate: 0, Category: "Live Stations", VegNonVeg: "Veg", Setup: 9999},
+    {Name: "LIVE Popcorn Station", Description: "A guaranteed crowd-puller for movie nights, birthdays, or any fun gathering!", PcsDisplay: "", Unit: "", Calculate: "0", Rate: 0, Category: "Live Stations", VegNonVeg: "Veg", Setup: 7999},
+    {Name: "LIVE Cotton Candy Station", Description: "Clouds of sugary sweetness spin right before your eyes, creating a magical treat that delights kids and adults alike.", PcsDisplay: "", Unit: "", Calculate: "0", Rate: 0, Category: "Live Stations", VegNonVeg: "Veg", Setup: 7999},
+    {Name: "LIVE Chocolate Fountain", Description: "Big chocolate fountain with assortments like marshmallows, brownies, strawberries on skewers.", PcsDisplay: "", Unit: "", Calculate: "0", Rate: 0, Category: "Live Stations", VegNonVeg: "Veg", Setup: 7999},
+    {Name: "LIVE Potato Spiral", Description: "Crispy spiraled potato on a stick, a crunchy treat perfect for snacking on the go.", PcsDisplay: "", Unit: "", Calculate: "0", Rate: 0, Category: "Live Stations", VegNonVeg: "Veg", Setup: 7999},
+    {Name: "LIVE Burger Station", Description: "Mini burger station with a variety of fillings and toppings to choose from.", PcsDisplay: "", Unit: "", Calculate: "0", Rate: 300, Category: "Live Stations", VegNonVeg: "Veg", Setup: 2500},
+    {Name: "LIVE Pizza Station", Description: "Create your own mini pizzas with a variety of toppings and sauces.", PcsDisplay: "", Unit: "", Calculate: "0", Rate: 500, Category: "Live Stations", VegNonVeg: "Veg", Setup: 5000},
+    {Name: "LIVE Pasta Station", Description: "Fresh, hot pasta cooked live with your choice of sauce - Pink, White or Red Sauce.", PcsDisplay: "", Unit: "", Calculate: "0", Rate: 300, Category: "Live Stations", VegNonVeg: "Veg", Setup: 2500},
+    {Name: "LIVE Dim-Sum Station", Description: "Steamed dim-sums made live with a variety of fillings.", PcsDisplay: "", Unit: "", Calculate: "0", Rate: 200, Category: "Live Stations", VegNonVeg: "Veg", Setup: 2000},
 ]
 
 function formatLabel(label: string): string {
@@ -274,8 +275,20 @@ export default function MenuPageContent() {
                     <span className="line-clamp-2 text-left md:text-center">{item.Name}</span>
                   </div>
                   {mounted && isMobile && (
-                    <div className="text-xs sm:text-sm font-bold text-[#F26522] ml-2 flex-shrink-0">
-                      {item.Rate === 0 ? (item.CustomPrice ? item.CustomPrice.split(' ')[0] : 'N/A') : '₹' + item.Rate + '/-'}
+                    <div className="text-xs sm:text-sm font-bold text-[#F26522] ml-2 flex-shrink-0 text-right">
+                      {item.Setup ? (
+                        <div>
+                          {item.Rate > 0 ? (
+                            `₹${item.Setup} setup + ₹${item.Rate}/- per person`
+                          ) : (
+                            `₹${item.Setup}/-`
+                          )}
+                        </div>
+                      ) : item.Rate === 0 ? (
+                        item.CustomPrice ? item.CustomPrice.split(' ')[0] : 'N/A'
+                      ) : (
+                        '₹' + item.Rate + '/-'
+                      )}
                     </div>
                   )}
                 </div>
@@ -309,7 +322,17 @@ export default function MenuPageContent() {
                           </span>
                         )}
                       <span className="text-sm md:text-lg font-black text-[#333333] ml-auto">
-                        {item.Rate === 0 && item.CustomPrice ? item.CustomPrice : '₹' + item.Rate + '/-'}
+                        {item.Setup ? (
+                          item.Rate > 0 ? (
+                            `₹${item.Setup} setup + ₹${item.Rate}/- per person`
+                          ) : (
+                            `₹${item.Setup}/-`
+                          )
+                        ) : item.Rate === 0 && item.CustomPrice ? (
+                          item.CustomPrice
+                        ) : (
+                          '₹' + item.Rate + '/-'
+                        )}
                       </span>
                     </div>
                   </>
