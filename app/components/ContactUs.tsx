@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 
 const ContactUs = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -17,12 +17,10 @@ const ContactUs = () => {
     location: ''
   })
 
-  // 1. Fixed handleChange to update state correctly
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
-  // 2. Added the Submission Logic for n8n
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
@@ -38,7 +36,8 @@ const ContactUs = () => {
 
       if (response.ok) {
         setSubmitted(true)
-        setFormData({ name: '', phone: '', eventDateTime: '', ageRange: '', foodPreference: 'Both (Veg & Non Veg)', theme: '', location: '' })
+        // Reset form for future use
+        setFormData({ name: '', phone: '', eventDateTime: '', ageRange: '', foodPreference: 'Veg Only', theme: '', location: '' })
       } else {
         alert("Something went wrong. Please try again.")
       }
@@ -61,30 +60,26 @@ const ContactUs = () => {
           <p className="text-xl font-bold opacity-70">Tell us about your dream celebration and we'll handle the magic.</p>
         </header>
 
-        <div className="bg-white border-4 border-[#333333] rounded-[3rem] p-8 md:p-12 lg:p-16 flex flex-col lg:flex-row gap-16 shadow-[12px_12px_0px_#FFCB05]">
+        <div className="bg-white border-4 border-[#333333] rounded-[3rem] p-8 md:p-12 lg:p-16 flex flex-col lg:flex-row gap-16 shadow-[12px_12px_0px_#FFCB05] relative overflow-hidden">
           
+          {/* --- LEFT SIDE: INFO --- */}
           <div className="w-full lg:w-1/3 space-y-8">
-            <div className="aspect-square bg-[#FFF9F2] rounded-[2rem] flex items-center justify-center text-[8rem] border-2 border-dashed border-[#F26522]/30">
+            <motion.div 
+              animate={{ rotate: submitted ? [0, -10, 10, 0] : 0 }}
+              className="aspect-square bg-[#FFF9F2] rounded-[2rem] flex items-center justify-center text-[8rem] border-2 border-dashed border-[#F26522]/30"
+            >
               {submitted ? '🎉' : '💌'}
-            </div>
+            </motion.div>
             
             <div className="space-y-4">
               <h2 className="text-3xl font-black text-[#333333]">
-                {submitted ? "Sent!" : "Get in Touch"}
+                {submitted ? "Yay! You're In!" : "Get in Touch"}
               </h2>
               <p className="font-bold text-lg opacity-80 leading-relaxed">
                 {submitted 
-                  ? "We've received your inquiry! Our team will reach out within 24 hours." 
+                  ? "Your inquiry has been sent successfully. We'll get back to you within 24 hours to plan your magic!" 
                   : "Our team will respond to your inquiries within 24 hours."}
               </p>
-              {submitted && (
-                <button 
-                  onClick={() => setSubmitted(false)}
-                  className="text-[#F26522] font-bold underline"
-                >
-                  Send another inquiry
-                </button>
-              )}
             </div>
 
             <div className="hidden lg:block pt-6 border-t-2 border-dashed border-[#333333]/10 space-y-3">
@@ -99,105 +94,89 @@ const ContactUs = () => {
             </div>
           </div>
 
-          {/* 3. Added onSubmit and value/onChange to inputs */}
-          <form onSubmit={handleSubmit} className="w-full lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-6">
-            
-            <div className="flex flex-col gap-2">
-              <label className="font-black text-[#F26522] uppercase text-xs tracking-widest">Full Name</label>
-              <input 
-                required
-                type="text" 
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                placeholder="Ex: Rahul Sharma"
-                className="p-4 bg-[#FFF9F2] border-2 border-[#333333] rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-[#FFCB05] transition-all"
-              />
-            </div>
+          {/* --- RIGHT SIDE: FORM OR SUCCESS MESSAGE --- */}
+          <div className="w-full lg:w-2/3 relative min-h-[400px]">
+            <AnimatePresence mode="wait">
+              {!submitted ? (
+                <motion.form 
+                  key="form"
+                  initial={{ opacity: 1 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  onSubmit={handleSubmit} 
+                  className="grid grid-cols-1 md:grid-cols-2 gap-6"
+                >
+                  <div className="flex flex-col gap-2">
+                    <label className="font-black text-[#F26522] uppercase text-xs tracking-widest">Full Name</label>
+                    <input required type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Ex: Rahul Sharma" className="p-4 bg-[#FFF9F2] border-2 border-[#333333] rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-[#FFCB05] transition-all" />
+                  </div>
 
-            <div className="flex flex-col gap-2">
-              <label className="font-black text-[#F26522] uppercase text-xs tracking-widest">Phone Number</label>
-              <input 
-                required
-                type="tel" 
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
-                placeholder="Ex: +91 99999 88888"
-                className="p-4 bg-[#FFF9F2] border-2 border-[#333333] rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-[#FFCB05] transition-all"
-              />
-            </div>
+                  <div className="flex flex-col gap-2">
+                    <label className="font-black text-[#F26522] uppercase text-xs tracking-widest">Phone Number</label>
+                    <input required type="tel" name="phone" value={formData.phone} onChange={handleChange} placeholder="Ex: +91 99999 88888" className="p-4 bg-[#FFF9F2] border-2 border-[#333333] rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-[#FFCB05] transition-all" />
+                  </div>
 
-            <div className="flex flex-col gap-2">
-              <label className="font-black text-[#F26522] uppercase text-xs tracking-widest">Event Date & Time</label>
-              <input 
-                type="datetime-local" 
-                name="eventDateTime"
-                value={formData.eventDateTime}
-                onChange={handleChange}
-                className="p-4 bg-[#FFF9F2] border-2 border-[#333333] rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-[#FFCB05] transition-all"
-              />
-            </div>
+                  <div className="flex flex-col gap-2">
+                    <label className="font-black text-[#F26522] uppercase text-xs tracking-widest">Event Date & Time</label>
+                    <input type="datetime-local" name="eventDateTime" value={formData.eventDateTime} onChange={handleChange} className="p-4 bg-[#FFF9F2] border-2 border-[#333333] rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-[#FFCB05] transition-all" />
+                  </div>
 
-            <div className="flex flex-col gap-2">
-              <label className="font-black text-[#F26522] uppercase text-xs tracking-widest">Age Range of Kids</label>
-              <input 
-                type="text" 
-                name="ageRange"
-                value={formData.ageRange}
-                onChange={handleChange}
-                placeholder="Ex: 4-8 years"
-                className="p-4 bg-[#FFF9F2] border-2 border-[#333333] rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-[#FFCB05] transition-all"
-              />
-            </div>
+                  <div className="flex flex-col gap-2">
+                    <label className="font-black text-[#F26522] uppercase text-xs tracking-widest">Age Range of Kids</label>
+                    <input type="text" name="ageRange" value={formData.ageRange} onChange={handleChange} placeholder="Ex: 4-8 years" className="p-4 bg-[#FFF9F2] border-2 border-[#333333] rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-[#FFCB05] transition-all" />
+                  </div>
 
-            <div className="flex flex-col gap-2">
-              <label className="font-black text-[#F26522] uppercase text-xs tracking-widest">Food Preference</label>
-              <select 
-                name="foodPreference"
-                value={formData.foodPreference}
-                onChange={handleChange}
-                className="p-4 bg-[#FFF9F2] border-2 border-[#333333] rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-[#FFCB05] transition-all cursor-pointer"
-              >
-                <option value="Veg Only">Veg Only</option>
-                <option value="Both (Veg & Non Veg)">Both (Veg & Non Veg)</option>
-              </select>
-            </div>
+                  <div className="flex flex-col gap-2">
+                    <label className="font-black text-[#F26522] uppercase text-xs tracking-widest">Food Preference</label>
+                    <select name="foodPreference" value={formData.foodPreference} onChange={handleChange} className="p-4 bg-[#FFF9F2] border-2 border-[#333333] rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-[#FFCB05] transition-all cursor-pointer">
+                      <option value="Veg Only">Veg Only</option>
+                      <option value="Both (Veg & Non Veg)">Both (Veg & Non Veg)</option>
+                    </select>
+                  </div>
 
-            <div className="flex flex-col gap-2">
-              <label className="font-black text-[#F26522] uppercase text-xs tracking-widest">Party Theme</label>
-              <input 
-                type="text" 
-                name="theme"
-                value={formData.theme}
-                onChange={handleChange}
-                placeholder="Ex: Space, Jungle, Mermaid"
-                className="p-4 bg-[#FFF9F2] border-2 border-[#333333] rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-[#FFCB05] transition-all"
-              />
-            </div>
+                  <div className="flex flex-col gap-2">
+                    <label className="font-black text-[#F26522] uppercase text-xs tracking-widest">Party Theme</label>
+                    <input type="text" name="theme" value={formData.theme} onChange={handleChange} placeholder="Ex: Space, Jungle, Mermaid" className="p-4 bg-[#FFF9F2] border-2 border-[#333333] rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-[#FFCB05] transition-all" />
+                  </div>
 
-            <div className="flex flex-col gap-2 md:col-span-2">
-              <label className="font-black text-[#F26522] uppercase text-xs tracking-widest">Location / Venue Name</label>
-              <input 
-                type="text" 
-                name="location"
-                value={formData.location}
-                onChange={handleChange}
-                placeholder="Ex: South Delhi Residence or Venue Name"
-                className="p-4 bg-[#FFF9F2] border-2 border-[#333333] rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-[#FFCB05] transition-all"
-              />
-            </div>
+                  <div className="flex flex-col gap-2 md:col-span-2">
+                    <label className="font-black text-[#F26522] uppercase text-xs tracking-widest">Location / Venue Name</label>
+                    <input type="text" name="location" value={formData.location} onChange={handleChange} placeholder="Ex: South Delhi Residence or Venue Name" className="p-4 bg-[#FFF9F2] border-2 border-[#333333] rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-[#FFCB05] transition-all" />
+                  </div>
 
-            <div className="md:col-span-2 pt-4">
-              <button 
-                disabled={isSubmitting}
-                type="submit"
-                className="w-full bg-[#333333] text-white py-5 rounded-2xl font-black text-xl hover:bg-[#F26522] transition-all shadow-[6px_6px_0px_#FFCB05] active:translate-y-1 active:shadow-none disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {isSubmitting ? "Sending..." : "Send My Party Inquiry! →"}
-              </button>
-            </div>
-          </form>
+                  <div className="md:col-span-2 pt-4">
+                    <button 
+                      disabled={isSubmitting}
+                      type="submit"
+                      className="w-full bg-[#333333] text-white py-5 rounded-2xl font-black text-xl hover:bg-[#F26522] transition-all shadow-[6px_6px_0px_#FFCB05] active:translate-y-1 active:shadow-none disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {isSubmitting ? "Sending..." : "Send My Party Inquiry! →"}
+                    </button>
+                  </div>
+                </motion.form>
+              ) : (
+                <motion.div 
+                  key="success"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="h-full w-full flex flex-col items-center justify-center text-center space-y-6"
+                >
+                  <div className="bg-[#FFF9F2] p-10 rounded-[3rem] border-4 border-[#FFCB05] shadow-[8px_8px_0px_#F26522]">
+                    <h3 className="text-4xl font-black text-[#333333] mb-4">Message Received!</h3>
+                    <p className="text-xl font-bold opacity-70 mb-8">
+                      Check your phone! We'll reach out on WhatsApp or Call shortly.
+                    </p>
+                    <button 
+                      onClick={() => setSubmitted(false)}
+                      className="bg-[#F26522] text-white px-8 py-3 rounded-full font-black hover:bg-[#333333] transition-colors shadow-[4px_4px_0px_#333333]"
+                    >
+                      Wait, I have another question!
+                    </button>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
         </div>
 
         <div className="mt-16 text-center">
