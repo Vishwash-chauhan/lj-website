@@ -92,7 +92,7 @@ const Footer = () => {
           Unit of NC Hospitality Pvt Ltd CIN : U55101DL2009PTC188581
         </p>
           <Link 
-            href="/terms" 
+            href="/terms&conditions" 
             className="text-xs md:text-sm font-bold text-[#F26522] hover:underline decoration-2 transition-all"
           >
             Terms & Conditions
