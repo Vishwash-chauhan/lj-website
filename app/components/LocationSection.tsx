@@ -47,7 +47,7 @@ const LocationSection: React.FC<LocationSectionProps> = ({ location }) => {
               <div className="w-10 h-10 rounded-xl bg-[#FFCB05] flex items-center justify-center border-2 border-[#333333] shadow-[2px_2px_0px_#333333]">
                 📞
               </div>
-              <span className="font-bold text-[#333333]">+91 12440 68143</span>
+              <span className="font-bold text-[#333333]">+91 124 4068143</span>
             </div>
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center border-2 border-[#333333] shadow-[2px_2px_0px_#333333]">

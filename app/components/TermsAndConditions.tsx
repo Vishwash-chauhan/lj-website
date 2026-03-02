@@ -1,76 +1,71 @@
 'use client'
 
 import React from 'react'
+import { ShieldCheck, Scale, Globe } from 'lucide-react'
 
 const TermsAndConditions = () => {
-  const policies = [
+  const sections = [
     {
-      title: "Booking & Payment",
-      items: [
-        "50% advance payment required to confirm your slot.",
-        "Final balance must be cleared on the day of the event.",
-        "Prices are exclusive of GST and delivery charges."
-      ]
+      title: "Use of Website",
+      icon: <Globe className="text-[#F26522]" size={24} />,
+      content: "By accessing this site, you agree to follow all local laws. The content here is for your general information only and is subject to change without notice."
     },
     {
-      title: "Cancellations",
-      items: [
-        "Cancellations made 7 days prior get a full refund.",
-        "50% refund for cancellations within 3-6 days.",
-        "No refund for cancellations made within 48 hours."
-      ]
+      title: "Intellectual Property",
+      icon: <Scale className="text-[#F26522]" size={24} />,
+      content: "All logos, graphics, and text are owned by Little Jalebis. You may not copy, reproduce, or use our brand assets for commercial purposes without our written consent."
     },
     {
-      title: "Service Details",
-      items: [
-        "Minimum order of 10 boxes for delivery.",
-        "Live counters require a minimum of 25 guests.",
-        "Please inform us of any severe allergies 48 hours in advance."
-      ]
+      title: "Privacy & Liability",
+      icon: <ShieldCheck className="text-[#F26522]" size={24} />,
+      content: "Your use of this site is at your own risk. We are not liable for any technical inaccuracies. Your data privacy is important to us and handled as per our standard privacy protocols."
     }
   ]
 
   return (
-    <section className="py-16 px-6 bg-[#FFF9F2]" style={{ fontFamily: "'Comic Neue', cursive" }}>
-      <div className="max-w-6xl mx-auto">
+    <section className="py-12 px-4 bg-[#FFF9F2]" style={{ fontFamily: "'Comic Neue', cursive" }}>
+      <div className="max-w-3xl mx-auto">
         
-        {/* Simple Header */}
-        <div className="mb-12 border-b-4 border-[#333333] pb-6">
-          <h2 className="text-4xl font-black text-[#333333]">
-            The <span className="text-[#F26522]">Fine Print</span>
-          </h2>
-          <p className="font-bold opacity-60 mt-2 italic">Simple rules for a super happy party!</p>
-        </div>
+        {/* The Single Consolidated Card */}
+        <div className="bg-white border-4 border-[#333333] rounded-[3rem] p-8 md:p-12 shadow-[12px_12px_0px_#333333] relative overflow-hidden">
+          
+          {/* Decorative Corner "Tape" */}
+          <div className="absolute -top-6 -right-10 bg-[#FFCB05] w-32 h-12 rotate-45 border-b-2 border-[#333333]" />
 
-        {/* Content Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {policies.map((policy, idx) => (
-            <div 
-              key={idx} 
-              className="bg-white border-4 border-[#333333] p-6 rounded-3xl shadow-[8px_8px_0px_#333333]"
-            >
-              <h3 className="text-xl font-black text-[#F26522] mb-4 uppercase tracking-tight">
-                {policy.title}
-              </h3>
-              <ul className="space-y-4">
-                {policy.items.map((item, i) => (
-                  <li key={i} className="flex gap-3">
-                    <span className="text-[#FFCB05] font-black">•</span>
-                    <p className="text-sm font-bold text-[#333333] opacity-80 leading-relaxed">
-                      {item}
+          {/* Header */}
+          <div className="mb-10 text-center md:text-left">
+            <h2 className="text-4xl font-black text-[#333333] leading-tight">
+              Terms & Condtions
+            </h2>
+          </div>
+
+          {/* Content Sections */}
+          <div className="space-y-10">
+            {sections.map((section, idx) => (
+              <div key={idx} className={`relative ${idx !== sections.length - 1 ? 'pb-10 border-b-4 border-dashed border-[#333333]/10' : ''}`}>
+                <div className="flex flex-col md:flex-row gap-4">
+                  <div className="bg-[#FFF9F2] border-2 border-[#333333] w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 shadow-[4px_4px_0px_#333333]">
+                    {section.icon}
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-black text-[#333333] uppercase mb-2">
+                      {section.title}
+                    </h3>
+                    <p className="text-md font-bold text-[#333333] opacity-80 leading-relaxed">
+                      {section.content}
                     </p>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
 
-        {/* Tiny Footer Note */}
-        <div className="mt-12 text-center">
-          <p className="text-xs font-bold opacity-40">
-            Last Updated: March 2026 • Little Jalebis Kids Catering & Delivery Co.
-          </p>
+          {/* Bottom Stamp */}
+          <div className="mt-12 flex flex-col md:flex-row items-center justify-between gap-4 border-t-4 border-[#333333] pt-8">
+            <p className="text-xs font-black opacity-40 uppercase tracking-widest">
+              Verified 2026 • Little Jalebis Co.
+            </p>
+          </div>
         </div>
 
       </div>
