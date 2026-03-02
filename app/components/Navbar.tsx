@@ -200,7 +200,7 @@ const Navbar = () => {
             <Link href="/testimonials" onClick={() => setIsOpen(false)} className="text-[#333333] font-bold text-3xl uppercase tracking-tight">Testimonials</Link>
             
             <Link 
-              href="/booking"
+              href="/contact"
               onClick={() => setIsOpen(false)}
               className="mt-6 bg-[#F26522] text-white font-bold px-10 py-4 rounded-2xl text-xl shadow-[6px_6px_0px_#FFCB05] active:shadow-none transition-all active:translate-x-1 active:translate-y-1"
             >
