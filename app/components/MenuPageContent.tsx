@@ -147,14 +147,14 @@ const menuItems: MenuItem[] = [
     {Name: "Marshmallows with Hot Chocolate Fondue", Description: "Soft, fluffy marshmallows dipped in rich, velvety hot chocolate fondue for a sweet and indulgent treat.", PcsDisplay: "30", Unit: "PCS", Calculate: "1", Rate: 1999, Category: "Dessert", VegNonVeg: "Veg"},
 
 // DRINKS & SOUPS
-    {Name: "Fresh Lemonade", Description: "A refreshing blend of lemons, chilled water, and a hint of sweetness, perfect thirst-quenching drink.", PcsDisplay: "200 ML", Unit: "ML", Calculate: "0", Rate: 39, Category: "Drinks", VegNonVeg: "Veg"},
-    {Name: "Lemon Ice Tea", Description: "A crisp and refreshing iced tea infused with a zesty lemon flavor, served cold for a cool experience.", PcsDisplay: "200 ML", Unit: "ML", Calculate: "0", Rate: 49, Category: "Drinks", VegNonVeg: "Veg"},
-    {Name: "Blue Curacao", Description: "Blue curacao is like a splash of tropical paradise! Perfect for adding a fun twist to any drink!", PcsDisplay: "200 ML", Unit: "ML", Calculate: "0", Rate: 79, Category: "Drinks", VegNonVeg: "Veg"},
-    {Name: "Vanilla/Chocolate/Strawberry Smoothies", Description: "Choise of Vanilla, Chocolate, or Strawberry. Perfectly blended for a smooth, indulgent treat that's fully satisfying.", PcsDisplay: "200 ML", Unit: "ML", Calculate: "0", Rate: 99, Category: "Drinks", VegNonVeg: "Veg"},
-    {Name: "Hot Tea", Description: "Perfectly brewed, perfect for any time of the day.", PcsDisplay: "200 ML", Unit: "ML", Calculate: "0", Rate: 49, Category: "Drinks", VegNonVeg: "Veg"},
-    {Name: "Hot Coffee", Description: "Comforting cup of rich, aromatic coffee, brewed to perfection.", PcsDisplay: "200 ML", Unit: "ML", Calculate: "0", Rate: 79, Category: "Drinks", VegNonVeg: "Veg"},
-    {Name: "Hot Chocolate", Description: "A warm, sweet drink made with rich, melted chocolate and smooth milk.", PcsDisplay: "200 ML", Unit: "ML", Calculate: "0", Rate: 89, Category: "Drinks", VegNonVeg: "Veg"},
-    {Name: "Classic Tomato Soup", Description: "A warm and comforting cup of velvety tomato goodness, seasoned with just the right blend of spices.", PcsDisplay: "200 ML", Unit: "ML", Calculate: "0", Rate: 89, Category: "Drinks", VegNonVeg: "Veg"},
+    {Name: "Fresh Lemonade", Description: "A refreshing blend of lemons, chilled water, and a hint of sweetness, perfect thirst-quenching drink.", PcsDisplay: "200", Unit: "ML", Calculate: "0", Rate: 39, Category: "Drinks", VegNonVeg: "Veg"},
+    {Name: "Lemon Ice Tea", Description: "A crisp and refreshing iced tea infused with a zesty lemon flavor, served cold for a cool experience.", PcsDisplay: "200", Unit: "ML", Calculate: "0", Rate: 49, Category: "Drinks", VegNonVeg: "Veg"},
+    {Name: "Blue Curacao", Description: "Blue curacao is like a splash of tropical paradise! Perfect for adding a fun twist to any drink!", PcsDisplay: "200", Unit: "ML", Calculate: "0", Rate: 79, Category: "Drinks", VegNonVeg: "Veg"},
+    {Name: "Vanilla/Chocolate/Strawberry Smoothies", Description: "Choise of Vanilla, Chocolate, or Strawberry. Perfectly blended for a smooth, indulgent treat that's fully satisfying.", PcsDisplay: "200", Unit: "ML", Calculate: "0", Rate: 99, Category: "Drinks", VegNonVeg: "Veg"},
+    {Name: "Hot Tea", Description: "Perfectly brewed, perfect for any time of the day.", PcsDisplay: "200", Unit: "ML", Calculate: "0", Rate: 49, Category: "Drinks", VegNonVeg: "Veg"},
+    {Name: "Hot Coffee", Description: "Comforting cup of rich, aromatic coffee, brewed to perfection.", PcsDisplay: "200", Unit: "ML", Calculate: "0", Rate: 79, Category: "Drinks", VegNonVeg: "Veg"},
+    {Name: "Hot Chocolate", Description: "A warm, sweet drink made with rich, melted chocolate and smooth milk.", PcsDisplay: "200", Unit: "ML", Calculate: "0", Rate: 89, Category: "Drinks", VegNonVeg: "Veg"},
+    {Name: "Classic Tomato Soup", Description: "A warm and comforting cup of velvety tomato goodness, seasoned with just the right blend of spices.", PcsDisplay: "200", Unit: "ML", Calculate: "0", Rate: 89, Category: "Drinks", VegNonVeg: "Veg"},
 
     // LIVE STATIONS
     {Name: "LIVE Waffle Station", Description: "Freshly cooked golden waffles with a delightful array of toppings including chocolates, syrups, nuts, and ice cream.", PcsDisplay: "", Unit: "", Calculate: "0", Rate: 0, Category: "Live Stations", VegNonVeg: "Veg", Setup: 9999},

@@ -1,28 +1,28 @@
 'use client'
 
 import React, { useState, useEffect, useCallback } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, Variants } from 'framer-motion'
 
 const LiveCateringCarousel = () => {
   const content = [
     {
-      url: "/videos/Because every celebration deserves great food, smiling faces, and zero stress 💛You enjoy, we make!.mp4",
+      url: "/videos/zero-stress-hosting.mp4",
       title: "Zero Stress Hosting",
     },
     {
-      url: "/videos/K-pop energy meets a fun Demon-Hunters twist 💜⚡ - Little Jalebis - Kids Catering & Delivery Co. (1080p, h264).mp4",
+      url: "/videos/kpop-demon-hunters.mp4",
       title: "K-Pop & Demon Hunters",
     },
     {
-      url: "/videos/Little Jalebis brought the magic to a spook-tacular Halloween celebration! - Little Jalebis - Kids Catering & Delivery Co. (1080p, h264).mp4",
+      url: "/videos/halloween-celebration.mp4",
       title: "Spook-tacular Halloween",
     },
     {
-      url: "/videos/Our_car-themed_catering_zoomed_into_this_birthday_with_a_themed_based_setup_live_burgers_station_720P.mp4",
+      url: "/videos/car-themed-party.mp4",
       title: "Car-Themed Party",
     },
     {
-      url: "/videos/Roblox_Themed_Event_Catered_by_Little_Jalebis_-_Kids_Catering_Delivery_Co_720P.mp4",
+      url: "/videos/roblox-themed-event.mp4",
       title: "Roblox Themed Event",
     }
   ]
@@ -41,12 +41,43 @@ const LiveCateringCarousel = () => {
   }, [content.length])
 
   useEffect(() => {
-    const timer = setInterval(nextStep, 5000)
+    const timer = setInterval(nextStep, 6000)
     return () => clearInterval(timer)
   }, [nextStep])
 
   const getVisibleItems = () => {
     return content.map((_, i) => content[(currentIndex + i) % content.length])
+  }
+
+  // FIXED: Explicitly typed as Variants to resolve TS2322
+  const cardVariants: Variants = {
+    enter: (direction: number) => ({
+      x: direction > 0 ? 150 : -150,
+      opacity: 0,
+      scale: 0.9,
+      rotate: direction > 0 ? 5 : -5
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+      scale: 1,
+      rotate: 0,
+      transition: {
+        x: { type: "spring" as const, stiffness: 100, damping: 20 },
+        scale: { duration: 0.4 },
+        rotate: { type: "spring" as const, stiffness: 100 }
+      }
+    },
+    exit: (direction: number) => ({
+      x: direction < 0 ? 150 : -150,
+      opacity: 0,
+      scale: 0.9,
+      rotate: direction < 0 ? 5 : -5,
+      transition: {
+        duration: 0.4,
+        ease: "easeInOut"
+      }
+    })
   }
 
   return (
@@ -63,7 +94,7 @@ const LiveCateringCarousel = () => {
 
         <div className="relative">
           {/* Navigation Buttons */}
-          <div className="absolute top-1/2 -translate-y-1/2 -left-4 md:-left-12 z-30">
+          <div className="absolute top-1/2 -translate-y-1/2 -left-4 md:-left-12 z-40">
             <button 
               onClick={prevStep}
               className="w-12 h-12 md:w-16 md:h-16 bg-white border-4 border-[#333333] rounded-2xl shadow-[4px_4px_0px_#333333] hover:bg-[#FFCB05] active:translate-y-1 transition-all flex items-center justify-center text-2xl"
@@ -72,7 +103,7 @@ const LiveCateringCarousel = () => {
             </button>
           </div>
 
-          <div className="absolute top-1/2 -translate-y-1/2 -right-4 md:-right-12 z-30">
+          <div className="absolute top-1/2 -translate-y-1/2 -right-4 md:-right-12 z-40">
             <button 
               onClick={nextStep}
               className="w-12 h-12 md:w-16 md:h-16 bg-white border-4 border-[#333333] rounded-2xl shadow-[4px_4px_0px_#333333] hover:bg-[#F26522] hover:text-white active:translate-y-1 transition-all flex items-center justify-center text-2xl"
@@ -81,22 +112,23 @@ const LiveCateringCarousel = () => {
             </button>
           </div>
 
-          <div className="relative min-h-[500px] md:min-h-[600px]">
+          <div className="relative h-[550px] md:h-[650px]">
             <AnimatePresence mode="popLayout" custom={direction}>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {getVisibleItems().slice(0, 3).map((item, idx) => (
                   <motion.div 
-                    key={`${item.url}-${currentIndex}-${idx}`}
+                    key={`${item.url}-${idx}`}
+                    custom={direction}
+                    variants={cardVariants}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
                     className={`relative bg-white border-4 border-[#333333] p-4 rounded-[2.5rem] shadow-[10px_10px_0px_#333333] flex flex-col ${idx > 0 ? 'hidden md:flex' : 'flex'}`}
-                    initial={{ opacity: 0, x: direction * 100 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: direction * -100 }}
-                    transition={{ duration: 0.5, ease: "anticipate" }}
                   >
-                    {/* VIDEO CONTAINER - Clean Look */}
-                    <div className="overflow-hidden rounded-[1.8rem] aspect-[9/16] w-full">
+                    {/* VIDEO CONTAINER */}
+                    <div className="overflow-hidden rounded-[1.8rem] aspect-[9/16] w-full bg-gray-100">
                       <video 
-                        key={item.url} // Forces video to reload when source changes
+                        key={item.url} 
                         src={item.url} 
                         autoPlay 
                         muted 
@@ -111,7 +143,7 @@ const LiveCateringCarousel = () => {
                     </div>
 
                     {/* Decorative Tape */}
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-20 h-6 bg-[#FFCB05]/80 border-2 border-[#333333] rotate-[-2deg]" />
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-20 h-6 bg-[#FFCB05] border-2 border-[#333333] rotate-[-2deg]" />
                   </motion.div>
                 ))}
               </div>
@@ -128,7 +160,7 @@ const LiveCateringCarousel = () => {
                 setDirection(i > currentIndex ? 1 : -1)
                 setCurrentIndex(i)
               }}
-              className={`h-4 rounded-full border-2 border-[#333333] transition-all ${
+              className={`h-4 rounded-full border-2 border-[#333333] transition-all duration-500 ${
                 currentIndex === i ? 'w-12 bg-[#F26522]' : 'w-4 bg-white hover:bg-[#FFCB05]'
               }`}
             />
