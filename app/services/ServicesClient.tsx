@@ -11,60 +11,52 @@ import TrustSection from '../components/TrustSection'
 import LocationSection from '../components/LocationSection'
 import FoodBoxesMenu from '../components/FoodBoxesMenu'
 import CateringProcess from '../components/CateringProcess'
-import PartyHouseConcept from '../components/PartyHouseConcept'
 import NotAPlayzone from '../components/NotAPlayZone'
 
 const SERVICES = {
-    catering: {
-      tabTitle: "Catering",
-      title: "Catering",
-      tagline: "Deliciously Fun, Nutritiously Balanced",
-      description: "Fully Customisable Catering Options. Our menus are designed keeping children in mind — kid-friendly, hygienic, and flavour-balanced. Our kitchen focuses on fresh ingredients and playful presentation.",
-      features: ["Fully Customisable", "Live Food Counters", "Signature In-House Catering", "Hygienic"],
-      cta: "View Menu",
-      color: "#FFCB05",
-      image: "🍕",
-      location: {
-        type: "Head Office",
-        name: "Little Jalebis HQ",
-        address: "E 5 Kalindi Colony, Near New Friends Colony, New Delhi",
-        heading: "Visit Our",
-        subheading: "Come over for a party tour or to plan your big day!",
-        mapUrl: "https://maps.app.goo.gl/7YjPaUq7rVTPLbf57",
-        mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d448438.52523130283!2d76.84306747170939!3d28.586994984112522!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4ca7759edc3c0c6f%3A0x40987779a61a0f66!2sLittle%20Jalebis%20-%20Kids%20Catering%20%26%20Delivery%20Co.!5e0!3m2!1sen!2sin!4v1771054463453!5m2!1sen!2sin"
-      }
-    },
-  venue: {
-      tabTitle: "Kids Party House",
-      title: "Kids Party House",
-      tagline: "Where Imagination Meets Celebration",
-      description: "A thoughtfully designed venue perfect for hosting celebrations of up to 80 guests. The space features a warm indoor party area complemented by an open-air extension, giving you the ultimate flexibility to design your own themes, décor, and activities.",
-      features: ["Signature In-House Catering", "Hygienic Food.", "Safe & Clean Play Zones", "Fully Customisable"],
-      cta: "View Our Location",
-      color: "#F26522",
-      image: "🏠",
-      location: {
-        type: "Kids Party House",
-        name: "Little Jalebis Kids Party House",
-        address: "17, Lower Ground Floor, Arjun Marg, DLF Phase 1, Gurugram",
-        heading: "Visit Our",
-        subheading: "Come over for a tasting or to plan your next event!",
-        mapUrl: "https://maps.app.goo.gl/7YjPaUq7rVTPLbf57",
-        mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d448438.52523130283!2d76.84306747170939!3d28.586994984112522!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4ca7759edc3c0c6f%3A0x40987779a61a0f66!2sLittle%20Jalebis%20-%20Kids%20Catering%20%26%20Delivery%20Co.!5e0!3m2!1sen!2sin!4v1771054463453!5m2!1sen!2sin"
-      }
-    },
-    boxes: {
-      tabTitle: "Food Delivery & Boxes",
-      title: "Fun Food Boxes",
-      tagline: "Healthy Meals, Delivered in Style",
-      description: "Perfect for school events, birthday picnics, or outdoor trips. Our lunch boxes are packed with love, nutrition, and playful presentation to make healthy bites feel like a treat.",
-      features: ["Individual Portioning", "Hygienic Packaging", "Fully Customisable", "On-Demand Delivery"],
-      cta: "View Food Box Menu",
-      color: "#333333",
-      image: "🍱",
-      location: null
+  catering: {
+    tabTitle: "Catering",
+    title: "Catering",
+    tagline: "Deliciously Fun, Nutritiously Balanced",
+    description: "Fully Customisable Catering Options. Our menus are designed keeping children in mind — kid-friendly, hygienic, and flavour-balanced. Our kitchen focuses on fresh ingredients and playful presentation.",
+    features: ["Fully Customisable", "Live Food Counters", "Signature In-House Catering", "Hygienic"],
+    cta: "View Menu",
+    color: "#FFCB05",
+    image: "🍕",
+    location: null // Removed head office location
+  },
+venue: {
+    tabTitle: "Kids Party House",
+    title: "Kids Party House",
+    tagline: "Where Imagination Meets Celebration",
+    description: "A thoughtfully designed venue perfect for hosting celebrations of up to 80 guests. The space features a warm indoor party area complemented by an open-air extension, giving you the ultimate flexibility to design your own themes, décor, and activities.",
+    features: ["Signature In-House Catering", "Hygienic Food", "Safe & Clean Play Zones", "Fully Customisable"],
+    cta: "View Our Location",
+    color: "#F26522",
+    image: "🏠",
+    location: {
+      type: "Kids Party House",
+      name: "Little Jalebis - Kids Party House & Catering Co.",
+      address: "17, Lower Ground Floor, Arjun Marg, DLF Phase 1, Gurugram",
+      heading: "Visit Our",
+      subheading: "Come over for a tasting or to plan your next event!",
+      mapUrl: "https://maps.app.goo.gl/YRVJxzPR1BamX3V59", // Use the actual share link here
+      mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3507.4355037238706!2d77.0998267!3d28.466428399999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d19f0584ac771%3A0x6beb70f895098438!2sLittle%20Jalebis%20-%20Kids%20Party%20House%20%26%20Catering%20Co.!5e0!3m2!1sen!2sin!4v1773344538768!5m2!1sen!2sin" 
     }
+
+  },
+  boxes: {
+    tabTitle: "Food Delivery & Boxes",
+    title: "Fun Food Boxes",
+    tagline: "Healthy Meals, Delivered in Style",
+    description: "Perfect for school events, birthday picnics, or outdoor trips. Our lunch boxes are packed with love, nutrition, and playful presentation to make healthy bites feel like a treat.",
+    features: ["Individual Portioning", "Hygienic Packaging", "Fully Customisable", "On-Demand Delivery"],
+    cta: "View Food Box Menu",
+    color: "#333333",
+    image: "🍱",
+    location: null
   }
+}
 
 const ServicesClient = () => {
   const router = useRouter()
@@ -130,55 +122,53 @@ const ServicesClient = () => {
             transition={{ duration: 0.3 }}
           >
             <>
-            <ServiceTabContent
-              image={SERVICES[activeTab].image}
-              tagline={SERVICES[activeTab].tagline}
-              title={SERVICES[activeTab].title}
-              description={SERVICES[activeTab].description}
-              features={SERVICES[activeTab].features}
-              cta={SERVICES[activeTab].cta}
-              secondaryCtas={secondaryCtasByTab[activeTab]}
-              onCtaClick={
-                activeTab === 'boxes'
-                  ? () => setIsFoodBoxesOpen(true)
-                  : activeTab === 'venue'
-                    ? handleScrollToLocation
-                    : activeTab === 'catering'
-                      ? () => router.push('/menu')
-                      : undefined
-              }
-            />
-            {/* {activeTab === 'venue' && (
-              <div className="mt-12">
-                <PartyHouseConcept />
-              </div>
-            )}  */}
+              <ServiceTabContent
+                image={SERVICES[activeTab].image}
+                tagline={SERVICES[activeTab].tagline}
+                title={SERVICES[activeTab].title}
+                description={SERVICES[activeTab].description}
+                features={SERVICES[activeTab].features}
+                cta={SERVICES[activeTab].cta}
+                secondaryCtas={secondaryCtasByTab[activeTab]}
+                onCtaClick={
+                  activeTab === 'boxes'
+                    ? () => setIsFoodBoxesOpen(true)
+                    : activeTab === 'venue'
+                      ? handleScrollToLocation
+                      : activeTab === 'catering'
+                        ? () => router.push('/menu')
+                        : undefined
+                }
+              />
 
-            {activeTab === 'venue' && (
-              <div className="mt-12">
-                <NotAPlayzone />
-              </div>
-            )}
-            {activeTab === 'catering' && (
-              <div className="mt-12">
-                <CateringProcess />
-              </div>
-            )}
+              {activeTab === 'venue' && (
+                <div className="mt-12">
+                  <NotAPlayzone />
+                </div>
+              )}
+              {activeTab === 'catering' && (
+                <div className="mt-12">
+                  <CateringProcess />
+                </div>
+              )}
             </>
           </motion.div>
         </AnimatePresence>
 
-        {/* --- Location Section --- */}
-        <LocationSection location={activeTab === 'catering' ? null : SERVICES[activeTab].location} />
+        {/* --- Location Section: Only renders if location data exists --- */}
+        <LocationSection location={SERVICES[activeTab].location} />
       </div>
 
       {/* --- Trust Section --- */}
-      <TrustSection />
+      <div className="mt-20">
+        <TrustSection />
+      </div>
 
+      {/* --- Food Boxes Portal --- */}
       {isFoodBoxesOpen && isMounted &&
         createPortal(
           <div
-            className="fixed inset-0 z-[70] flex items-center justify-center bg-black/60 px-4 py-8" /* must sit above the navbar (z-60) */
+            className="fixed inset-0 z-[70] flex items-center justify-center bg-black/60 px-4 py-8"
             onClick={() => setIsFoodBoxesOpen(false)}
           >
             <div
