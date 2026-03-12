@@ -14,7 +14,8 @@ const ContactUs = () => {
     ageRange: '',
     foodPreference: 'Veg Only',
     theme: '',
-    location: ''
+    location: '',
+    pax: '' // Added Pax field
   })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -36,8 +37,17 @@ const ContactUs = () => {
 
       if (response.ok) {
         setSubmitted(true)
-        // Reset form for future use
-        setFormData({ name: '', phone: '', eventDateTime: '', ageRange: '', foodPreference: 'Veg Only', theme: '', location: '' })
+        // Reset form including pax
+        setFormData({ 
+            name: '', 
+            phone: '', 
+            eventDateTime: '', 
+            ageRange: '', 
+            foodPreference: 'Veg Only', 
+            theme: '', 
+            location: '', 
+            pax: '' 
+        })
       } else {
         alert("Something went wrong. Please try again.")
       }
@@ -121,11 +131,6 @@ const ContactUs = () => {
                   </div>
 
                   <div className="flex flex-col gap-2">
-                    <label className="font-black text-[#F26522] uppercase text-xs tracking-widest">Age Range of Kids</label>
-                    <input type="text" name="ageRange" value={formData.ageRange} onChange={handleChange} placeholder="Ex: 4-8 years" className="p-4 bg-[#FFF9F2] border-2 border-[#333333] rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-[#FFCB05] transition-all" />
-                  </div>
-
-                  <div className="flex flex-col gap-2">
                     <label className="font-black text-[#F26522] uppercase text-xs tracking-widest">Food Preference</label>
                     <select name="foodPreference" value={formData.foodPreference} onChange={handleChange} className="p-4 bg-[#FFF9F2] border-2 border-[#333333] rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-[#FFCB05] transition-all cursor-pointer">
                       <option value="Veg Only">Veg Only</option>
@@ -134,13 +139,24 @@ const ContactUs = () => {
                   </div>
 
                   <div className="flex flex-col gap-2">
+                    <label className="font-black text-[#F26522] uppercase text-xs tracking-widest">Age Range of Kids</label>
+                    <input type="text" name="ageRange" value={formData.ageRange} onChange={handleChange} placeholder="Ex: 4-8 years" className="p-4 bg-[#FFF9F2] border-2 border-[#333333] rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-[#FFCB05] transition-all" />
+                  </div>
+
+
+                  <div className="flex flex-col gap-2">
+                    <label className="font-black text-[#F26522] uppercase text-xs tracking-widest">Pax (Total Guests)</label>
+                    <input type="text" name="pax" value={formData.pax} onChange={handleChange} placeholder="20 Kids 5 Adults" className="p-4 bg-[#FFF9F2] border-2 border-[#333333] rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-[#FFCB05] transition-all" />
+                  </div>
+
+                  <div className="flex flex-col gap-2">
                     <label className="font-black text-[#F26522] uppercase text-xs tracking-widest">Party Theme</label>
                     <input type="text" name="theme" value={formData.theme} onChange={handleChange} placeholder="Ex: Space, Jungle, Mermaid" className="p-4 bg-[#FFF9F2] border-2 border-[#333333] rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-[#FFCB05] transition-all" />
                   </div>
 
-                  <div className="flex flex-col gap-2 md:col-span-2">
+                  <div className="flex flex-col gap-2 md:col-span-1"> {/* Keeping location half-width to fit alongside Pax if needed, or change to col-span-2 */}
                     <label className="font-black text-[#F26522] uppercase text-xs tracking-widest">Location / Venue Name</label>
-                    <input type="text" name="location" value={formData.location} onChange={handleChange} placeholder="Ex: South Delhi Residence or Venue Name" className="p-4 bg-[#FFF9F2] border-2 border-[#333333] rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-[#FFCB05] transition-all" />
+                    <input type="text" name="location" value={formData.location} onChange={handleChange} placeholder="Ex: South Delhi Residence" className="p-4 bg-[#FFF9F2] border-2 border-[#333333] rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-[#FFCB05] transition-all" />
                   </div>
 
                   <div className="md:col-span-2 pt-4">
