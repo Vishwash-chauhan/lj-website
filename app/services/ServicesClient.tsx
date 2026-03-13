@@ -3,8 +3,9 @@
 import React, { useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { createPortal } from 'react-dom'
-
 import { motion, AnimatePresence } from 'framer-motion'
+
+// Your Imports
 import ServiceTabButton from '../components/ServiceTabButton'
 import ServiceTabContent from '../components/ServiceTabContent'
 import TrustSection from '../components/TrustSection'
@@ -12,6 +13,7 @@ import LocationSection from '../components/LocationSection'
 import FoodBoxesMenu from '../components/FoodBoxesMenu'
 import CateringProcess from '../components/CateringProcess'
 import NotAPlayzone from '../components/NotAPlayZone'
+import GalleryComponent from '../components/GalleryComponent' // <--- Import the new component
 
 const SERVICES = {
   catering: {
@@ -23,9 +25,9 @@ const SERVICES = {
     cta: "View Menu",
     color: "#FFCB05",
     image: "🍕",
-    location: null // Removed head office location
+    location: null 
   },
-venue: {
+  venue: {
     tabTitle: "Kids Party House",
     title: "Kids Party House",
     tagline: "Where Imagination Meets Celebration",
@@ -40,10 +42,9 @@ venue: {
       address: "17, Lower Ground Floor, Arjun Marg, DLF Phase 1, Gurugram",
       heading: "Visit Our",
       subheading: "Come over for a tasting or to plan your next event!",
-      mapUrl: "https://maps.app.goo.gl/YRVJxzPR1BamX3V59", // Use the actual share link here
+      mapUrl: "https://maps.app.goo.gl/YRVJxzPR1BamX3V59",
       mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3507.4355037238706!2d77.0998267!3d28.466428399999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d19f0584ac771%3A0x6beb70f895098438!2sLittle%20Jalebis%20-%20Kids%20Party%20House%20%26%20Catering%20Co.!5e0!3m2!1sen!2sin!4v1773344538768!5m2!1sen!2sin" 
     }
-
   },
   boxes: {
     tabTitle: "Food Delivery & Boxes",
@@ -91,7 +92,8 @@ const ServicesClient = () => {
 
   return (
     <div className="min-h-screen bg-[#FFF9F2] pt-24 pb-20 px-6 md:px-12" style={{ fontFamily: "'Comic Neue', cursive" }}>
-      {/* --- Header --- */}
+      
+      {/* --- 1. Header --- */}
       <header className="max-w-4xl mx-auto text-center mb-16">
         <h1 className="text-5xl md:text-7xl font-bold text-[#333333] mb-4">
           Our <span className="text-[#F26522]">Services</span>
@@ -99,7 +101,7 @@ const ServicesClient = () => {
         <p className="text-xl font-bold opacity-70">Everything you need to host a legendary kids' party, all under one roof.</p>
       </header>
 
-      {/* --- Tabs --- */}
+      {/* --- 2. Tabs --- */}
       <div className="max-w-5xl mx-auto">
         <div className="flex flex-wrap justify-center gap-4 mb-12">
           {Object.entries(SERVICES).map(([id, service]) => (
@@ -112,7 +114,7 @@ const ServicesClient = () => {
           ))}
         </div>
 
-        {/* --- Tab Content --- */}
+        {/* --- 3. Tab Content --- */}
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
@@ -155,16 +157,23 @@ const ServicesClient = () => {
           </motion.div>
         </AnimatePresence>
 
-        {/* --- Location Section: Only renders if location data exists --- */}
-        <LocationSection location={SERVICES[activeTab].location} />
+        {/* --- 4. Location Section --- */}
+        <div id="location-section">
+          <LocationSection location={SERVICES[activeTab].location} />
+        </div>
       </div>
 
-      {/* --- Trust Section --- */}
+      {/* --- 5. New Gallery Section --- */}
+      <div className="mt-24">
+        <GalleryComponent />
+      </div>
+
+      {/* --- 6. Trust Section --- */}
       <div className="mt-20">
         <TrustSection />
       </div>
 
-      {/* --- Food Boxes Portal --- */}
+      {/* --- Portal for Food Boxes Menu --- */}
       {isFoodBoxesOpen && isMounted &&
         createPortal(
           <div
@@ -178,7 +187,6 @@ const ServicesClient = () => {
               <div className="relative">
                 <button
                   type="button"
-                  aria-label="Close food boxes menu"
                   className="absolute right-4 top-4 z-10 rounded-full border-2 border-[#333333] bg-white px-3 py-1 text-sm font-black text-[#333333] hover:bg-[#FFCB05]"
                   onClick={() => setIsFoodBoxesOpen(false)}
                 >
