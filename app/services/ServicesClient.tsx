@@ -84,10 +84,18 @@ const ServicesClient = () => {
     }
   }
 
+  const serviceKeys = Object.keys(SERVICES) as Array<keyof typeof SERVICES>
+
   const secondaryCtasByTab: Record<keyof typeof SERVICES, { label: string; href: string }[]> = {
     venue: [{ label: 'Book Venue', href: '/contact' }],
     catering: [{ label: 'Get a Quotation', href: '/contact' }],
     boxes: [{ label: 'Order Now', href: '/contact' }],
+  }
+
+  const switchTab = (step: number) => {
+    const currentIndex = serviceKeys.indexOf(activeTab)
+    const nextIndex = (currentIndex + step + serviceKeys.length) % serviceKeys.length
+    setActiveTab(serviceKeys[nextIndex])
   }
 
   return (
@@ -103,7 +111,7 @@ const ServicesClient = () => {
 
       {/* --- 2. Tabs --- */}
       <div className="max-w-5xl mx-auto">
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
+        <div className="hidden md:flex flex-wrap justify-center gap-4 mb-12">
           {Object.entries(SERVICES).map(([id, service]) => (
             <ServiceTabButton
               key={id}
@@ -112,6 +120,31 @@ const ServicesClient = () => {
               onClick={() => setActiveTab(id as keyof typeof SERVICES)}
             />
           ))}
+        </div>
+
+        <div className="flex md:hidden items-center justify-center gap-4 mb-12">
+          <button
+            onClick={() => switchTab(-1)}
+            className="w-10 h-10 flex items-center justify-center rounded-full bg-[#F26522] border-2 border-[#333333] text-white shadow-[4px_4px_0px_#333333] hover:bg-[#FFCB05] hover:text-[#333333] active:translate-y-1 active:shadow-none transition-all"
+            aria-label="Previous service"
+          >
+            <span className="text-xl font-black">‹</span>
+          </button>
+
+          <button
+            type="button"
+            className="px-8 py-4 rounded-2xl font-bold text-xl transition-all duration-300 shadow-[4px_4px_0px_#333333] active:translate-y-1 active:shadow-none bg-[#F26522] text-white"
+          >
+            {SERVICES[activeTab].tabTitle}
+          </button>
+
+          <button
+            onClick={() => switchTab(1)}
+            className="w-10 h-10 flex items-center justify-center rounded-full bg-[#F26522] border-2 border-[#333333] text-white shadow-[4px_4px_0px_#333333] hover:bg-[#FFCB05] hover:text-[#333333] active:translate-y-1 active:shadow-none transition-all"
+            aria-label="Next service"
+          >
+            <span className="text-xl font-black">›</span>
+          </button>
         </div>
 
         {/* --- 3. Tab Content --- */}
@@ -164,12 +197,12 @@ const ServicesClient = () => {
       </div>
 
       {/* --- 5. New Gallery Section --- */}
-      <div className="mt-24">
+      <div className="mt-15">
         <GalleryComponent category={activeTab === 'venue' ? 'venue' : 'catering'} />
       </div>
 
       {/* --- 6. Trust Section --- */}
-      <div className="mt-20">
+      <div className="mt-15">
         <TrustSection />
       </div>
 

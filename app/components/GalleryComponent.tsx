@@ -4,21 +4,28 @@ import React from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 
-// 1. Data Structure with your Cloudinary Links
-const GALLERY_DATA = [
-  // --- VENUE IMAGES ---
-  { id: 1, category: 'venue', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/v1773428481/Venue_Img_1_erlysh.jpg', alt: '', size: 'large' },
-  { id: 2, category: 'venue', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/v1773428485/Venue_Img_2_lp20j3.jpg', alt: '', size: 'small' },
+interface GalleryItem {
+  id: number;
+  category: 'catering' | 'venue';
+  src: string;
+  alt: string;
+  size: 'small' | 'medium' | 'large';
+}
+
+const GALLERY_DATA: GalleryItem[] = [
+// --- VENUE IMAGES ---
+  { id: 1, category: 'venue', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/v1773428481/Venue_Img_1_erlysh.jpg', alt: 'Little Jalebis Party Venue', size: 'large' },
+  { id: 2, category: 'venue', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/v1773428485/Venue_Img_2_lp20j3.jpg', alt: '', size: 'medium' },
   { id: 3, category: 'venue', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/v1773428482/Venue_Img_3_azcqrh.jpg', alt: '', size: 'medium' },
   { id: 4, category: 'venue', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/v1773428485/Venue_Img_4_l3elwf.jpg', alt: '', size: 'small' },
   { id: 5, category: 'venue', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/v1773428480/Venue_Img_5_ovdiiy.jpg', alt: '', size: 'small' },
-  { id: 6, category: 'venue', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/v1773428480/Venue_Img_6_swsmwv.jpg', alt: '', size: 'medium' },
+  { id: 6, category: 'venue', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/v1773428480/Venue_Img_6_swsmwv.jpg', alt: 'r', size: 'medium' },
   { id: 7, category: 'venue', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/v1773428480/Venue_Img_7_hk6pyv.jpg', alt: '', size: 'small' },
   { id: 8, category: 'venue', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/v1773428482/Venue_Img_8_ro4rso.jpg', alt: '', size: 'small' },
 
   // --- CATERING IMAGES ---
   { id: 9, category: 'catering', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/v1773428715/Catering_Img_1_zplwhq.jpg', alt: 'Kid-Friendly Catering', size: 'large' },
-  { id: 10, category: 'catering', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/v1773428715/Catering_Img_2_dd4six.jpg', alt: 'Fresh Party Snacks', size: 'small' },
+  { id: 10, category: 'catering', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/v1773428715/Catering_Img_2_dd4six.jpg', alt: 'Fresh Party Snacks', size: 'medium' },
   { id: 11, category: 'catering', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/v1773428715/Catering_Img_3_f0mwrm.jpg', alt: 'Delicious Bites', size: 'medium' },
   { id: 12, category: 'catering', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/v1773428713/Catering_Img_4_rynoqn.jpg', alt: 'Hygienic Food Setup', size: 'small' },
   { id: 13, category: 'catering', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/v1773428713/Catering_Img_5_mi7gul.jpg', alt: 'Custom Menu Options', size: 'small' },
@@ -26,7 +33,7 @@ const GALLERY_DATA = [
   { id: 15, category: 'catering', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/v1773428713/Catering_Img_7_yrwgrj.jpg', alt: 'Healthy Kids Meals', size: 'small' },
   { id: 16, category: 'catering', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/v1773428713/Catering_Img_8_vge2xr.jpg', alt: 'Dessert Station', size: 'small' },
   { id: 17, category: 'catering', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/v1773428716/Catering_Img_9_d17xod.jpg', alt: 'Signature Drinks', size: 'small' },
-]
+];
 
 interface GalleryComponentProps {
   category: 'catering' | 'venue'
@@ -38,18 +45,46 @@ const GalleryComponent: React.FC<GalleryComponentProps> = ({ category }) => {
   return (
     <section className="py-2 px-6 bg-[#FFF9F2]" style={{ fontFamily: "'Comic Neue', cursive" }}>
       <div className="max-w-7xl mx-auto">
-        
+    
         {/* --- Header --- */}
-        <div className="text-center mb-16">
-          <h2 className="text-5xl md:text-7xl font-black text-[#333333] mb-8">
+        <div className="text-center mb-8 md:mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-7xl font-black text-[#333333] whitespace-nowrap">
             Photo <span className="text-[#F26522]">Gallery</span>
           </h2>
         </div>
 
-        {/* --- Gallery Grid (Bento Style) --- */}
+        {/* --- Mobile: Horizontal Scroll Snap (1 image at a time) --- */}
+        <div className="md:hidden">
+          <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 no-scrollbar">
+            {filteredImages.map((image) => (
+              <div 
+                key={image.id}
+                className="min-w-full snap-center relative aspect-square rounded-[2rem] overflow-hidden border-4 border-[#333333] bg-white"
+              >
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  fill
+                  className="object-cover"
+                  sizes="100vw"
+                />
+              </div>
+            ))}
+          </div>
+          {/* Scroll Hint */}
+          <motion.p 
+            animate={{ x: [0, 5, 0] }}
+            transition={{ repeat: Infinity, duration: 1.5 }}
+            className="text-center mt-2 font-bold text-[#F26522] text-sm"
+          >
+            Scroll to view &rarr;
+          </motion.p>
+        </div>
+
+        {/* --- Desktop: Bento Grid (Hidden on Mobile) --- */}
         <motion.div 
           layout
-          className="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[180px]"
+          className="hidden md:grid grid-cols-4 gap-4 auto-rows-[180px]"
         >
           <AnimatePresence mode='popLayout'>
             {filteredImages.map((image) => (
@@ -71,14 +106,11 @@ const GalleryComponent: React.FC<GalleryComponentProps> = ({ category }) => {
                   alt={image.alt}
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                  sizes="(max-width: 1200px) 50vw, 25vw"
                 />
                 
-                {/* --- Subtle Hover Overlay --- */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-8">
-                  <p className="text-white font-black text-lg">
-                    {image.alt}
-                  </p>
+                  <p className="text-white font-black text-lg">{image.alt}</p>
                 </div>
               </motion.div>
             ))}
