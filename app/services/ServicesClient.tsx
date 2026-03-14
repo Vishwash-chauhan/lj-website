@@ -165,7 +165,7 @@ const ServicesClient = () => {
 
       {/* --- 5. New Gallery Section --- */}
       <div className="mt-24">
-        <GalleryComponent />
+        <GalleryComponent category={activeTab === 'venue' ? 'venue' : 'catering'} />
       </div>
 
       {/* --- 6. Trust Section --- */}
