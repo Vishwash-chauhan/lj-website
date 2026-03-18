@@ -12,6 +12,7 @@ import {
 } from '@react-three/drei'
 import * as THREE from 'three'
 import FinalCall from './FinalCall'
+import Footer from './Footer'
 
 // --- Custom Jalebi Geometry (Sized to match TorusKnot) ---
 function JalebiShape() {
@@ -148,9 +149,11 @@ const ScrollContent = memo(() => (
 
     {/* --- Section 3: Final Call --- */}
     <FinalCall />
-    <p className="mt-16 text-sm font-bold opacity-40 uppercase tracking-[0.3em]">
-      © 2026 Little Jalebis • Happiness Redefined
-    </p>
+
+    {/* --- Section 4: Footer --- */}
+    <div className="mt-16">
+      <Footer />
+    </div>
   </div>
 ))
 
@@ -168,7 +171,7 @@ export default function Hero() {
   React.useEffect(() => {
     const handleResize = () => {
       const isMobile = window.innerWidth < 768
-      setPages(isMobile ? 3.5 : 3)
+      setPages(isMobile ? 5.4 : 4.2)
       setDamping(isMobile ? 0.01 : 0.1)
     }
 

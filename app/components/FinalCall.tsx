@@ -2,10 +2,10 @@ import React from 'react';
 
 const FinalCall = () => {
   return (
-    <section className="h-screen flex flex-col items-center justify-center px-6 text-center">
-      <div className="relative bg-white p-10 md:p-20 rounded-[3rem] shadow-[12px_12px_0px_#FFCB05] border-4 border-[#333333] max-w-4xl">
-        <h2 className="text-4xl md:text-6xl font-bold mb-6">Host the Best Party Ever</h2>
-        <p className="text-lg md:text-2xl mb-12 font-bold opacity-80 max-w-2xl mx-auto">
+    <section className="min-h-[100svh] md:min-h-screen flex flex-col items-center justify-start md:justify-center px-6 pt-24 md:pt-0 pb-10 text-center">
+      <div className="relative bg-white p-6 sm:p-8 md:p-20 rounded-[2.5rem] md:rounded-[3rem] shadow-[12px_12px_0px_#FFCB05] border-4 border-[#333333] max-w-4xl">
+        <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-6">Host the Best Party Ever</h2>
+        <p className="text-base sm:text-lg md:text-2xl mb-10 md:mb-12 font-bold opacity-80 max-w-2xl mx-auto">
           From the first invite to the last jalebi, we handle the details while you make the memories.
         </p>
         <div className="flex flex-col sm:flex-row flex-wrap gap-6 justify-center">
