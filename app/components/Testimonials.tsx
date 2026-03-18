@@ -69,23 +69,23 @@ const Testimonials = () => {
   }
 
   return (
-    <section className="py-24 px-6 bg-[#FFF9F2] overflow-hidden" style={{ fontFamily: "'Comic Neue', cursive" }}>
+    <section className="pt-24 sm:py-16 md:py-24 px-4 sm:px-6 bg-[#FFF9F2] overflow-hidden" style={{ fontFamily: "'Comic Neue', cursive" }}>
       <div className="max-w-6xl mx-auto">
         
         {/* --- Header Section --- */}
-        <div className="flex flex-col lg:flex-row items-center gap-12 mb-16">
+        <div className="flex flex-col lg:flex-row items-center gap-8 md:gap-12 mb-10 md:mb-16">
           <div className="w-full lg:w-1/2">
             <div className="relative">
-              <div className="relative z-10 overflow-hidden rounded-[3rem] border-4 border-[#333333] shadow-[12px_12px_0px_#FFCB05]">
+              <div className="relative z-10 overflow-hidden rounded-[2rem] md:rounded-[3rem] border-4 border-[#333333] shadow-[8px_8px_0px_#FFCB05] md:shadow-[12px_12px_0px_#FFCB05]">
                 <img src="https://res.cloudinary.com/dwffrfajl/image/upload/v1772107546/Clients_k3tlnj.jpg" alt="Party" className="w-full h-auto" />
               </div>
-              <div className="absolute -bottom-6 -left-6 bg-[#F26522] text-white px-6 py-3 rounded-2xl font-black text-xl rotate-[-5deg] border-2 border-[#333333] z-20">
+              <div className="absolute -bottom-4 left-2 sm:-bottom-5 sm:-left-2 md:-bottom-6 md:-left-6 bg-[#F26522] text-white px-4 sm:px-5 md:px-6 py-2 md:py-3 rounded-xl md:rounded-2xl font-black text-sm sm:text-lg md:text-xl rotate-[-5deg] border-2 border-[#333333] z-20">
                 Best. Day. Ever! 🍭
               </div>
             </div>
           </div>
           <div className="w-full lg:w-1/2">
-            <h2 className="text-5xl md:text-6xl font-black text-[#333333] leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-6xl font-black text-[#333333] leading-tight text-center lg:text-left">
               Hear from our <span className="text-[#F26522]">Clients</span>
             </h2>
           </div>
@@ -95,49 +95,49 @@ const Testimonials = () => {
         <div className="relative group">
           
           {/* Navigation Buttons */}
-          <div className="absolute top-1/2 -translate-y-1/2 -left-4 md:-left-12 z-30">
+          <div className="hidden md:block absolute top-1/2 -translate-y-1/2 -left-12 z-30">
             <button 
               onClick={prevStep}
-              className="w-12 h-12 md:w-16 md:h-16 bg-white border-4 border-[#333333] rounded-2xl shadow-[4px_4px_0px_#333333] hover:bg-[#FFCB05] active:translate-y-1 active:shadow-none transition-all flex items-center justify-center text-2xl"
+              className="w-16 h-16 bg-white border-4 border-[#333333] rounded-2xl shadow-[4px_4px_0px_#333333] hover:bg-[#FFCB05] active:translate-y-1 active:shadow-none transition-all flex items-center justify-center text-2xl"
             >
               ←
             </button>
           </div>
 
-          <div className="absolute top-1/2 -translate-y-1/2 -right-4 md:-right-12 z-30">
+          <div className="hidden md:block absolute top-1/2 -translate-y-1/2 -right-12 z-30">
             <button 
               onClick={nextStep}
-              className="w-12 h-12 md:w-16 md:h-16 bg-white border-4 border-[#333333] rounded-2xl shadow-[4px_4px_0px_#333333] hover:bg-[#F26522] hover:text-white active:translate-y-1 active:shadow-none transition-all flex items-center justify-center text-2xl"
+              className="w-16 h-16 bg-white border-4 border-[#333333] rounded-2xl shadow-[4px_4px_0px_#333333] hover:bg-[#F26522] hover:text-white active:translate-y-1 active:shadow-none transition-all flex items-center justify-center text-2xl"
             >
               →
             </button>
           </div>
 
           {/* Testimonial Display Area */}
-          <div className="relative h-full min-h-[400px]">
+          <div className="relative h-full min-h-[320px] sm:min-h-[360px] md:min-h-[400px]">
             <AnimatePresence mode="popLayout" custom={direction}>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 md:gap-8">
                 {getVisibleReviews().slice(0, 3).map((review, idx) => (
                   <motion.div 
                     key={`${review.name}-${currentIndex}-${idx}`}
                     // Hide 2nd and 3rd cards on mobile using CSS classes
-                    className={`bg-white border-4 border-[#333333] p-8 rounded-[2.5rem] shadow-[8px_8px_0px_#333333] flex flex-col justify-between h-full ${idx > 0 ? 'hidden md:flex' : 'flex'}`}
+                    className={`bg-white border-4 border-[#333333] p-5 sm:p-6 md:p-8 rounded-[1.5rem] sm:rounded-[2rem] md:rounded-[2.5rem] shadow-[5px_5px_0px_#333333] sm:shadow-[6px_6px_0px_#333333] md:shadow-[8px_8px_0px_#333333] flex flex-col justify-between h-full ${idx > 0 ? 'hidden md:flex' : 'flex'}`}
                     initial={{ opacity: 0, x: direction * 100 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: direction * -100 }}
                     transition={{ duration: 0.5, ease: "anticipate" }}
                   >
                     <div>
-                      <div className="flex gap-1 mb-4 text-[#FFCB05] text-xl">★★★★★</div>
-                      <p className="text-lg font-bold text-[#333333] mb-8 leading-relaxed italic">"{review.text}"</p>
+                      <div className="flex gap-1 mb-3 md:m-4 text-[#FFCB05] text-base sm:text-lg md:text-xl">★★★★★</div>
+                      <p className="text-sm sm:text-base md:text-lg font-bold text-[#333333] mb-6 md:mb-8 leading-relaxed italic">"{review.text}"</p>
                     </div>
-                    <div className="flex items-center gap-4 border-t-2 border-dashed border-[#333333]/10 pt-6">
-                      <div className="w-12 h-12 rounded-full border-2 border-[#333333] overflow-hidden bg-[#FFCB05]">
+                    <div className="flex items-center gap-3 md:gap-4 border-t-2 border-dashed border-[#333333]/10 pt-4 md:pt-6">
+                      <div className="w-10 h-10 md:w-12 md:h-12 rounded-full border-2 border-[#333333] overflow-hidden bg-[#FFCB05]">
                         <img src={review.avatar} alt={review.name} />
                       </div>
                       <div>
-                        <h4 className="font-black text-[#F26522]">{review.name}</h4>
-                        <p className="text-[10px] font-black text-[#333333]/40 uppercase tracking-widest">{review.role}</p>
+                        <h4 className="font-black text-[#F26522] text-sm md:text-base">{review.name}</h4>
+                        <p className="text-[9px] md:text-[10px] font-black text-[#333333]/40 uppercase tracking-[0.12em] md:tracking-widest">{review.role}</p>
                       </div>
                     </div>
                   </motion.div>
@@ -145,10 +145,34 @@ const Testimonials = () => {
               </div>
             </AnimatePresence>
           </div>
+
+          <div className="mt-4 flex items-center justify-center gap-3 md:hidden">
+            <button
+              type="button"
+              onClick={prevStep}
+              aria-label="Previous testimonial"
+              className="w-9 h-9 flex items-center justify-center rounded-full bg-[#F26522] border-2 border-[#333333] text-white shadow-[3px_3px_0px_#333333] active:translate-y-1 active:shadow-none transition-all"
+            >
+              <span className="text-lg font-black">‹</span>
+            </button>
+
+            <p className="text-xs font-black uppercase tracking-[0.12em] text-[#333333]">
+              {currentIndex + 1} / {allReviews.length}
+            </p>
+
+            <button
+              type="button"
+              onClick={nextStep}
+              aria-label="Next testimonial"
+              className="w-9 h-9 flex items-center justify-center rounded-full bg-[#F26522] border-2 border-[#333333] text-white shadow-[3px_3px_0px_#333333] active:translate-y-1 active:shadow-none transition-all"
+            >
+              <span className="text-lg font-black">›</span>
+            </button>
+          </div>
         </div>
 
         {/* --- Dots Indicators --- */}
-        <div className="flex justify-center gap-3 mt-12">
+        <div className="hidden md:flex justify-center gap-3 mt-12">
           {allReviews.map((_, i) => (
             <button
               key={i}
