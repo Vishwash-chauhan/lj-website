@@ -180,27 +180,17 @@ const ScrollContent = memo(() => (
 ScrollContent.displayName = 'ScrollContent'
 
 export default function Hero() {
-  const [mounted, setMounted] = React.useState(false)
-  const [contentMounted, setContentMounted] = React.useState(false)
   const [pages, setPages] = React.useState(3)
-  const [damping, setDamping] = React.useState(0.1)
+  const [damping, setDamping] = React.useState(0.12)
   const scrollContentRef = React.useRef<HTMLDivElement>(null)
 
-  const setScrollContentRef = React.useCallback((node: HTMLDivElement | null) => {
-    scrollContentRef.current = node
-    setContentMounted(node !== null)
-  }, [])
-
-  React.useLayoutEffect(() => {
-    setMounted(true)
-  }, [])
-
   React.useEffect(() => {
-    if (!mounted || !contentMounted || !scrollContentRef.current) return
+    if (!scrollContentRef.current) return
 
     const updateScrollConfig = () => {
       const isMobile = window.innerWidth < 768
-      setDamping(isMobile ? 0.01 : 0.1)
+      // Slightly higher damping on mobile prevents touch scroll from feeling stuck.
+      setDamping(isMobile ? 0.12 : 0.1)
 
       const viewportHeight = window.innerHeight || 1
       const contentHeight = scrollContentRef.current?.scrollHeight ?? viewportHeight
@@ -222,26 +212,24 @@ export default function Hero() {
       observer.disconnect()
       window.removeEventListener('resize', updateScrollConfig)
     }
-  }, [mounted, contentMounted])
+  }, [])
 
   return (
     <>
       <FontStyle />
-      <div className="h-screen bg-[#FFF9F2] text-[#333333] overflow-hidden">
-        <Canvas shadows>
+      <div className="h-screen bg-[#FFF9F2] text-[#333333] overflow-hidden" style={{ touchAction: 'pan-y' }}>
+        <Canvas shadows style={{ touchAction: 'pan-y' }}>
           <PerspectiveCamera makeDefault position={[0, 0, 5]} fov={50} />
           <Environment preset="city" />
           
           <Suspense fallback={null}>
             <ScrollControls pages={pages} damping={damping}>
               <SceneContent />
-              {mounted && (
-                <Scroll html>
-                  <div ref={setScrollContentRef}>
-                    <ScrollContent />
-                  </div>
-                </Scroll>
-              )}
+              <Scroll html>
+                <div ref={scrollContentRef} style={{ touchAction: 'pan-y', WebkitOverflowScrolling: 'touch' }}>
+                  <ScrollContent />
+                </div>
+              </Scroll>
             </ScrollControls>
           </Suspense>
         </Canvas>
