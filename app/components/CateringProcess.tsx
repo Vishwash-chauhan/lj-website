@@ -28,22 +28,80 @@ const CateringProcess = () => {
     }
   ]
 
+  const [mobileStepIndex, setMobileStepIndex] = React.useState(0)
+
+  const showPrevStep = () => {
+    setMobileStepIndex((prev) => (prev - 1 + steps.length) % steps.length)
+  }
+
+  const showNextStep = () => {
+    setMobileStepIndex((prev) => (prev + 1) % steps.length)
+  }
+
   return (
-    <section className="py-24 px-6 bg-[#FFF9F2]" style={{ fontFamily: "'Comic Neue', cursive" }}>
+    <section className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 bg-[#FFF9F2]" style={{ fontFamily: "'Comic Neue', cursive" }}>
       <div className="max-w-6xl mx-auto">
         
         {/* --- Header --- */}
-        <div className="text-center mb-20">
-          <h2 className="text-5xl md:text-7xl font-black text-[#333333] mb-6">
+        <div className="text-center mb-10 md:mb-20">
+          <h2 className="text-3xl sm:text-4xl md:text-7xl font-black text-[#333333] mb-4 md:mb-6 leading-tight">
             How It <span className="text-[#F26522]">Works?</span>
           </h2>
-          <div className="inline-block bg-[#333333] text-white px-6 py-2 rounded-full font-black text-sm uppercase tracking-widest shadow-[4px_4px_0px_#FFCB05]">
+          <div className="inline-block bg-[#333333] text-white px-4 sm:px-6 py-2 rounded-full font-black text-[10px] sm:text-xs md:text-sm uppercase tracking-[0.08em] sm:tracking-wide md:tracking-widest shadow-[3px_3px_0px_#FFCB05] md:shadow-[4px_4px_0px_#FFCB05]">
             Simple. Stress-Free. Super Fun.
           </div>
         </div>
 
         {/* --- Steps Grid --- */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 relative">
+        <div className="md:hidden">
+          <motion.div
+            key={mobileStepIndex}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.25 }}
+          >
+            <div className="bg-white border-4 border-[#333333] p-5 rounded-[1.5rem] shadow-[6px_6px_0px_#333333] text-center h-full">
+              <div
+                className="w-12 h-12 rounded-xl border-4 border-[#333333] flex items-center justify-center text-lg font-black mb-4 mx-auto shadow-[4px_4px_0px_#333333] rotate-3"
+                style={{ backgroundColor: steps[mobileStepIndex].color, color: mobileStepIndex === 1 ? '#333333' : 'white' }}
+              >
+                {steps[mobileStepIndex].number}
+              </div>
+              <h3 className="text-xl font-black text-[#333333] mb-3 leading-tight">
+                {steps[mobileStepIndex].title}
+              </h3>
+              <p className="font-bold text-[#333333]/70 leading-relaxed text-sm">
+                {steps[mobileStepIndex].description}
+              </p>
+            </div>
+          </motion.div>
+
+          <div className="mt-4 flex items-center justify-center gap-3">
+            <button
+              type="button"
+              onClick={showPrevStep}
+              aria-label="Previous step"
+              className="w-9 h-9 flex items-center justify-center rounded-full bg-[#F26522] border-2 border-[#333333] text-white shadow-[3px_3px_0px_#333333] active:translate-y-1 active:shadow-none transition-all"
+            >
+              <span className="text-lg font-black">‹</span>
+            </button>
+
+            <p className="text-xs font-black uppercase tracking-[0.12em] text-[#333333]">
+              {mobileStepIndex + 1} / {steps.length}
+            </p>
+
+            <button
+              type="button"
+              onClick={showNextStep}
+              aria-label="Next step"
+              className="w-9 h-9 flex items-center justify-center rounded-full bg-[#F26522] border-2 border-[#333333] text-white shadow-[3px_3px_0px_#333333] active:translate-y-1 active:shadow-none transition-all"
+            >
+              <span className="text-lg font-black">›</span>
+            </button>
+          </div>
+        </div>
+
+        <div className="hidden md:grid grid-cols-1 lg:grid-cols-3 gap-7 sm:gap-8 md:gap-12 relative">
           
           {/* Connecting Line (Desktop Only) */}
           <div className="hidden lg:block absolute top-1/2 left-0 w-full h-1 border-t-4 border-dashed border-[#333333]/20 z-0" />
@@ -59,21 +117,21 @@ const CateringProcess = () => {
             >
               {/* Number Badge */}
               <div 
-                className="w-16 h-16 rounded-2xl border-4 border-[#333333] flex items-center justify-center text-2xl font-black mb-8 shadow-[6px_6px_0px_#333333] rotate-3"
+                className="hidden md:flex w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-xl md:rounded-2xl border-4 border-[#333333] items-center justify-center text-lg sm:text-xl md:text-2xl font-black mb-5 md:mb-8 shadow-[4px_4px_0px_#333333] md:shadow-[6px_6px_0px_#333333] rotate-3"
                 style={{ backgroundColor: step.color, color: index === 1 ? '#333333' : 'white' }}
               >
                 {step.number}
               </div>
 
               {/* Card */}
-              <div className="bg-white border-4 border-[#333333] p-8 rounded-[2.5rem] shadow-[10px_10px_0px_#333333] text-center flex-1 hover:-translate-y-2.5 transition-transform group">
-                <div className="text-6xl mb-6 group-hover:scale-110 transition-transform inline-block">
+              <div className="bg-white border-4 border-[#333333] p-5 sm:p-6 md:p-8 rounded-[1.5rem] sm:rounded-[2rem] md:rounded-[2.5rem] shadow-[6px_6px_0px_#333333] sm:shadow-[8px_8px_0px_#333333] md:shadow-[10px_10px_0px_#333333] text-center flex-1 hover:-translate-y-1 sm:hover:-translate-y-2 md:hover:-translate-y-2.5 transition-transform group">
+                <div className="hidden md:inline-block text-4xl sm:text-5xl md:text-6xl mb-4 md:mb-6 group-hover:scale-110 transition-transform">
                   {step.icon}
                 </div>
-                <h3 className="text-2xl font-black text-[#333333] mb-4 leading-tight">
+                <h3 className="text-xl sm:text-2xl font-black text-[#333333] mb-3 md:mb-4 leading-tight">
                   {step.title}
                 </h3>
-                <p className="font-bold text-[#333333]/70 leading-relaxed">
+                <p className="font-bold text-[#333333]/70 leading-relaxed text-sm sm:text-base">
                   {step.description}
                 </p>
               </div>
@@ -82,9 +140,9 @@ const CateringProcess = () => {
         </div>
 
         {/* --- Flexible Pricing Highlight --- */}
-        <div className="mt-20 bg-white border-4 border-[#333333] rounded-4xl p-6 flex flex-col md:flex-row items-center justify-center gap-6 shadow-[8px_8px_0px_#F26522]">
-          <div className="text-4xl">💸</div>
-          <p className="text-xl font-black text-[#333333] text-center md:text-left">
+        <div className="mt-10 md:mt-20 bg-white border-4 border-[#333333] rounded-[1.5rem] md:rounded-4xl p-4 sm:p-5 md:p-6 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6 shadow-[6px_6px_0px_#F26522] md:shadow-[8px_8px_0px_#F26522]">
+          <div className="text-3xl md:text-4xl">💸</div>
+          <p className="text-sm sm:text-base md:text-xl font-black text-[#333333] text-center md:text-left leading-snug md:leading-normal">
             The Best Part? <span className="text-[#F26522]">No per-person charges</span> or minimum guarantees. Pay only for what you need!
           </p>
         </div>

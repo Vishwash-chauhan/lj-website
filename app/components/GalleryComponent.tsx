@@ -41,44 +41,73 @@ interface GalleryComponentProps {
 
 const GalleryComponent: React.FC<GalleryComponentProps> = ({ category }) => {
   const filteredImages = GALLERY_DATA.filter(img => img.category === category)
+  const [mobileImageIndex, setMobileImageIndex] = React.useState(0)
+
+  React.useEffect(() => {
+    setMobileImageIndex(0)
+  }, [category])
+
+  const showPrevImage = () => {
+    setMobileImageIndex((prev) => (prev - 1 + filteredImages.length) % filteredImages.length)
+  }
+
+  const showNextImage = () => {
+    setMobileImageIndex((prev) => (prev + 1) % filteredImages.length)
+  }
 
   return (
-    <section className="py-2 px-6 bg-[#FFF9F2]" style={{ fontFamily: "'Comic Neue', cursive" }}>
+    <section className="py-2 md:py-4 px-4 sm:px-6 bg-[#FFF9F2]" style={{ fontFamily: "'Comic Neue', cursive" }}>
       <div className="max-w-7xl mx-auto">
     
         {/* --- Header --- */}
-        <div className="text-center mb-8 md:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-7xl font-black text-[#333333] whitespace-nowrap">
+        <div className="text-center mb-6 md:mb-16">
+          <h2 className="text-2xl sm:text-4xl md:text-7xl font-black text-[#333333] leading-tight whitespace-normal md:whitespace-nowrap">
             Photo <span className="text-[#F26522]">Gallery</span>
           </h2>
         </div>
 
         {/* --- Mobile: Horizontal Scroll Snap (1 image at a time) --- */}
         <div className="md:hidden">
-          <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 no-scrollbar">
-            {filteredImages.map((image) => (
-              <div 
-                key={image.id}
-                className="min-w-full snap-center relative aspect-square rounded-[2rem] overflow-hidden border-4 border-[#333333] bg-white"
-              >
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  fill
-                  className="object-cover"
-                  sizes="100vw"
-                />
-              </div>
-            ))}
-          </div>
-          {/* Scroll Hint */}
-          <motion.p 
-            animate={{ x: [0, 5, 0] }}
-            transition={{ repeat: Infinity, duration: 1.5 }}
-            className="text-center mt-2 font-bold text-[#F26522] text-sm"
+          <motion.div
+            key={filteredImages[mobileImageIndex]?.id}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.25 }}
           >
-            Scroll to view &rarr;
-          </motion.p>
+            <div className="relative aspect-square rounded-[1.5rem] overflow-hidden border-[3px] border-[#333333] bg-white">
+              <Image
+                src={filteredImages[mobileImageIndex].src}
+                alt={filteredImages[mobileImageIndex].alt}
+                fill
+                className="object-cover"
+                sizes="100vw"
+              />
+            </div>
+          </motion.div>
+
+          <div className="mt-4 flex items-center justify-center gap-3">
+            <button
+              type="button"
+              onClick={showPrevImage}
+              aria-label="Previous image"
+              className="w-9 h-9 flex items-center justify-center rounded-full bg-[#F26522] border-2 border-[#333333] text-white shadow-[3px_3px_0px_#333333] active:translate-y-1 active:shadow-none transition-all"
+            >
+              <span className="text-lg font-black">‹</span>
+            </button>
+
+            <p className="text-xs font-black uppercase tracking-[0.12em] text-[#333333]">
+              {mobileImageIndex + 1} / {filteredImages.length}
+            </p>
+
+            <button
+              type="button"
+              onClick={showNextImage}
+              aria-label="Next image"
+              className="w-9 h-9 flex items-center justify-center rounded-full bg-[#F26522] border-2 border-[#333333] text-white shadow-[3px_3px_0px_#333333] active:translate-y-1 active:shadow-none transition-all"
+            >
+              <span className="text-lg font-black">›</span>
+            </button>
+          </div>
         </div>
 
         {/* --- Desktop: Bento Grid (Hidden on Mobile) --- */}

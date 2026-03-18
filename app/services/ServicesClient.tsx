@@ -99,14 +99,14 @@ const ServicesClient = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#FFF9F2] pt-24 pb-20 px-6 md:px-12" style={{ fontFamily: "'Comic Neue', cursive" }}>
+    <div className="min-h-screen bg-[#FFF9F2] pt-20 md:pt-24 pb-12 md:pb-20 px-4 sm:px-6 md:px-12" style={{ fontFamily: "'Comic Neue', cursive" }}>
       
       {/* --- 1. Header --- */}
-      <header className="max-w-4xl mx-auto text-center mb-16">
-        <h1 className="text-5xl md:text-7xl font-bold text-[#333333] mb-4">
+      <header className="max-w-4xl mx-auto text-center mb-10 md:mb-16">
+        <h1 className="text-3xl sm:text-4xl md:text-7xl font-bold text-[#333333] mb-3 md:mb-4 leading-tight">
           Our <span className="text-[#F26522]">Services</span>
         </h1>
-        <p className="text-xl font-bold opacity-70">Everything you need to host a legendary kids' party, all under one roof.</p>
+        <p className="text-sm sm:text-base md:text-xl font-bold opacity-70">Everything you need to host a legendary kids' party, all under one roof.</p>
       </header>
 
       {/* --- 2. Tabs --- */}
@@ -122,28 +122,28 @@ const ServicesClient = () => {
           ))}
         </div>
 
-        <div className="flex md:hidden items-center justify-center gap-4 mb-12">
+        <div className="flex md:hidden items-center justify-center gap-3 mb-10">
           <button
             onClick={() => switchTab(-1)}
-            className="w-10 h-10 flex items-center justify-center rounded-full bg-[#F26522] border-2 border-[#333333] text-white shadow-[4px_4px_0px_#333333] hover:bg-[#FFCB05] hover:text-[#333333] active:translate-y-1 active:shadow-none transition-all"
+            className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-full bg-[#F26522] border-2 border-[#333333] text-white shadow-[3px_3px_0px_#333333] sm:shadow-[4px_4px_0px_#333333] hover:bg-[#FFCB05] hover:text-[#333333] active:translate-y-1 active:shadow-none transition-all"
             aria-label="Previous service"
           >
-            <span className="text-xl font-black">‹</span>
+            <span className="text-lg sm:text-xl font-black">‹</span>
           </button>
 
           <button
             type="button"
-            className="px-8 py-4 rounded-2xl font-bold text-xl transition-all duration-300 shadow-[4px_4px_0px_#333333] active:translate-y-1 active:shadow-none bg-[#F26522] text-white"
+            className="px-5 sm:px-8 py-2.5 sm:py-4 rounded-xl sm:rounded-2xl font-bold text-base sm:text-xl transition-all duration-300 shadow-[3px_3px_0px_#333333] sm:shadow-[4px_4px_0px_#333333] active:translate-y-1 active:shadow-none bg-[#F26522] text-white"
           >
             {SERVICES[activeTab].tabTitle}
           </button>
 
           <button
             onClick={() => switchTab(1)}
-            className="w-10 h-10 flex items-center justify-center rounded-full bg-[#F26522] border-2 border-[#333333] text-white shadow-[4px_4px_0px_#333333] hover:bg-[#FFCB05] hover:text-[#333333] active:translate-y-1 active:shadow-none transition-all"
+            className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-full bg-[#F26522] border-2 border-[#333333] text-white shadow-[3px_3px_0px_#333333] sm:shadow-[4px_4px_0px_#333333] hover:bg-[#FFCB05] hover:text-[#333333] active:translate-y-1 active:shadow-none transition-all"
             aria-label="Next service"
           >
-            <span className="text-xl font-black">›</span>
+            <span className="text-lg sm:text-xl font-black">›</span>
           </button>
         </div>
 
@@ -177,12 +177,12 @@ const ServicesClient = () => {
               />
 
               {activeTab === 'venue' && (
-                <div className="mt-12">
+                <div className="mt-8 md:mt-12">
                   <NotAPlayzone />
                 </div>
               )}
               {activeTab === 'catering' && (
-                <div className="mt-12">
+                <div className="mt-8 md:mt-12">
                   <CateringProcess />
                 </div>
               )}
@@ -197,12 +197,12 @@ const ServicesClient = () => {
       </div>
 
       {/* --- 5. New Gallery Section --- */}
-      <div className="mt-15">
+      <div className="mt-10 md:mt-16">
         <GalleryComponent category={activeTab === 'venue' ? 'venue' : 'catering'} />
       </div>
 
       {/* --- 6. Trust Section --- */}
-      <div className="mt-15">
+      <div className="mt-10 md:mt-16">
         <TrustSection />
       </div>
 
