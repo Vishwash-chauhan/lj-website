@@ -64,9 +64,19 @@ const FontStyle = () => (
 function SceneContent() {
   const meshRef = useRef<THREE.Group>(null)
   const scroll = useScroll()
+  const lastDispatchedOffset = useRef(-1)
 
   useFrame((state) => {
     const scrollOffset = scroll.offset 
+
+    if (Math.abs(scrollOffset - lastDispatchedOffset.current) > 0.001) {
+      window.dispatchEvent(
+        new CustomEvent('hero-scroll', {
+          detail: { offset: scrollOffset },
+        })
+      )
+      lastDispatchedOffset.current = scrollOffset
+    }
     
     if (meshRef.current) {
       meshRef.current.rotation.x = scrollOffset * Math.PI
@@ -82,6 +92,16 @@ function SceneContent() {
       meshRef.current.scale.set(s, s, s)
     }
   })
+
+  React.useEffect(() => {
+    return () => {
+      window.dispatchEvent(
+        new CustomEvent('hero-scroll', {
+          detail: { offset: 0 },
+        })
+      )
+    }
+  }, [])
 
   return (
     <Float speed={2} rotationIntensity={1} floatIntensity={2}>

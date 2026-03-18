@@ -6,16 +6,84 @@ import { usePathname } from 'next/navigation';
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false); // Mobile Menu Toggle
   const [scrolled, setScrolled] = useState(false);
+  const [mobileNavVisible, setMobileNavVisible] = useState(true);
   const [servicesOpen, setServicesOpen] = useState(false); // Dropdown/Accordion Toggle
   const pathname = usePathname();
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const lastScrollY = useRef(0);
+  const lastHeroOffset = useRef(0);
 
   // Handle scroll effect for background change
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => {
+      if (pathname === '/') return;
+
+      const currentScrollY = window.scrollY;
+      setScrolled(currentScrollY > 20);
+
+      if (window.innerWidth < 768) {
+        if (isOpen) {
+          setMobileNavVisible(true);
+          lastScrollY.current = currentScrollY;
+          return;
+        }
+
+        const delta = currentScrollY - lastScrollY.current;
+
+        if (currentScrollY <= 10) {
+          setMobileNavVisible(true);
+        } else if (delta > 8) {
+          setMobileNavVisible(false);
+        } else if (delta < -8) {
+          setMobileNavVisible(true);
+        }
+      }
+
+      lastScrollY.current = currentScrollY;
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isOpen, pathname]);
+
+  // Home page uses Hero ScrollControls, so we mirror the same behavior from its virtual scroll.
+  useEffect(() => {
+    if (pathname !== '/') return;
+
+    const handleHeroScroll = (event: Event) => {
+      const customEvent = event as CustomEvent<{ offset?: number }>;
+      const offset = customEvent.detail?.offset ?? 0;
+      setScrolled(offset > 0.02);
+
+      if (window.innerWidth < 768) {
+        if (isOpen) {
+          setMobileNavVisible(true);
+          lastHeroOffset.current = offset;
+          return;
+        }
+
+        const delta = offset - lastHeroOffset.current;
+
+        if (offset <= 0.01) {
+          setMobileNavVisible(true);
+        } else if (delta > 0.006) {
+          setMobileNavVisible(false);
+        } else if (delta < -0.006) {
+          setMobileNavVisible(true);
+        }
+      }
+
+      lastHeroOffset.current = offset;
+    };
+
+    window.addEventListener('hero-scroll', handleHeroScroll as EventListener);
+
+    return () => {
+      window.removeEventListener('hero-scroll', handleHeroScroll as EventListener);
+      lastHeroOffset.current = 0;
+    };
+  }, [isOpen, pathname]);
 
   // Close desktop dropdown when clicking outside
   useEffect(() => {
@@ -32,6 +100,7 @@ const Navbar = () => {
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 768) setIsOpen(false);
+      if (window.innerWidth >= 768) setMobileNavVisible(true);
     };
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
@@ -58,6 +127,8 @@ const Navbar = () => {
     <>
       <nav 
         className={`fixed top-0 left-0 right-0 z-[70] transition-all duration-300 px-4 md:px-12 py-4 ${
+          !isOpen && !mobileNavVisible ? '-translate-y-full md:translate-y-0' : 'translate-y-0'
+        } ${
           scrolled ? 'bg-white/80 backdrop-blur-md border-b-4 border-[#FFCB05] py-2' : 'bg-transparent'
         }`}
         style={{ fontFamily: "'Comic Neue', cursive" }}
@@ -67,7 +138,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link href="/" className="relative z-[80] shrink-0 hover:scale-105 transition-transform">
             <img 
-              src="https://res.cloudinary.com/dwffrfajl/image/upload/v1770034621/Little_Jalebis_Logo_lmpaxo.svg" 
+              src="https://res.cloudinary.com/dwffrfajl/image/upload/v1771526453/LJ_Logo_M-2_oaaljg.svg" 
               alt="Little Jalebis Logo" 
               className="h-10 md:h-14 w-auto"
             />
