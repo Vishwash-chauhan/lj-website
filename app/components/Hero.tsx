@@ -161,24 +161,48 @@ ScrollContent.displayName = 'ScrollContent'
 
 export default function Hero() {
   const [mounted, setMounted] = React.useState(false)
+  const [contentMounted, setContentMounted] = React.useState(false)
   const [pages, setPages] = React.useState(3)
   const [damping, setDamping] = React.useState(0.1)
+  const scrollContentRef = React.useRef<HTMLDivElement>(null)
+
+  const setScrollContentRef = React.useCallback((node: HTMLDivElement | null) => {
+    scrollContentRef.current = node
+    setContentMounted(node !== null)
+  }, [])
 
   React.useLayoutEffect(() => {
     setMounted(true)
   }, [])
 
   React.useEffect(() => {
-    const handleResize = () => {
+    if (!mounted || !contentMounted || !scrollContentRef.current) return
+
+    const updateScrollConfig = () => {
       const isMobile = window.innerWidth < 768
-      setPages(isMobile ? 5.4 : 4.2)
       setDamping(isMobile ? 0.01 : 0.1)
+
+      const viewportHeight = window.innerHeight || 1
+      const contentHeight = scrollContentRef.current?.scrollHeight ?? viewportHeight
+      setPages(Math.max(1, contentHeight / viewportHeight))
     }
 
-    handleResize()
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
-  }, [])
+    const observer = new ResizeObserver(() => {
+      updateScrollConfig()
+    })
+
+    if (scrollContentRef.current) {
+      observer.observe(scrollContentRef.current)
+    }
+
+    updateScrollConfig()
+    window.addEventListener('resize', updateScrollConfig)
+
+    return () => {
+      observer.disconnect()
+      window.removeEventListener('resize', updateScrollConfig)
+    }
+  }, [mounted, contentMounted])
 
   return (
     <>
@@ -193,7 +217,9 @@ export default function Hero() {
               <SceneContent />
               {mounted && (
                 <Scroll html>
-                  <ScrollContent />
+                  <div ref={setScrollContentRef}>
+                    <ScrollContent />
+                  </div>
                 </Scroll>
               )}
             </ScrollControls>
