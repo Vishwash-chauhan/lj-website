@@ -34,9 +34,6 @@ const AwardsRecognition = () => {
 
           {/* Content Side */}
           <div className="w-full lg:w-1/2 space-y-6 text-center lg:text-left">
-            <div className="inline-block bg-[#F26522] text-white px-4 py-1 rounded-full text-sm font-black uppercase tracking-widest">
-              2024 Recognition
-            </div>
             
             <h3 className="text-4xl md:text-5xl font-black text-[#333333] leading-tight">
               India's Most <span className="text-[#F26522]">Influential</span> Kids Brand
@@ -51,16 +48,6 @@ const AwardsRecognition = () => {
               </p>
             </div>
 
-            <div className="pt-6 grid grid-cols-2 gap-4">
-              <div className="bg-[#FFF9F2] border-2 border-[#333333] p-4 rounded-2xl shadow-[4px_4px_0px_#333333]">
-                <p className="text-xs font-black uppercase text-[#F26522]">Location</p>
-                <p className="text-lg font-black">Delhi, India</p>
-              </div>
-              <div className="bg-[#FFF9F2] border-2 border-[#333333] p-4 rounded-2xl shadow-[4px_4px_0px_#333333]">
-                <p className="text-xs font-black uppercase text-[#F26522]">Venue</p>
-                <p className="text-lg font-black text-sm md:text-base">Indira Gandhi Arena</p>
-              </div>
-            </div>
           </div>
         </div>
       </div>

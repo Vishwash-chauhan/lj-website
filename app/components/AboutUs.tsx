@@ -1,15 +1,9 @@
 'use client'
 
 import React from 'react'
-import { motion } from 'framer-motion'
+import AboutStats from '@/app/components/AboutStats'
 
 const AboutUs = () => {
-  const stats = [
-    { label: "Parties Hosted", value: "500+", icon: "🎉" },
-    { label: "Happy Kiddos", value: "10k+", icon: "🧒" },
-    { label: "Hygienic Food", value: "100%", icon: "✨" },
-  ]
-
   return (
     <section className="pt-24 md:pt-28 py-20 px-6 bg-[#FFF9F2]" style={{ fontFamily: "'Comic Neue', cursive" }}>
       <div className="max-w-6xl mx-auto">
@@ -50,22 +44,11 @@ const AboutUs = () => {
         </div>
 
         {/* --- Stats Grid --- */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {stats.map((stat, idx) => (
-            <div 
-              key={idx} 
-              className="bg-white border-4 border-[#333333] p-8 rounded-[2.5rem] text-center shadow-[8px_8px_0px_#333333] hover:-translate-y-2 transition-transform"
-            >
-              <div className="text-5xl mb-4">{stat.icon}</div>
-              <h3 className="text-4xl font-black text-[#333333] mb-2">{stat.value}</h3>
-              <p className="text-[#F26522] font-black uppercase tracking-widest text-sm">{stat.label}</p>
-            </div>
-          ))}
-        </div>
+        <AboutStats />
 
         {/* --- Our Values (The Promise) --- */}
-        <div className="mt-20 bg-[#F26522] border-4 border-[#333333] rounded-[3rem] p-10 md:p-16 text-white relative overflow-hidden shadow-[12px_12px_0px_#333333]">
-          {/* Decorative Circle */}
+        {/* <div className="mt-20 bg-[#F26522] border-4 border-[#333333] rounded-[3rem] p-10 md:p-16 text-white relative overflow-hidden shadow-[12px_12px_0px_#333333]">
+
           <div className="absolute -top-12.5 -right-12.5 w-64 h-64 bg-[#FFCB05] rounded-full opacity-20" />
           
           <div className="relative z-10 flex flex-col md:flex-row gap-10 items-center">
@@ -89,7 +72,7 @@ const AboutUs = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
       </div>
     </section>
