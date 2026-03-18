@@ -81,7 +81,7 @@ const LiveCateringCarousel = () => {
   }
 
   return (
-    <section className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 bg-[#FFF9F2] overflow-hidden" style={{ fontFamily: "'Comic Neue', cursive" }}>
+    <section className="pt-12 sm:pt-16 md:pt-24 pb-0 px-4 sm:px-6 bg-[#FFF9F2] overflow-hidden" style={{ fontFamily: "'Comic Neue', cursive" }}>
       <div className="max-w-6xl mx-auto">
         
         {/* --- Header --- */}
@@ -97,18 +97,18 @@ const LiveCateringCarousel = () => {
           <div className="hidden md:block absolute top-1/2 -translate-y-1/2 -left-12 z-40">
             <button 
               onClick={prevStep}
-              className="w-16 h-16 bg-white border-4 border-[#333333] rounded-2xl shadow-[4px_4px_0px_#333333] hover:bg-[#FFCB05] active:translate-y-1 transition-all flex items-center justify-center text-2xl"
+              className="w-9 h-9 flex items-center justify-center rounded-full bg-[#F26522] border-2 border-[#333333] text-white shadow-[3px_3px_0px_#333333] active:translate-y-1 active:shadow-none transition-all"
             >
-              ←
+              <span className="text-lg font-black">‹</span>
             </button>
           </div>
 
           <div className="hidden md:block absolute top-1/2 -translate-y-1/2 -right-12 z-40">
             <button 
               onClick={nextStep}
-              className="w-16 h-16 bg-white border-4 border-[#333333] rounded-2xl shadow-[4px_4px_0px_#333333] hover:bg-[#F26522] hover:text-white active:translate-y-1 transition-all flex items-center justify-center text-2xl"
+              className="w-9 h-9 flex items-center justify-center rounded-full bg-[#F26522] border-2 border-[#333333] text-white shadow-[3px_3px_0px_#333333] active:translate-y-1 active:shadow-none transition-all"
             >
-              →
+              <span className="text-lg font-black">›</span>
             </button>
           </div>
 
@@ -150,7 +150,7 @@ const LiveCateringCarousel = () => {
             </AnimatePresence>
           </div>
 
-          <div className="mt-4 flex items-center justify-center gap-3 md:hidden">
+          <div className="m-4 flex items-center justify-center gap-3 md:hidden">
             <button
               type="button"
               onClick={prevStep}

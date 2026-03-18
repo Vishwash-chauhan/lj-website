@@ -1,5 +1,6 @@
 import ContactUs from "../components/ContactUs";
 import AboutStats from "../components/AboutStats";
+import InstagramLink from "../components/InstagramLink";
 
 export default function ContactPage() {
   return (
@@ -11,6 +12,7 @@ export default function ContactPage() {
       >
         <div className="max-w-6xl mx-auto space-y-10 md:space-y-12">
           <AboutStats />
+          <InstagramLink />
         </div>
       </section>
     </>

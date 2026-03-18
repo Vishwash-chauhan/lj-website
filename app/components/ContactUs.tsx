@@ -183,7 +183,7 @@ const ContactUs = () => {
                     </p>
                     <button 
                       onClick={() => setSubmitted(false)}
-                      className="bg-[#F26522] text-white px-6 md:px-8 py-2.5 md:py-3 rounded-full text-sm md:text-base font-black hover:bg-[#333333] transition-colors shadow-[3px_3px_0px_#333333] md:shadow-[4px_4px_0px_#333333]"
+                      className="bg-[#F26522] text-white px-6 md:px-8 py-2.5 md:py-3 rounded-full text-sm md:text-base font-black hover:bg-[#d6561d] transition-colors shadow-[3px_3px_0px_#333333] md:shadow-[4px_4px_0px_#333333]"
                     >
                       Wait, I have another question!
                     </button>

@@ -12,7 +12,7 @@ const InstagramLink = () => {
         rel="noopener noreferrer"
         whileHover={{ scale: 1.05, rotate: -2 }}
         whileTap={{ scale: 0.95 }}
-        className="group relative bg-[#FFCB05] border-4 border-[#333333] px-8 py-4 rounded-2xl shadow-[6px_6px_0px_#333333] flex items-center gap-4 transition-all hover:shadow-none"
+        className="group relative bg-white border-4 border-[#333333] px-8 py-4 rounded-2xl shadow-[6px_6px_0px_#F26522] flex items-center gap-4 transition-all hover:shadow-none"
       >
         {/* Simple Instagram Icon */}
         <div className="bg-white border-2 border-[#333333] p-2 rounded-lg group-hover:bg-[#F26522] group-hover:text-white transition-colors">
@@ -31,9 +31,9 @@ const InstagramLink = () => {
           <span className="text-xl font-black text-[#333333]">@littlejalebis</span>
         </div>
 
-        {/* Small "New" or Sparkle tag */}
+        {/* Small context tag */}
         <div className="absolute -top-3 -right-3 bg-[#F26522] text-white text-[10px] font-black px-2 py-1 rounded-md border-2 border-[#333333] rotate-12">
-          LIVE ✨
+          FOLLOW ✨
         </div>
       </motion.a>
     </div>
