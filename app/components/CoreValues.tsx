@@ -69,13 +69,6 @@ const CoreValues = () => {
           </div>
         </div>
 
-        {/* Bottom "Sticker" Tagline */}
-        <div className="flex justify-center -mt-6 relative z-20">
-          <div className="bg-[#FFCB05] border-4 border-[#333333] px-8 py-3 rounded-full shadow-[6px_6px_0px_#333333] -rotate-1">
-            <p className="text-[#333333] font-black text-xl">✨ Trusted by 500+ Parents ✨</p>
-          </div>
-        </div>
-
       </div>
     </section>
   )

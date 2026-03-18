@@ -5,11 +5,11 @@ import Image from 'next/image'
 
 const AwardsRecognition = () => {
   return (
-    <section className="py-20 px-6 bg-[#FFF9F2]" style={{ fontFamily: "'Comic Neue', cursive" }}>
+    <section className="py-12 px-6 bg-[#FFF9F2]" style={{ fontFamily: "'Comic Neue', cursive" }}>
       <div className="max-w-6xl mx-auto">
         
         {/* --- Header --- */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-5">
           <h2 className="text-5xl md:text-6xl font-black text-[#333333] inline-block relative">
             Award <span className="text-[#F26522]">Winning</span> Joy
             {/* Decorative squiggle or underline could go here */}

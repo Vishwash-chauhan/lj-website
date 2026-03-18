@@ -5,11 +5,11 @@ import AboutStats from '@/app/components/AboutStats'
 
 const AboutUs = () => {
   return (
-    <section className="pt-24 md:pt-28 py-20 px-6 bg-[#FFF9F2]" style={{ fontFamily: "'Comic Neue', cursive" }}>
+    <section className="pt-24 md:pt-28 pb-[0px] md:pb-20 px-6 bg-[#FFF9F2]" style={{ fontFamily: "'Comic Neue', cursive" }}>
       <div className="max-w-6xl mx-auto">
         
         {/* --- Main Story Section --- */}
-        <div className="flex flex-col lg:flex-row gap-12 items-center mb-20">
+        <div className="flex flex-col lg:flex-row gap-12 items-center mb-12">
           
           {/* Visual Side */}
           <div className="w-full lg:w-1/2 relative">
@@ -17,7 +17,7 @@ const AboutUs = () => {
               🍭
             </div>
             {/* Floating Badge */}
-            <div className="absolute -bottom-6 -right-6 bg-white border-4 border-[#333333] p-6 rounded-2xl shadow-[6px_6px_0px_#333333] -rotate-3">
+            <div className="absolute -bottom-6 right-2 md:-right-6 bg-white border-4 border-[#333333] p-6 rounded-2xl shadow-[6px_6px_0px_#333333] -rotate-3">
               <p className="font-black text-[#F26522] text-xl text-center leading-tight">
                 ESTD <br /> 2020
               </p>
@@ -37,7 +37,7 @@ const AboutUs = () => {
               Our menus are thoughtfully designed for kids—full of flavour, made with fresh ingredients, and secretly loved by adults too! Whether you're hosting at home or at a venue, we make sure the food is one less thing to worry about.
             </p>
             
-            <a href="/contact" className="inline-block px-8 py-4 bg-[#333333] text-white rounded-2xl font-black text-lg hover:bg-[#F26522] transition-all shadow-[6px_6px_0px_#FFCB05] active:shadow-none active:translate-y-1">
+            <a href="/contact" className="inline-block px-8 py-4 bg-[#F26522] text-white rounded-2xl font-black text-lg hover:bg-[#d6561d] transition-all shadow-[6px_6px_0px_#FFCB05] active:shadow-none active:translate-y-1">
               Get A Quote →
             </a>
           </div>
