@@ -1,21 +1,17 @@
-import React from 'react'
-import InstagramLink from '../components/InstagramLink'
+import { redirect } from 'next/navigation'
 
-const ServicesPage = async () => {
-  const ServicesClient = (await import('./ServicesClient')).default
+import { SERVICE_KEY_BY_LEGACY_TAB, getServicePath } from './serviceData'
 
-  return (
-    <>
-      <React.Suspense fallback={<div />}>
-        <ServicesClient />
-      </React.Suspense>
-      <section className="px-4 sm:px-6 pb-12 md:pb-16 bg-[#FFF9F2]" style={{ fontFamily: "'Comic Neue', cursive" }}>
-        <div className="max-w-6xl mx-auto">
-          <InstagramLink />
-        </div>
-      </section>
-    </>
-  )
+interface ServicesPageProps {
+  searchParams?: Promise<{
+    tab?: string | string[]
+  }>
 }
 
-export default ServicesPage
+export default async function ServicesPage({ searchParams }: ServicesPageProps) {
+  const params = searchParams ? await searchParams : undefined
+  const requestedTab = Array.isArray(params?.tab) ? params?.tab[0] : params?.tab
+  const serviceKey = requestedTab ? SERVICE_KEY_BY_LEGACY_TAB[requestedTab] : 'catering'
+
+  redirect(getServicePath(serviceKey ?? 'catering'))
+}

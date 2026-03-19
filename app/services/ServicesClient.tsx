@@ -1,11 +1,10 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { createPortal } from 'react-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 
-// Your Imports
 import ServiceTabButton from '../components/ServiceTabButton'
 import ServiceTabContent from '../components/ServiceTabContent'
 import TrustSection from '../components/TrustSection'
@@ -13,56 +12,16 @@ import LocationSection from '../components/LocationSection'
 import FoodBoxesMenu from '../components/FoodBoxesMenu'
 import CateringProcess from '../components/CateringProcess'
 import NotAPlayzone from '../components/NotAPlayZone'
-import GalleryComponent from '../components/GalleryComponent' // <--- Import the new component
+import GalleryComponent from '../components/GalleryComponent'
+import { getServicePath, SERVICE_KEYS, SERVICES, type ServiceKey } from './serviceData'
 
-const SERVICES = {
-  catering: {
-    tabTitle: "Catering",
-    title: "Catering",
-    tagline: "Deliciously Fun, Nutritiously Balanced",
-    description: "Fully Customisable Catering Options. Our menus are designed keeping children in mind — kid-friendly, hygienic, and flavour-balanced. Our kitchen focuses on fresh ingredients and playful presentation.",
-    features: ["Fully Customisable", "Live Food Counters", "Signature In-House Catering", "Hygienic"],
-    cta: "View Menu",
-    color: "#FFCB05",
-    image: "🍕",
-    location: null 
-  },
-  venue: {
-    tabTitle: "Kids Party House",
-    title: "Kids Party House",
-    tagline: "Where Imagination Meets Celebration",
-    description: "A thoughtfully designed venue perfect for hosting celebrations of up to 80 guests. The space features a warm indoor party area complemented by an open-air extension, giving you the ultimate flexibility to design your own themes, décor, and activities.",
-    features: ["Signature In-House Catering", "Hygienic Food", "Safe & Clean Play Zones", "Fully Customisable"],
-    cta: "View Our Location",
-    color: "#F26522",
-    image: "🏠",
-    location: {
-      type: "Kids Party House",
-      name: "Little Jalebis - Kids Party House & Catering Co.",
-      address: "17, Lower Ground Floor, Arjun Marg, DLF Phase 1, Gurugram",
-      heading: "Visit Our",
-      subheading: "Come over for a tasting or to plan your next event!",
-      mapUrl: "https://maps.app.goo.gl/YRVJxzPR1BamX3V59",
-      mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3507.4355037238706!2d77.0998267!3d28.466428399999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d19f0584ac771%3A0x6beb70f895098438!2sLittle%20Jalebis%20-%20Kids%20Party%20House%20%26%20Catering%20Co.!5e0!3m2!1sen!2sin!4v1773344538768!5m2!1sen!2sin" 
-    }
-  },
-  boxes: {
-    tabTitle: "Food Delivery & Boxes",
-    title: "Fun Food Boxes",
-    tagline: "Healthy Meals, Delivered in Style",
-    description: "Perfect for school events, birthday picnics, or outdoor trips. Our lunch boxes are packed with love, nutrition, and playful presentation to make healthy bites feel like a treat.",
-    features: ["Individual Portioning", "Hygienic Packaging", "Fully Customisable", "On-Demand Delivery"],
-    cta: "View Food Box Menu",
-    color: "#333333",
-    image: "🍱",
-    location: null
-  }
+interface ServicesClientProps {
+  serviceKey: ServiceKey
 }
 
-const ServicesClient = () => {
+const ServicesClient = ({ serviceKey }: ServicesClientProps) => {
   const router = useRouter()
-  const searchParams = useSearchParams()
-  const [activeTab, setActiveTab] = useState<keyof typeof SERVICES>('catering')
+  const [activeTab, setActiveTab] = useState<ServiceKey>(serviceKey)
   const [isFoodBoxesOpen, setIsFoodBoxesOpen] = useState(false)
   const [isMounted, setIsMounted] = useState(false)
 
@@ -71,11 +30,8 @@ const ServicesClient = () => {
   }, [])
 
   useEffect(() => {
-    const tab = searchParams.get('tab')
-    if (tab && tab in SERVICES) {
-      setActiveTab(tab as keyof typeof SERVICES)
-    }
-  }, [searchParams])
+    setActiveTab(serviceKey)
+  }, [serviceKey])
 
   const handleScrollToLocation = () => {
     const target = document.getElementById('location-section')
@@ -84,18 +40,21 @@ const ServicesClient = () => {
     }
   }
 
-  const serviceKeys = Object.keys(SERVICES) as Array<keyof typeof SERVICES>
-
-  const secondaryCtasByTab: Record<keyof typeof SERVICES, { label: string; href: string }[]> = {
+  const secondaryCtasByTab: Record<ServiceKey, { label: string; href: string }[]> = {
     venue: [{ label: 'Book Venue', href: '/contact' }],
     catering: [{ label: 'Get a Quotation', href: '/contact' }],
     boxes: [{ label: 'Order Now', href: '/contact' }],
   }
 
+  const routeToService = (nextTab: ServiceKey) => {
+    setActiveTab(nextTab)
+    router.push(getServicePath(nextTab))
+  }
+
   const switchTab = (step: number) => {
-    const currentIndex = serviceKeys.indexOf(activeTab)
-    const nextIndex = (currentIndex + step + serviceKeys.length) % serviceKeys.length
-    setActiveTab(serviceKeys[nextIndex])
+    const currentIndex = SERVICE_KEYS.indexOf(activeTab)
+    const nextIndex = (currentIndex + step + SERVICE_KEYS.length) % SERVICE_KEYS.length
+    routeToService(SERVICE_KEYS[nextIndex])
   }
 
   return (
@@ -117,7 +76,7 @@ const ServicesClient = () => {
               key={id}
               title={service.tabTitle}
               active={activeTab === id}
-              onClick={() => setActiveTab(id as keyof typeof SERVICES)}
+              onClick={() => routeToService(id as ServiceKey)}
             />
           ))}
         </div>

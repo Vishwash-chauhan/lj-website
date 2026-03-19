@@ -146,9 +146,9 @@ const ScrollContent = memo(() => (
 
         <div className="space-y-6 mt-4">
           {[
-            { emoji: '🍕', title: "Catering", desc: "Kid-approved menus that adults love too.", link: "/services?tab=catering" },
-            { emoji: '🏠', title: "Kids Party House", desc: "Magical spaces designed for play and laughter.", link: "/services?tab=venue" },
-            { emoji: '🍱', title: "Food Delivery & Boxes", desc: "Fresh, fun, and balanced meals delivered.", link: "/services?tab=boxes" }
+            { emoji: '🍕', title: "Catering", desc: "Kid-approved menus that adults love too.", link: "/services/kids-party-catering" },
+            { emoji: '🏠', title: "Kids Party House", desc: "Magical spaces designed for play and laughter.", link: "/services/kids-party-house" },
+            { emoji: '🍱', title: "Food Delivery & Boxes", desc: "Fresh, fun, and balanced meals delivered.", link: "/services/food-boxes" }
           ].map((service, i) => (
             <a
               key={i}
