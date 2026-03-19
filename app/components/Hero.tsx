@@ -12,7 +12,6 @@ import {
 } from '@react-three/drei'
 import * as THREE from 'three'
 import FinalCall from './FinalCall'
-import Footer from './Footer'
 
 // --- Custom Jalebi Geometry (Sized to match TorusKnot) ---
 function JalebiShape() {
@@ -169,12 +168,6 @@ const ScrollContent = memo(() => (
 
     {/* --- Section 3: Final Call --- */}
     <FinalCall />
-
-    {/* --- Section 4: Footer --- */}
-    <section className="pt-8 md:pt-12">
-      <Footer />
-    </section>
-
   </div>
 ))
 
