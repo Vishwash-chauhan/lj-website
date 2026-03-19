@@ -85,6 +85,29 @@ const Navbar = () => {
     };
   }, [isOpen, pathname]);
 
+  // Keep a shared CSS offset so sticky elements can follow mobile navbar visibility.
+  useEffect(() => {
+    const root = document.documentElement;
+
+    const updateNavbarOffset = () => {
+      if (window.innerWidth >= 768) {
+        root.style.setProperty('--navbar-offset', '80px');
+        return;
+      }
+
+      const shouldShowMobileNav = isOpen || mobileNavVisible;
+      root.style.setProperty('--navbar-offset', shouldShowMobileNav ? '76px' : '0px');
+    };
+
+    updateNavbarOffset();
+    window.addEventListener('resize', updateNavbarOffset);
+
+    return () => {
+      window.removeEventListener('resize', updateNavbarOffset);
+      root.style.setProperty('--navbar-offset', '76px');
+    };
+  }, [isOpen, mobileNavVisible]);
+
   // Close desktop dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {

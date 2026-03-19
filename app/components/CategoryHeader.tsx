@@ -45,7 +45,10 @@ const CategoryHeader: React.FC<Props> = ({ categories, currentIndex, setCurrentI
   }
 
   return (
-    <header className="sticky top-19 md:top-20 z-50 bg-[#FFF9F2] pt-4 pb-2 px-4 sm:px-6 mb-6 border-3 sm:border-4 border-[#FFCB05] rounded-2xl sm:rounded-3xl shadow-[4px_4px_0px_#F26522]">
+    <header
+      className="sticky z-50 bg-[#FFF9F2] pt-4 pb-2 px-4 sm:px-6 mb-6 border-3 sm:border-4 border-[#FFCB05] rounded-2xl sm:rounded-3xl shadow-[4px_4px_0px_#F26522]"
+      style={{ top: 'var(--navbar-offset, 76px)' }}
+    >
       <div className="w-full max-w-[1000px] mx-auto">
         <div className="relative group">
           

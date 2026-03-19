@@ -19,7 +19,7 @@ const AboutUs = () => {
             {/* Floating Badge */}
             <div className="absolute -bottom-4 right-1 md:-bottom-6 md:-right-6 bg-white border-4 border-[#333333] p-4 md:p-6 rounded-xl md:rounded-2xl shadow-[4px_4px_0px_#333333] md:shadow-[6px_6px_0px_#333333] -rotate-3">
               <p className="font-black text-[#F26522] text-base md:text-xl text-center leading-tight">
-                ESTD <br /> 2020
+                ESTD <br /> 2024
               </p>
             </div>
           </div>
