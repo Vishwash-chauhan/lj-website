@@ -113,7 +113,7 @@ function SceneContent() {
 }
 
 const ScrollContent = memo(() => (
-  <div className="w-screen text-[#333333] selection:bg-[#FFCB05]">
+  <div className="w-screen text-[#333333] selection:bg-[#FFCB05] pb-16 md:pb-24">
     
     {/* --- Section 1: Hero --- */}
     <section className="h-screen flex flex-col justify-center px-6 md:px-[12%]">
@@ -171,21 +171,22 @@ const ScrollContent = memo(() => (
     <FinalCall />
 
     {/* --- Section 4: Footer --- */}
-    <div className="mt-16">
+    <section className="pt-8 md:pt-12">
       <Footer />
-    </div>
+    </section>
+
   </div>
 ))
 
 ScrollContent.displayName = 'ScrollContent'
 
 export default function Hero() {
-  const [pages, setPages] = React.useState(3)
+  const [pages, setPages] = React.useState(6)
   const [damping, setDamping] = React.useState(0.12)
-  const scrollContentRef = React.useRef<HTMLDivElement>(null)
+  const [scrollContentEl, setScrollContentEl] = React.useState<HTMLDivElement | null>(null)
 
   React.useEffect(() => {
-    if (!scrollContentRef.current) return
+    if (!scrollContentEl) return
 
     const updateScrollConfig = () => {
       const isMobile = window.innerWidth < 768
@@ -193,26 +194,37 @@ export default function Hero() {
       setDamping(isMobile ? 0.12 : 0.1)
 
       const viewportHeight = window.innerHeight || 1
-      const contentHeight = scrollContentRef.current?.scrollHeight ?? viewportHeight
-      setPages(Math.max(1, contentHeight / viewportHeight))
+      const contentElement = scrollContentEl.firstElementChild as HTMLElement | null
+      const contentHeight = contentElement?.scrollHeight ?? scrollContentEl.scrollHeight ?? viewportHeight
+
+      // Force extra travel at the end because dynamic height can under-report in Scroll html.
+      const measuredPages = contentHeight / viewportHeight
+      const safePages = Math.ceil(measuredPages) + (isMobile ? 2 : 1.5)
+      const minPages = isMobile ? 6 : 5
+      setPages(Math.max(minPages, safePages))
     }
 
     const observer = new ResizeObserver(() => {
       updateScrollConfig()
     })
 
-    if (scrollContentRef.current) {
-      observer.observe(scrollContentRef.current)
-    }
+    observer.observe(scrollContentEl)
+    const contentElement = scrollContentEl.firstElementChild as HTMLElement | null
+    if (contentElement) observer.observe(contentElement)
 
     updateScrollConfig()
+    setTimeout(updateScrollConfig, 0)
+    setTimeout(updateScrollConfig, 150)
+    document.fonts?.ready.then(updateScrollConfig).catch(() => {
+      // Ignore font loading errors and keep current sizing.
+    })
     window.addEventListener('resize', updateScrollConfig)
 
     return () => {
       observer.disconnect()
       window.removeEventListener('resize', updateScrollConfig)
     }
-  }, [])
+  }, [scrollContentEl])
 
   return (
     <>
@@ -226,7 +238,7 @@ export default function Hero() {
             <ScrollControls pages={pages} damping={damping}>
               <SceneContent />
               <Scroll html>
-                <div ref={scrollContentRef} style={{ touchAction: 'pan-y', WebkitOverflowScrolling: 'touch' }}>
+                <div ref={setScrollContentEl} style={{ touchAction: 'pan-y', WebkitOverflowScrolling: 'touch' }}>
                   <ScrollContent />
                 </div>
               </Scroll>
