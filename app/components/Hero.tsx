@@ -113,7 +113,7 @@ function SceneContent() {
 }
 
 const ScrollContent = memo(() => (
-  <div className="w-screen text-[#333333] selection:bg-[#FFCB05] pb-16 md:pb-24">
+  <div className="w-screen text-[#333333] selection:bg-[#FFCB05]">
     
     {/* --- Section 1: Hero --- */}
     <section className="h-screen flex flex-col justify-center px-6 md:px-[12%]">
@@ -181,7 +181,7 @@ const ScrollContent = memo(() => (
 ScrollContent.displayName = 'ScrollContent'
 
 export default function Hero() {
-  const [pages, setPages] = React.useState(6)
+  const [pages, setPages] = React.useState(4)
   const [damping, setDamping] = React.useState(0.12)
   const [scrollContentEl, setScrollContentEl] = React.useState<HTMLDivElement | null>(null)
 
@@ -197,11 +197,10 @@ export default function Hero() {
       const contentElement = scrollContentEl.firstElementChild as HTMLElement | null
       const contentHeight = contentElement?.scrollHeight ?? scrollContentEl.scrollHeight ?? viewportHeight
 
-      // Force extra travel at the end because dynamic height can under-report in Scroll html.
+      // Keep a small buffer so footer remains reachable without leaving a large blank tail.
       const measuredPages = contentHeight / viewportHeight
-      const safePages = Math.ceil(measuredPages) + (isMobile ? 2 : 1.5)
-      const minPages = isMobile ? 6 : 5
-      setPages(Math.max(minPages, safePages))
+      const pageBuffer = isMobile ? 0.2 : 0.12
+      setPages(Math.max(1, measuredPages + pageBuffer))
     }
 
     const observer = new ResizeObserver(() => {
