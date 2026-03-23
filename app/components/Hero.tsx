@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useRef, Suspense, memo, useMemo } from 'react'
+import Image from 'next/image'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { 
   Float, 
@@ -35,7 +36,7 @@ function JalebiShape() {
     
     const path = new THREE.CatmullRomCurve3(points)
     // Radius set to 0.12 for a sleeker "piped" look that fits the smaller scale
-    return new THREE.TubeGeometry(path, 500, 0.15, 12, false)
+    return new THREE.TubeGeometry(path, 128, 0.15, 12, false)
   }, [])
 
   return (
@@ -60,10 +61,14 @@ const FontStyle = () => (
   `}</style>
 )
 
-function SceneContent() {
+function SceneContent({ onReady }: { onReady?: () => void }) {
   const meshRef = useRef<THREE.Group>(null)
   const scroll = useScroll()
   const lastDispatchedOffset = useRef(-1)
+
+  React.useEffect(() => {
+    onReady?.()
+  }, [onReady])
 
   useFrame((state) => {
     const scrollOffset = scroll.offset 
@@ -111,27 +116,52 @@ function SceneContent() {
   )
 }
 
+const HeroOverlay = memo(() => (
+  <div className="absolute inset-x-0 top-0 z-20 h-screen flex flex-col justify-center px-6 md:px-[12%] pointer-events-none">
+    <div className="max-w-3xl mt-24 md:mt-0 pointer-events-auto text-[#333333] selection:bg-[#FFCB05]">
+      <span className="bg-[#FFCB05] px-4 py-1 rounded-full text-sm font-bold uppercase tracking-wider mb-4 inline-block">
+        The Sweetest Host in Town
+      </span>
+      <h1 className="text-6xl md:text-[6vw] font-bold leading-[0.9] tracking-tight drop-shadow-[0_2px_8px_rgba(255,255,255,0.35)]">
+        Little <span className="text-[#F26522] drop-shadow-[0_2px_8px_rgba(255,255,255,0.35)]">Jalebis</span>
+      </h1>
+      <p className="text-xl md:text-[2.2vw] mt-6 font-bold opacity-90 leading-relaxed max-w-lg">
+        India's First Tech-Driven, <br className="hidden md:block" />
+        <span className="underline decoration-[#FFCB05] decoration-4">Kids Centric</span> Catering Company.
+      </p>
+      <a href="/contact" className="mt-10 px-10 py-4 bg-[#F26522] text-white rounded-full font-bold text-lg hover:bg-[#d6561d] transition-all w-fit shadow-[6px_6px_0px_#333333] active:translate-y-1 active:shadow-none inline-block">
+        Plan Your Party ↓
+      </a>
+    </div>
+  </div>
+))
+
+HeroOverlay.displayName = 'HeroOverlay'
+
+const JalebiGhost = memo(({ hidden }: { hidden: boolean }) => (
+  <div
+    className={`absolute z-10 pointer-events-none transition-opacity duration-700 ease-out ${hidden ? 'opacity-0' : 'opacity-100'} left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:left-[66%]`}
+    aria-hidden="true"
+  >
+    <Image
+      src="/jalebi-ghost.png"
+      alt=""
+      width={520}
+      height={520}
+      priority
+      className="w-[220px] h-[220px] md:w-[520px] md:h-[520px] object-contain"
+      sizes="(max-width: 768px) 220px, 520px"
+    />
+  </div>
+))
+
+JalebiGhost.displayName = 'JalebiGhost'
+
 const ScrollContent = memo(() => (
   <div className="w-screen text-[#333333] selection:bg-[#FFCB05]">
     
     {/* --- Section 1: Hero --- */}
-    <section className="h-screen flex flex-col justify-center px-6 md:px-[12%]">
-      <div className="max-w-3xl mt-24 md:mt-0">
-        <span className="bg-[#FFCB05] px-4 py-1 rounded-full text-sm font-bold uppercase tracking-wider mb-4 inline-block">
-          The Sweetest Host in Town
-        </span>
-          <h1 className="text-6xl md:text-[6vw] font-bold leading-[0.9] tracking-tight drop-shadow-[0_2px_8px_rgba(255,255,255,0.35)]">
-            Little <span className="text-[#F26522] drop-shadow-[0_2px_8px_rgba(255,255,255,0.35)]">Jalebis</span>
-          </h1>
-        <p className="text-xl md:text-[2.2vw] mt-6 font-bold opacity-90 leading-relaxed max-w-lg">
-          India's First Tech-Driven, <br className="hidden md:block"/>
-          <span className="underline decoration-[#FFCB05] decoration-4">Kids Centric</span> Catering Company.
-        </p>
-        <a href="/contact" className="mt-10 px-10 py-4 bg-[#F26522] text-white rounded-full font-bold text-lg hover:bg-[#d6561d] transition-all w-fit shadow-[6px_6px_0px_#333333] active:translate-y-1 active:shadow-none inline-block">
-          Plan Your Party ↓
-        </a>
-      </div>
-    </section>
+    <section className="h-screen" />
     
     {/* --- Section 2: Services --- */}
     <section className="h-[150vh] md:h-screen flex flex-col justify-center items-end px-6 md:px-[12%]">
@@ -177,6 +207,7 @@ export default function Hero() {
   const [pages, setPages] = React.useState(4)
   const [damping, setDamping] = React.useState(0.12)
   const [scrollContentEl, setScrollContentEl] = React.useState<HTMLDivElement | null>(null)
+  const [sceneReady, setSceneReady] = React.useState(false)
 
   React.useEffect(() => {
     if (!scrollContentEl) return
@@ -221,14 +252,20 @@ export default function Hero() {
   return (
     <>
       <FontStyle />
-      <div className="h-screen bg-[#FFF9F2] text-[#333333] overflow-hidden" style={{ touchAction: 'pan-y' }}>
-        <Canvas shadows style={{ touchAction: 'pan-y' }}>
+      <div className="relative h-screen bg-[#FFF9F2] text-[#333333] overflow-hidden" style={{ touchAction: 'pan-y' }}>
+        <HeroOverlay />
+        <JalebiGhost hidden={sceneReady} />
+        <Canvas
+          shadows
+          gl={{ alpha: true }}
+          style={{ touchAction: 'pan-y', background: 'transparent' }}
+        >
           <PerspectiveCamera makeDefault position={[0, 0, 5]} fov={50} />
           <Environment preset="city" />
           
           <Suspense fallback={null}>
             <ScrollControls pages={pages} damping={damping}>
-              <SceneContent />
+              <SceneContent onReady={() => setSceneReady(true)} />
               <Scroll html>
                 <div ref={setScrollContentEl} style={{ touchAction: 'pan-y', WebkitOverflowScrolling: 'touch' }}>
                   <ScrollContent />
