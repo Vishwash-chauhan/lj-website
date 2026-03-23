@@ -14,6 +14,10 @@ import {
 import * as THREE from 'three'
 import FinalCall from './FinalCall'
 
+const CAMERA_FOV = 50
+const CAMERA_Z = 5
+const MOBILE_VIEWPORT_WIDTH_THRESHOLD = 6
+
 // --- Custom Jalebi Geometry (Sized to match TorusKnot) ---
 function JalebiShape() {
   const shape = useMemo(() => {
@@ -61,6 +65,20 @@ const FontStyle = () => (
   `}</style>
 )
 
+function isMobileJalebiMode(viewportWidth: number, viewportHeight: number) {
+  const safeHeight = Math.max(viewportHeight, 1)
+  const aspect = viewportWidth / safeHeight
+  const fovRadians = THREE.MathUtils.degToRad(CAMERA_FOV)
+  const sceneViewportWidth = 2 * CAMERA_Z * Math.tan(fovRadians / 2) * aspect
+  return sceneViewportWidth < MOBILE_VIEWPORT_WIDTH_THRESHOLD
+}
+
+function projectedTopPercent(worldY: number) {
+  const fovRadians = THREE.MathUtils.degToRad(CAMERA_FOV)
+  const ndcY = worldY / (CAMERA_Z * Math.tan(fovRadians / 2))
+  return (1 - ndcY) * 50
+}
+
 function SceneContent({ onReady }: { onReady?: () => void }) {
   const meshRef = useRef<THREE.Group>(null)
   const scroll = useScroll()
@@ -86,7 +104,7 @@ function SceneContent({ onReady }: { onReady?: () => void }) {
       meshRef.current.rotation.x = scrollOffset * Math.PI
       meshRef.current.rotation.y = scrollOffset * Math.PI * 2
       
-      const isMobile = state.viewport.width < 6
+      const isMobile = state.viewport.width < MOBILE_VIEWPORT_WIDTH_THRESHOLD
       
       // Matching your original positioning logic exactly
       meshRef.current.position.x = isMobile ? 0 : THREE.MathUtils.lerp(0, -2.8, scrollOffset)
@@ -138,13 +156,15 @@ const HeroOverlay = memo(() => (
 
 HeroOverlay.displayName = 'HeroOverlay'
 
-const JalebiGhost = memo(({ hidden }: { hidden: boolean }) => (
+const JalebiGhost = memo(
+  ({ hidden, leftPercent, topPercent }: { hidden: boolean; leftPercent: number; topPercent: number }) => (
   <div
-    className={`absolute z-10 pointer-events-none transition-opacity duration-700 ease-out ${hidden ? 'opacity-0' : 'opacity-100'} left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:left-[66%]`}
+    className={`absolute z-10 pointer-events-none transition-opacity duration-700 ease-out ${hidden ? 'opacity-0' : 'opacity-100'} -translate-x-1/2 -translate-y-1/2`}
+    style={{ left: `${leftPercent}%`, top: `${topPercent}%` }}
     aria-hidden="true"
   >
     <Image
-      src="/jalebi-ghost.png"
+      src="/jalebi-ghostt.png"
       alt=""
       width={520}
       height={520}
@@ -208,6 +228,24 @@ export default function Hero() {
   const [damping, setDamping] = React.useState(0.12)
   const [scrollContentEl, setScrollContentEl] = React.useState<HTMLDivElement | null>(null)
   const [sceneReady, setSceneReady] = React.useState(false)
+  const [ghostAnchor, setGhostAnchor] = React.useState({ leftPercent: 50, topPercent: 50 })
+
+  React.useEffect(() => {
+    const updateGhostAnchor = () => {
+      const mobileMode = isMobileJalebiMode(window.innerWidth, window.innerHeight)
+      const worldY = mobileMode ? 0.8 : 0
+      setGhostAnchor({
+        leftPercent: 50,
+        topPercent: projectedTopPercent(worldY),
+      })
+    }
+
+    updateGhostAnchor()
+    window.addEventListener('resize', updateGhostAnchor)
+    return () => {
+      window.removeEventListener('resize', updateGhostAnchor)
+    }
+  }, [])
 
   React.useEffect(() => {
     if (!scrollContentEl) return
@@ -254,13 +292,17 @@ export default function Hero() {
       <FontStyle />
       <div className="relative h-screen bg-[#FFF9F2] text-[#333333] overflow-hidden" style={{ touchAction: 'pan-y' }}>
         <HeroOverlay />
-        <JalebiGhost hidden={sceneReady} />
+        <JalebiGhost
+          hidden={sceneReady}
+          leftPercent={ghostAnchor.leftPercent}
+          topPercent={ghostAnchor.topPercent}
+        />
         <Canvas
           shadows
           gl={{ alpha: true }}
           style={{ touchAction: 'pan-y', background: 'transparent' }}
         >
-          <PerspectiveCamera makeDefault position={[0, 0, 5]} fov={50} />
+          <PerspectiveCamera makeDefault position={[0, 0, CAMERA_Z]} fov={CAMERA_FOV} />
           <Environment preset="city" />
           
           <Suspense fallback={null}>
