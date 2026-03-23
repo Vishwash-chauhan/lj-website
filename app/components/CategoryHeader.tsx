@@ -46,7 +46,7 @@ const CategoryHeader: React.FC<Props> = ({ categories, currentIndex, setCurrentI
 
   return (
     <header
-      className="sticky z-50 bg-[#FFF9F2] pt-4 pb-2 px-4 sm:px-6 mb-6 border-3 sm:border-4 border-[#FFCB05] rounded-2xl sm:rounded-3xl shadow-[4px_4px_0px_#F26522]"
+      className="sticky z-50 bg-[#FFF9F2] pt-4 pb-2 px-4 sm:px-6 mb-6 border-3 sm:border-4 border-[#FFCB05] rounded-2xl sm:rounded-3xl shadow-[4px_4px_0px_#F26522] pointer-events-auto select-none"
       style={{ top: 'var(--navbar-offset, 76px)' }}
     >
       <div className="w-full max-w-[1000px] mx-auto">
@@ -57,6 +57,7 @@ const CategoryHeader: React.FC<Props> = ({ categories, currentIndex, setCurrentI
             <div className="absolute left-0 top-0 bottom-0 w-12 flex items-center justify-start bg-gradient-to-r from-[#FFF9F2] to-transparent z-20 pointer-events-none">
               <button 
                 onClick={() => handleArrowNavigation('left')}
+                onTouchEnd={() => handleArrowNavigation('left')}
                 className="w-10 h-10 flex items-center justify-center rounded-full bg-white border-2 border-[#333333] text-[#F26522] shadow-[2px_2px_0_#FFCB05] hover:scale-110 active:scale-95 transition-all pointer-events-auto"
               >
                 <span className="text-xl font-black">‹</span>
@@ -69,6 +70,7 @@ const CategoryHeader: React.FC<Props> = ({ categories, currentIndex, setCurrentI
             <div className="absolute right-0 top-0 bottom-0 w-12 flex items-center justify-end bg-gradient-to-l from-[#FFF9F2] to-transparent z-20 pointer-events-none">
               <button 
                 onClick={() => handleArrowNavigation('right')}
+                onTouchEnd={() => handleArrowNavigation('right')}
                 className="w-10 h-10 flex items-center justify-center rounded-full bg-white border-2 border-[#333333] text-[#F26522] shadow-[2px_2px_0_#FFCB05] hover:scale-110 active:scale-95 transition-all pointer-events-auto"
               >
                 <span className="text-xl font-black">›</span>
@@ -90,6 +92,7 @@ const CategoryHeader: React.FC<Props> = ({ categories, currentIndex, setCurrentI
                   key={cat}
                   data-index={i}
                   onClick={() => setCurrentIndex(i)}
+                  onTouchEnd={() => setCurrentIndex(i)}
                   className={`flex-shrink-0 px-4 py-2 rounded-full font-black text-sm sm:text-base whitespace-nowrap transition-all duration-300 pointer-events-auto ${
                     isActive
                       ? 'bg-[#F26522] text-white border-2 border-[#333333] shadow-[3px_3px_0_#FFCB05] z-10'

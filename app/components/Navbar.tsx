@@ -254,7 +254,7 @@ const Navbar = () => {
 
       {/* Mobile Menu Overlay */}
       <div className={`fixed inset-0 bg-[#FFF9F2] z-[60] flex flex-col transition-all duration-500 md:hidden ${
-        isOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
+        isOpen ? 'translate-y-0 opacity-100 pointer-events-auto' : '-translate-y-full opacity-0 pointer-events-none'
       }`}>
           <div className="flex flex-col items-center justify-center min-h-screen gap-6 text-center w-full px-8 pt-20 pb-10 overflow-y-auto">
             
