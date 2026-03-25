@@ -56,14 +56,7 @@ function JalebiShape() {
   )
 }
 
-const FontStyle = () => (
-  <style jsx global>{`
-    @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,700&display=swap');
-    body {
-      font-family: 'Comic Neue', cursive;
-    }
-  `}</style>
-)
+
 
 function isMobileJalebiMode(viewportWidth: number, viewportHeight: number) {
   const safeHeight = Math.max(viewportHeight, 1)
@@ -223,6 +216,7 @@ export default function Hero() {
   const [scrollContentEl, setScrollContentEl] = React.useState<HTMLDivElement | null>(null)
   const [sceneReady, setSceneReady] = React.useState(false)
   const [ghostAnchor, setGhostAnchor] = React.useState({ leftPercent: 50, topPercent: 50 })
+  const [canvasMounted, setCanvasMounted] = React.useState(false)
 
   React.useEffect(() => {
     const updateGhostAnchor = () => {
@@ -281,15 +275,29 @@ export default function Hero() {
     }
   }, [scrollContentEl])
 
+  React.useEffect(() => {
+    // Defer Canvas mount until after first paint/idle to reduce TBT/TTI
+    const handle = requestAnimationFrame(() => {
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(() => setCanvasMounted(true), { timeout: 300 })
+      } else {
+        // Fallback timeout for browsers without requestIdleCallback
+        setTimeout(() => setCanvasMounted(true), 200)
+      }
+    })
+
+    return () => cancelAnimationFrame(handle)
+  }, [])
+
   return (
     <>
-      <FontStyle />
       <div className="relative h-screen bg-[#FFF9F2] text-[#333333] overflow-hidden" style={{ touchAction: 'pan-y' }}>
         <JalebiGhost
           hidden={sceneReady}
           leftPercent={ghostAnchor.leftPercent}
           topPercent={ghostAnchor.topPercent}
         />
+        {canvasMounted && (
         <Canvas
           shadows
           gl={{ alpha: true }}
@@ -309,6 +317,7 @@ export default function Hero() {
             </ScrollControls>
           </Suspense>
         </Canvas>
+        )}
       </div>
     </>
   )
