@@ -134,28 +134,6 @@ function SceneContent({ onReady }: { onReady?: () => void }) {
   )
 }
 
-const HeroOverlay = memo(() => (
-  <div className="absolute inset-x-0 top-0 z-20 h-screen flex flex-col justify-center px-6 md:px-[12%] pointer-events-none">
-    <div className="max-w-3xl mt-24 md:mt-0 pointer-events-auto text-[#333333] selection:bg-[#FFCB05]">
-      <span className="bg-[#FFCB05] px-4 py-1 rounded-full text-sm font-bold uppercase tracking-wider mb-4 inline-block">
-        The Sweetest Host in Town
-      </span>
-      <h1 className="text-6xl md:text-[6vw] font-bold leading-[0.9] tracking-tight drop-shadow-[0_2px_8px_rgba(255,255,255,0.35)]">
-        Little <span className="text-[#F26522] drop-shadow-[0_2px_8px_rgba(255,255,255,0.35)]">Jalebis</span>
-      </h1>
-      <p className="text-xl md:text-[2.2vw] mt-6 font-bold opacity-90 leading-relaxed max-w-lg">
-        India's First Tech-Driven, <br className="hidden md:block" />
-        <span className="underline decoration-[#FFCB05] decoration-4">Kids Centric</span> Catering Company.
-      </p>
-      <a href="/contact" className="mt-10 px-10 py-4 bg-[#F26522] text-white rounded-full font-bold text-lg hover:bg-[#d6561d] transition-all w-fit shadow-[6px_6px_0px_#333333] active:translate-y-1 active:shadow-none inline-block">
-        Plan Your Party ↓
-      </a>
-    </div>
-  </div>
-))
-
-HeroOverlay.displayName = 'HeroOverlay'
-
 const JalebiGhost = memo(
   ({ hidden, leftPercent, topPercent }: { hidden: boolean; leftPercent: number; topPercent: number }) => (
   <div
@@ -181,7 +159,23 @@ const ScrollContent = memo(() => (
   <div className="w-screen text-[#333333] selection:bg-[#FFCB05]">
     
     {/* --- Section 1: Hero --- */}
-    <section className="h-screen" />
+    <section className="h-screen flex flex-col justify-center px-6 md:px-[12%]">
+      <div className="max-w-3xl mt-24 md:mt-0">
+        <span className="bg-[#FFCB05] px-4 py-1 rounded-full text-sm font-bold uppercase tracking-wider mb-4 inline-block">
+          The Sweetest Host in Town
+        </span>
+          <h1 className="text-6xl md:text-[6vw] font-bold leading-[0.9] tracking-tight drop-shadow-[0_2px_8px_rgba(255,255,255,0.35)]">
+            Little <span className="text-[#F26522] drop-shadow-[0_2px_8px_rgba(255,255,255,0.35)]">Jalebis</span>
+          </h1>
+        <p className="text-xl md:text-[2.2vw] mt-6 font-bold opacity-90 leading-relaxed max-w-lg">
+          India's First Tech-Driven, <br className="hidden md:block"/>
+          <span className="underline decoration-[#FFCB05] decoration-4">Kids Centric</span> Catering Company.
+        </p>
+        <a href="/contact" className="mt-10 px-10 py-4 bg-[#F26522] text-white rounded-full font-bold text-lg hover:bg-[#d6561d] transition-all w-fit shadow-[6px_6px_0px_#333333] active:translate-y-1 active:shadow-none inline-block">
+          Plan Your Party ↓
+        </a>
+      </div>
+    </section>
     
     {/* --- Section 2: Services --- */}
     <section className="h-[150vh] md:h-screen flex flex-col justify-center items-end px-6 md:px-[12%]">
@@ -291,7 +285,6 @@ export default function Hero() {
     <>
       <FontStyle />
       <div className="relative h-screen bg-[#FFF9F2] text-[#333333] overflow-hidden" style={{ touchAction: 'pan-y' }}>
-        <HeroOverlay />
         <JalebiGhost
           hidden={sceneReady}
           leftPercent={ghostAnchor.leftPercent}
