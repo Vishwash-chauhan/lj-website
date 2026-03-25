@@ -9,7 +9,8 @@ import {
   Environment, 
   ScrollControls, 
   Scroll,
-  useScroll
+  useScroll,
+  useEnvironment
 } from '@react-three/drei'
 import * as THREE from 'three'
 import FinalCall from './FinalCall'
@@ -276,6 +277,11 @@ export default function Hero() {
   }, [scrollContentEl])
 
   React.useEffect(() => {
+    // Preload the local HDR file to avoid network stalls
+    useEnvironment.preload({ files: "/hdri/potsdamer_platz_1k.hdr" });
+  }, [])
+
+  React.useEffect(() => {
     // Defer Canvas mount until after first paint/idle to reduce TBT/TTI
     const handle = requestAnimationFrame(() => {
       if ('requestIdleCallback' in window) {
@@ -304,7 +310,7 @@ export default function Hero() {
           style={{ touchAction: 'pan-y', background: 'transparent' }}
         >
           <PerspectiveCamera makeDefault position={[0, 0, CAMERA_Z]} fov={CAMERA_FOV} />
-          <Environment preset="city" />
+          <Environment files="/hdri/potsdamer_platz_1k.hdr" />
           
           <Suspense fallback={null}>
             <ScrollControls pages={pages} damping={damping}>
