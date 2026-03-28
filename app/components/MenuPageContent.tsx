@@ -78,7 +78,7 @@ const menuItems: MenuItem[] = [
     {Name: "Chicken Dim-Sum Delights", Description: "Steamed, juicy chicken dim sums, each with a burst of flavors wrapped in soft, delicate dough.", PcsDisplay: "6", Unit: "PCS", Calculate: "1", Rate: 349, Category: "Table Snacks", VegNonVeg: "Non-Veg"},
     {Name: "Dim-Sum Delights", Description: "Steamed, juicy vegetable & chicken dim sums, each with a burst of flavors wrapped in soft, delicate dough.", PcsDisplay: "6", Unit: "PCS", Calculate: "1", Rate: 279, Category: "Table Snacks", VegNonVeg: "Veg & Non-Veg"},
     {Name: "Rollercoaster Spring Rolls", Description: "(Veg & Chicken) Roll into fun!, Spring Rolls - a rollercoaster of flavours", PcsDisplay: "6", Unit: "PCS", Calculate: "1", Rate: 339, Category: "Table Snacks", VegNonVeg: "Veg & Non-Veg"},
-    {Name: "Veg Snacker Burgers", Description: "Veg & Chicken Burgers made with secret sauce! Loved by kids & grown-ups.", PcsDisplay: "1", Unit: "PCS", Calculate: "1", Rate: 179, Category: "Table Snacks", VegNonVeg: "Veg"},
+    {Name: "Veg Snacker Burgers", Description: "Veg Burgers made with secret sauce! Loved by kids & grown-ups.", PcsDisplay: "1", Unit: "PCS", Calculate: "1", Rate: 179, Category: "Table Snacks", VegNonVeg: "Veg"},
     {Name: "Mini Paneer Popsicle Tikka Rolls", Description: "Paneer popsicles on a roll, just the right size for kiddie hands.", PcsDisplay: "3", Unit: "PCS", Calculate: "1", Rate: 299, Category: "Table Snacks", VegNonVeg: "Veg"},
 
     // MAIN COURSE - VEG
