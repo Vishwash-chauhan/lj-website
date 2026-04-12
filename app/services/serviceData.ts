@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import type { FAQItem } from '../components/Faq'
 
 export type ServiceKey = 'catering' | 'venue' | 'boxes'
 
@@ -18,6 +19,58 @@ export const SERVICES = {
     color: '#FFCB05',
     image: '🍕',
     location: null,
+    faqs: [
+      {
+        question: 'What is the best kids birthday catering service in Delhi NCR?',
+        answer:
+          'The best kids birthday catering service is one that offers kid-friendly menus, hygienic preparation, and complete setup support. Little Jalebis - Kids Catering & Delivery Co. specializes in curated menus designed specifically for kids parties, making it a preferred choice in Delhi NCR.',
+      },
+      {
+        question: 'Do you provide kids birthday catering at home in Gurgaon and Delhi?',
+        answer:
+          'Yes, Little Jalebis offers kids birthday catering at home in Gurgaon, Delhi, Noida, Faridabad, and Ghaziabad, including food, setup, and service staff for a completely hassle-free experience.',
+      },
+      {
+        question: 'What food items are included in kids birthday catering?',
+        answer:
+          'A typical kids catering menu includes: Mini burgers & pizzas, Pasta and sandwiches, Fries & potato snacks, Dim sums, Desserts & beverages. Menus at Little Jalebis are customizable based on age group and preferences.',
+      },
+      {
+        question: 'Do you offer live food counters for kids parties?',
+        answer:
+          'Yes, Little Jalebis provides live food counters for kids birthday parties, including pizza stations, pasta counters, and DIY food setups to make the event more interactive.',
+      },
+      {
+        question: 'How much does kids birthday catering cost in Delhi NCR?',
+        answer:
+          'The cost depends on number of guests, menu selection, and setup requirements. Little Jalebis offers custom packages for both small home parties and larger gatherings.',
+      },
+      {
+        question: 'Do you provide catering for small kids birthday parties?',
+        answer:
+          'Yes, Little Jalebis specializes in small party catering for kids birthday events (10-100 guests) as well as larger celebrations.',
+      },
+      {
+        question: "Is the food prepared keeping kids' taste in mind?",
+        answer:
+          'Absolutely. The menu is designed to be mild, familiar, and kid-approved, avoiding overly spicy or complex dishes.',
+      },
+      {
+        question: 'Do you provide staff and setup along with catering?',
+        answer:
+          'Yes, Little Jalebis offers end-to-end catering services, including food setup, serving staff, and coordination - so parents don\'t have to manage anything.',
+      },
+      {
+        question: 'Can the menu be customized for kids and adults separately?',
+        answer:
+          'Yes, you can choose a separate kids menu and adult menu, ensuring everyone at the party enjoys the food.',
+      },
+      {
+        question: 'Why choose Little Jalebis for kids birthday catering?',
+        answer:
+          'Little Jalebis focuses exclusively on kids events, offering: Kid-friendly curated menus, Reliable service & hygiene, Customization options, Stress-free execution.',
+      },
+    ] as FAQItem[],
     metadata: {
       title: 'Kids Party Catering | Little Jalebis',
       description:
@@ -46,6 +99,58 @@ export const SERVICES = {
       mapEmbed:
         'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3507.4355037238706!2d77.0998267!3d28.466428399999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d19f0584ac771%3A0x6beb70f895098438!2sLittle%20Jalebis%20-%20Kids%20Party%20House%20%26%20Catering%20Co.!5e0!3m2!1sen!2sin!4v1773344538768!5m2!1sen!2sin',
     },
+    faqs: [
+      {
+        question: 'Which is the best kids party venue in Gurgaon?',
+        answer:
+          'The best kids party venue is one that offers a safe space, catering, and complete setup in one place. Little Jalebis - Kids Party House is designed specifically for kids celebrations, making it a top choice in Gurgaon.',
+      },
+      {
+        question: 'Do you provide a kids party venue with catering in Gurgaon?',
+        answer:
+          'Yes, Little Jalebis Kids Party House offers venue + catering packages, so you don\'t have to coordinate with multiple vendors.',
+      },
+      {
+        question: 'What is included in a kids party venue package?',
+        answer:
+          'Typical inclusions: Party space, Seating & setup, Kids-friendly catering, Service staff. Little Jalebis offers customizable all-in-one party packages.',
+      },
+      {
+        question: 'Is the venue suitable for small and large parties?',
+        answer:
+          'Yes, the venue is suitable for small gatherings (10-20 guests), medium-sized parties (20-50 guests), and larger celebrations up to 80 guests.',
+      },
+      {
+        question: 'Is the venue safe for kids?',
+        answer:
+          'Yes, the space is designed to be child-friendly, safe, and comfortable for kids of all age groups.',
+      },
+      {
+        question: 'Can I customize the decoration and theme?',
+        answer:
+          'Yes, the venue allows custom decoration and themed setups, based on your child\'s preferences.',
+      },
+      {
+        question: 'Do you allow outside catering or is in-house catering available?',
+        answer:
+          'Little Jalebis offers in-house kids catering, ensuring better coordination and quality. This is recommended for a smooth experience.',
+      },
+      {
+        question: 'How early should I book the kids party venue?',
+        answer:
+          'It is recommended to book 10-15 days in advance, especially for weekends and peak dates.',
+      },
+      {
+        question: 'Is it better to host a kids party at a venue instead of home?',
+        answer:
+          'Yes, a venue provides more space, better organization, and no cleanup stress. This makes it a more convenient option for most parents.',
+      },
+      {
+        question: 'Why choose Little Jalebis Kids Party House in Gurgaon?',
+        answer:
+          'Because it offers a purpose-built kids party venue, kid-friendly catering by Little Jalebis, end-to-end setup & service, and a stress-free experience for parents.',
+      },
+    ] as FAQItem[],
     metadata: {
       title: 'Kids Party House | Little Jalebis',
       description:
@@ -82,6 +187,7 @@ export const SERVICES = {
   cta: string
   color: string
   image: string
+  faqs?: FAQItem[]
   location: {
     type: string
     name: string

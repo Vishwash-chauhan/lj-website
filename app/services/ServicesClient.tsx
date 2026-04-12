@@ -13,6 +13,7 @@ import FoodBoxesMenu from '../components/FoodBoxesMenu'
 import CateringProcess from '../components/CateringProcess'
 import NotAPlayzone from '../components/NotAPlayZone'
 import GalleryComponent from '../components/GalleryComponent'
+import Faq from '../components/Faq'
 import { getServicePath, SERVICE_KEYS, SERVICES, type ServiceKey } from './serviceData'
 
 interface ServicesClientProps {
@@ -58,7 +59,7 @@ const ServicesClient = ({ serviceKey }: ServicesClientProps) => {
   }
 
   return (
-    <div className="min-h-screen bg-[#FFF9F2] pt-20 md:pt-24 pb-12 md:pb-20 px-4 sm:px-6 md:px-12" style={{ fontFamily: "'Comic Neue', cursive" }}>
+    <div className="min-h-screen bg-[#FFF9F2] pt-20 md:pt-24 pb-5 md:pb-5 px-4 sm:px-6 md:px-12" style={{ fontFamily: "'Comic Neue', cursive" }}>
       
       {/* --- 1. Header --- */}
       <header className="max-w-4xl mx-auto text-center mb-10 md:mb-16">
@@ -164,6 +165,17 @@ const ServicesClient = ({ serviceKey }: ServicesClientProps) => {
       <div className="mt-10 md:mt-16">
         <TrustSection />
       </div>
+
+
+      {/* --- 5.5. FAQ Section --- */}
+      {SERVICES[activeTab].faqs && (
+        <div className="mt-10 md:mt-16">
+          <Faq
+            faqs={SERVICES[activeTab].faqs!}
+            title={SERVICES[activeTab].title}
+          />
+        </div>
+      )}
 
       {/* --- Portal for Food Boxes Menu --- */}
       {isFoodBoxesOpen && isMounted &&

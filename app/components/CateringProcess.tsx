@@ -39,15 +39,15 @@ const CateringProcess = () => {
   }
 
   return (
-    <section className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 bg-[#FFF9F2]" style={{ fontFamily: "'Comic Neue', cursive" }}>
+    <section className="py-5 sm:py-5 md:py-10 px-4 sm:px-6 bg-[#FFF9F2]" style={{ fontFamily: "'Comic Neue', cursive" }}>
       <div className="max-w-6xl mx-auto">
         
         {/* --- Header --- */}
-        <div className="text-center mb-10 md:mb-20">
+        <div className="text-center mb-5 md:mb-10">
           <h2 className="text-3xl sm:text-4xl md:text-7xl font-black text-[#333333] mb-4 md:mb-6 leading-tight">
             How It <span className="text-[#F26522]">Works?</span>
           </h2>
-          <div className="inline-block bg-[#333333] text-white px-4 sm:px-6 py-2 rounded-full font-black text-[10px] sm:text-xs md:text-sm uppercase tracking-[0.08em] sm:tracking-wide md:tracking-widest shadow-[3px_3px_0px_#FFCB05] md:shadow-[4px_4px_0px_#FFCB05]">
+          <div className="inline-block bg-[#F26522] text-white px-4 sm:px-6 py-2 rounded-full font-black text-[10px] sm:text-xs md:text-sm uppercase tracking-[0.08em] sm:tracking-wide md:tracking-widest shadow-[3px_3px_0px_#333333] md:shadow-[4px_4px_0px_#333333]">
             Simple. Stress-Free. Super Fun.
           </div>
         </div>
@@ -140,7 +140,7 @@ const CateringProcess = () => {
         </div>
 
         {/* --- Flexible Pricing Highlight --- */}
-        <div className="mt-10 md:mt-20 bg-white border-4 border-[#333333] rounded-[1.5rem] md:rounded-4xl p-4 sm:p-5 md:p-6 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6 shadow-[6px_6px_0px_#F26522] md:shadow-[8px_8px_0px_#F26522]">
+        <div className="mt-5 md:mt-10 bg-white border-4 border-[#333333] rounded-[1.5rem] md:rounded-4xl p-4 sm:p-5 md:p-6 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6 shadow-[6px_6px_0px_#F26522] md:shadow-[8px_8px_0px_#F26522]">
           <div className="text-3xl md:text-4xl">💸</div>
           <p className="text-sm sm:text-base md:text-xl font-black text-[#333333] text-center md:text-left leading-snug md:leading-normal">
             The Best Part? <span className="text-[#F26522]">No per-person charges</span> or minimum guarantees. Pay only for what you need!

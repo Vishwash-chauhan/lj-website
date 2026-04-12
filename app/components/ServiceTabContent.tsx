@@ -56,7 +56,7 @@ const ServiceTabContent: React.FC<ServiceTabContentProps> = ({
         <button
           type="button"
           onClick={onCtaClick}
-          className="w-full sm:w-auto px-6 sm:px-8 md:px-10 py-3 md:py-4 bg-[#333333] text-white rounded-xl md:rounded-2xl font-bold text-base md:text-lg hover:bg-[#F26522] transition-all transform hover:-rotate-1 active:scale-95"
+          className="w-full sm:w-auto px-6 sm:px-8 md:px-10 py-3 md:py-4 bg-[#F26522] text-white rounded-xl md:rounded-2xl font-bold text-base md:text-lg hover:bg-[#FFCB05] transition-all transform hover:-rotate-1 active:scale-95"
         >
           {cta}
         </button>
