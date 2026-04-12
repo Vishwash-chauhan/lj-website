@@ -1,6 +1,6 @@
 export default function BlogHeader() {
   return (
-    <div className="relative bg-gradient-to-br from-orange-50 via-white to-orange-100 overflow-hidden pt-24 pb-16">
+    <div className="relative overflow-hidden pt-24 pb-16">
       {/* Decorative background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-0 right-0 w-96 h-96 bg-orange-100 rounded-full blur-3xl opacity-40 -mr-32 -mt-32"></div>

@@ -104,6 +104,7 @@ export default async function BlogPostPage({
 
         <div
           className="prose prose-lg max-w-none text-gray-800 
+          prose-p:mb-6
           prose-headings:text-gray-900 prose-headings:font-bold
           prose-a:text-orange-500 prose-a:no-underline hover:prose-a:underline
           prose-strong:text-gray-900 prose-strong:font-semibold

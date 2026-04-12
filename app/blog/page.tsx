@@ -1,12 +1,13 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import BlogHeader from "@/app/components/BlogHeader";
-import BlogPostList from "@/app/components/BlogPostList";
-import type { BlogPostPreview } from "@/lib/blog";
+import BlogPostCard from "@/app/components/BlogPostCard";
+import type { BlogPost } from "@/lib/blog";
 
 export default function BlogPage() {
-  const [posts, setPosts] = useState<BlogPostPreview[]>([]);
+  const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -29,7 +30,7 @@ export default function BlogPage() {
     return (
       <div className="min-h-screen bg-white">
         <BlogHeader />
-        <div className="max-w-4xl mx-auto px-4 py-12">
+        <div className="max-w-3xl mx-auto px-4 py-6">
           <p className="text-center text-gray-600">Loading blogs...</p>
         </div>
       </div>
@@ -39,8 +40,16 @@ export default function BlogPage() {
   return (
     <div className="min-h-screen bg-white">
       <BlogHeader />
-      <div className="max-w-4xl mx-auto px-4 py-12">
-        <BlogPostList posts={posts} />
+      <div className="max-w-3xl mx-auto px-4 py-6">
+        <div className="space-y-8">
+          {posts.length === 0 ? (
+            <p className="text-center text-gray-400">No blog posts yet.</p>
+          ) : (
+            posts.map((post) => (
+              <BlogPostCard key={post.slug} post={post} />
+            ))
+          )}
+        </div>
       </div>
     </div>
   );
