@@ -14,6 +14,7 @@ import {
 } from '@react-three/drei'
 import * as THREE from 'three'
 import FinalCall from './FinalCall'
+import Footer from './Footer'
 
 const CAMERA_FOV = 50
 const CAMERA_Z = 5
@@ -206,6 +207,7 @@ const ScrollContent = memo(() => (
 
     {/* --- Section 3: Final Call --- */}
     <FinalCall />
+    <Footer />
   </div>
 ))
 
@@ -248,9 +250,9 @@ export default function Hero() {
       const contentElement = scrollContentEl.firstElementChild as HTMLElement | null
       const contentHeight = contentElement?.scrollHeight ?? scrollContentEl.scrollHeight ?? viewportHeight
 
-      // Keep a small buffer so footer remains reachable without leaving a large blank tail.
+      // Keep a very small buffer so footer remains reachable without leaving excessive blank space.
       const measuredPages = contentHeight / viewportHeight
-      const pageBuffer = isMobile ? 0.2 : 0.12
+      const pageBuffer = isMobile ? 0.02 : 0.02
       setPages(Math.max(1, measuredPages + pageBuffer))
     }
 
