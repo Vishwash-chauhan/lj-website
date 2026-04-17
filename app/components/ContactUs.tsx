@@ -29,7 +29,7 @@ const ContactUs = () => {
     setIsSubmitting(true)
 
     try {
-      const response = await fetch('https://n8n.vyaapaarniti.com/webhook-test/d174def4-e789-458b-a782-35480edb7f9e', {
+      const response = await fetch('https://n8n.vyaapaarniti.com/webhook/d174def4-e789-458b-a782-35480edb7f9e', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
