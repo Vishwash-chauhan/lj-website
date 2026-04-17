@@ -30,7 +30,7 @@ export default function BlogPostCard({ post }: BlogPostCardProps) {
           })}{" "}
           by {post.author}
         </p>
-        <p className="text-x0.5 md:text-xl mb-8 mx-auto font-bold opacity-80 text-gray-700">
+        <p className="text-sm sm:text-base md:text-lg font-bold opacity-80 text-gray-700">
           {post.description}
         </p>
         <span className="inline-block font-semibold text-orange-500 transition group-hover:translate-x-2">

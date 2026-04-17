@@ -14,6 +14,7 @@ import CateringProcess from '../components/CateringProcess'
 import NotAPlayzone from '../components/NotAPlayZone'
 import GalleryComponent from '../components/GalleryComponent'
 import Faq from '../components/Faq'
+import InstagramLink from '../components/InstagramLink'
 import { getServicePath, SERVICE_KEYS, SERVICES, type ServiceKey } from './serviceData'
 
 interface ServicesClientProps {
@@ -166,8 +167,13 @@ const ServicesClient = ({ serviceKey }: ServicesClientProps) => {
         <TrustSection />
       </div>
 
+      {/* --- 7. Instagram Section --- */}
+      <div className="mt-10 md:mt-16 max-w-6xl mx-auto">
+        <InstagramLink />
+      </div>
 
-      {/* --- 5.5. FAQ Section --- */}
+
+      {/* --- 8. FAQ Section --- */}
       {SERVICES[activeTab].faqs && (
         <div className="mt-10 md:mt-16">
           <Faq

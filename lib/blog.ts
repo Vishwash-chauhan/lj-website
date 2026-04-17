@@ -41,7 +41,7 @@ export function getBlogPost(slug: string): BlogPost {
   const fileContents = fs.readFileSync(filePath, "utf8");
   const { data, content } = matter(fileContents);
 
-  const htmlContent = marked(content);
+  const htmlContent = marked.parse(content, { async: false }) as string;
 
   return {
     slug,
@@ -52,7 +52,7 @@ export function getBlogPost(slug: string): BlogPost {
     image: data.image || "",
     imageAlt: data.imageAlt || "",
     content,
-    htmlContent: htmlContent as string,
+    htmlContent,
     metaTitle: data.metaTitle || "",
     metaDescription: data.metaDescription || "",
   };
