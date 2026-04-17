@@ -59,6 +59,9 @@ const ServicesClient = ({ serviceKey }: ServicesClientProps) => {
     routeToService(SERVICE_KEYS[nextIndex])
   }
 
+  const activeService = SERVICES[activeTab]
+  const activeServiceFaqs = 'faqs' in activeService ? activeService.faqs : undefined
+
   return (
     <div className="min-h-screen bg-[#FFF9F2] pt-20 md:pt-24 pb-5 md:pb-5 px-4 sm:px-6 md:px-12" style={{ fontFamily: "'Comic Neue', cursive" }}>
       
@@ -174,11 +177,11 @@ const ServicesClient = ({ serviceKey }: ServicesClientProps) => {
 
 
       {/* --- 8. FAQ Section --- */}
-      {SERVICES[activeTab].faqs && (
+      {activeServiceFaqs && (
         <div className="mt-10 md:mt-16">
           <Faq
-            faqs={SERVICES[activeTab].faqs!}
-            title={SERVICES[activeTab].title}
+            faqs={activeServiceFaqs}
+            title={activeService.title}
           />
         </div>
       )}
