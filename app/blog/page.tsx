@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import BlogHeader from "@/app/components/BlogHeader";
 import BlogPostCard from "@/app/components/BlogPostCard";
@@ -41,7 +40,7 @@ export default function BlogPage() {
     <div className="min-h-screen bg-white">
       <BlogHeader />
       <div className="max-w-3xl mx-auto px-4 py-6">
-        <div className="space-y-8">
+        <div className="space-y-12">
           {posts.length === 0 ? (
             <p className="text-center text-gray-400">No blog posts yet.</p>
           ) : (

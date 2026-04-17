@@ -8,7 +8,7 @@ interface BlogPostCardProps {
 
 export default function BlogPostCard({ post }: BlogPostCardProps) {
   return (
-    <Link href={`/blog/${post.slug}`}>
+    <Link href={`/blog/${post.slug}`} className="block">
       <article className="group cursor-pointer">
         <div className="mb-4 overflow-hidden rounded-lg">
           <img
