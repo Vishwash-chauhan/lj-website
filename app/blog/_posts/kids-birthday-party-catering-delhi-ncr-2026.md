@@ -65,7 +65,7 @@ High-intent search terms:
 
 A good kids party catering service in Delhi NCR always plans for both kids and adults.
 
-A balanced menu includes:
+### A balanced menu includes:
 
 - Kids-friendly items (mild and fun)
 - Adult options (paneer, dal, snacks)
@@ -88,10 +88,6 @@ Benefits:
 - Ideal for 10 to 50 guests
 
 ### 🏢 Venue Catering (Best for Larger Gatherings)
-
-Search intent:
-
-- kids birthday catering for party halls
 
 Benefits:
 
