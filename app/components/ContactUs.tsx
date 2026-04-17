@@ -29,7 +29,7 @@ const ContactUs = () => {
     setIsSubmitting(true)
 
     try {
-      const response = await fetch('https://n8n.vyaapaarniti.com/webhook/d174def4-e789-458b-a782-35480edb7f9e', {
+      const response = await fetch('https://n8n.vyaapaarniti.com/webhook-test/d174def4-e789-458b-a782-35480edb7f9e', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -121,22 +121,22 @@ const ContactUs = () => {
                 >
                   <div className="flex flex-col gap-2">
                     <label className="font-black text-[#F26522] uppercase text-[10px] sm:text-xs tracking-[0.08em] sm:tracking-widest">Full Name</label>
-                    <input required type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Ex: Rahul Sharma" className="p-3 md:p-4 text-sm md:text-base bg-[#FFF9F2] border-2 border-[#333333] rounded-xl md:rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-[#FFCB05] transition-all" />
+                    <input required type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Ex: Rahul Sharma" className="w-full p-3 md:p-4 text-sm md:text-base bg-[#FFF9F2] border-2 border-[#333333] rounded-xl md:rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-[#FFCB05] transition-all" />
                   </div>
 
                   <div className="flex flex-col gap-2">
                     <label className="font-black text-[#F26522] uppercase text-[10px] sm:text-xs tracking-[0.08em] sm:tracking-widest">Phone Number</label>
-                    <input required type="tel" name="phone" value={formData.phone} onChange={handleChange} placeholder="Ex: +91 99999 88888" className="p-3 md:p-4 text-sm md:text-base bg-[#FFF9F2] border-2 border-[#333333] rounded-xl md:rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-[#FFCB05] transition-all" />
+                    <input required type="tel" name="phone" value={formData.phone} onChange={handleChange} placeholder="Ex: +91 99999 88888" className="w-full p-3 md:p-4 text-sm md:text-base bg-[#FFF9F2] border-2 border-[#333333] rounded-xl md:rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-[#FFCB05] transition-all" />
                   </div>
 
                   <div className="flex flex-col gap-2">
                     <label className="font-black text-[#F26522] uppercase text-[10px] sm:text-xs tracking-[0.08em] sm:tracking-widest">Event Date & Time</label>
-                    <input type="datetime-local" name="eventDateTime" value={formData.eventDateTime} onChange={handleChange} className="p-3 md:p-4 text-sm md:text-base bg-[#FFF9F2] border-2 border-[#333333] rounded-xl md:rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-[#FFCB05] transition-all" />
+                    <input type="datetime-local" name="eventDateTime" value={formData.eventDateTime} onChange={handleChange} className="w-full p-3 md:p-4 text-sm md:text-base bg-[#FFF9F2] border-2 border-[#333333] rounded-xl md:rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-[#FFCB05] transition-all" />
                   </div>
 
                   <div className="flex flex-col gap-2">
                     <label className="font-black text-[#F26522] uppercase text-[10px] sm:text-xs tracking-[0.08em] sm:tracking-widest">Service Required</label>
-                    <select name="serviceType" value={formData.serviceType} onChange={handleChange} className="p-3 md:p-4 text-sm md:text-base bg-[#FFF9F2] border-2 border-[#333333] rounded-xl md:rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-[#FFCB05] transition-all cursor-pointer">
+                    <select name="serviceType" value={formData.serviceType} onChange={handleChange} className="w-full p-3 md:p-4 text-sm md:text-base bg-[#FFF9F2] border-2 border-[#333333] rounded-xl md:rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-[#FFCB05] transition-all cursor-pointer">
                       <option value="Catering">Catering</option>
                       <option value="Party House">Party House</option>
                       <option value="Catering + Party House">Catering + Party House</option>
@@ -145,7 +145,7 @@ const ContactUs = () => {
 
                   <div className="flex flex-col gap-2">
                     <label className="font-black text-[#F26522] uppercase text-[10px] sm:text-xs tracking-[0.08em] sm:tracking-widest">Food Preference</label>
-                    <select name="foodPreference" value={formData.foodPreference} onChange={handleChange} className="p-3 md:p-4 text-sm md:text-base bg-[#FFF9F2] border-2 border-[#333333] rounded-xl md:rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-[#FFCB05] transition-all cursor-pointer">
+                    <select name="foodPreference" value={formData.foodPreference} onChange={handleChange} className="w-full p-3 md:p-4 text-sm md:text-base bg-[#FFF9F2] border-2 border-[#333333] rounded-xl md:rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-[#FFCB05] transition-all cursor-pointer">
                       <option value="Veg Only">Veg Only</option>
                       <option value="Both (Veg & Non Veg)">Both (Veg & Non Veg)</option>
                     </select>
@@ -153,23 +153,23 @@ const ContactUs = () => {
 
                   <div className="flex flex-col gap-2">
                     <label className="font-black text-[#F26522] uppercase text-[10px] sm:text-xs tracking-[0.08em] sm:tracking-widest">Age Range of Kids</label>
-                    <input type="text" name="ageRange" value={formData.ageRange} onChange={handleChange} placeholder="Ex: 4-8 years" className="p-3 md:p-4 text-sm md:text-base bg-[#FFF9F2] border-2 border-[#333333] rounded-xl md:rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-[#FFCB05] transition-all" />
+                    <input type="text" name="ageRange" value={formData.ageRange} onChange={handleChange} placeholder="Ex: 4-8 years" className="w-full p-3 md:p-4 text-sm md:text-base bg-[#FFF9F2] border-2 border-[#333333] rounded-xl md:rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-[#FFCB05] transition-all" />
                   </div>
 
 
                   <div className="flex flex-col gap-2">
                     <label className="font-black text-[#F26522] uppercase text-[10px] sm:text-xs tracking-[0.08em] sm:tracking-widest">Pax (Total Guests)</label>
-                    <input type="text" name="pax" value={formData.pax} onChange={handleChange} placeholder="20 Kids 5 Adults" className="p-3 md:p-4 text-sm md:text-base bg-[#FFF9F2] border-2 border-[#333333] rounded-xl md:rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-[#FFCB05] transition-all" />
+                    <input type="text" name="pax" value={formData.pax} onChange={handleChange} placeholder="20 Kids 5 Adults" className="w-full p-3 md:p-4 text-sm md:text-base bg-[#FFF9F2] border-2 border-[#333333] rounded-xl md:rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-[#FFCB05] transition-all" />
                   </div>
 
                   <div className="flex flex-col gap-2">
                     <label className="font-black text-[#F26522] uppercase text-[10px] sm:text-xs tracking-[0.08em] sm:tracking-widest">Party Theme</label>
-                    <input type="text" name="theme" value={formData.theme} onChange={handleChange} placeholder="Ex: Space, Jungle, Mermaid" className="p-3 md:p-4 text-sm md:text-base bg-[#FFF9F2] border-2 border-[#333333] rounded-xl md:rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-[#FFCB05] transition-all" />
+                    <input type="text" name="theme" value={formData.theme} onChange={handleChange} placeholder="Ex: Space, Jungle, Mermaid" className="w-full p-3 md:p-4 text-sm md:text-base bg-[#FFF9F2] border-2 border-[#333333] rounded-xl md:rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-[#FFCB05] transition-all" />
                   </div>
 
                   <div className="flex flex-col gap-2 md:col-span-1"> {/* Keeping location half-width to fit alongside Pax if needed, or change to col-span-2 */}
                     <label className="font-black text-[#F26522] uppercase text-[10px] sm:text-xs tracking-[0.08em] sm:tracking-widest">Location / Venue Name</label>
-                    <input type="text" name="location" value={formData.location} onChange={handleChange} placeholder="Ex: South Delhi Residence" className="p-3 md:p-4 text-sm md:text-base bg-[#FFF9F2] border-2 border-[#333333] rounded-xl md:rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-[#FFCB05] transition-all" />
+                    <input type="text" name="location" value={formData.location} onChange={handleChange} placeholder="Ex: South Delhi Residence" className="w-full p-3 md:p-4 text-sm md:text-base bg-[#FFF9F2] border-2 border-[#333333] rounded-xl md:rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-[#FFCB05] transition-all" />
                   </div>
 
                   <div className="flex flex-col gap-2 md:col-span-2">
@@ -180,7 +180,7 @@ const ContactUs = () => {
                       onChange={handleChange}
                       placeholder="Tell us your event..."
                       rows={4}
-                      className="p-3 md:p-4 text-sm md:text-base bg-[#FFF9F2] border-2 border-[#333333] rounded-xl md:rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-[#FFCB05] transition-all resize-none"
+                      className="w-full p-3 md:p-4 text-sm md:text-base bg-[#FFF9F2] border-2 border-[#333333] rounded-xl md:rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-[#FFCB05] transition-all resize-none"
                     />
                   </div>
 
@@ -210,7 +210,7 @@ const ContactUs = () => {
                       onClick={() => setSubmitted(false)}
                       className="bg-[#F26522] text-white px-6 md:px-8 py-2.5 md:py-3 rounded-full text-sm md:text-base font-black hover:bg-[#d6561d] transition-colors shadow-[3px_3px_0px_#333333] md:shadow-[4px_4px_0px_#333333]"
                     >
-                      Wait, I have another question!
+                      Submit Another Inquiry
                     </button>
                   </div>
                 </motion.div>
