@@ -11,14 +11,16 @@ const ContactUs = () => {
     name: '',
     phone: '',
     eventDateTime: '',
+    serviceType: 'Catering',
     ageRange: '',
     foodPreference: 'Veg Only',
     theme: '',
     location: '',
-    pax: '' // Added Pax field
+    pax: '', // Added Pax field
+    message: ''
   })
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
@@ -42,11 +44,13 @@ const ContactUs = () => {
             name: '', 
             phone: '', 
             eventDateTime: '', 
+            serviceType: 'Catering',
             ageRange: '', 
             foodPreference: 'Veg Only', 
             theme: '', 
             location: '', 
-            pax: '' 
+            pax: '',
+            message: ''
         })
       } else {
         alert("Something went wrong. Please try again.")
@@ -131,6 +135,15 @@ const ContactUs = () => {
                   </div>
 
                   <div className="flex flex-col gap-2">
+                    <label className="font-black text-[#F26522] uppercase text-[10px] sm:text-xs tracking-[0.08em] sm:tracking-widest">Service Required</label>
+                    <select name="serviceType" value={formData.serviceType} onChange={handleChange} className="p-3 md:p-4 text-sm md:text-base bg-[#FFF9F2] border-2 border-[#333333] rounded-xl md:rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-[#FFCB05] transition-all cursor-pointer">
+                      <option value="Catering">Catering</option>
+                      <option value="Party House">Party House</option>
+                      <option value="Catering + Party House">Catering + Party House</option>
+                    </select>
+                  </div>
+
+                  <div className="flex flex-col gap-2">
                     <label className="font-black text-[#F26522] uppercase text-[10px] sm:text-xs tracking-[0.08em] sm:tracking-widest">Food Preference</label>
                     <select name="foodPreference" value={formData.foodPreference} onChange={handleChange} className="p-3 md:p-4 text-sm md:text-base bg-[#FFF9F2] border-2 border-[#333333] rounded-xl md:rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-[#FFCB05] transition-all cursor-pointer">
                       <option value="Veg Only">Veg Only</option>
@@ -157,6 +170,18 @@ const ContactUs = () => {
                   <div className="flex flex-col gap-2 md:col-span-1"> {/* Keeping location half-width to fit alongside Pax if needed, or change to col-span-2 */}
                     <label className="font-black text-[#F26522] uppercase text-[10px] sm:text-xs tracking-[0.08em] sm:tracking-widest">Location / Venue Name</label>
                     <input type="text" name="location" value={formData.location} onChange={handleChange} placeholder="Ex: South Delhi Residence" className="p-3 md:p-4 text-sm md:text-base bg-[#FFF9F2] border-2 border-[#333333] rounded-xl md:rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-[#FFCB05] transition-all" />
+                  </div>
+
+                  <div className="flex flex-col gap-2 md:col-span-2">
+                    <label className="font-black text-[#F26522] uppercase text-[10px] sm:text-xs tracking-[0.08em] sm:tracking-widest">Message</label>
+                    <textarea
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      placeholder="Tell us your event..."
+                      rows={4}
+                      className="p-3 md:p-4 text-sm md:text-base bg-[#FFF9F2] border-2 border-[#333333] rounded-xl md:rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-[#FFCB05] transition-all resize-none"
+                    />
                   </div>
 
                   <div className="md:col-span-2 pt-2 md:pt-4">
