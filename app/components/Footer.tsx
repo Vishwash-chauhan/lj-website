@@ -82,21 +82,27 @@ const Footer = () => {
 
       {/* Copyright Line & Legal Links */}
       <div className="max-w-7xl mt-12 pt-6 border-t border-gray-100 text-center w-full">
-        <div className="flex flex-col md:flex-row justify-center items-center gap-2 md:gap-4 mb-2">
-          <p className="text-xs md:text-sm font-bold text-[#333333] opacity-80">
-            © 2026 Little Jalebis. All rights reserved. | Kids Party House & Catering Co.
-          </p>
-          <span className="hidden md:inline text-gray-300">|</span>
-        </div>
+        <p className="text-xs md:text-sm font-bold text-[#333333] opacity-80 mb-2">
+          © 2026 Little Jalebis. All rights reserved. | Kids Party House & Catering Co.
+        </p>
         <p className="text-xs md:text-sm font-bold text-[#333333] opacity-80">
           Unit of NC Hospitality Pvt Ltd CIN : U55101DL2009PTC188581
         </p>
-          <Link 
-            href="/terms&conditions" 
-            className="text-xs md:text-sm font-bold text-[#F26522] hover:underline decoration-2 transition-all"
+        <div className="mt-3 flex items-center justify-center gap-3 text-xs md:text-sm font-bold">
+          <Link
+            href="/blog"
+            className="text-[#F26522] hover:underline decoration-2 transition-all"
+          >
+            Blogs
+          </Link>
+          <span className="text-gray-300">|</span>
+          <Link
+            href="/terms&conditions"
+            className="text-[#F26522] hover:underline decoration-2 transition-all"
           >
             Terms & Conditions
           </Link>
+        </div>
       </div>
     </footer>
   );
