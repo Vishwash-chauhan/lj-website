@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 
 const InstagramLink = () => {
   return (
-    <div className="flex justify-center p-8" style={{ fontFamily: "'Comic Neue', cursive" }}>
+    <div className="flex justify-center" style={{ fontFamily: "'Comic Neue', cursive" }}>
       <motion.a
         href="https://www.instagram.com/littlejalebis/?hl=en"
         target="_blank"
