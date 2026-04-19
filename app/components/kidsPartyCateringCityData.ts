@@ -75,12 +75,14 @@ export const gurgaonCityLanding: CityLandingConfigBundle = {
     whyChoosePoints: [
       'Kid-Approved Menus: Fun portions, playful names, and flavors that are loved by children of all ages and adults alike.',
       'Hygienic & Fresh: Prepared fresh on the day with strict hygiene standards.',
+      'Highly Flexible: Perfect for small intimate parties to large family celebrations.',
       'Customizable Options: Veg & Non-veg | Themed presentations | Dietary preferences.',
       'Full Service: Setup, live counters, service staff & cleanup included.',
+      'Wide Coverage: Serving homes and venues across Gurgaon including DLF Phases, Golf Course Road, Sushant Lok, Sector 56, 62, 50, 78 and more.',
     ],
     whyChooseHeadingHighlight: 'Kids Party Catering in Gurgaon?',
     locationsHeading: 'Locations: Serving all across Gurugram',
-    locationTags: ['DLF Areas', 'Golf Course Road', 'Sushant Lok', 'Sector 56', 'Sector 62', 'Sector 50', 'Sector 78', 'And more across Gurgaon'],
+    locationTags: ['DLF Areas', 'Golf Course Road', 'Sushant Lok', 'Sector 56', 'Sector 62', 'Sector 50', 'Sector 78', 'MG Road', 'Sohna Road', 'Cyber City', 'Palam Vihar', 'Nirvana Country', 'Sector 57', 'Sector 65', 'Sector 67', 'All Across Gurgaon'],
     servicesHeading: 'Our Kids Party Catering Services in Gurgaon',
     services: [
       'Home Birthday Party Catering',
@@ -88,6 +90,7 @@ export const gurgaonCityLanding: CityLandingConfigBundle = {
       'Themed Birthday Parties with Live Food Stations',
       'Pool Parties & Indoor Playdate Catering',
       'School Events, Picnics & Food Boxes',
+      'Customized Themed Food Presentations for Birthday Themes like Frozen, Superhero, Unicorn, Roblox, Dinosaur and more'
     ],
     faqs: [
       {
@@ -153,14 +156,24 @@ export const delhiCityLanding: CityLandingConfigBundle = {
     whyChoosePoints: [
       'Kid-Approved Menus: Fun portions, playful names, and flavors that are loved by children of all ages and adults alike.',
       'Hygienic & Fresh: Prepared fresh on the day with strict hygiene standards.',
+      'Highly Flexible: Perfect for small intimate parties to large family celebrations.',
       'Customizable Options: Veg & Non-veg | Themed presentations | Dietary preferences.',
       'Full Service: Setup, live counters, service staff & cleanup included.',
+      'Strong Coverage: Serving all major areas across Delhi with strong coverage in every part of Delhi.',
     ],
     whyChooseHeadingHighlight: 'Kids Party Catering in Delhi?',
     locationsHeading: 'Locations: Serving all across Delhi NCR with strong coverage in every part of Delhi.',
     locationTags: [
-      'South Delhi: GK, Saket, Malviya Nagar, Defence Colony, Vasant Kunj',
-      'East Delhi: Mayur Vihar, Preet Vihar, Laxmi Nagar',
+      'South Delhi',
+      'GK',
+      'Saket',
+      'Malviya Nagar',
+      'Defence Colony',
+      'Vasant Kunj',
+      'East Delhi',
+      'Mayur Vihar',
+      'Preet Vihar',
+      'Laxmi Nagar',
       'Central Delhi',
       'West Delhi',
       'Dwarka',
@@ -175,6 +188,7 @@ export const delhiCityLanding: CityLandingConfigBundle = {
       'Pool Parties & Indoor Playdate Catering',
       'School Events, Picnics & Food Boxes',
       'Kids Party Food Delivery across Delhi',
+      'Customized Themed Food Presentations for Birthday Themes like Frozen, Superhero, Unicorn, Roblox, Dinosaur and more'
     ],
     faqs: [
       {
@@ -250,9 +264,10 @@ export const noidaCityLanding: CityLandingConfigBundle = {
     whyChoosePoints: [
       'Kid-Approved Menus: Fun portions, playful names, and flavors loved by children and adults alike.',
       'Hygienic & Fresh: Prepared fresh on the event day with strict hygiene protocols.',
+      'Highly Flexible: Perfect for small intimate parties to large family celebrations.',
       'Customizable Options: Veg & Non-veg | Themed presentations | Special dietary requests.',
       'Full Service: Setup, live counters, service staff & complete cleanup included.',
-      'Wide Coverage: Serving all major sectors across Noida & Greater Noida for busy families.',
+      'Wide Coverage: Serving all major sectors across Noida & Greater Noida',
     ],
     whyChooseHeadingHighlight: 'Kids Party Catering in Noida?',
     locationsHeading: 'Wide Coverage: Serving all major sectors across Noida & Greater Noida for busy families.',
@@ -263,7 +278,16 @@ export const noidaCityLanding: CityLandingConfigBundle = {
       'Sector 120',
       'Sector 150',
       'Sector 75',
+      'Sector 137',
+      'Sector 142',
+      'Sector 93A',
+      'Sector 104',
+      'Sector 44',
+      'Noida Expressway',
+      'Jaypee Wish Town',
       'Greater Noida',
+      'Greater Noida West',
+      'Pari Chowk',
       'Noida Extension',
     ],
     servicesHeading: 'Our Kids Party Catering Services in Noida',
@@ -271,8 +295,9 @@ export const noidaCityLanding: CityLandingConfigBundle = {
       'Home Birthday Party Catering',
       'Themed Birthday Parties with Live Food Stations',
       'Pool Parties & Indoor Playdate Catering',
-      'School Events, Picnics & Return Gift Food Boxes',
+      'School Events, Picnics & Food Boxes',
       'Kids Party Food Delivery across Noida & Greater Noida',
+      'Customized Themed Food Presentations for Birthday Themes like Frozen, Superhero, Unicorn, Roblox, Dinosaur and more'
     ],
     faqs: [
       {
@@ -339,6 +364,7 @@ export const faridabadCityLanding: CityLandingConfigBundle = {
     whyChoosePoints: [
       'Kid-Approved Menus: Fun portions, playful names, and flavors loved by children of all ages and adults alike.',
       'Hygienic & Fresh: Prepared fresh on the day with strict hygiene standards.',
+      'Highly Flexible: Perfect for small intimate parties to large family celebrations.',
       'Customizable Options: Veg & Non-veg | Themed presentations | Dietary preferences.',
       'Full Service: Setup, live counters, service staff & complete cleanup included.',
       'Wide Coverage: Serving all major sectors and societies across Faridabad and Greater Faridabad.',
@@ -358,15 +384,21 @@ export const faridabadCityLanding: CityLandingConfigBundle = {
       'Sector 82',
       'Sector 86',
       'Sector 89',
-      'Sainik Colony',
+      'Sector 21D',
+      'Sector 46',
+      'Sector 49',
+      'Sector 84',
+      'Sector 85',
+      'All Across Faridabad',
     ],
     servicesHeading: 'Our Kids Party Catering Services in Faridabad',
     services: [
       'Home Birthday Party Catering',
       'Themed Birthday Parties with Live Food Stations',
       'Pool Parties & Indoor Playdate Catering',
-      'School Events, Picnics & Return Gift Food Boxes',
+      'School Events, Picnics & Food Boxes',
       'Kids Party Food Delivery across Faridabad',
+      'Customized Themed Food Presentations for Birthday Themes like Frozen, Superhero, Unicorn, Roblox, Dinosaur and more'
     ],
     faqs: [
       {
@@ -461,14 +493,22 @@ export const ghaziabadCityLanding: CityLandingConfigBundle = {
       'Shipra Suncity',
       'Crossing Republik',
       'Siddharth Vihar',
+      'Wave City',
+      'Loni',
+      'Modinagar',
+      'Vijay Nagar',
+      'Patel Nagar',
+      'Govindpuram',
+      'All Across Ghaziabad',
     ],
     servicesHeading: 'Our Kids Party Catering Services in Ghaziabad',
     services: [
       'Home Birthday Party Catering (Small & Large)',
       'Themed Birthday Parties with Live Food Stations',
       'Pool Parties & Indoor Playdate Catering',
-      'School Events, Picnics & Return Gift Food Boxes',
+      'School Events, Picnics & Food Boxes',
       'Kids Party Food Delivery across Ghaziabad',
+      'Customized Themed Food Presentations for Birthday Themes like Frozen, Superhero, Unicorn, Roblox, Dinosaur and more',    
     ],
     faqs: [
       {

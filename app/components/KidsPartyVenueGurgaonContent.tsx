@@ -55,7 +55,6 @@ const specialPoints = [
 const venueFeatures = [
   'Indoor air-conditioned party area + open-air extension',
   'Capacity: Up to 100 guests',
-  'Flexible time slots',
   'Custom decor support',
   'Safe and clean play-friendly zones',
   'Excellent lighting and ambiance for photography',
@@ -147,7 +146,6 @@ export default function KidsPartyVenueGurgaonContent() {
               'Enough space for kids to move around, play, dance, and enjoy without feeling cramped',
               'Excellent natural light and photography-friendly corners',
               'Easy access to both indoor seating and outdoor extension for games or live counters',
-              'A calm yet festive ambiance that keeps children engaged while parents can relax',
             ].map((item) => (
               <div key={item} className="flex items-start gap-3 rounded-xl border-2 border-[#333333] bg-[#FFF9F2] p-4">
                 <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 border-[#333333] bg-[#FFCB05] font-black text-[#333333]">
