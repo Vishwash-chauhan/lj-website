@@ -1,40 +1,11 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import BlogHeader from "@/app/components/BlogHeader";
 import BlogPostCard from "@/app/components/BlogPostCard";
-import type { BlogPost } from "@/lib/blog";
+import { getAllBlogPosts } from "@/lib/blog";
 
-export default function BlogPage() {
-  const [posts, setPosts] = useState<BlogPost[]>([]);
-  const [loading, setLoading] = useState(true);
+export const revalidate = 3600;
 
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const res = await fetch("/api/blogs");
-        const data = await res.json();
-        setPosts(data);
-      } catch (error) {
-        console.error("Error fetching blogs:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchPosts();
-  }, []);
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-white">
-        <BlogHeader />
-        <div className="max-w-3xl mx-auto px-4 py-6">
-          <p className="text-center text-gray-600">Loading blogs...</p>
-        </div>
-      </div>
-    );
-  }
+export default async function BlogPage() {
+  const posts = await getAllBlogPosts();
 
   return (
     <div className="min-h-screen bg-white">
