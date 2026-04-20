@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { createPortal } from 'react-dom'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -20,6 +21,14 @@ import { getServicePath, SERVICE_KEYS, SERVICES, type ServiceKey } from './servi
 interface ServicesClientProps {
   serviceKey: ServiceKey
 }
+
+const CATERING_CITY_LINKS = [
+  { label: 'Delhi', href: '/services/kids-party-catering-delhi' },
+  { label: 'Gurgaon', href: '/services/kids-party-catering-gurgaon' },
+  { label: 'Noida', href: '/services/kids-party-catering-noida' },
+  { label: 'Faridabad', href: '/services/kids-party-catering-faridabad' },
+  { label: 'Ghaziabad', href: '/services/kids-party-catering-ghaziabad' },
+]
 
 const ServicesClient = ({ serviceKey }: ServicesClientProps) => {
   const router = useRouter()
@@ -184,6 +193,30 @@ const ServicesClient = ({ serviceKey }: ServicesClientProps) => {
             title={activeService.title}
           />
         </div>
+      )}
+
+      {/* --- 9. City Links For Catering Hub --- */}
+      {activeTab === 'catering' && (
+        <section className="mt-10 md:mt-16 px-4 sm:px-6">
+          <div className="max-w-6xl mx-auto rounded-[1.5rem] border-4 border-[#333333] bg-white p-5 md:p-6 shadow-[6px_6px_0px_#FFCB05]">
+            <h3 className="text-2xl sm:text-3xl font-black text-[#333333]">Explore Kids Party Catering by City</h3>
+            <p className="mt-2 text-sm sm:text-base font-bold text-[#333333]/70">
+              Choose your city to view localized catering details, coverage areas, and FAQs.
+            </p>
+            <div className="mt-4 flex flex-wrap gap-2.5">
+              {CATERING_CITY_LINKS.map((city) => (
+                <Link
+                  key={city.href}
+                  href={city.href}
+                  className="inline-flex items-center gap-1 rounded-full border-2 border-[#333333] bg-[#F26522] px-3 py-1.5 text-xs sm:text-sm font-black text-white shadow-[3px_3px_0px_#333333] hover:-translate-y-0.5 hover:bg-[#FFCB05] hover:text-[#333333] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#333333] focus-visible:ring-offset-2 transition-all"
+                >
+                  Kids Party Catering in {city.label}
+                  <span aria-hidden="true">↗</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
       )}
 
       {/* --- Portal for Food Boxes Menu --- */}

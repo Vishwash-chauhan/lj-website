@@ -36,8 +36,17 @@ interface KidsPartyCateringCityLandingProps {
   config: KidsPartyCateringCityConfig
 }
 
+const CITY_PAGE_LINKS = [
+  { cityName: 'Delhi', href: '/services/kids-party-catering-delhi' },
+  { cityName: 'Gurgaon', href: '/services/kids-party-catering-gurgaon' },
+  { cityName: 'Noida', href: '/services/kids-party-catering-noida' },
+  { cityName: 'Faridabad', href: '/services/kids-party-catering-faridabad' },
+  { cityName: 'Ghaziabad', href: '/services/kids-party-catering-ghaziabad' },
+]
+
 export default function KidsPartyCateringCityLanding({ config }: KidsPartyCateringCityLandingProps) {
   const whatsappUrl = `https://wa.me/918130964374?text=${encodeURIComponent(config.whatsappMessage)}`
+  const relatedCityLinks = CITY_PAGE_LINKS.filter((city) => city.cityName.toLowerCase() !== config.cityName.toLowerCase())
 
   return (
     <div className="bg-[#FFF9F2] pt-20 md:pt-24 pb-12" style={{ fontFamily: "'Comic Neue', cursive" }}>
@@ -132,11 +141,54 @@ export default function KidsPartyCateringCityLanding({ config }: KidsPartyCateri
               {config.locationTags.map((tag) => (
                 <span
                   key={tag}
-                  className="rounded-full border-2 border-[#333333] bg-white px-3 py-1.5 text-xs sm:text-sm font-black text-[#333333]"
+                  className="rounded-full border-2 border-[#333333]/40 bg-white/70 px-3 py-1.5 text-xs sm:text-sm font-black text-[#333333]/75"
                 >
                   {tag}
                 </span>
               ))}
+            </div>
+          </div>
+
+          <div className="mt-6 md:mt-8 rounded-[1.5rem] border-4 border-[#333333] bg-white p-5 md:p-6 shadow-[6px_6px_0px_#FFCB05]">
+            <h3 className="text-xl md:text-2xl font-black text-[#333333]">Related City Pages</h3>
+            <div className="mt-4 flex flex-wrap gap-2.5">
+              {relatedCityLinks.map((city) => (
+                <Link
+                  key={city.href}
+                  href={city.href}
+                  className="inline-flex items-center gap-1 rounded-full border-2 border-[#333333] bg-[#F26522] px-3 py-1.5 text-xs sm:text-sm font-black text-white shadow-[3px_3px_0px_#333333] hover:-translate-y-0.5 hover:bg-[#FFCB05] hover:text-[#333333] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#333333] focus-visible:ring-offset-2 transition-all"
+                >
+                  Kids Party Catering in {city.cityName}
+                  <span aria-hidden="true">↗</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-6 md:mt-8 rounded-[1.5rem] border-4 border-[#333333] bg-white p-5 md:p-6 shadow-[6px_6px_0px_#F26522]">
+            <h3 className="text-xl md:text-2xl font-black text-[#333333]">More Services</h3>
+            <div className="mt-4 flex flex-wrap gap-2.5">
+              <Link
+                href="/services/kids-party-catering"
+                className="inline-flex items-center gap-1 rounded-full border-2 border-[#333333] bg-[#F26522] px-3 py-1.5 text-xs sm:text-sm font-black text-white shadow-[3px_3px_0px_#333333] hover:-translate-y-0.5 hover:bg-[#FFCB05] hover:text-[#333333] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#333333] focus-visible:ring-offset-2 transition-all"
+              >
+                Kids Party Catering Services
+                <span aria-hidden="true">↗</span>
+              </Link>
+              <Link
+                href="/services/food-boxes"
+                className="inline-flex items-center gap-1 rounded-full border-2 border-[#333333] bg-[#F26522] px-3 py-1.5 text-xs sm:text-sm font-black text-white shadow-[3px_3px_0px_#333333] hover:-translate-y-0.5 hover:bg-[#FFCB05] hover:text-[#333333] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#333333] focus-visible:ring-offset-2 transition-all"
+              >
+                Kids Food Boxes
+                <span aria-hidden="true">↗</span>
+              </Link>
+              <Link
+                href="/services"
+                className="inline-flex items-center gap-1 rounded-full border-2 border-[#333333] bg-[#F26522] px-3 py-1.5 text-xs sm:text-sm font-black text-white shadow-[3px_3px_0px_#333333] hover:-translate-y-0.5 hover:bg-[#FFCB05] hover:text-[#333333] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#333333] focus-visible:ring-offset-2 transition-all"
+              >
+                Explore All Services
+                <span aria-hidden="true">↗</span>
+              </Link>
             </div>
           </div>
         </div>

@@ -110,16 +110,11 @@ export default function KidsPartyVenueGurgaonContent() {
               </div>
             </div>
 
-            <div className="space-y-4">
+            <div>
               <img
-                src="https://placehold.co/900x620/FFEFD8/333333?text=Kids+Party+House+Gurgaon"
-                alt="Kids party venue in Gurgaon"
+                src="https://res.cloudinary.com/dwffrfajl/image/upload/v1776688571/Kids_Party_Venue_Gurugram_Gurgaon_South_Delhi_lsq4hu.svg"
+                alt="Themed kids party venue and catering setup in Gurgaon"
                 className="w-full rounded-[1.5rem] border-4 border-[#333333] shadow-[6px_6px_0px_#F26522]"
-              />
-              <img
-                src="https://placehold.co/900x400/FFF6E9/333333?text=Indoor+Outdoor+Party+Space"
-                alt="Indoor and outdoor kids party venue"
-                className="w-full rounded-[1.2rem] border-4 border-[#333333]"
               />
             </div>
           </div>
@@ -186,6 +181,33 @@ export default function KidsPartyVenueGurgaonContent() {
                 <p className="font-bold text-sm sm:text-base md:text-lg text-[#333333] leading-relaxed">{point}</p>
               </article>
             ))}
+          </div>
+
+          <div className="mt-6 md:mt-8 rounded-[1.5rem] border-4 border-[#333333] bg-white p-5 md:p-6 shadow-[6px_6px_0px_#F26522]">
+            <h3 className="text-xl md:text-2xl font-black text-[#333333]">More Services</h3>
+            <div className="mt-4 flex flex-wrap gap-2.5">
+              <Link
+                href="/services/kids-party-catering"
+                className="inline-flex items-center gap-1 rounded-full border-2 border-[#333333] bg-[#F26522] px-3 py-1.5 text-xs sm:text-sm font-black text-white shadow-[3px_3px_0px_#333333] hover:-translate-y-0.5 hover:bg-[#FFCB05] hover:text-[#333333] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#333333] focus-visible:ring-offset-2 transition-all"
+              >
+                Kids Party Catering Services
+                <span aria-hidden="true">↗</span>
+              </Link>
+              <Link
+                href="/services/food-boxes"
+                className="inline-flex items-center gap-1 rounded-full border-2 border-[#333333] bg-[#F26522] px-3 py-1.5 text-xs sm:text-sm font-black text-white shadow-[3px_3px_0px_#333333] hover:-translate-y-0.5 hover:bg-[#FFCB05] hover:text-[#333333] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#333333] focus-visible:ring-offset-2 transition-all"
+              >
+                Kids Food Boxes
+                <span aria-hidden="true">↗</span>
+              </Link>
+              <Link
+                href="/services"
+                className="inline-flex items-center gap-1 rounded-full border-2 border-[#333333] bg-[#F26522] px-3 py-1.5 text-xs sm:text-sm font-black text-white shadow-[3px_3px_0px_#333333] hover:-translate-y-0.5 hover:bg-[#FFCB05] hover:text-[#333333] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#333333] focus-visible:ring-offset-2 transition-all"
+              >
+                Explore All Services
+                <span aria-hidden="true">↗</span>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
