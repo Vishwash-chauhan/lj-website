@@ -59,7 +59,7 @@ export const gurgaonCityLanding: CityLandingConfigBundle = {
     mainParagraphs: [
       'Planning a kids birthday party in Gurgaon is exciting, but the food often becomes the biggest worry. At Little Jalebis, we solve this completely with playful menus loved by children of all ages and adults as well.',
       'Our food is freshly prepared on the day of the event with strict hygiene standards. We focus on kid-friendly portions, fun presentations, and flavors that children genuinely enjoy (no more half-eaten plates or wasted food). From crispy fries and cheesy nuggets to mini pizzas and pasta, every dish is crafted to bring smiles and empty plates.',
-      "Whether you\'re hosting a small home playdate, a grand themed birthday party, a pool party, or a school event, we bring everything right to your doorstep or venue.",
+      "Whether you\'re hosting a small home party, a grand themed birthday party, a pool party, or a school event, we bring everything right to your doorstep or venue.",
       "Whether you\'re hosting at home in DLF Phase 1, Golf Course Road, Sushant Lok, Sector 56, or anywhere across Gurgaon, we bring fresh, delicious, and beautifully presented food right to your doorstep. No more boring buffets or wasted food - just smiles, empty plates, and happy memories.",
       'We are a trusted provider of kids party catering in Gurgaon for all celebrations.',
       "Ready to make your child\'s birthday the talk of Gurgaon? Let\'s plan it together.",
@@ -78,7 +78,7 @@ export const gurgaonCityLanding: CityLandingConfigBundle = {
     ],
     whyChooseHeadingHighlight: 'Kids Party Catering in Gurgaon?',
     locationsHeading: 'Locations: Serving all across Gurugram',
-    locationTags: ['DLF Areas', 'Golf Course Road', 'Sushant Lok', 'Sector 56', 'Sector 62', 'Sector 50', 'Sector 78', 'MG Road', 'Sohna Road', 'Cyber City', 'Palam Vihar', 'Nirvana Country', 'Sector 57', 'Sector 65', 'Sector 67', 'All Across Gurgaon'],
+    locationTags: ['DLF Areas', 'Golf Course Road', 'Sushant Lok','Sector 1 - 115', 'Sector 56', 'Sector 62', 'Sector 50', 'Sector 78', 'MG Road', 'Sohna Road', 'Cyber City', 'Palam Vihar', 'Nirvana Country', 'Sector 57', 'Sector 65', 'Sector 67', 'All Across Gurgaon'],
     servicesHeading: 'Our Kids Party Catering Services in Gurgaon',
     services: [
       'Home Birthday Party Catering',
@@ -168,6 +168,7 @@ export const delhiCityLanding: CityLandingConfigBundle = {
       'Laxmi Nagar',
       'Central Delhi',
       'West Delhi',
+      'North Delhi',
       'Dwarka',
       'Rohini',
       'Pitampura',
@@ -260,6 +261,7 @@ export const noidaCityLanding: CityLandingConfigBundle = {
     whyChooseHeadingHighlight: 'Kids Party Catering in Noida?',
     locationsHeading: 'Wide Coverage: Serving all major sectors across Noida & Greater Noida for busy families.',
     locationTags: [
+      'Sector 1 - 163',
       'Sector 62',
       'Sector 50',
       'Sector 78',
@@ -356,6 +358,7 @@ export const faridabadCityLanding: CityLandingConfigBundle = {
     whyChooseHeadingHighlight: 'Kids Party Catering in Faridabad?',
     locationsHeading: 'Wide Coverage: Serving all major sectors and societies across Faridabad and Greater Faridabad.',
     locationTags: [
+      'Sector 1 - 89',
       'Sector 14',
       'Sector 15',
       'Sector 16',
