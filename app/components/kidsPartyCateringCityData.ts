@@ -52,12 +52,8 @@ export const gurgaonCityLanding: CityLandingConfigBundle = {
       "At Little Jalebis, we solve this completely. As India\'s first kids-centric catering brand, we specialize in kids party catering in Gurgaon with playful menus designed for both kids and adults.",
     ],
     heroImage: {
-      src: 'https://placehold.co/900x620/FFEFD8/333333?text=Kids+Party+Catering+Setup',
-      alt: 'Kids party catering setup in Gurgaon',
-    },
-    secondaryImage: {
-      src: 'https://placehold.co/900x400/FFF6E9/333333?text=Live+Food+Counter+Placeholder',
-      alt: 'Live food counter for kids party',
+      src: 'https://res.cloudinary.com/dwffrfajl/image/upload/v1776682854/Themed_Kids_Party_Catering_Gurugram_Gurgaon_tszcwg.svg',
+      alt: 'Themed kids party catering setup in Gurugram (Gurgaon)',
     },
     mainHeading: 'The Best Kids Party Catering in Gurgaon for Unforgettable Parties',
     mainParagraphs: [
@@ -134,12 +130,8 @@ export const delhiCityLanding: CityLandingConfigBundle = {
       "At Little Jalebis, we solve this completely. As India\'s first kids-centric catering brand, we specialize in kids party catering in Delhi with playful menus designed for both kids and adults.",
     ],
     heroImage: {
-      src: 'https://placehold.co/900x620/FFEFD8/333333?text=Delhi+Kids+Party+Catering',
-      alt: 'Kids party catering setup in Delhi',
-    },
-    secondaryImage: {
-      src: 'https://placehold.co/900x400/FFF6E9/333333?text=Live+Counters+Placeholder',
-      alt: 'Live food counters for kids party in Delhi',
+      src: 'https://res.cloudinary.com/dwffrfajl/image/upload/v1776682854/Themed_Kids_Party_Catering_Delhi_b2cuut.svg',
+      alt: 'Themed kids party catering setup in Delhi',
     },
     mainHeading: 'The Best Kids Party Catering in Delhi for Stress-Free Celebrations',
     mainParagraphs: [
@@ -241,12 +233,8 @@ export const noidaCityLanding: CityLandingConfigBundle = {
       'Looking for fun, healthy and reliable kids party catering in Noida? Little Jalebis offers fun, hygienic, kid-approved menus with home delivery, setup & service. Perfect for busy parents all across Noida and Greater Noida. Book hassle-free birthday catering today!',
     ],
     heroImage: {
-      src: 'https://placehold.co/900x620/FFEFD8/333333?text=Noida+Kids+Party+Catering',
-      alt: 'Kids party catering setup in Noida',
-    },
-    secondaryImage: {
-      src: 'https://placehold.co/900x400/FFF6E9/333333?text=Live+Counters+Placeholder',
-      alt: 'Live food counters for kids party in Noida',
+      src: 'https://res.cloudinary.com/dwffrfajl/image/upload/v1776682854/Themed_Kids_Party_Catering_Noida_mhvpnm.svg',
+      alt: 'Themed kids party catering setup in Noida',
     },
     mainHeading: 'The Best Kids Party Catering in Noida for Busy Parents',
     mainParagraphs: [
@@ -342,12 +330,8 @@ export const faridabadCityLanding: CityLandingConfigBundle = {
       'We bring India\'s first kids-centric catering experience right to your doorstep in Faridabad, making every celebration special and stress-free.',
     ],
     heroImage: {
-      src: 'https://placehold.co/900x620/FFEFD8/333333?text=Faridabad+Kids+Party+Catering',
-      alt: 'Kids party catering setup in Faridabad',
-    },
-    secondaryImage: {
-      src: 'https://placehold.co/900x400/FFF6E9/333333?text=Live+Counters+Placeholder',
-      alt: 'Live food counters for kids party in Faridabad',
+      src: 'https://res.cloudinary.com/dwffrfajl/image/upload/v1776682854/Themed_Kids_Party_Catering_Faridabad_lazi4v.svg',
+      alt: 'Themed kids party catering setup in Faridabad',
     },
     mainHeading: 'The Best Kids Party Catering in Faridabad for Family Celebrations',
     mainParagraphs: [
@@ -451,12 +435,8 @@ export const ghaziabadCityLanding: CityLandingConfigBundle = {
       'At Little Jalebis, we make it simple and joyful. As India\'s first kids-centric catering brand, we specialize in kids party catering in Ghaziabad, offering flexible, fun, and fully customizable menus that suit every type and size of celebration.',
     ],
     heroImage: {
-      src: 'https://placehold.co/900x620/FFEFD8/333333?text=Ghaziabad+Kids+Party+Catering',
-      alt: 'Kids party catering setup in Ghaziabad',
-    },
-    secondaryImage: {
-      src: 'https://placehold.co/900x400/FFF6E9/333333?text=Live+Counters+Placeholder',
-      alt: 'Live food counters for kids party in Ghaziabad',
+      src: 'https://res.cloudinary.com/dwffrfajl/image/upload/v1776682855/Themed_Kids_Party_Catering_Ghaziabad_ms4nse.svg',
+      alt: 'Themed kids party catering setup in Ghaziabad',
     },
     mainHeading: 'The Best Kids Party Catering in Ghaziabad for Busy Families',
     mainParagraphs: [

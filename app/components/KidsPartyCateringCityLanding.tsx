@@ -2,6 +2,7 @@ import Link from 'next/link'
 
 import CateringProcess from './CateringProcess'
 import Faq, { type FAQItem } from './Faq'
+import GalleryComponent from './GalleryComponent'
 import Testimonials from './Testimonials'
 
 export interface KidsPartyCateringCityConfig {
@@ -10,10 +11,6 @@ export interface KidsPartyCateringCityConfig {
   h1: string
   introParagraphs: string[]
   heroImage: {
-    src: string
-    alt: string
-  }
-  secondaryImage: {
     src: string
     alt: string
   }
@@ -72,16 +69,11 @@ export default function KidsPartyCateringCityLanding({ config }: KidsPartyCateri
               </div>
             </div>
 
-            <div className="space-y-4">
+            <div>
               <img
                 src={config.heroImage.src}
                 alt={config.heroImage.alt}
                 className="w-full rounded-[1.5rem] border-4 border-[#333333] shadow-[6px_6px_0px_#F26522]"
-              />
-              <img
-                src={config.secondaryImage.src}
-                alt={config.secondaryImage.alt}
-                className="w-full rounded-[1.2rem] border-4 border-[#333333]"
               />
             </div>
           </div>
@@ -110,6 +102,10 @@ export default function KidsPartyCateringCityLanding({ config }: KidsPartyCateri
           )}
         </div>
       </section>
+
+      <div className="mt-8 md:mt-10">
+        <GalleryComponent category="catering" />
+      </div>
 
       <section className="px-4 sm:px-6 mt-10 md:mt-14">
         <div className="max-w-6xl mx-auto">
