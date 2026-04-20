@@ -52,8 +52,8 @@ export const gurgaonCityLanding: CityLandingConfigBundle = {
       "At Little Jalebis, we solve this completely. As India\'s first kids-centric catering brand, we specialize in kids party catering in Gurgaon with playful menus designed for both kids and adults.",
     ],
     heroImage: {
-      src: 'https://res.cloudinary.com/dwffrfajl/image/upload/v1776682854/Themed_Kids_Party_Catering_Gurugram_Gurgaon_tszcwg.svg',
-      alt: 'Themed kids party catering setup in Gurugram (Gurgaon)',
+      src: 'https://res.cloudinary.com/dwffrfajl/image/upload/v1776688571/Kids_Party_Venue_Gurugram_Gurgaon_South_Delhi_lsq4hu.svg',
+      alt: 'Themed kids party catering setup in Gurugram (Gurgaon) (South Delhi)',
     },
     mainHeading: 'The Best Kids Party Catering in Gurgaon for Unforgettable Parties',
     mainParagraphs: [
