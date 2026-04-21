@@ -72,9 +72,9 @@ export const SERVICES = {
       },
     ] as FAQItem[],
     metadata: {
-      title: 'Kids Party Catering | Little Jalebis',
+      title: 'Kids Party Catering in Delhi NCR | Little Jalebis',
       description:
-        'Custom kids party catering in Delhi NCR and Gurgaon with child-friendly menus, hygienic preparation, live counters, and flexible packages.',
+        'Little Jalebis for kids party catering in Delhi NCR. Fun menus, live counters & hassle-free birthday setups for kids and families. For booking, call us today!',
     },
   },
   venue: {
@@ -152,9 +152,9 @@ export const SERVICES = {
       },
     ] as FAQItem[],
     metadata: {
-      title: 'Kids Party House | Little Jalebis',
+      title: 'Kids Party House in Gurgaon | Little Jalebis',
       description:
-        'Book the Little Jalebis kids party house in Gurugram for birthdays and celebrations with indoor-outdoor space, catering, and custom party setups.',
+        'Looking for a kids party house in Gurgaon with Little Jalebis. Enjoy a fun, safe & hassle-free birthday venue with food, decor & activities for kids. Book now!',
     },
   },
   boxes: {
@@ -171,9 +171,9 @@ export const SERVICES = {
     image: '🍱',
     location: null,
     metadata: {
-      title: 'Food Boxes | Little Jalebis',
+      title: 'Kids Food Boxes for Parties | Little Jalebis',
       description:
-        'Order kids food boxes and delivered party meals for schools, picnics, and birthdays with hygienic packaging and customisable portions.',
+        'Kids food boxes for parties from Little Jalebis. Hygienic, fun & hassle-free meals delivered across Delhi NCR for birthdays & events. For more info. Call now!',
     },
   },
 } as const satisfies Record<ServiceKey, {

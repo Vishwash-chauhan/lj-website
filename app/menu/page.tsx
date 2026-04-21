@@ -1,5 +1,12 @@
+import type { Metadata } from 'next'
 import MenuPageContent from '../components/MenuPageContent'
 import InstagramLink from '../components/InstagramLink'
+
+export const metadata: Metadata = {
+  title: 'Kids Party Catering Menu | Little Jalebis',
+  description:
+    'Explore kids party catering menu by Little Jalebis. Choose fun, tasty & hassle-free food options for birthdays and events. Book now easily online today.',
+}
 
 export default function MenuPage() {
   return (
