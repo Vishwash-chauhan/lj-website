@@ -39,7 +39,7 @@ function createCityLandingMetadata(seo: CityLandingSeo): Metadata {
 export const gurgaonCityLanding: CityLandingConfigBundle = {
   seo: {
     url: 'https://littlejalebis.com/services/kids-party-catering-gurgaon',
-    title: 'Kids Party Catering in Gurgaon | Best Birthday Catering for Children - Little Jalebis',
+    title: 'Kids Party Catering in Gurgaon | Little Jalebis Fun Parties',
     description:
       'Looking for reliable kids party catering in Gurgaon? Little Jalebis offers fun, hygienic, kid-approved menus with home delivery, setup & service. Book hassle-free birthday catering in DLF, Golf Course Road, Sushant Lok & more.',
   },
@@ -117,7 +117,7 @@ export const gurgaonCityLanding: CityLandingConfigBundle = {
 export const delhiCityLanding: CityLandingConfigBundle = {
   seo: {
     url: 'https://littlejalebis.com/services/kids-party-catering-delhi',
-    title: 'Kids Party Catering in Delhi | Best Birthday Catering for Children - Little Jalebis',
+    title: 'Kids Party Catering in Delhi | Little Jalebis Birthday Experts',
     description:
       'Looking for reliable kids party catering in Delhi? Little Jalebis offers fun, hygienic, kid-approved menus with home delivery, setup & service across South Delhi, East Delhi, Central Delhi & more. Book hassle-free birthday catering today!',
   },
@@ -222,7 +222,7 @@ export const delhiCityLanding: CityLandingConfigBundle = {
 export const noidaCityLanding: CityLandingConfigBundle = {
   seo: {
     url: 'https://littlejalebis.com/services/kids-party-catering-noida',
-    title: 'Kids Party Catering in Noida | Best Birthday Catering for Children - Little Jalebis',
+    title: 'Kids Party Catering in Noida | Little Jalebis Tasty Menus',
     description:
       'Looking for reliable kids party catering in Noida? Little Jalebis offers fun, hygienic, kid-approved menus with home delivery, setup & service. Perfect for busy parents all across Noida and Greater Noida. Book hassle-free birthday catering today!',
   },
@@ -318,7 +318,7 @@ export const noidaCityLanding: CityLandingConfigBundle = {
 export const faridabadCityLanding: CityLandingConfigBundle = {
   seo: {
     url: 'https://littlejalebis.com/services/kids-party-catering-faridabad',
-    title: 'Kids Party Catering in Faridabad | Best Birthday Catering for Children - Little Jalebis',
+    title: 'Kids Party Catering in Faridabad | Little Jalebis Party Experts',
     description:
       'Looking for reliable kids party catering in Faridabad? Little Jalebis offers fun, hygienic, kid-approved menus with home delivery, setup & service. Perfect for families in Faridabad, Greater Faridabad & more. Book hassle-free birthday catering today!',
   },
@@ -425,7 +425,7 @@ export const faridabadCityLanding: CityLandingConfigBundle = {
 export const ghaziabadCityLanding: CityLandingConfigBundle = {
   seo: {
     url: 'https://littlejalebis.com/services/kids-party-catering-ghaziabad',
-    title: 'Kids Party Catering in Ghaziabad | Best Birthday Catering for Children - Little Jalebis',
+    title: 'Kids Party Catering in Ghaziabad | Little Jalebis Experts',
     description:
       'Looking for reliable kids party catering in Ghaziabad? Little Jalebis offers fun, hygienic, kid-approved menus with home delivery, setup & service. Perfect for busy parents across Ghaziabad. Book hassle-free birthday catering today!',
   },
