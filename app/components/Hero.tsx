@@ -159,9 +159,9 @@ const ScrollContent = memo(() => (
         <span className="bg-[#FFCB05] px-4 py-1 rounded-full text-sm font-bold uppercase tracking-wider mb-4 inline-block">
           The Sweetest Host in Town
         </span>
-          <h1 className="text-6xl md:text-[6vw] font-bold leading-[0.9] tracking-tight drop-shadow-[0_2px_8px_rgba(255,255,255,0.35)]">
+          <div className="text-6xl md:text-[6vw] font-bold leading-[0.9] tracking-tight drop-shadow-[0_2px_8px_rgba(255,255,255,0.35)]" aria-hidden="true">
             Little <span className="text-[#F26522] drop-shadow-[0_2px_8px_rgba(255,255,255,0.35)]">Jalebis</span>
-          </h1>
+          </div>
         <p className="text-xl md:text-[2.2vw] mt-6 font-bold opacity-90 leading-relaxed max-w-lg">
           India's First Tech-Driven, <br className="hidden md:block"/>
           <span className="underline decoration-[#FFCB05] decoration-4">Kids Centric</span> Catering Company.

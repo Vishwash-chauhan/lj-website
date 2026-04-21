@@ -5,8 +5,8 @@ author: "Little Jalebis Team"
 description: "Planning a kids birthday party in Delhi NCR? Use this practical catering guide to choose the right menu, setup, and service for a smooth celebration."
 image: "https://res.cloudinary.com/dwffrfajl/image/upload/v1776021168/1_iakbkd.svg"
 imageAlt: "Kids birthday catering setup"
-metaTitle: "Kids Birthday Party Catering in Delhi NCR | Best Kids Caterers Gurgaon Noida"
-metaDescription: "Looking for kids birthday catering in Delhi NCR? Discover menu ideas, food options & tips. Book the best kids party caterers in Gurgaon, Noida & Delhi."
+metaTitle: "Best Kids Party Caterers in Delhi NCR, Gurgaon & Noida"
+metaDescription: "Best Kids Party Venue in Gurgaon: A Complete Guide to Stress-Free Birthday Celebrations"
 ---
 
 Planning a kids birthday party sounds fun until you start managing the food. From picky eaters to portion planning and timely service, catering can quickly become the most stressful part of the celebration.

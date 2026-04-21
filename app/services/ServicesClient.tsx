@@ -71,15 +71,21 @@ const ServicesClient = ({ serviceKey }: ServicesClientProps) => {
   const activeService = SERVICES[activeTab]
   const activeServiceFaqs = 'faqs' in activeService ? activeService.faqs : undefined
 
+  const h1Labels: Record<ServiceKey, { prefix: string; highlight: string; subtitle: string }> = {
+    venue: { prefix: 'Kids Party', highlight: 'House', subtitle: 'A purpose-built venue for kids celebrations — with catering, setup & fun, all in one place.' },
+    catering: { prefix: 'Kids Party', highlight: 'Catering', subtitle: 'Kid-friendly menus, live counters & hassle-free birthday catering across Delhi NCR.' },
+    boxes: { prefix: 'Food Delivery', highlight: '& Boxes', subtitle: 'Hygienic, individually packed meals delivered to your door for parties, schools & events.' },
+  }
+
   return (
     <div className="min-h-screen bg-[#FFF9F2] pt-20 md:pt-24 pb-5 md:pb-5 px-4 sm:px-6 md:px-12" style={{ fontFamily: "'Comic Neue', cursive" }}>
       
       {/* --- 1. Header --- */}
       <header className="max-w-4xl mx-auto text-center mb-10 md:mb-16">
         <h1 className="text-3xl sm:text-4xl md:text-7xl font-bold text-[#333333] mb-3 md:mb-4 leading-tight">
-          Our <span className="text-[#F26522]">Services</span>
+          {h1Labels[activeTab].prefix} <span className="text-[#F26522]">{h1Labels[activeTab].highlight}</span>
         </h1>
-        <p className="text-sm sm:text-base md:text-xl font-bold opacity-70">Everything you need to host a legendary kids' party, all under one roof.</p>
+        <p className="text-sm sm:text-base md:text-xl font-bold opacity-70">{h1Labels[activeTab].subtitle}</p>
       </header>
 
       {/* --- 2. Tabs --- */}
