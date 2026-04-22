@@ -8,6 +8,7 @@ export default function Page() {
       <Hero />
       <section className="bg-[#FFF9F2]">
       </section>
+      <Footer />
     </>
   )
 }

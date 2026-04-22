@@ -136,7 +136,7 @@ const Footer = () => {
                 <Link
                   key={page.href}
                   href={page.href}
-                  className="rounded-xl border border-[#F26522]/10 px-4 py-3 transition-colors hover:bg-[#FFF4EC] hover:text-[#F26522]"
+                  className="py-1 transition-colors hover:text-[#F26522] md:rounded-xl md:border md:border-[#F26522]/10 md:px-4 md:py-3 md:hover:bg-[#FFF4EC]"
                 >
                   {page.label}
                 </Link>
