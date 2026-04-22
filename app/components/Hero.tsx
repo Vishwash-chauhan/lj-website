@@ -14,7 +14,6 @@ import {
 } from '@react-three/drei'
 import * as THREE from 'three'
 import FinalCall from './FinalCall'
-import Footer from './Footer'
 
 const CAMERA_FOV = 50
 const CAMERA_Z = 5
@@ -138,7 +137,7 @@ const JalebiGhost = memo(
   >
     <Image
       src="/jalebi-ghostt.png"
-      alt=""
+      alt="Kids party mascot logo - Little Jalebis"
       width={520}
       height={520}
       priority
@@ -163,7 +162,7 @@ const ScrollContent = memo(() => (
             Little <span className="text-[#F26522] drop-shadow-[0_2px_8px_rgba(255,255,255,0.35)]">Jalebis</span>
           </div>
         <p className="text-xl md:text-[2.2vw] mt-6 font-bold opacity-90 leading-relaxed max-w-lg">
-          India's First Tech-Driven, <br className="hidden md:block"/>
+          India&apos;s First Tech-Driven, <br className="hidden md:block"/>
           <span className="underline decoration-[#FFCB05] decoration-4">Kids Centric</span> Catering Company.
         </p>
         <a href="/contact" className="mt-10 px-10 py-4 bg-[#F26522] text-white rounded-full font-bold text-lg hover:bg-[#d6561d] transition-all w-fit shadow-[6px_6px_0px_#333333] active:translate-y-1 active:shadow-none inline-block">

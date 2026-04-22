@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 export default function TestimonialsHeader() {
   return (
     <section
@@ -9,9 +11,12 @@ export default function TestimonialsHeader() {
           <div className="w-full lg:w-1/2">
             <div className="relative">
               <div className="relative z-10 overflow-hidden rounded-[2rem] md:rounded-[3rem] border-4 border-[#333333] shadow-[8px_8px_0px_#FFCB05] md:shadow-[12px_12px_0px_#FFCB05]">
-                <img
-                  src="https://res.cloudinary.com/dwffrfajl/image/upload/v1772107546/Clients_k3tlnj.jpg"
+                <Image
+                  src="https://res.cloudinary.com/dwffrfajl/image/upload/f_auto,q_auto:eco,w_1400,dpr_auto/v1772107546/Clients_k3tlnj.jpg"
                   alt="Party"
+                  width={1400}
+                  height={933}
+                  sizes="(max-width: 1023px) calc(100vw - 2rem), 560px"
                   className="w-full h-auto"
                 />
               </div>

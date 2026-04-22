@@ -14,29 +14,35 @@ interface GalleryItem {
 
 const GALLERY_DATA: GalleryItem[] = [
 // --- VENUE IMAGES ---
-  { id: 1, category: 'venue', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/v1773428481/Venue_Img_1_erlysh.jpg', alt: 'Little Jalebis Party Venue', size: 'large' },
-  { id: 2, category: 'venue', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/v1773428485/Venue_Img_2_lp20j3.jpg', alt: '', size: 'medium' },
-  { id: 3, category: 'venue', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/v1773428482/Venue_Img_3_azcqrh.jpg', alt: '', size: 'medium' },
-  { id: 4, category: 'venue', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/v1773428485/Venue_Img_4_l3elwf.jpg', alt: '', size: 'small' },
-  { id: 5, category: 'venue', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/v1773428480/Venue_Img_5_ovdiiy.jpg', alt: '', size: 'small' },
-  { id: 6, category: 'venue', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/v1773428480/Venue_Img_6_swsmwv.jpg', alt: 'r', size: 'medium' },
-  { id: 7, category: 'venue', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/v1773428480/Venue_Img_7_hk6pyv.jpg', alt: '', size: 'small' },
-  { id: 8, category: 'venue', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/v1773428482/Venue_Img_8_ro4rso.jpg', alt: '', size: 'small' },
+  { id: 1, category: 'venue', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/f_auto,q_auto:eco,w_1400,dpr_auto/v1773428481/Venue_Img_1_erlysh.jpg', alt: 'Little Jalebis Party Venue', size: 'large' },
+  { id: 2, category: 'venue', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/f_auto,q_auto:eco,w_1400,dpr_auto/v1773428485/Venue_Img_2_lp20j3.jpg', alt: 'Kids party venue with decor and catering', size: 'medium' },
+  { id: 3, category: 'venue', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/f_auto,q_auto:eco,w_1400,dpr_auto/v1773428482/Venue_Img_3_azcqrh.jpg', alt: 'Kids birthday venue with decor and seating', size: 'medium' },
+  { id: 4, category: 'venue', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/f_auto,q_auto:eco,w_1400,dpr_auto/v1773428485/Venue_Img_4_l3elwf.jpg', alt: 'Decorated kids party venue', size: 'small' },
+  { id: 5, category: 'venue', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/f_auto,q_auto:eco,w_1400,dpr_auto/v1773428480/Venue_Img_5_ovdiiy.jpg', alt: 'Kids birthday venue with catering', size: 'small' },
+  { id: 6, category: 'venue', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/f_auto,q_auto:eco,w_1400,dpr_auto/v1773428480/Venue_Img_6_swsmwv.jpg', alt: 'r', size: 'medium' },
+  { id: 7, category: 'venue', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/f_auto,q_auto:eco,w_1400,dpr_auto/v1773428480/Venue_Img_7_hk6pyv.jpg', alt: 'Colorful kids party setup', size: 'small' },
+  { id: 8, category: 'venue', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/f_auto,q_auto:eco,w_1400,dpr_auto/v1773428482/Venue_Img_8_ro4rso.jpg', alt: 'Themed kids birthday party setup', size: 'small' },
 
   // --- CATERING IMAGES ---
   { id: 9, category: 'catering', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/v1773428715/Catering_Img_1_zplwhq.jpg', alt: 'Kid-Friendly Catering', size: 'large' },
-  { id: 10, category: 'catering', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/v1773428715/Catering_Img_2_dd4six.jpg', alt: 'Fresh Party Snacks', size: 'medium' },
+  { id: 10, category: 'catering', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/f_auto,q_auto:eco,w_1400,dpr_auto/v1773428715/Catering_Img_2_dd4six.jpg', alt: 'Fresh Party Snacks', size: 'medium' },
   { id: 11, category: 'catering', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/v1773428715/Catering_Img_3_f0mwrm.jpg', alt: 'Delicious Bites', size: 'medium' },
-  { id: 12, category: 'catering', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/v1773428713/Catering_Img_4_rynoqn.jpg', alt: 'Hygienic Food Setup', size: 'small' },
-  { id: 13, category: 'catering', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/v1773428713/Catering_Img_5_mi7gul.jpg', alt: 'Custom Menu Options', size: 'small' },
-  { id: 14, category: 'catering', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/v1773428713/Catering_Img_6_c0lus9.jpg', alt: 'Party Catering Service', size: 'medium' },
-  { id: 15, category: 'catering', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/v1773428713/Catering_Img_7_yrwgrj.jpg', alt: 'Healthy Kids Meals', size: 'small' },
-  { id: 16, category: 'catering', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/v1773428713/Catering_Img_8_vge2xr.jpg', alt: 'Dessert Station', size: 'small' },
-  { id: 17, category: 'catering', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/v1773428716/Catering_Img_9_d17xod.jpg', alt: 'Signature Drinks', size: 'small' },
+  { id: 12, category: 'catering', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/f_auto,q_auto:eco,w_1400,dpr_auto/v1773428713/Catering_Img_4_rynoqn.jpg', alt: 'Hygienic Food Setup', size: 'small' },
+  { id: 13, category: 'catering', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/f_auto,q_auto:eco,w_1400,dpr_auto/v1773428713/Catering_Img_5_mi7gul.jpg', alt: 'Custom Menu Options', size: 'small' },
+  { id: 14, category: 'catering', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/f_auto,q_auto:eco,w_1400,dpr_auto/v1773428713/Catering_Img_6_c0lus9.jpg', alt: 'Party Catering Service', size: 'medium' },
+  { id: 15, category: 'catering', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/f_auto,q_auto:eco,w_1400,dpr_auto/v1773428713/Catering_Img_7_yrwgrj.jpg', alt: 'Healthy Kids Meals', size: 'small' },
+  { id: 16, category: 'catering', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/f_auto,q_auto:eco,w_1400,dpr_auto/v1773428713/Catering_Img_8_vge2xr.jpg', alt: 'Dessert Station', size: 'small' },
+  { id: 17, category: 'catering', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/f_auto,q_auto:eco,w_1400,dpr_auto/v1773428716/Catering_Img_9_d17xod.jpg', alt: 'Signature Drinks', size: 'small' },
 ];
 
 interface GalleryComponentProps {
   category: 'catering' | 'venue'
+}
+
+const desktopSizesByTile: Record<GalleryItem['size'], string> = {
+  large: '(max-width: 767px) calc(100vw - 2rem), (max-width: 1279px) 50vw, 620px',
+  medium: '(max-width: 767px) calc(100vw - 2rem), (max-width: 1279px) 50vw, 620px',
+  small: '(max-width: 767px) calc(100vw - 2rem), (max-width: 1279px) 25vw, 300px',
 }
 
 const GalleryComponent: React.FC<GalleryComponentProps> = ({ category }) => {
@@ -80,7 +86,7 @@ const GalleryComponent: React.FC<GalleryComponentProps> = ({ category }) => {
                 alt={filteredImages[mobileImageIndex].alt}
                 fill
                 className="object-cover"
-                sizes="100vw"
+                sizes="(max-width: 767px) calc(100vw - 2rem), 420px"
               />
             </div>
           </motion.div>
@@ -135,7 +141,7 @@ const GalleryComponent: React.FC<GalleryComponentProps> = ({ category }) => {
                   alt={image.alt}
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  sizes="(max-width: 1200px) 50vw, 25vw"
+                  sizes={desktopSizesByTile[image.size]}
                 />
                 
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-8">
