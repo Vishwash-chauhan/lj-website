@@ -6,14 +6,13 @@ import { Canvas, useFrame } from '@react-three/fiber'
 import { 
   Float, 
   PerspectiveCamera, 
-  Environment, 
   ScrollControls, 
   Scroll,
-  useScroll,
-  useEnvironment
+  useScroll
 } from '@react-three/drei'
 import * as THREE from 'three'
 import FinalCall from './FinalCall'
+import Footer from './Footer'
 
 const CAMERA_FOV = 50
 const CAMERA_Z = 5
@@ -207,6 +206,8 @@ const ScrollContent = memo(() => (
     {/* --- Section 3: Final Call --- */}
     <FinalCall />
 
+    <Footer />
+
 
 
   </div>
@@ -314,14 +315,10 @@ export default function Hero() {
           style={{ touchAction: 'pan-y', background: 'transparent' }}
         >
           <PerspectiveCamera makeDefault position={[0, 0, CAMERA_Z]} fov={CAMERA_FOV} />
-          {isMobileDevice ? (
-            <>
-              <ambientLight intensity={1.5} />
-              <directionalLight position={[5, 5, 5]} intensity={2} color="#fff9f2" />
-            </>
-          ) : (
-            <Environment files="/hdri/potsdamer_platz_1k.hdr" />
-          )}
+          <>
+            <ambientLight intensity={1.5} />
+            <directionalLight position={[5, 5, 5]} intensity={2} color="#fff9f2" />
+          </>
           
           <Suspense fallback={null}>
             <ScrollControls pages={pages} damping={damping}>
