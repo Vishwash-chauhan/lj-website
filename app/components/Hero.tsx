@@ -221,6 +221,7 @@ export default function Hero() {
   const [sceneReady, setSceneReady] = React.useState(false)
   const [ghostAnchor, setGhostAnchor] = React.useState({ leftPercent: 50, topPercent: 50 })
   const [canvasMounted, setCanvasMounted] = React.useState(false)
+  const [isMobileDevice, setIsMobileDevice] = React.useState(false)
 
   React.useEffect(() => {
     const updateGhostAnchor = () => {
@@ -280,8 +281,7 @@ export default function Hero() {
   }, [scrollContentEl])
 
   React.useEffect(() => {
-    // Preload the local HDR file to avoid network stalls
-    useEnvironment.preload({ files: "/hdri/potsdamer_platz_1k.hdr" });
+    setIsMobileDevice(window.innerWidth < 768)
   }, [])
 
   React.useEffect(() => {
@@ -309,11 +309,19 @@ export default function Hero() {
         {canvasMounted && (
         <Canvas
           shadows
+          dpr={isMobileDevice ? [1, 1.5] : [1, 2]}
           gl={{ alpha: true }}
           style={{ touchAction: 'pan-y', background: 'transparent' }}
         >
           <PerspectiveCamera makeDefault position={[0, 0, CAMERA_Z]} fov={CAMERA_FOV} />
-          <Environment files="/hdri/potsdamer_platz_1k.hdr" />
+          {isMobileDevice ? (
+            <>
+              <ambientLight intensity={1.5} />
+              <directionalLight position={[5, 5, 5]} intensity={2} color="#fff9f2" />
+            </>
+          ) : (
+            <Environment files="/hdri/potsdamer_platz_1k.hdr" />
+          )}
           
           <Suspense fallback={null}>
             <ScrollControls pages={pages} damping={damping}>
