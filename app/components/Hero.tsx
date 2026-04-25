@@ -1,7 +1,6 @@
 'use client'
 
 import React, { useRef, Suspense, memo, useMemo } from 'react'
-import Image from 'next/image'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { 
   Float, 
@@ -12,7 +11,6 @@ import {
 } from '@react-three/drei'
 import * as THREE from 'three'
 import FinalCall from './FinalCall'
-import Footer from './Footer'
 
 const CAMERA_FOV = 50
 const CAMERA_Z = 5
@@ -66,20 +64,10 @@ function isMobileJalebiMode(viewportWidth: number, viewportHeight: number) {
   return sceneViewportWidth < MOBILE_VIEWPORT_WIDTH_THRESHOLD
 }
 
-function projectedTopPercent(worldY: number) {
-  const fovRadians = THREE.MathUtils.degToRad(CAMERA_FOV)
-  const ndcY = worldY / (CAMERA_Z * Math.tan(fovRadians / 2))
-  return (1 - ndcY) * 50
-}
-
-function SceneContent({ onReady }: { onReady?: () => void }) {
+function SceneContent() {
   const meshRef = useRef<THREE.Group>(null)
   const scroll = useScroll()
   const lastDispatchedOffset = useRef(-1)
-
-  React.useEffect(() => {
-    onReady?.()
-  }, [onReady])
 
   useFrame((state) => {
     const scrollOffset = scroll.offset 
@@ -126,27 +114,6 @@ function SceneContent({ onReady }: { onReady?: () => void }) {
     </Float>
   )
 }
-
-const JalebiGhost = memo(
-  ({ hidden, leftPercent, topPercent }: { hidden: boolean; leftPercent: number; topPercent: number }) => (
-  <div
-    className={`absolute z-10 pointer-events-none transition-opacity duration-700 ease-out ${hidden ? 'opacity-0' : 'opacity-100'} -translate-x-1/2 -translate-y-1/2`}
-    style={{ left: `${leftPercent}%`, top: `${topPercent}%` }}
-    aria-hidden="true"
-  >
-    <Image
-      src="/jalebi-ghostt.png"
-      alt="Kids party mascot logo - Little Jalebis"
-      width={520}
-      height={520}
-      priority
-      className="w-[220px] h-[220px] md:w-[520px] md:h-[520px] object-contain"
-      sizes="(max-width: 768px) 220px, 520px"
-    />
-  </div>
-))
-
-JalebiGhost.displayName = 'JalebiGhost'
 
 const ScrollContent = memo(() => (
   <div className="w-screen text-[#333333] selection:bg-[#FFCB05]">
@@ -206,7 +173,7 @@ const ScrollContent = memo(() => (
     {/* --- Section 3: Final Call --- */}
     <FinalCall />
 
-    <Footer />
+
 
 
 
@@ -219,27 +186,8 @@ export default function Hero() {
   const [pages, setPages] = React.useState(4)
   const [damping, setDamping] = React.useState(0.12)
   const [scrollContentEl, setScrollContentEl] = React.useState<HTMLDivElement | null>(null)
-  const [sceneReady, setSceneReady] = React.useState(false)
-  const [ghostAnchor, setGhostAnchor] = React.useState({ leftPercent: 50, topPercent: 50 })
   const [canvasMounted, setCanvasMounted] = React.useState(false)
   const [isMobileDevice, setIsMobileDevice] = React.useState(false)
-
-  React.useEffect(() => {
-    const updateGhostAnchor = () => {
-      const mobileMode = isMobileJalebiMode(window.innerWidth, window.innerHeight)
-      const worldY = mobileMode ? 0.8 : 0
-      setGhostAnchor({
-        leftPercent: 50,
-        topPercent: projectedTopPercent(worldY),
-      })
-    }
-
-    updateGhostAnchor()
-    window.addEventListener('resize', updateGhostAnchor)
-    return () => {
-      window.removeEventListener('resize', updateGhostAnchor)
-    }
-  }, [])
 
   React.useEffect(() => {
     if (!scrollContentEl) return
@@ -302,11 +250,6 @@ export default function Hero() {
   return (
     <>
       <div className="relative h-screen bg-[#FFF9F2] text-[#333333] overflow-hidden" style={{ touchAction: 'pan-y' }}>
-        <JalebiGhost
-          hidden={sceneReady}
-          leftPercent={ghostAnchor.leftPercent}
-          topPercent={ghostAnchor.topPercent}
-        />
         {canvasMounted && (
         <Canvas
           shadows
@@ -322,7 +265,7 @@ export default function Hero() {
           
           <Suspense fallback={null}>
             <ScrollControls pages={pages} damping={damping}>
-              <SceneContent onReady={() => setSceneReady(true)} />
+              <SceneContent />
               <Scroll html>
                 <div ref={setScrollContentEl} style={{ touchAction: 'pan-y', WebkitOverflowScrolling: 'touch' }}>
                   <ScrollContent />
