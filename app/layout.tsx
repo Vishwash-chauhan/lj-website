@@ -54,7 +54,7 @@ const structuredData = {
       url: "https://littlejalebis.com/",
       logo: {
         "@type": "ImageObject",
-        url: "https://res.cloudinary.com/dwffrfajl/image/upload/v1770034621/Little_Jalebis_Logo_lmpaxo.svg",
+        url: "https://res.cloudinary.com/dwffrfajl/image/upload/v1777209827/Logo_ymnwvm.svg",
       },
       sameAs: [
         "https://www.instagram.com/littlejalebis/?",
