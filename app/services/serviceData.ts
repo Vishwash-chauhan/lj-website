@@ -31,11 +31,6 @@ export const SERVICES = {
           'Yes, Little Jalebis offers kids birthday catering at home in Gurgaon, Delhi, Noida, Faridabad, and Ghaziabad, including food, setup, and service staff for a completely hassle-free experience.',
       },
       {
-        question: 'What food items are included in kids birthday catering?',
-        answer:
-          'A typical kids catering menu includes: Mini burgers & pizzas, Pasta and sandwiches, Fries & potato snacks, Dim sums, Desserts & beverages. Menus at Little Jalebis are customizable based on age group and preferences.',
-      },
-      {
         question: 'Do you offer live food counters for kids parties?',
         answer:
           'Yes, Little Jalebis provides live food counters for kids birthday parties, including pizza stations, pasta counters, and DIY food setups to make the event more interactive.',
