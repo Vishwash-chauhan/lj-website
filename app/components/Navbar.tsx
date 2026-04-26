@@ -244,6 +244,7 @@ const Navbar = () => {
           <button 
             className="md:hidden relative z-[80] w-10 h-10 flex flex-col justify-center items-center gap-1.5 bg-[#FFCB05] rounded-xl shadow-[3px_3px_0px_#333333]"
             onClick={() => setIsOpen(!isOpen)}
+            aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
           >
             <span className={`w-6 h-0.5 bg-[#333333] transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
             <span className={`w-6 h-0.5 bg-[#333333] transition-all duration-300 ${isOpen ? 'opacity-0' : ''}`}></span>
