@@ -11,8 +11,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Little Jalebis | Kids Party House & Catering Co. | New Delhi & Gurgaon",
-  description: "Award-winning kids party house and catering company in Delhi & Gurgaon. Unforgettable parties with delicious food, entertainment packages, and party venue.",
+  title: "Little Jalebis | Kids Party House & Catering Co. | New Delhi, NCR, Gurgaon, Noida, Faridabad, Ghaziabad",
+  description: "Award-winning kids party house and catering company in Delhi, NCR, Gurgaon, Noida, Faridabad, Ghaziabad. Unforgettable parties with delicious food, entertainment packages, and party venue.",
   keywords: "kids party, catering, party house, Delhi catering, Gurgaon party venue, children's parties, event catering, party planner",
   authors: [{ name: "Little Jalebis" }],
   icons: {
@@ -44,6 +44,108 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://littlejalebis.com/#organization",
+      name: "Little Jalebis",
+      url: "https://littlejalebis.com/",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://res.cloudinary.com/dwffrfajl/image/upload/v1770034621/Little_Jalebis_Logo_lmpaxo.svg",
+      },
+      sameAs: [
+        "https://www.instagram.com/littlejalebis/?",
+        "https://www.facebook.com/people/Little-Jalebis-Kids-Catering-Delivery-Co/61556063223622/",
+        "https://www.youtube.com/@LittleJalebis",
+      ],
+    },
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://littlejalebis.com/#localbusiness",
+      name: "Little Jalebis",
+      image: "https://littlejalebis.com/logo.png",
+      url: "https://littlejalebis.com/",
+      telephone: "+91-8130964374",
+      email: "sales@littlejalebis.com",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "E 5 Kalindi Colony, Near New Friends Colony",
+        addressLocality: "New Delhi",
+        postalCode: "110065",
+        addressCountry: "IN",
+      },
+      areaServed: ["Delhi NCR", "Gurgaon", "Noida", "Faridabad", "Ghaziabad"],
+      priceRange: "$$",
+    },
+    {
+      "@type": "Service",
+      "@id": "https://littlejalebis.com/#service",
+      name: "Kids Catering & Party Services",
+      provider: {
+        "@id": "https://littlejalebis.com/#localbusiness",
+      },
+      areaServed: {
+        "@type": "Place",
+        name: "Delhi NCR",
+      },
+      serviceType: ["Kids Catering", "Birthday Party Catering", "Event Catering", "Party Setup Services"],
+      description:
+        "Customized kids catering and party services including themed food, event setup, and delivery.",
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://littlejalebis.com/#website",
+      url: "https://littlejalebis.com/",
+      name: "Little Jalebis",
+      publisher: {
+        "@id": "https://littlejalebis.com/#organization",
+      },
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://littlejalebis.com/#homepage",
+      url: "https://littlejalebis.com/",
+      name: "Kids Catering Services in Delhi NCR | Little Jalebis",
+      isPartOf: {
+        "@id": "https://littlejalebis.com/#website",
+      },
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://littlejalebis.com/#faq",
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "What services does Little Jalebis offer?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Little Jalebis provides kids catering, party setups, and event food services.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Which areas do you serve?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "We serve Delhi NCR, including Gurgaon, Noida, Faridabad, and Ghaziabad.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "How can I book services?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "You can book via website enquiry form, phone, or email.",
+          },
+        },
+      ],
+    },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -56,6 +158,10 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
       </head>
       <body className={`${geistMono.variable} antialiased`}>
         <Navbar />
