@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Mail, Phone, MapPin, Instagram, MessageCircle, Star, Youtube } from 'lucide-react';
+import { Mail, Phone, MapPin, Instagram, MessageCircle, Star, Youtube, Facebook } from 'lucide-react';
 
 const cityPages = [
   {
@@ -55,6 +55,9 @@ const Footer = () => {
               </Link>
               <Link href="https://www.youtube.com/@LittleJalebis" target="_blank" rel="noopener noreferrer" aria-label="Little Jalebis YouTube" className="rounded-lg border border-[#F26522]/15 p-2 transition-colors hover:bg-[#FFF4EC]">
                 <Youtube size={18} className="text-[#F26522]" />
+              </Link>
+              <Link href="https://www.facebook.com/people/Little-Jalebis-Kids-Catering-Delivery-Co/61556063223622/" target="_blank" rel="noopener noreferrer" aria-label="Little Jalebis Facebook" className="rounded-lg border border-[#F26522]/15 p-2 transition-colors hover:bg-[#FFF4EC]">
+                <Facebook size={18} className="text-[#F26522]" />
               </Link>
               <Link href="https://wa.me/918130964374" target="_blank" rel="noopener noreferrer" aria-label="Little Jalebis WhatsApp" className="rounded-lg border border-[#F26522]/15 p-2 transition-colors hover:bg-[#FFF4EC]">
                 <MessageCircle size={18} className="text-[#F26522]" />
