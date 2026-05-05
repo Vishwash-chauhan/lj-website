@@ -1,6 +1,7 @@
 import Link from 'next/link'
 
 import Faq, { type FAQItem } from './Faq'
+import FaqSchema from './FaqSchema'
 import GalleryComponent from './GalleryComponent'
 import LocationSection from './LocationSection'
 import Testimonials from './Testimonials'
@@ -71,6 +72,9 @@ const comboPoints = [
 export default function KidsPartyVenueGurgaonContent() {
   return (
     <div className="bg-[#FFF9F2] pt-20 md:pt-24 pb-12" style={{ fontFamily: "'Comic Neue', cursive" }}>
+      {/* FAQ Schema - Render once per page */}
+      <FaqSchema faqs={faqs} />
+
       <section className="px-4 sm:px-6">
         <div className="max-w-6xl mx-auto rounded-[2rem] md:rounded-[3rem] border-4 border-[#333333] bg-white p-6 md:p-12 shadow-[8px_8px_0px_#FFCB05] md:shadow-[12px_12px_0px_#FFCB05]">
           <div className="grid md:grid-cols-2 gap-6 md:gap-10 items-center">

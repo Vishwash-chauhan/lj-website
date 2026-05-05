@@ -44,12 +44,6 @@ export const Faq: React.FC<FaqProps> = ({
 
   return (
     <>
-      {/* FAQ Schema Markup for SEO */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaMarkup) }}
-      />
-
       <section className="faq-section py-5 sm:py-5 md:py-5 px-4 sm:px-6 bg-[#FFF9F2]" style={{ fontFamily: "'Comic Neue', cursive" }}>
         <div className="max-w-6xl mx-auto">
           {/* --- Header --- */}

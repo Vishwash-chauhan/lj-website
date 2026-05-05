@@ -15,6 +15,7 @@ import CateringProcess from '../components/CateringProcess'
 import NotAPlayzone from '../components/NotAPlayZone'
 import GalleryComponent from '../components/GalleryComponent'
 import Faq from '../components/Faq'
+import FaqSchema from '../components/FaqSchema'
 import InstagramLink from '../components/InstagramLink'
 import { getServicePath, SERVICE_KEYS, SERVICES, type ServiceKey } from './serviceData'
 
@@ -79,6 +80,8 @@ const ServicesClient = ({ serviceKey }: ServicesClientProps) => {
 
   return (
     <div className="min-h-screen bg-[#FFF9F2] pt-20 md:pt-24 pb-5 md:pb-5 px-4 sm:px-6 md:px-12" style={{ fontFamily: "'Comic Neue', cursive" }}>
+      {/* FAQ Schema - Render once per page */}
+      {activeServiceFaqs && <FaqSchema faqs={activeServiceFaqs} />}
       
       {/* --- 1. Header --- */}
       <header className="max-w-4xl mx-auto text-center mb-10 md:mb-16">
