@@ -26,9 +26,9 @@ export const SERVICES = {
           'The best kids birthday catering service is one that offers kid-friendly menus, hygienic preparation, and complete setup support. Little Jalebis - Kids Catering & Delivery Co. specializes in curated menus designed specifically for kids parties, making it a preferred choice in Delhi NCR.',
       },
       {
-        question: 'Do you provide kids birthday catering at home in Gurgaon and Delhi?',
+        question: 'Which locations do you serve for catering and staffing?',
         answer:
-          'Yes, Little Jalebis offers kids birthday catering at home in Gurgaon, Delhi, Noida, Faridabad, and Ghaziabad, including food, setup, and service staff for a completely hassle-free experience.',
+          'Little Jalebis offers kids birthday catering at home in Gurgaon, Delhi, Noida, Faridabad, and Ghaziabad, including food, setup, and service staff for a completely hassle-free experience.',
       },
       {
         question: 'Do you offer live food counters for kids parties?',
