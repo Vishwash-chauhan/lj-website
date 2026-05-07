@@ -8,13 +8,14 @@ const CollaborationPage = () => {
   const [formData, setFormData] = useState({
     name: '',
     organization: '',
-    email: '',
     phone: '',
     type: 'school',
     message: ''
   })
 
   const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target
@@ -23,20 +24,42 @@ const CollaborationPage = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Here you can add your form submission logic
-    console.log('Form submitted:', formData)
-    setSubmitted(true)
-    setTimeout(() => {
-      setSubmitted(false)
+    setLoading(true)
+    setError('')
+
+    try {
+      const response = await fetch('/api/collaboration', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (!response.ok) {
+        throw new Error('Failed to submit form')
+      }
+
+      setSubmitted(true)
       setFormData({
         name: '',
         organization: '',
-        email: '',
         phone: '',
         type: 'school',
         message: ''
       })
-    }, 3000)
+      setTimeout(() => {
+        setSubmitted(false)
+      }, 3000)
+    } catch (err) {
+      console.error('Form submission error:', err)
+      setError('Failed to send your request. Please try again.')
+      setTimeout(() => {
+        setError('')
+      }, 5000)
+    } finally {
+      setLoading(false)
+    }
   }
 
   const collaborationBenefits = [
@@ -269,14 +292,13 @@ const CollaborationPage = () => {
               {/* Name */}
               <div>
                 <label className="block text-sm md:text-base font-black text-[#333333] mb-2">
-                  Full Name *
+                  Full Name
                 </label>
                 <input
                   type="text"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  required
                   className="w-full px-4 py-3 border-3 border-[#333333] rounded-xl font-bold text-[#333333] placeholder-[#333333]/50 focus:outline-none focus:shadow-[0_0_0_3px_#F26522] transition-all"
                   placeholder="Your name"
                 />
@@ -285,46 +307,28 @@ const CollaborationPage = () => {
               {/* Organization */}
               <div>
                 <label className="block text-sm md:text-base font-black text-[#333333] mb-2">
-                  Organization Name *
+                  Organization Name
                 </label>
                 <input
                   type="text"
                   name="organization"
                   value={formData.organization}
                   onChange={handleChange}
-                  required
                   className="w-full px-4 py-3 border-3 border-[#333333] rounded-xl font-bold text-[#333333] placeholder-[#333333]/50 focus:outline-none focus:shadow-[0_0_0_3px_#F26522] transition-all"
                   placeholder="School or Venue name"
-                />
-              </div>
-
-              {/* Email */}
-              <div>
-                <label className="block text-sm md:text-base font-black text-[#333333] mb-2">
-                  Email Address *
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 border-3 border-[#333333] rounded-xl font-bold text-[#333333] placeholder-[#333333]/50 focus:outline-none focus:shadow-[0_0_0_3px_#F26522] transition-all"
-                  placeholder="your@email.com"
                 />
               </div>
 
               {/* Phone */}
               <div>
                 <label className="block text-sm md:text-base font-black text-[#333333] mb-2">
-                  Phone Number *
+                  Phone Number
                 </label>
                 <input
                   type="tel"
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  required
                   className="w-full px-4 py-3 border-3 border-[#333333] rounded-xl font-bold text-[#333333] placeholder-[#333333]/50 focus:outline-none focus:shadow-[0_0_0_3px_#F26522] transition-all"
                   placeholder="+91 XXXXX XXXXX"
                 />
@@ -334,7 +338,7 @@ const CollaborationPage = () => {
             {/* Type Selection */}
             <div className="mb-6">
               <label className="block text-sm md:text-base font-black text-[#333333] mb-2">
-                I'm a: *
+                I'm a:
               </label>
               <select
                 name="type"
@@ -351,13 +355,12 @@ const CollaborationPage = () => {
             {/* Message */}
             <div className="mb-6">
               <label className="block text-sm md:text-base font-black text-[#333333] mb-2">
-                Tell us about your collaboration idea *
+                Tell us about your collaboration idea
               </label>
               <textarea
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
-                required
                 rows={5}
                 className="w-full px-4 py-3 border-3 border-[#333333] rounded-xl font-bold text-[#333333] placeholder-[#333333]/50 focus:outline-none focus:shadow-[0_0_0_3px_#F26522] transition-all resize-none"
                 placeholder="Share your event type, expected guest count, and any special requirements..."
@@ -366,13 +369,25 @@ const CollaborationPage = () => {
 
             {/* Submit Button */}
             <motion.button
-              whileHover={{ scale: 1.02, rotate: -2 }}
-              whileTap={{ scale: 0.98 }}
+              whileHover={!loading ? { scale: 1.02, rotate: -2 } : {}}
+              whileTap={!loading ? { scale: 0.98 } : {}}
               type="submit"
-              className="w-full bg-[#F26522] text-white px-6 py-4 rounded-xl md:rounded-2xl font-bold text-base md:text-lg transition-all border-4 border-[#F26522] shadow-[6px_6px_0px_#FFCB05] hover:shadow-[8px_8px_0px_#FFCB05] cursor-pointer"
+              disabled={loading}
+              className="w-full bg-[#F26522] text-white px-6 py-4 rounded-xl md:rounded-2xl font-bold text-base md:text-lg transition-all border-4 border-[#F26522] shadow-[6px_6px_0px_#FFCB05] hover:shadow-[8px_8px_0px_#FFCB05] cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed"
             >
-              Send Collaboration Request
+              {loading ? 'Sending...' : 'Send Collaboration Request'}
             </motion.button>
+
+            {/* Error Message */}
+            {error && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mt-4 p-4 bg-red-100 border-3 border-red-500 rounded-xl text-red-700 font-bold text-center"
+              >
+                ✗ {error}
+              </motion.div>
+            )}
 
             {/* Success Message */}
             {submitted && (

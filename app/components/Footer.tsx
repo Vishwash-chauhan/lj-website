@@ -32,6 +32,7 @@ const footerLinks = [
   { href: '/blog', label: 'Blogs' },
   { href: '/services', label: 'Services' },
   { href: '/contact', label: 'Contact' },
+  { href: '/collaboration', label: 'Collaboration' },
   { href: '/terms&conditions', label: 'Terms & Conditions' },
 ];
 
