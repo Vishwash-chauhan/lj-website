@@ -333,23 +333,23 @@ const CollaborationPage = () => {
                   placeholder="+91 XXXXX XXXXX"
                 />
               </div>
-            </div>
 
-            {/* Type Selection */}
-            <div className="mb-6">
-              <label className="block text-sm md:text-base font-black text-[#333333] mb-2">
-                I'm a:
-              </label>
-              <select
-                name="type"
-                value={formData.type}
-                onChange={handleChange}
-                className="w-full px-4 py-3 border-3 border-[#333333] rounded-xl font-bold text-[#333333] focus:outline-none focus:shadow-[0_0_0_3px_#F26522] transition-all bg-white cursor-pointer"
-              >
-                <option value="school">School or Educational Institution</option>
-                <option value="venue">Party House or Venue</option>
-                <option value="other">Other</option>
-              </select>
+              {/* Type Selection */}
+              <div>
+                <label className="block text-sm md:text-base font-black text-[#333333] mb-2">
+                  I'm a:
+                </label>
+                <select
+                  name="type"
+                  value={formData.type}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 border-3 border-[#333333] rounded-xl font-bold text-[#333333] focus:outline-none focus:shadow-[0_0_0_3px_#F26522] transition-all bg-white cursor-pointer"
+                >
+                  <option value="school">School or Educational Institution</option>
+                  <option value="venue">Party House or Venue</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
             </div>
 
             {/* Message */}
