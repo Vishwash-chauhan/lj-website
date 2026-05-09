@@ -162,7 +162,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link href="/" className="relative z-[80] shrink-0 hover:scale-105 transition-transform">
             <img 
-              src="https://res.cloudinary.com/dwffrfajl/image/upload/v1777209827/Logo_ymnwvm.svg" 
+              src="/Logo_ymnwvm.svg" 
               alt="Little Jalebis Logo" 
               className="h-10 md:h-14 w-auto"
             />

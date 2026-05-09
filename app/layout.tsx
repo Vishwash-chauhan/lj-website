@@ -17,10 +17,10 @@ export const metadata: Metadata = {
   authors: [{ name: "Little Jalebis" }],
   icons: {
     icon: [
-      { url: "https://res.cloudinary.com/dwffrfajl/image/upload/v1768908552/16_x3shub.png", sizes: "16x16", type: "image/png" },
-      { url: "https://res.cloudinary.com/dwffrfajl/image/upload/v1768908552/48_hwit1b.png", sizes: "48x48", type: "image/png" },
-      { url: "https://res.cloudinary.com/dwffrfajl/image/upload/v1768908552/128_v5iyu7.png", sizes: "128x128", type: "image/png" },
-      { url: "https://res.cloudinary.com/dwffrfajl/image/upload/v1768908552/192_susmf6.png", sizes: "192x192", type: "image/png" }
+      { url: "images/favicon/16_x3shub.png", sizes: "16x16", type: "image/png" },
+      { url: "images/favicon/48_hwit1b.png", sizes: "48x48", type: "image/png" },
+      { url: "images/favicon/128_v5iyu7.png", sizes: "128x128", type: "image/png" },
+      { url: "images/favicon/192_susmf6.png", sizes: "192x192", type: "image/png" }
     ]
   },
   openGraph: {
@@ -54,7 +54,7 @@ const structuredData = {
       url: "https://littlejalebis.com/",
       logo: {
         "@type": "ImageObject",
-        url: "https://res.cloudinary.com/dwffrfajl/image/upload/v1777209827/Logo_ymnwvm.svg",
+        url: "https://littlejalebis.com/Logo_ymnwvm.svg",
       },
       sameAs: [
         "https://www.instagram.com/littlejalebis/?",
@@ -66,7 +66,7 @@ const structuredData = {
       "@type": "LocalBusiness",
       "@id": "https://littlejalebis.com/#localbusiness",
       name: "Little Jalebis",
-      image: "https://littlejalebis.com/logo.png",
+      image: "https://littlejalebis.com/Logo_ymnwvm.svg",
       url: "https://littlejalebis.com/",
       telephone: "+91-8130964374",
       email: "sales@littlejalebis.com",
@@ -112,36 +112,6 @@ const structuredData = {
       isPartOf: {
         "@id": "https://littlejalebis.com/#website",
       },
-    },
-    {
-      "@type": "FAQPage",
-      "@id": "https://littlejalebis.com/#faq",
-      mainEntity: [
-        {
-          "@type": "Question",
-          name: "What services does Little Jalebis offer?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Little Jalebis provides kids catering, party setups, and event food services.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Which areas do you serve?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "We serve Delhi NCR, including Gurgaon, Noida, Faridabad, and Ghaziabad.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "How can I book services?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "You can book via website enquiry form, phone, or email.",
-          },
-        },
-      ],
     },
   ],
 };

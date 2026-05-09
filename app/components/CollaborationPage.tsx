@@ -138,7 +138,7 @@ const CollaborationPage = () => {
             <div className="order-1 md:order-2 relative flex justify-center items-center group">
               <div className="relative z-10 w-full max-w-xs sm:max-w-sm md:max-w-md aspect-square rounded-[1.5rem] md:rounded-[2rem] border-4 border-[#333333] overflow-hidden shadow-[6px_6px_0px_#F26522] md:shadow-[8px_8px_0px_#F26522] transition-transform group-hover:scale-[1.02]">
                 <Image 
-                  src="https://res.cloudinary.com/dwffrfajl/image/upload/f_auto,q_auto:eco,w_1400,dpr_auto/v1773428713/Catering_Img_6_c0lus9.jpg"
+                  src="/images/services/Catering_Img_6_c0lus9.avif"
                   alt="School and Party Venue Collaboration with Little Jalebis"
                   fill
                   className="object-cover"

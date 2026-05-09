@@ -22,7 +22,7 @@ const AwardsRecognition = () => {
           <div className="w-full lg:w-1/2 relative flex justify-center items-center group">
             <div className="relative z-10 w-full max-w-xs sm:max-w-sm md:max-w-md aspect-square rounded-[1.5rem] md:rounded-[2rem] border-4 border-[#333333] overflow-hidden shadow-[6px_6px_0px_#F26522] md:shadow-[8px_8px_0px_#F26522] transition-transform group-hover:scale-[1.02]">
               <Image 
-                src="https://res.cloudinary.com/dwffrfajl/image/upload/v1771134181/LJ-Award-Design_final_02-1_romwsd.png" 
+                src="/images/about/LJ-Award-Design_final_02-1_romwsd.avif" 
                 alt="Most Influential Kids Brand 2024 Award"
                 fill
                 className="object-cover"

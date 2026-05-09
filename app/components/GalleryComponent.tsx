@@ -14,26 +14,26 @@ interface GalleryItem {
 
 const GALLERY_DATA: GalleryItem[] = [
 // --- VENUE IMAGES ---
-  { id: 1, category: 'venue', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/f_auto,q_auto:eco,w_1400,dpr_auto/v1773428481/Venue_Img_1_erlysh.jpg', alt: 'Kids party venue with themed decorations in Delhi NCR', size: 'large' },
-  { id: 2, category: 'venue', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/f_auto,q_auto:eco,w_1400,dpr_auto/v1773428485/Venue_Img_2_lp20j3.jpg', alt: 'Decorated kids birthday venue with balloons and setup', size: 'medium' },
-  { id: 3, category: 'venue', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/f_auto,q_auto:eco,w_1400,dpr_auto/v1773428482/Venue_Img_3_azcqrh.jpg', alt: 'Kids party setup with themed decorations in Delhi NCR', size: 'medium' },
-  { id: 4, category: 'venue', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/f_auto,q_auto:eco,w_1400,dpr_auto/v1773428485/Venue_Img_4_l3elwf.jpg', alt: 'Kids birthday setup with balloons and catering space', size: 'small' },
-  { id: 5, category: 'venue', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/f_auto,q_auto:eco,w_1400,dpr_auto/v1773428480/Venue_Img_5_ovdiiy.jpg', alt: 'Creative kids party venue with decorations in Delhi NCR', size: 'small' },
-  { id: 6, category: 'venue', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/f_auto,q_auto:eco,w_1400,dpr_auto/v1773428480/Venue_Img_6_swsmwv.jpg', alt: 'Kids birthday venue with creative decor by Little Jalebis', size: 'medium' },
-  { id: 7, category: 'venue', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/f_auto,q_auto:eco,w_1400,dpr_auto/v1773428480/Venue_Img_7_hk6pyv.jpg', alt: 'Colorful kids birthday venue with seating and decor', size: 'small' },
-  { id: 8, category: 'venue', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/f_auto,q_auto:eco,w_1400,dpr_auto/v1773428482/Venue_Img_8_ro4rso.jpg', alt: 'Themed kids party venue with colorful decor by Little Jalebis', size: 'small' },
+  { id: 1, category: 'venue', src: '/images/services/Venue_Img_1_erlysh.avif', alt: 'Kids party venue with themed decorations in Delhi NCR', size: 'large' },
+  { id: 2, category: 'venue', src: '/images/services/Venue_Img_2_lp20j3.avif', alt: 'Decorated kids birthday venue with balloons and setup', size: 'medium' },
+  { id: 3, category: 'venue', src: '/images/services/Venue_Img_3_azcqrh.avif', alt: 'Kids party setup with themed decorations in Delhi NCR', size: 'medium' },
+  { id: 4, category: 'venue', src: '/images/services/Venue_Img_4_l3elwf.avif', alt: 'Kids birthday setup with balloons and catering space', size: 'small' },
+  { id: 5, category: 'venue', src: '/images/services/Venue_Img_5_ovdiiy.avif', alt: 'Creative kids party venue with decorations in Delhi NCR', size: 'small' },
+  { id: 6, category: 'venue', src: '/images/services/Venue_Img_6_swsmwv.avif', alt: 'Kids birthday venue with creative decor by Little Jalebis', size: 'medium' },
+  { id: 7, category: 'venue', src: '/images/services/Venue_Img_7_hk6pyv.avif', alt: 'Colorful kids birthday venue with seating and decor', size: 'small' },
+  { id: 8, category: 'venue', src: '/images/services/Venue_Img_8_ro4rso.avif', alt: 'Themed kids party venue with colorful decor by Little Jalebis', size: 'small' },
 
   // --- CATERING IMAGES ---
-  { id: 9, category: 'catering', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/v1773428715/Catering_Img_1_zplwhq.jpg', alt: 'Kid-Friendly Catering', size: 'large' },
-  { id: 10, category: 'catering', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/f_auto,q_auto:eco,w_1400,dpr_auto/v1773428715/Catering_Img_2_dd4six.jpg', alt: 'Children\'s birthday catering with colorful food setup by Little Jalebis', size: 'medium' },
-  { id: 11, category: 'catering', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/v1773428715/Catering_Img_3_f0mwrm.jpg', alt: 'Delicious Bites', size: 'medium' },
-  { id: 12, category: 'catering', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/f_auto,q_auto:eco,w_1400,dpr_auto/v1773428713/Catering_Img_4_rynoqn.jpg', alt: 'Kids party food display with colorful presentation', size: 'small' },
-  { id: 13, category: 'catering', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/f_auto,q_auto:eco,w_1400,dpr_auto/v1773428713/Catering_Img_5_mi7gul.jpg', alt: 'Birthday catering setup with snacks and drinks', size: 'small' },
-  { id: 14, category: 'catering', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/f_auto,q_auto:eco,w_1400,dpr_auto/v1773428713/Catering_Img_6_c0lus9.jpg', alt: 'Kids party catering setup with food display by Little Jalebis in Delhi NCR', size: 'medium' },
-  { id: 15, category: 'catering', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/f_auto,q_auto:eco,w_1400,dpr_auto/v1773428713/Catering_Img_7_yrwgrj.jpg', alt: 'Birthday catering table with snacks and decor by Little Jalebis', size: 'small' },
-  { id: 16, category: 'catering', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/f_auto,q_auto:eco,w_1400,dpr_auto/v1773428713/Catering_Img_8_vge2xr.jpg', alt: 'Kids catering setup with food counters in Delhi NCR', size: 'small' },
-  { id: 17, category: 'catering', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/f_auto,q_auto:eco,w_1400,dpr_auto/v1773428716/Catering_Img_9_d17xod.jpg', alt: 'Kids party buffet with creative food presentation in Delhi NCR', size: 'small' },
-  { id: 18, category: 'catering', src: 'https://res.cloudinary.com/dwffrfajl/image/upload/f_auto,q_auto:eco,w_1400,dpr_auto/v1772107546/Clients_k3tlnj.jpg', alt: 'Happy clients enjoying kids party catering by Little Jalebis', size: 'small' },
+  { id: 9, category: 'catering', src: '/images/services/Catering_Img_1_zplwhq.avif', alt: 'Kid-Friendly Catering', size: 'large' },
+  { id: 10, category: 'catering', src: '/images/services/Catering_Img_2_dd4six.avif', alt: 'Children\'s birthday catering with colorful food setup by Little Jalebis', size: 'medium' },
+  { id: 11, category: 'catering', src: '/images/services/Catering_Img_3_f0mwrm.avif', alt: 'Delicious Bites', size: 'medium' },
+  { id: 12, category: 'catering', src: '/images/services/Catering_Img_4_rynoqn.avif', alt: 'Kids party food display with colorful presentation', size: 'small' },
+  { id: 13, category: 'catering', src: '/images/services/Catering_Img_5_mi7gul.avif', alt: 'Birthday catering setup with snacks and drinks', size: 'small' },
+  { id: 14, category: 'catering', src: '/images/services/Catering_Img_6_c0lus9.avif', alt: 'Kids party catering setup with food display by Little Jalebis in Delhi NCR', size: 'medium' },
+  { id: 15, category: 'catering', src: '/images/services/Catering_Img_7_yrwgrj.avif', alt: 'Birthday catering table with snacks and decor by Little Jalebis', size: 'small' },
+  { id: 16, category: 'catering', src: '/images/services/Catering_Img_8_vge2xr.avif', alt: 'Kids catering setup with food counters in Delhi NCR', size: 'small' },
+  { id: 17, category: 'catering', src: '/images/services/Catering_Img_9_d17xod.avif', alt: 'Kids party buffet with creative food presentation in Delhi NCR', size: 'small' },
+  { id: 18, category: 'catering', src: '/images/testimonials/Clients_k3tlnj.avif', alt: 'Happy clients enjoying kids party catering by Little Jalebis', size: 'small' },
 ];
 
 interface GalleryComponentProps {
