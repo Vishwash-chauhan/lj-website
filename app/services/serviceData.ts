@@ -79,8 +79,8 @@ export const SERVICES = {
     title: 'Kids Party House',
     tagline: 'Where Imagination Meets Celebration',
     description:
-      'A thoughtfully designed venue perfect for hosting celebrations of up to 80 guests. The space features a warm indoor party area complemented by an open-air extension, giving you the ultimate flexibility to design your own themes, décor, and activities.',
-    features: ['Signature In-House Catering', 'Hygienic Food', 'Safe & Clean Play Zones', 'Fully Customisable'],
+      'A thoughtfully designed kids birthday party venue in Gurgaon, perfect for hosting memorable celebrations for up to 60 guests. Our indoor party space with an open-air extension creates the ideal setting for birthday parties, playdates, and special celebrations for children of all age groups.\n\nAt Little Jalebis – Kids Party House, parents enjoy a hassle-free birthday celebration experience with signature in-house catering, hygienic kids-friendly food, and fully customisable décor, themes, and activities — all under one roof.',
+    features: ['Signature In-House Catering', 'Hygienic Kids-Friendly Food', 'Safe & Clean Space', 'Fully Customisable Birthday Parties'],
     cta: 'View Our Location',
     color: '#F26522',
     image: '🏠',

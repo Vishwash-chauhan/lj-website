@@ -58,7 +58,7 @@ export default async function ServicesPage({ searchParams }: ServicesPageProps) 
 
               <h2 className="text-2xl font-black text-[#333333]">{service.title}</h2>
               <p className="mt-2 text-sm font-bold text-[#333333]/75">{service.tagline}</p>
-              <p className="mt-4 text-sm leading-7 text-[#333333]/80">{service.description}</p>
+              <p className="mt-4 text-sm leading-7 text-[#333333]/80 whitespace-pre-line">{service.description}</p>
 
               <ul className="mt-5 space-y-2">
                 {service.features.slice(0, 3).map((feature) => (

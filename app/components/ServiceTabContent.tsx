@@ -30,7 +30,7 @@ const ServiceTabContent: React.FC<ServiceTabContentProps> = ({
     <div className="w-full md:w-2/3">
       <span className="text-[#F26522] font-black uppercase tracking-[0.1em] sm:tracking-wider md:tracking-widest text-[10px] sm:text-xs md:text-sm">{tagline}</span>
       <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mt-2 mb-4 md:mb-6 text-[#333333] leading-tight">{title}</h2>
-      <p className="text-sm sm:text-base md:text-lg font-bold opacity-80 leading-relaxed mb-6 md:mb-8">{description}</p>
+      <p className="text-sm sm:text-base md:text-lg font-bold opacity-80 leading-relaxed mb-6 md:mb-8 whitespace-pre-line">{description}</p>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 mb-7 md:mb-10">
         {features.map((feature, idx) => (
           <div key={idx} className="flex items-center gap-2.5 md:gap-3">
