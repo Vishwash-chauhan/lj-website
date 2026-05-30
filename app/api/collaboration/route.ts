@@ -7,7 +7,7 @@ export async function POST(request: NextRequest) {
 
     // Build query parameters for forwarding to n8n
     const params = new URLSearchParams()
-    
+
     // Exact mapping for all new fields
     params.append('collabType', body.collabType || '')
     params.append('businessName', body.businessName || '')
@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
     params.append('organization', body.businessName || '')
     params.append('phone', body.phone || '')
     params.append('type', body.collabType || '')
-    
+
     const messages = []
     if (body.aboutSpace) messages.push(`About Space/Brand: ${body.aboutSpace}`)
     if (body.lookingFor) messages.push(`Looking for: ${body.lookingFor}`)
@@ -37,14 +37,14 @@ export async function POST(request: NextRequest) {
     if (body.availability) messages.push(`Availability: ${body.availability}`)
     if (body.socialLink) messages.push(`Insta/Web: ${body.socialLink}`)
     if (body.additionalInfo) messages.push(`Additional Info: ${body.additionalInfo}`)
-    
+
     params.append('message', messages.join(' | '))
 
     // Forward to n8n webhook using GET (production endpoint)
-    const webhookUrl = `https://n8n.vyaapaarniti.com/webhook/967397a6-d90c-43dc-b001-8552e3827c1e?${params.toString()}`
-    
+    const webhookUrl = `https://n8n.littlejalebis.com/webhook/967397a6-d90c-43dc-b001-8552e3827c1e?${params.toString()}`
+
     console.log('Forwarding request to webhook:', webhookUrl)
-    
+
     const response = await fetch(webhookUrl, {
       method: 'GET',
       headers: {
