@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Little Jalebis | Kids Party House & Catering Co. | Delhi & NCR",
   description: "Award-winning kids party house and catering company in Delhi, NCR, Gurgaon, Noida, Faridabad, Ghaziabad. Unforgettable parties with delicious food, entertainment packages, and party venue.",
-  keywords: "kids party, catering, party house, Delhi catering, Gurgaon party venue, children's parties, event catering, party planner",
+
   authors: [{ name: "Little Jalebis" }],
   icons: {
     icon: [
