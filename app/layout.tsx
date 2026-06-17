@@ -18,10 +18,10 @@ export const metadata: Metadata = {
   authors: [{ name: "Little Jalebis" }],
   icons: {
     icon: [
-      { url: "images/favicon/16_x3shub.png", sizes: "16x16", type: "image/png" },
-      { url: "images/favicon/48_hwit1b.png", sizes: "48x48", type: "image/png" },
-      { url: "images/favicon/128_v5iyu7.png", sizes: "128x128", type: "image/png" },
-      { url: "images/favicon/192_susmf6.png", sizes: "192x192", type: "image/png" }
+      { url: "/images/favicon/16_x3shub.png", sizes: "16x16", type: "image/png" },
+      { url: "/images/favicon/48_hwit1b.png", sizes: "48x48", type: "image/png" },
+      { url: "/images/favicon/128_v5iyu7.png", sizes: "128x128", type: "image/png" },
+      { url: "/images/favicon/192_susmf6.png", sizes: "192x192", type: "image/png" }
     ]
   },
   openGraph: {

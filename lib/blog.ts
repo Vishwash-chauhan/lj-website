@@ -49,7 +49,7 @@ export function getBlogPost(slug: string): BlogPost {
     date: data.date || "",
     author: data.author || "",
     description: data.description || "",
-    image: data.image || "",
+    image: data.image ? (data.image.startsWith("/") ? data.image : `/${data.image}`) : "",
     imageAlt: data.imageAlt || "",
     content,
     htmlContent,

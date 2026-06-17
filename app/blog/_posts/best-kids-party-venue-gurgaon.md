@@ -3,7 +3,7 @@ title: "Best Kids Party Venue in Gurgaon: A Complete Guide to Stress-Free Birthd
 date: "2024-04-10"
 author: "Little Jalebis Team"
 description: "Planning a kids birthday party at home often sounds simple—but in reality, it comes with space constraints, setup stress, and a lot of cleanup. Discover why a dedicated kids party venue in Gurgaon is the smarter choice."
-image: "images/blogs/Kids_Party_Venue_Gurugram_Gurgaon_South_Delhi_lsq4hu.svg"
+image: "/images/blogs/Kids_Party_Venue_Gurugram_Gurgaon_South_Delhi_lsq4hu.svg"
 imageAlt: "Cartoon Catering"
 metaTitle: "Kids Birthday Party Venue in South Delhi, Gurugram, Gurgaon"
 metaDescription: "Find the best kids party venues and caterers in Gurgaon. From menu ideas to space selection, our complete guide helps you plan a memorable, stress-free birthday."

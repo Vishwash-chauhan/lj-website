@@ -3,7 +3,7 @@ title: "Kids Birthday Party Catering in Delhi NCR: The Ultimate Stress-Free Food
 date: "2026-04-17"
 author: "Little Jalebis Team"
 description: "Planning a kids birthday party in Delhi NCR? Use this practical catering guide to choose the right menu, setup, and service for a smooth celebration."
-image: "images/blogs/Kids_Catering_By_Little_Jalebies.svg"
+image: "/images/blogs/Kids_Catering_By_Little_Jalebies.svg"
 imageAlt: "Kids birthday catering venue"
 metaTitle: "Best Kids Party Caterers in Delhi NCR, Gurgaon & Noida"
 metaDescription: "Best Kids Party Venue in Gurgaon: A Complete Guide to Stress-Free Birthday Celebrations"
