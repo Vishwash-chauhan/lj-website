@@ -24,7 +24,7 @@ const ContactUs = () => {
     const { name, value } = e.target
 
     if (name === 'serviceType') {
-      const isPartyHouse = value === 'Party House' || value === 'Catering + Party House'
+      const isPartyHouse = value === 'Party House + Catering'
       setFormData(prev => ({
         ...prev,
         serviceType: value,
@@ -74,7 +74,7 @@ const ContactUs = () => {
     }
   }
 
-  const isPartyHouse = formData.serviceType === 'Party House' || formData.serviceType === 'Catering + Party House'
+  const isPartyHouse = formData.serviceType === 'Party House + Catering'
 
   return (
     <section className="pt-24 pb-12 sm:py-16 md:py-24 px-4 sm:px-6 bg-[#FFF9F2]" style={{ fontFamily: "'Comic Neue', cursive" }}>
@@ -151,8 +151,7 @@ const ContactUs = () => {
                     <label className="font-black text-[#F26522] uppercase text-[10px] sm:text-xs tracking-[0.08em] sm:tracking-widest">Service Required</label>
                     <select name="serviceType" value={formData.serviceType} onChange={handleChange} className="w-full p-3 md:p-4 text-sm md:text-base bg-[#FFF9F2] border-2 border-[#333333] rounded-xl md:rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-[#FFCB05] transition-all cursor-pointer">
                       <option value="Catering">Catering</option>
-                      <option value="Party House">Party House</option>
-                      <option value="Catering + Party House">Catering + Party House</option>
+                      <option value="Party House + Catering">Party House + Catering</option>
                     </select>
                   </div>
 
