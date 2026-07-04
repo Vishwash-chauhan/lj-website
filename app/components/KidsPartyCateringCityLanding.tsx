@@ -113,6 +113,14 @@ export default function KidsPartyCateringCityLanding({ config }: KidsPartyCateri
               {config.menuLinkLine.postText ? ` ${config.menuLinkLine.postText}` : ''}
             </p>
           )}
+
+          <p className="mt-4 text-sm sm:text-base md:text-lg font-bold text-[#333333]/80 leading-relaxed">
+            Looking for catering in other areas or want to explore our core offerings? Head over to our{' '}
+            <Link href="/" className="font-black text-[#F26522] underline decoration-2 underline-offset-2">
+              kids party catering
+            </Link>{' '}
+            homepage to check out our full range of services.
+          </p>
         </div>
       </section>
 

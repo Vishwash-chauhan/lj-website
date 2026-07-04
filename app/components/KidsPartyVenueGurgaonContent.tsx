@@ -163,6 +163,13 @@ export default function KidsPartyVenueGurgaonContent() {
             Whether you&apos;re planning an intimate celebration for 25-30 kids or a vibrant party for up to 100 guests, our Kids
             Party House in DLF Phase-1, Gurgaon offers the perfect setting to create unforgettable memories.
           </p>
+          <p className="text-sm sm:text-base md:text-lg font-bold text-[#333333]/80 leading-relaxed">
+            To explore our services across Delhi NCR or learn more about our brand, visit our{' '}
+            <Link href="/" className="font-black text-[#F26522] underline decoration-2 underline-offset-2">
+              kids party catering and venue
+            </Link>{' '}
+            homepage.
+          </p>
         </div>
       </section>
 
