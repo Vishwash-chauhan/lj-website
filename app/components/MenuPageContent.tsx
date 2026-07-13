@@ -156,9 +156,9 @@ const menuItems: MenuItem[] = [
     {Name: "Classic Tomato Soup", Description: "A warm and comforting cup of velvety tomato goodness, seasoned with just the right blend of spices.", PcsDisplay: "200", Unit: "ML", Calculate: "0", Rate: 89, Category: "Drinks", VegNonVeg: "Veg"},
 
     // LIVE STATIONS
-    {Name: "LIVE Waffle Station", Description: "Freshly cooked golden waffles with a delightful array of toppings including chocolates, syrups, nuts, and ice cream.", PcsDisplay: "", Unit: "", Calculate: "0", Rate: 0, Category: "Live Stations", VegNonVeg: "Veg", Setup: 9999},
-    {Name: "LIVE Churros Station", Description: "Delicious churros served with a variety of dipping sauces.", PcsDisplay: "", Unit: "", Calculate: "0", Rate: 0, Category: "Live Stations", VegNonVeg: "Veg", Setup: 9999},
-    {Name: "LIVE Mini Pancakes", Description: "Fluffy mini pancakes served with syrup and toppings.", PcsDisplay: "", Unit: "", Calculate: "0", Rate: 0, Category: "Live Stations", VegNonVeg: "Veg", Setup: 9999},
+    {Name: "LIVE Waffle Station", Description: "Freshly cooked golden waffles with a delightful array of toppings including chocolates, syrups, nuts, and ice cream.", PcsDisplay: "", Unit: "", Calculate: "0", Rate: 0, Category: "Live Stations", VegNonVeg: "Veg", Setup: 7999},
+    {Name: "LIVE Churros Station", Description: "Delicious churros served with a variety of dipping sauces.", PcsDisplay: "", Unit: "", Calculate: "0", Rate: 0, Category: "Live Stations", VegNonVeg: "Veg", Setup: 7999},
+    {Name: "LIVE Mini Pancakes", Description: "Fluffy mini pancakes served with syrup and toppings.", PcsDisplay: "", Unit: "", Calculate: "0", Rate: 0, Category: "Live Stations", VegNonVeg: "Veg", Setup: 7999},
     {Name: "LIVE Popcorn Station", Description: "A guaranteed crowd-puller for movie nights, birthdays, or any fun gathering!", PcsDisplay: "", Unit: "", Calculate: "0", Rate: 0, Category: "Live Stations", VegNonVeg: "Veg", Setup: 7999},
     {Name: "LIVE Cotton Candy Station", Description: "Clouds of sugary sweetness spin right before your eyes, creating a magical treat that delights kids and adults alike.", PcsDisplay: "", Unit: "", Calculate: "0", Rate: 0, Category: "Live Stations", VegNonVeg: "Veg", Setup: 7999},
     {Name: "LIVE Chocolate Fountain", Description: "Big chocolate fountain with assortments like marshmallows, brownies, strawberries on skewers.", PcsDisplay: "", Unit: "", Calculate: "0", Rate: 0, Category: "Live Stations", VegNonVeg: "Veg", Setup: 7999},
