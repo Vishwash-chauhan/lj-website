@@ -13,27 +13,22 @@ interface GalleryItem {
 }
 
 const GALLERY_DATA: GalleryItem[] = [
-// --- VENUE IMAGES ---
-  { id: 1, category: 'venue', src: '/images/services/Venue_Img_1_erlysh.avif', alt: 'Kids party venue with themed decorations in Delhi NCR', size: 'large' },
-  { id: 2, category: 'venue', src: '/images/services/Venue_Img_2_lp20j3.avif', alt: 'Decorated kids birthday venue with balloons and setup', size: 'medium' },
-  { id: 3, category: 'venue', src: '/images/services/Venue_Img_3_azcqrh.avif', alt: 'Kids party setup with themed decorations in Delhi NCR', size: 'medium' },
-  { id: 4, category: 'venue', src: '/images/services/Venue_Img_4_l3elwf.avif', alt: 'Kids birthday setup with balloons and catering space', size: 'small' },
-  { id: 5, category: 'venue', src: '/images/services/Venue_Img_5_ovdiiy.avif', alt: 'Creative kids party venue with decorations in Delhi NCR', size: 'small' },
-  { id: 6, category: 'venue', src: '/images/services/Venue_Img_6_swsmwv.avif', alt: 'Kids birthday venue with creative decor by Little Jalebis', size: 'medium' },
-  { id: 7, category: 'venue', src: '/images/services/Venue_Img_7_hk6pyv.avif', alt: 'Colorful kids birthday venue with seating and decor', size: 'small' },
-  { id: 8, category: 'venue', src: '/images/services/Venue_Img_8_ro4rso.avif', alt: 'Themed kids party venue with colorful decor by Little Jalebis', size: 'small' },
+  // --- VENUE IMAGES ---
+  { id: 1, category: 'venue', src: '/images/services/little_jalebis_birthday_party.jpeg', alt: 'Kids birthday party venue and celebration by Little Jalebis', size: 'large' },
+  { id: 2, category: 'venue', src: '/images/services/little_jalebies_pary_venue_activity.jpeg', alt: 'Fun kids party venue activity at Little Jalebis', size: 'medium' },
+  { id: 3, category: 'venue', src: '/images/services/Venue_Img_2_lp20j3.avif', alt: 'Decorated kids birthday venue with balloons and setup', size: 'medium' },
+  { id: 4, category: 'venue', src: '/images/services/Venue_Img_3_azcqrh.avif', alt: 'Kids party setup with themed decorations in Delhi NCR', size: 'medium' },
+  { id: 5, category: 'venue', src: '/images/services/Venue_Img_4_l3elwf.avif', alt: 'Kids birthday setup with balloons and catering space', size: 'small' },
+  { id: 6, category: 'venue', src: '/images/services/Venue_Img_7_hk6pyv.avif', alt: 'Colorful kids birthday venue with seating and decor', size: 'small' },
 
   // --- CATERING IMAGES ---
-  { id: 9, category: 'catering', src: '/images/services/Catering_Img_1_zplwhq.avif', alt: 'Kid-Friendly Catering', size: 'large' },
-  { id: 10, category: 'catering', src: '/images/services/Catering_Img_2_dd4six.avif', alt: 'Children\'s birthday catering with colorful food setup by Little Jalebis', size: 'medium' },
-  { id: 11, category: 'catering', src: '/images/services/Catering_Img_3_f0mwrm.avif', alt: 'Delicious Bites', size: 'medium' },
-  { id: 12, category: 'catering', src: '/images/services/Catering_Img_4_rynoqn.avif', alt: 'Kids party food display with colorful presentation', size: 'small' },
-  { id: 13, category: 'catering', src: '/images/services/Catering_Img_5_mi7gul.avif', alt: 'Birthday catering setup with snacks and drinks', size: 'small' },
-  { id: 14, category: 'catering', src: '/images/services/Catering_Img_6_c0lus9.avif', alt: 'Kids party catering setup with food display by Little Jalebis in Delhi NCR', size: 'medium' },
-  { id: 15, category: 'catering', src: '/images/services/Catering_Img_7_yrwgrj.avif', alt: 'Birthday catering table with snacks and decor by Little Jalebis', size: 'small' },
-  { id: 16, category: 'catering', src: '/images/services/Catering_Img_8_vge2xr.avif', alt: 'Kids catering setup with food counters in Delhi NCR', size: 'small' },
-  { id: 17, category: 'catering', src: '/images/services/Catering_Img_9_d17xod.avif', alt: 'Kids party buffet with creative food presentation in Delhi NCR', size: 'small' },
-  { id: 18, category: 'catering', src: '/images/testimonials/Clients_k3tlnj.avif', alt: 'Happy clients enjoying kids party catering by Little Jalebis', size: 'small' },
+  { id: 7, category: 'catering', src: '/images/services/Catering_Img_1_zplwhq.avif', alt: 'Kid-Friendly Catering', size: 'large' },
+  { id: 8, category: 'catering', src: '/images/services/Catering_Img_3_f0mwrm.avif', alt: 'Delicious Bites', size: 'medium' },
+  { id: 9, category: 'catering', src: '/images/services/Catering_Img_4_rynoqn.avif', alt: 'Kids party food display with colorful presentation', size: 'small' },
+  { id: 10, category: 'catering', src: '/images/services/Catering_Img_5_mi7gul.avif', alt: 'Birthday catering setup with snacks and drinks', size: 'small' },
+  { id: 11, category: 'catering', src: '/images/services/Catering_Img_6_c0lus9.avif', alt: 'Kids party catering setup with food display by Little Jalebis in Delhi NCR', size: 'medium' },
+  { id: 12, category: 'catering', src: '/images/services/Catering_Img_9_d17xod.avif', alt: 'Kids party buffet with creative food presentation in Delhi NCR', size: 'small' },
+  { id: 13, category: 'catering', src: '/images/testimonials/Clients_k3tlnj.avif', alt: 'Happy clients enjoying kids party catering by Little Jalebis', size: 'small' },
 ];
 
 interface GalleryComponentProps {
@@ -65,7 +60,7 @@ const GalleryComponent: React.FC<GalleryComponentProps> = ({ category }) => {
   return (
     <section className="py-2 md:py-4 px-4 sm:px-6 bg-[#FFF9F2]" style={{ fontFamily: "'Comic Neue', cursive" }}>
       <div className="max-w-7xl mx-auto">
-    
+
         {/* --- Header --- */}
         <div className="text-center mb-6 md:mb-16">
           <h2 className="text-2xl sm:text-4xl md:text-7xl font-black text-[#333333] leading-tight whitespace-normal md:whitespace-nowrap">
@@ -118,7 +113,7 @@ const GalleryComponent: React.FC<GalleryComponentProps> = ({ category }) => {
         </div>
 
         {/* --- Desktop: Bento Grid (Hidden on Mobile) --- */}
-        <motion.div 
+        <motion.div
           layout
           className="hidden md:grid grid-cols-4 gap-4 auto-rows-[180px]"
         >
@@ -131,11 +126,10 @@ const GalleryComponent: React.FC<GalleryComponentProps> = ({ category }) => {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
                 transition={{ duration: 0.4, ease: "circOut" }}
-                className={`relative rounded-[2.5rem] overflow-hidden border-4 border-[#333333] group bg-white ${
-                  image.size === 'large' ? 'md:row-span-3 md:col-span-2' : 
-                  image.size === 'medium' ? 'md:col-span-2 md:row-span-2' : 
-                  'md:col-span-1 md:row-span-1'
-                }`}
+                className={`relative rounded-[2.5rem] overflow-hidden border-4 border-[#333333] group bg-white ${image.size === 'large' ? 'md:row-span-3 md:col-span-2' :
+                    image.size === 'medium' ? 'md:col-span-2 md:row-span-2' :
+                      'md:col-span-1 md:row-span-1'
+                  }`}
               >
                 <Image
                   src={image.src}
@@ -144,7 +138,7 @@ const GalleryComponent: React.FC<GalleryComponentProps> = ({ category }) => {
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
                   sizes={desktopSizesByTile[image.size]}
                 />
-                
+
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-8">
                   <p className="text-white font-black text-lg">{image.alt}</p>
                 </div>

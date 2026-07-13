@@ -24,6 +24,14 @@ const LiveCateringCarousel = () => {
     {
       url: "/videos/roblox-themed-event.mp4",
       title: "Roblox Themed Event",
+    },
+    {
+      url: "/videos/little_jalebies_kids_party.mp4",
+      title: "Little Jalebies Venue Kids Party  "
+    },
+    {
+      url: "/videos/little_jalebies_party_venue_activity.mp4",
+      title: "Little Jalebies Party Venue"
     }
   ]
 
@@ -83,7 +91,7 @@ const LiveCateringCarousel = () => {
   return (
     <section className="pt-12 sm:pt-16 md:pt-24 pb-0 px-4 sm:px-6 bg-[#FFF9F2] overflow-hidden" style={{ fontFamily: "'Comic Neue', cursive" }}>
       <div className="max-w-6xl mx-auto">
-        
+
         {/* --- Header --- */}
         <div className="text-center mb-8 md:mb-16">
           <span className="text-[#F26522] font-black uppercase tracking-[0.12em] sm:tracking-[0.18em] md:tracking-[0.2em] text-[10px] sm:text-xs md:text-sm">Real Moments</span>
@@ -95,7 +103,7 @@ const LiveCateringCarousel = () => {
         <div className="relative">
           {/* Navigation Buttons */}
           <div className="hidden md:block absolute top-1/2 -translate-y-1/2 -left-12 z-40">
-            <button 
+            <button
               onClick={prevStep}
               className="w-9 h-9 flex items-center justify-center rounded-full bg-[#F26522] border-2 border-[#333333] text-white shadow-[3px_3px_0px_#333333] active:translate-y-1 active:shadow-none transition-all"
             >
@@ -104,7 +112,7 @@ const LiveCateringCarousel = () => {
           </div>
 
           <div className="hidden md:block absolute top-1/2 -translate-y-1/2 -right-12 z-40">
-            <button 
+            <button
               onClick={nextStep}
               className="w-9 h-9 flex items-center justify-center rounded-full bg-[#F26522] border-2 border-[#333333] text-white shadow-[3px_3px_0px_#333333] active:translate-y-1 active:shadow-none transition-all"
             >
@@ -116,7 +124,7 @@ const LiveCateringCarousel = () => {
             <AnimatePresence mode="popLayout" custom={direction}>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 md:gap-8">
                 {getVisibleItems().slice(0, 3).map((item, idx) => (
-                  <motion.div 
+                  <motion.div
                     key={`${item.url}-${idx}`}
                     custom={direction}
                     variants={cardVariants}
@@ -127,17 +135,17 @@ const LiveCateringCarousel = () => {
                   >
                     {/* VIDEO CONTAINER */}
                     <div className="overflow-hidden rounded-[1.1rem] sm:rounded-[1.4rem] md:rounded-[1.8rem] aspect-[9/16] w-full bg-gray-100">
-                      <video 
-                        key={item.url} 
-                        src={item.url} 
-                        autoPlay 
-                        muted 
-                        loop 
+                      <video
+                        key={item.url}
+                        src={item.url}
+                        autoPlay
+                        muted
+                        loop
                         playsInline
                         className="w-full h-full object-cover"
                       />
                     </div>
-                    
+
                     <div className="mt-4 md:mt-6 text-center">
                       <p className="font-black text-base sm:text-lg md:text-xl text-[#333333] italic">"{item.title}"</p>
                     </div>
@@ -184,9 +192,8 @@ const LiveCateringCarousel = () => {
                 setDirection(i > currentIndex ? 1 : -1)
                 setCurrentIndex(i)
               }}
-              className={`h-4 rounded-full border-2 border-[#333333] transition-all duration-500 ${
-                currentIndex === i ? 'w-12 bg-[#F26522]' : 'w-4 bg-white hover:bg-[#FFCB05]'
-              }`}
+              className={`h-4 rounded-full border-2 border-[#333333] transition-all duration-500 ${currentIndex === i ? 'w-12 bg-[#F26522]' : 'w-4 bg-white hover:bg-[#FFCB05]'
+                }`}
             />
           ))}
         </div>
