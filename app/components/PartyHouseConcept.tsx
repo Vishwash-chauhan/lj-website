@@ -17,7 +17,7 @@ const PartyHouseConcept = () => {
                 Your Vision, <span className="text-[#F26522]">Our Space.</span>
               </h3>
               <p className="text-xl font-bold opacity-80 leading-relaxed">
-                Little Jalebis – Kids Party House & Catering Co. is a thoughtfully designed venue perfect for hosting celebrations of up to <span className="text-[#F26522]">80 guests</span>.
+                Little Jalebis – Themed Party Venue & Catering Co. is a thoughtfully designed venue perfect for hosting celebrations of up to <span className="text-[#F26522]">80 guests</span>.
               </p>
               <p className="text-lg font-bold opacity-70 leading-relaxed">
                 The space features a warm indoor party area complemented by an open-air extension, giving you the ultimate flexibility to design your own themes, décor, and activities.

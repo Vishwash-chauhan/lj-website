@@ -104,7 +104,7 @@ const CollaborationPage = () => {
               </p>
               
               <p className="text-sm sm:text-base md:text-lg font-bold text-[#F26522] leading-relaxed">
-                We are currently open to two exciting types of collaborations: Venue & Pre-School Tie-Ups, and curated events at our Gurgaon Kids Party House.
+                We are currently open to two exciting types of collaborations: Venue & Pre-School Tie-Ups, and curated events at our Gurgaon Themed Party Venue.
               </p>
 
               <div className="flex flex-col sm:flex-row flex-wrap gap-3 pt-4 justify-center md:justify-start">
@@ -225,13 +225,13 @@ const CollaborationPage = () => {
                   Option 2
                 </span>
                 <h3 className="text-2xl md:text-3xl font-black text-[#333333] mb-2 leading-tight">
-                  Kids Party House Collaborations (Gurgaon)
+                  Themed Party Venue Collaborations (Gurgaon)
                 </h3>
                 <h4 className="text-base md:text-lg font-bold text-[#F26522] mb-4">
                   Use our space to host engaging, meaningful events
                 </h4>
                 <p className="font-bold text-[#333333]/80 mb-6 leading-relaxed">
-                  Our Kids Party House in Gurgaon is designed for curated experiences beyond birthdays. We collaborate with individuals and brands who want to host memorable community events.
+                  Our Themed Party Venue in Gurgaon is designed for curated experiences beyond birthdays. We collaborate with individuals and brands who want to host memorable community events.
                 </p>
 
                 {/* We collaborate with... */}
@@ -316,7 +316,7 @@ const CollaborationPage = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {[
                   'Venue / Pre-school Tie-Up',
-                  'Kids Party House Collaboration'
+                  'Themed Party Venue Collaboration'
                 ].map((typeOption) => (
                   <label
                     key={typeOption}

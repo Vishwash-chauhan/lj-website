@@ -74,19 +74,19 @@ export const SERVICES = {
   },
   venue: {
     legacyTab: 'venue',
-    slug: 'kids-party-house',
-    tabTitle: 'Kids Party House',
-    title: 'Kids Party House',
+    slug: 'themed-party-venue',
+    tabTitle: 'Themed Party Venue',
+    title: 'Themed Party Venue',
     tagline: 'Where Imagination Meets Celebration',
     description:
-      'A thoughtfully designed kids birthday party venue in Gurgaon, perfect for hosting memorable celebrations for up to 60 guests. Our indoor party space with an open-air extension creates the ideal setting for birthday parties, playdates, and special celebrations for children of all age groups.\n\nAt Little Jalebis – Kids Party House, parents enjoy a hassle-free birthday celebration experience with signature in-house catering, hygienic kids-friendly food, and fully customisable décor, themes, and activities — all under one roof.',
+      'A thoughtfully designed kids birthday party venue in Gurgaon, perfect for hosting memorable celebrations for up to 60 guests. Our indoor party space with an open-air extension creates the ideal setting for birthday parties, playdates, and special celebrations for children of all age groups.\n\nAt Little Jalebis – Themed Party Venue, parents enjoy a hassle-free birthday celebration experience with signature in-house catering, hygienic kids-friendly food, and fully customisable décor, themes, and activities — all under one roof.',
     features: ['Signature In-House Catering', 'Hygienic Kids-Friendly Food', 'Safe & Clean Space', 'Fully Customisable Birthday Parties'],
     cta: 'View Our Location',
     color: '#F26522',
     image: '🏠',
     location: {
-      type: 'Kids Party House',
-      name: 'Little Jalebis - Kids Party House & Catering Co.',
+      type: 'Themed Party Venue',
+      name: 'Little Jalebis - Themed Party Venue & Catering Co.',
       address: '17, Lower Ground Floor, Arjun Marg, DLF Phase 1, Gurugram',
       heading: 'Visit Our',
       subheading: 'Come over for a tasting or to plan your next event!',
@@ -98,12 +98,12 @@ export const SERVICES = {
       {
         question: 'Which is the best kids party venue in Gurgaon?',
         answer:
-          'The best kids party venue is one that offers a safe space, catering, and complete setup in one place. Little Jalebis - Kids Party House is designed specifically for kids celebrations, making it a top choice in Gurgaon.',
+          'The best kids party venue is one that offers a safe space, catering, and complete setup in one place. Little Jalebis - Themed Party Venue is designed specifically for kids celebrations, making it a top choice in Gurgaon.',
       },
       {
         question: 'Do you provide a kids party venue with catering in Gurgaon?',
         answer:
-          'Yes, Little Jalebis Kids Party House offers venue + catering packages, so you don\'t have to coordinate with multiple vendors.',
+          'Yes, Little Jalebis Themed Party Venue offers venue + catering packages, so you don\'t have to coordinate with multiple vendors.',
       },
       {
         question: 'What is included in a kids party venue package?',
@@ -141,15 +141,15 @@ export const SERVICES = {
           'Yes, a venue provides more space, better organization, and no cleanup stress. This makes it a more convenient option for most parents.',
       },
       {
-        question: 'Why choose Little Jalebis Kids Party House in Gurgaon?',
+        question: 'Why choose Little Jalebis Themed Party Venue in Gurgaon?',
         answer:
-          'Because it offers a purpose-built kids party venue, kid-friendly catering by Little Jalebis, end-to-end setup & service, and a stress-free experience for parents.',
+          'Because it offers a purpose-built themed party venue, kid-friendly catering by Little Jalebis, end-to-end setup & service, and a stress-free experience for parents.',
       },
     ] as FAQItem[],
     metadata: {
-      title: 'Kids Party House in Gurgaon | Little Jalebis',
+      title: 'Themed Party Venue in Gurgaon | Little Jalebis',
       description:
-        'Looking for a kids party house in Gurgaon with Little Jalebis. Enjoy a fun, safe & hassle-free birthday venue with food, decor & activities for kids. Book now!',
+        'Looking for a themed party venue in Gurgaon with Little Jalebis. Enjoy a fun, safe & hassle-free birthday venue with food, decor & activities for kids. Book now!',
     },
   },
   boxes: {

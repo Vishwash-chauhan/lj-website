@@ -64,11 +64,11 @@ Choosing a kids party venue in Gurgaon with catering included solves this comple
 
 This is why all-inclusive kids birthday party packages in Gurgaon are becoming the most preferred choice.
 
-## **Introducing a Better Way to Celebrate: Little Jalebis – Kids Party House & Catering Co.**
+## **Introducing a Better Way to Celebrate: Little Jalebis – Themed Party Venue & Catering Co.**
 
 When parents look for the best kids party venue in Gurgaon, they're essentially looking for one thing—a place that just makes everything easy.
 
-That's exactly what Little Jalebis – Kids Party House is designed for.
+That's exactly what Little Jalebis – Themed Party Venue is designed for.
 
 ### What Makes It Stand Out:
 
@@ -90,7 +90,7 @@ Enough energy for kids, enough ease for parents—without making the party feel 
 
 ## **Trending Kids Birthday Party Ideas (Done Right)**
 
-At a well-designed venue like Little Jalebis – Kids Party House, these trends actually work better:
+At a well-designed venue like Little Jalebis – Themed Party Venue, these trends actually work better:
 
 🎉 Indoor play-friendly setups (safe & engaging)  
 🎨 Themed décor without clutter  
@@ -111,6 +111,6 @@ A kids birthday party should feel joyful—not exhausting.
 
 The right kids party venue in Gurgaon with catering doesn't just give you a space—it gives you peace of mind.
 
-With a thoughtfully designed venue, curated kids menu, and seamless execution, Little Jalebis – Kids Party House brings everything together in a way that feels easy, organized, and genuinely enjoyable.
+With a thoughtfully designed venue, curated kids menu, and seamless execution, Little Jalebis – Themed Party Venue brings everything together in a way that feels easy, organized, and genuinely enjoyable.
 
 [Book your perfect kids party today](/contact) and let us handle the details while you enjoy the celebration!

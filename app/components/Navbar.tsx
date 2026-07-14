@@ -131,7 +131,7 @@ const Navbar = () => {
 
   const serviceItems = [
     { name: 'Catering', href: '/services/kids-party-catering' },
-    { name: 'Kids Party House', href: '/services/kids-party-house' },
+    { name: 'Themed Party Venue', href: '/services/themed-party-venue' },
     { name: 'Food Delivery & Boxes', href: '/services/food-boxes' },
   ];
 

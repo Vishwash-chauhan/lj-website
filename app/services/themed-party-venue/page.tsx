@@ -3,6 +3,6 @@ import ServicePageShell from '../ServicePageShell'
 
 export const metadata = getServiceMetadata('venue')
 
-export default function KidsPartyHousePage() {
+export default function ThemedPartyVenuePage() {
   return <ServicePageShell serviceKey="venue" />
 }

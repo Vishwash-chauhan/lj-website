@@ -44,7 +44,7 @@ const Footer = () => {
           <div className="space-y-5">
             <div className="space-y-3">
               <h2 className="text-2xl font-black uppercase tracking-tight text-[#F26522]">
-                Little Jalebis Kids Party House & Catering Co.
+                Little Jalebis Themed Party Venue & Catering Co.
               </h2>
               <p className="max-w-md text-sm font-medium italic leading-relaxed text-[#333333]">
                 India&apos;s first tech-driven, kids centric catering company for high-energy parties, curated menus, and memorable celebrations.
@@ -117,7 +117,7 @@ const Footer = () => {
               </div>
               <div className="rounded-2xl bg-[#FFF8EF] p-4">
                 <div className="mb-2 text-sm font-black uppercase tracking-wide text-[#F26522]">
-                  Kids Party House
+                  Themed Party Venue
                 </div>
                 <div className="flex gap-3 text-[#333333]">
                   <MapPin className="shrink-0 text-[#F26522]" size={20} />
@@ -152,7 +152,7 @@ const Footer = () => {
         <div className="flex flex-col gap-3 border-t border-gray-100 pt-6 text-center md:flex-row md:items-center md:justify-between md:text-left">
           <div>
             <p className="text-xs font-bold text-[#333333] opacity-80 md:text-sm">
-              © 2026 Little Jalebis. All rights reserved. | Kids Party House & Catering Co.
+              © 2026 Little Jalebis. All rights reserved. | Themed Party Venue & Catering Co.
             </p>
             <p className="text-xs font-bold text-[#333333] opacity-80 md:text-sm">
               Unit of NC Hospitality Pvt Ltd CIN : U55101DL2009PTC188581
