@@ -12,7 +12,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Little Jalebis | Themed Party Venue & Catering Co. | Delhi & NCR",
+  title: "Little Jalebis | Kids Party House & Catering Co. | Delhi & NCR",
   description: "Award-winning themed party venue and catering company in Delhi, NCR, Gurgaon, Noida, Faridabad, Ghaziabad. Unforgettable parties with delicious food, entertainment packages, and party venue.",
 
   authors: [{ name: "Little Jalebis" }],
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     ]
   },
   openGraph: {
-    title: "Little Jalebis | Themed Party Venue & Catering Co.",
+    title: "Little Jalebis | Kids Party House & Catering Co.",
     description: "Create magical memories with Little Jalebis - your trusted themed party venue and catering partner.",
     url: "https://littlejalebis.com",
     siteName: "Little Jalebis",

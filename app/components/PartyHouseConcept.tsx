@@ -6,10 +6,10 @@ const PartyHouseConcept = () => {
   return (
     <section className="py-24 px-6 bg-[#FFF9F2]" style={{ fontFamily: "'Comic Neue', cursive" }}>
       <div className="max-w-6xl mx-auto">
-        
+
         {/* --- Main Concept Card --- */}
         <div className="bg-white border-4 border-[#333333] rounded-[3rem] overflow-hidden shadow-[12px_12px_0px_#F26522] flex flex-col lg:flex-row">
-          
+
           {/* Content (full-width after removing visual side) */}
           <div className="w-full p-12 md:p-16 space-y-8">
             <div className="space-y-4">
@@ -17,7 +17,7 @@ const PartyHouseConcept = () => {
                 Your Vision, <span className="text-[#F26522]">Our Space.</span>
               </h3>
               <p className="text-xl font-bold opacity-80 leading-relaxed">
-                Little Jalebis – Themed Party Venue & Catering Co. is a thoughtfully designed venue perfect for hosting celebrations of up to <span className="text-[#F26522]">80 guests</span>.
+                Little Jalebis – Kids Party House & Catering Co. is a thoughtfully designed venue perfect for hosting celebrations of up to <span className="text-[#F26522]">80 guests</span>.
               </p>
               <p className="text-lg font-bold opacity-70 leading-relaxed">
                 The space features a warm indoor party area complemented by an open-air extension, giving you the ultimate flexibility to design your own themes, décor, and activities.

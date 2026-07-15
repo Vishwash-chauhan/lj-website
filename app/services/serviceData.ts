@@ -86,7 +86,7 @@ export const SERVICES = {
     image: '🏠',
     location: {
       type: 'Themed Party Venue',
-      name: 'Little Jalebis - Themed Party Venue & Catering Co.',
+      name: 'Little Jalebis - Kids Party House & Catering Co.',
       address: '17, Lower Ground Floor, Arjun Marg, DLF Phase 1, Gurugram',
       heading: 'Visit Our',
       subheading: 'Come over for a tasting or to plan your next event!',
