@@ -74,7 +74,7 @@ const ThemedPartyVenueSections = () => {
               <p className="mt-3 text-sm sm:text-base md:text-lg font-bold text-[#333333]/80 leading-relaxed">
                 From colourful décor and comfortable seating to delicious food and attentive service, every detail is planned around making birthdays enjoyable for children while ensuring parents can relax and celebrate alongside them.
               </p>
-              
+
               <div className="mt-6 grid sm:grid-cols-2 gap-4">
                 <div className="bg-[#FFFDE7] border-4 border-[#333333] p-4 rounded-2xl shadow-[3px_3px_0px_#333333] hover:-rotate-1 transition-transform">
                   <span className="text-2xl">🎉</span>
@@ -194,7 +194,7 @@ const ThemedPartyVenueSections = () => {
       </section>
 
       {/* 4. Everything You Need in One Place Section */}
-      <section className="px-4 sm:px-0">
+      {/* <section className="px-4 sm:px-0">
         <div className="text-center mb-6 md:mb-10">
           <h2 className="text-2xl sm:text-3xl md:text-5xl font-black text-[#333333]">
             Everything You Need in <span className="text-[#FFCB05] bg-[#333333] px-3 py-1 rounded-lg inline-block rotate-1">One Place</span>
@@ -216,7 +216,7 @@ const ThemedPartyVenueSections = () => {
             </div>
           ))}
         </div>
-      </section>
+      </section> */}
 
       {/* 5. Perfect for Every Milestone Section */}
       <section className="px-4 sm:px-0">
