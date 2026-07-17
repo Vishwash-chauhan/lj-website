@@ -79,7 +79,7 @@ export const SERVICES = {
     title: 'Themed Party Venue',
     tagline: 'Where Imagination Meets Celebration',
     description:
-      'A thoughtfully designed kids birthday party venue in Gurgaon, perfect for hosting memorable celebrations for up to 60 guests. Our indoor party space with an open-air extension creates the ideal setting for birthday parties, playdates, and special celebrations for children of all age groups.\n\nAt Little Jalebis – Themed Party Venue, parents enjoy a hassle-free birthday celebration experience with signature in-house catering, hygienic kids-friendly food, and fully customisable décor, themes, and activities — all under one roof.',
+      "At Little Jalebis, we've created a warm, welcoming birthday party venue where every celebration feels personal. Located in DLF Phase 1, Gurgaon, our Kids Party House combines thoughtfully designed interiors, flexible celebration spaces and our signature kids' catering to give families a complete birthday experience under one roof.\n\nWhether you're planning an intimate first birthday or a themed celebration with classmates, we'll help you create a party that's joyful, beautifully organised and completely stress-free.",
     features: ['Signature In-House Catering', 'Hygienic Kids-Friendly Food', 'Safe & Clean Space', 'Fully Customisable Birthday Parties'],
     cta: 'View Our Location',
     color: '#F26522',
@@ -149,7 +149,7 @@ export const SERVICES = {
     metadata: {
       title: 'Themed Party Venue in Gurgaon | Little Jalebis',
       description:
-        'Looking for a themed party venue in Gurgaon with Little Jalebis. Enjoy a fun, safe & hassle-free birthday venue with food, decor & activities for kids. Book now!',
+        'Looking for the best kids themed party venue in Gurgaon? Little Jalebis in DLF Phase 1 offers a warm, welcoming kids party house with signature in-house catering and flexible spaces. Book a venue visit today!',
     },
   },
   boxes: {
