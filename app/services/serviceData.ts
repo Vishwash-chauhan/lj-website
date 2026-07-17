@@ -76,10 +76,10 @@ export const SERVICES = {
     legacyTab: 'venue',
     slug: 'kids-party-venue',
     tabTitle: 'Kids Party Venue',
-    title: 'Themed Kids Party Venue',
+    title: 'Kids Party Venue',
     tagline: 'Where Imagination Meets Celebration',
     description:
-      "At Little Jalebis, we've created a warm, welcoming birthday party venue where every celebration feels personal. Located in DLF Phase 1, Gurgaon, our Kids Party House combines thoughtfully designed interiors, flexible celebration spaces and our signature kids' catering to give families a complete birthday experience under one roof.\n\nWhether you're planning an intimate first birthday or a themed celebration with classmates, we'll help you create a party that's joyful, beautifully organised and completely stress-free.",
+      "At Little Jalebis, we've created a warm, welcoming birthday party venue where every celebration feels personal. Located in DLF Phase 1, Gurgaon, our Themed Kids Party House is fully customisable according to your theme and with flexible celebration spaces and our signature kids' catering to give families a complete birthday experience under one roof.\n\nWhether you're planning an intimate first birthday or a themed celebration with classmates, we'll help you create a party that's joyful, beautifully organised and completely stress-free.",
     features: ['Signature In-House Catering', 'Hygienic Kids-Friendly Food', 'Safe & Clean Space', 'Fully Customisable Birthday Parties'],
     cta: 'View Our Location',
     color: '#F26522',
