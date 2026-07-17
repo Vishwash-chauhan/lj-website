@@ -88,7 +88,7 @@ const ThemedPartyVenueSections = () => {
                   <span className="text-2xl">☕</span>
                   <h3 className="mt-1 text-sm md:text-base font-black text-[#333333]">Designed for Parents</h3>
                   <p className="mt-1 font-bold text-[#333333]/70 text-[11px] md:text-xs leading-normal">
-                    Comfortable seating, welcoming vibes, and warm hospitality so parents can actually enjoy the milestone.
+                    Comfortable seating, welcoming vibes, and warm hospitality so parents can also enjoy the celebration.
                   </p>
                 </div>
               </div>
