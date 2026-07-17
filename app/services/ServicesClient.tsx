@@ -74,7 +74,7 @@ const ServicesClient = ({ serviceKey }: ServicesClientProps) => {
   const activeServiceFaqs = 'faqs' in activeService ? activeService.faqs : undefined
 
   const h1Labels: Record<ServiceKey, { prefix: string; highlight: string; subtitle: string }> = {
-    venue: { prefix: 'Themed Party', highlight: 'Venue', subtitle: 'Where Every Birthday Becomes a Beautiful Memory. A warm, welcoming Theamed Party Venue' },
+    venue: { prefix: 'Kids Party', highlight: 'Venue', subtitle: 'Where Every Birthday Becomes a Beautiful Memory. A warm, welcoming Theamed Party Venue' },
     catering: { prefix: 'Kids Party', highlight: 'Catering', subtitle: 'Kid-friendly menus, live counters & hassle-free birthday catering across Delhi NCR.' },
     boxes: { prefix: 'Food Delivery', highlight: '& Boxes', subtitle: 'Hygienic, individually packed meals delivered to your door for parties, schools & events.' },
   }

@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Little Jalebis | Kids Party House & Catering Co. | Delhi & NCR",
-  description: "Award-winning themed party venue and catering company in Delhi, NCR, Gurgaon, Noida, Faridabad, Ghaziabad. Unforgettable parties with delicious food, entertainment packages, and party venue.",
+  description: "Award-winning kids party venue and catering company in Delhi, NCR, Gurgaon, Noida, Faridabad, Ghaziabad. Unforgettable parties with delicious food, entertainment packages, and party venue.",
 
   authors: [{ name: "Little Jalebis" }],
   icons: {
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Little Jalebis | Kids Party House & Catering Co.",
-    description: "Create magical memories with Little Jalebis - your trusted themed party venue and catering partner.",
+    description: "Create magical memories with Little Jalebis - your trusted kids party venue and catering partner.",
     url: "https://littlejalebis.com",
     siteName: "Little Jalebis",
     locale: "en_IN",
@@ -34,8 +34,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Little Jalebis | Themed Party Venue & Catering",
-    description: "Award-winning themed party venue and catering company in Delhi & Gurgaon.",
+    title: "Little Jalebis | Kids Party Venue & Catering",
+    description: "Award-winning Kids party venue and catering company in Delhi & Gurgaon.",
   },
   robots: "index, follow",
 };

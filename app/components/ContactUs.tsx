@@ -24,11 +24,11 @@ const ContactUs = () => {
     const { name, value } = e.target
 
     if (name === 'serviceType') {
-      const isPartyHouse = value === 'Themed Party Venue + Catering'
+      const isPartyHouse = value === 'Kids Party Venue + Catering'
       setFormData(prev => ({
         ...prev,
         serviceType: value,
-        location: isPartyHouse ? 'Little Jalebis Themed Party Venue' : (prev.location === 'Little Jalebis Themed Party Venue' ? '' : prev.location)
+        location: isPartyHouse ? 'Little Jalebis Kids Party Venue' : (prev.location === 'Little Jalebis Kids Party Venue' ? '' : prev.location)
       }))
     } else {
       setFormData(prev => ({ ...prev, [name]: value }))
@@ -74,7 +74,7 @@ const ContactUs = () => {
     }
   }
 
-  const isPartyHouse = formData.serviceType === 'Themed Party Venue + Catering'
+  const isPartyHouse = formData.serviceType === 'Kids Party Venue + Catering'
 
   return (
     <section className="pt-24 pb-12 sm:py-16 md:py-24 px-4 sm:px-6 bg-[#FFF9F2]" style={{ fontFamily: "'Comic Neue', cursive" }}>
@@ -151,7 +151,7 @@ const ContactUs = () => {
                     <label className="font-black text-[#F26522] uppercase text-[10px] sm:text-xs tracking-[0.08em] sm:tracking-widest">Service Required</label>
                     <select name="serviceType" value={formData.serviceType} onChange={handleChange} className="w-full p-3 md:p-4 text-sm md:text-base bg-[#FFF9F2] border-2 border-[#333333] rounded-xl md:rounded-2xl font-bold focus:outline-none focus:ring-4 focus:ring-[#FFCB05] transition-all cursor-pointer">
                       <option value="Catering">Catering</option>
-                      <option value="Themed Party Venue + Catering">Themed Party Venue + Catering</option>
+                      <option value="Kids Party Venue + Catering">Kids Party Venue + Catering</option>
                     </select>
                   </div>
 
@@ -181,18 +181,17 @@ const ContactUs = () => {
 
                   <div className="flex flex-col gap-2 md:col-span-1"> {/* Keeping location half-width to fit alongside Pax if needed, or change to col-span-2 */}
                     <label className="font-black text-[#F26522] uppercase text-[10px] sm:text-xs tracking-[0.08em] sm:tracking-widest">Location / Venue Name</label>
-                    <input 
-                      type="text" 
-                      name="location" 
-                      value={formData.location} 
-                      onChange={handleChange} 
+                    <input
+                      type="text"
+                      name="location"
+                      value={formData.location}
+                      onChange={handleChange}
                       readOnly={isPartyHouse}
                       placeholder={isPartyHouse ? "" : "Ex: South Delhi Residence"}
-                      className={`w-full p-3 md:p-4 text-sm md:text-base bg-[#FFF9F2] border-2 border-[#333333] rounded-xl md:rounded-2xl font-bold focus:outline-none transition-all ${
-                        isPartyHouse 
-                          ? 'opacity-70 cursor-not-allowed bg-gray-50 focus:ring-0' 
+                      className={`w-full p-3 md:p-4 text-sm md:text-base bg-[#FFF9F2] border-2 border-[#333333] rounded-xl md:rounded-2xl font-bold focus:outline-none transition-all ${isPartyHouse
+                          ? 'opacity-70 cursor-not-allowed bg-gray-50 focus:ring-0'
                           : 'focus:ring-4 focus:ring-[#FFCB05]'
-                      }`}
+                        }`}
                     />
                   </div>
 

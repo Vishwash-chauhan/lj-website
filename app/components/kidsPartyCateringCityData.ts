@@ -78,7 +78,7 @@ export const gurgaonCityLanding: CityLandingConfigBundle = {
     ],
     whyChooseHeadingHighlight: 'Kids Party Catering in Gurgaon?',
     locationsHeading: 'Locations: Serving all across Gurugram',
-    locationTags: ['DLF Areas', 'Golf Course Road', 'Sushant Lok','Sector 1 - 115', 'Sector 56', 'Sector 62', 'Sector 50', 'Sector 78', 'MG Road', 'Sohna Road', 'Cyber City', 'Palam Vihar', 'Nirvana Country', 'Sector 57', 'Sector 65', 'Sector 67', 'All Across Gurgaon'],
+    locationTags: ['DLF Areas', 'Golf Course Road', 'Sushant Lok', 'Sector 1 - 115', 'Sector 56', 'Sector 62', 'Sector 50', 'Sector 78', 'MG Road', 'Sohna Road', 'Cyber City', 'Palam Vihar', 'Nirvana Country', 'Sector 57', 'Sector 65', 'Sector 67', 'All Across Gurgaon'],
     servicesHeading: 'Our Kids Party Catering Services in Gurgaon',
     services: [
       'Home Birthday Party Catering',
@@ -211,7 +211,7 @@ export const delhiCityLanding: CityLandingConfigBundle = {
       {
         question: 'Do you also provide catering combined with a venue?',
         answer:
-          'Our main Themed Party Venue is located in DLF Phase-1, Gurgaon. However, we happily provide full catering service for any venue or home in Delhi.',
+          'Our main Kids Party Venue is located in DLF Phase-1, Gurgaon. However, we happily provide full catering service for any venue or home in Delhi.',
       },
     ],
     finalHeading: 'Ready to Plan the Most-Loved Kids Party Catering in Delhi?',
@@ -307,7 +307,7 @@ export const noidaCityLanding: CityLandingConfigBundle = {
       {
         question: 'Is it easy to combine catering with a venue in Noida?',
         answer:
-          'We provide full catering for any home or external venue in Noida. Our dedicated Themed Party Venue is in DLF Phase-1, Gurgaon, but we handle complete food service anywhere in Noida.',
+          'We provide full catering for any home or external venue in Noida. Our dedicated Kids Party Venue is in DLF Phase-1, Gurgaon, but we handle complete food service anywhere in Noida.',
       },
     ],
     finalHeading: 'Ready to Plan the Most-Loved Kids Party Catering in Noida?',
@@ -414,7 +414,7 @@ export const faridabadCityLanding: CityLandingConfigBundle = {
       {
         question: 'Can I combine catering with a venue?',
         answer:
-          'We provide full catering service for any home or external venue in Faridabad. Our dedicated Themed Party Venue is located in DLF Phase-1, Gurgaon.',
+          'We provide full catering service for any home or external venue in Faridabad. Our dedicated Kids Party Venue is located in DLF Phase-1, Gurgaon.',
       },
     ],
     finalHeading: 'Ready to Plan the Most-Loved Kids Party Catering in Faridabad?',
@@ -491,7 +491,7 @@ export const ghaziabadCityLanding: CityLandingConfigBundle = {
       'Pool Parties & Indoor Playdate Catering',
       'School Events, Picnics & Food Boxes',
       'Kids Party Food Delivery across Ghaziabad',
-      'Customized Themed Food Presentations for Birthday Themes like Frozen, Superhero, Unicorn, Roblox, Dinosaur and more',    
+      'Customized Themed Food Presentations for Birthday Themes like Frozen, Superhero, Unicorn, Roblox, Dinosaur and more',
     ],
     faqs: [
       {

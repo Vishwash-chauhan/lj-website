@@ -25,7 +25,13 @@ const nextConfig: NextConfig = {
   compress: true,
   poweredByHeader: false,
   redirects: async () => {
-    return [];
+    return [
+      {
+        source: "/services/themed-party-venue",
+        destination: "/services/kids-party-venue",
+        permanent: true,
+      },
+    ];
   },
   rewrites: async () => {
     return [];

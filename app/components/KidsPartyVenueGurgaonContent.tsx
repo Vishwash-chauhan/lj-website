@@ -9,12 +9,12 @@ import { SERVICES } from '../services/serviceData'
 
 const faqs: FAQItem[] = [
   {
-    question: 'What is the capacity of Little Jalebis Themed Party Venue in Gurgaon?',
+    question: 'What is the capacity of Little Jalebis Kids Party Venue in Gurgaon?',
     answer:
       'Our venue can comfortably host up to 100 guests, making it ideal for birthday parties ranging from 10 to 100 children along with adults.',
   },
   {
-    question: 'Where is your Themed Party Venue located?',
+    question: 'Where is your Kids Party Venue located?',
     answer: 'We are located at 17, Lower Ground Floor, Arjun Marg, DLF Phase-1, Gurgaon.',
   },
   {
@@ -30,7 +30,7 @@ const faqs: FAQItem[] = [
     answer: 'Yes, the indoor party area is fully air-conditioned for comfort.',
   },
   {
-    question: 'How far in advance should I book the Themed Party Venue?',
+    question: 'How far in advance should I book the Kids Party Venue?',
     answer: 'We recommend booking at least 5 - 7 days in advance, especially on weekends and during peak months.',
   },
   {
@@ -83,19 +83,19 @@ export default function KidsPartyVenueGurgaonContent() {
                 Gurgaon Venue
               </span>
               <h1 className="mt-4 text-3xl sm:text-4xl md:text-6xl font-black text-[#333333] leading-tight">
-                Kids Party Venue in Gurgaon - Little Jalebis Themed Party Venue
+                Kids Party Venue in Gurgaon - Little Jalebis Kids Party Venue
               </h1>
               <p className="mt-4 text-sm sm:text-base md:text-lg font-bold text-[#333333]/80 leading-relaxed">
                 Everything you need to host a legendary kids' party, all under one roof.
               </p>
               <p className="mt-2 text-xs sm:text-sm md:text-base font-black text-[#F26522] uppercase tracking-wider">
-                Catering • Themed Party Venue • Food Delivery & Boxes
+                Catering • Kids Party Venue • Food Delivery & Boxes
               </p>
               <h2 className="mt-4 text-2xl sm:text-3xl md:text-5xl font-black text-[#333333] leading-tight">
                 Where Imagination Meets Celebration
               </h2>
               <p className="mt-4 text-sm sm:text-base md:text-lg font-bold text-[#333333]/80 leading-relaxed">
-                Located in the heart of DLF Phase-1, Little Jalebis Themed Party Venue is a thoughtfully designed, private venue
+                Located in the heart of DLF Phase-1, Little Jalebis Kids Party Venue is a thoughtfully designed, private venue
                 created exclusively for kids&apos; celebrations. Perfect for hosting birthdays, baby showers, and small gatherings of
                 up to 100 guests, this space offers the ideal balance between indoor comfort and outdoor flexibility.
               </p>
@@ -127,14 +127,14 @@ export default function KidsPartyVenueGurgaonContent() {
 
       <section className="px-4 sm:px-6 mt-10 md:mt-14">
         <div className="max-w-6xl mx-auto rounded-[2rem] border-4 border-[#333333] bg-white p-6 md:p-10 shadow-[7px_7px_0px_#333333] space-y-4">
-          <h2 className="text-2xl sm:text-3xl md:text-5xl font-black text-[#333333] leading-tight">Themed Party Venue in Gurgaon</h2>
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-black text-[#333333] leading-tight">Kids Party Venue in Gurgaon</h2>
           <p className="text-sm sm:text-base md:text-lg font-bold text-[#333333]/80 leading-relaxed">
             The venue features a spacious, air-conditioned indoor party area paired with a beautiful open-air extension. This
             unique combination gives you complete freedom to design the party exactly the way you envision it - whether you want
             a fully indoor themed celebration or a mix of indoor games with outdoor fun.
           </p>
           <p className="text-sm sm:text-base md:text-lg font-bold text-[#333333]/80 leading-relaxed">
-            What truly sets our Themed Party Venue apart is that we are not a typical play zone or commercial party hall. We are a
+            What truly sets our Kids Party Venue apart is that we are not a typical play zone or commercial party hall. We are a
             blank-canvas, fully customizable party space where parents and planners can bring their child&apos;s dream theme to life
             - be it Frozen, Superhero, Unicorn, Roblox, Dinosaur, Peppa Pig, or any other creative idea.
           </p>
@@ -183,7 +183,7 @@ export default function KidsPartyVenueGurgaonContent() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-6 md:mb-10">
             <h2 className="text-3xl sm:text-4xl md:text-6xl font-black text-[#333333] leading-tight">
-              What Makes Little Jalebis Themed Party Venue <span className="text-[#F26522]">Special?</span>
+              What Makes Little Jalebis Kids Party Venue <span className="text-[#F26522]">Special?</span>
             </h2>
           </div>
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
@@ -236,7 +236,7 @@ export default function KidsPartyVenueGurgaonContent() {
             That&apos;s why more and more parents in Gurgaon are choosing a dedicated kids party venue in Gurgaon that offers both
             beautiful space and excellent catering under one roof.
           </p>
-          <p className="text-sm sm:text-base md:text-lg font-bold text-[#333333]/80 leading-relaxed">At Little Jalebis Themed Party Venue, you get:</p>
+          <p className="text-sm sm:text-base md:text-lg font-bold text-[#333333]/80 leading-relaxed">At Little Jalebis Kids Party Venue, you get:</p>
           <div className="grid sm:grid-cols-2 gap-3 md:gap-4">
             {[
               'A spacious, well-designed venue made specifically for kids\' celebrations',

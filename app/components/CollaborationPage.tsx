@@ -94,17 +94,17 @@ const CollaborationPage = () => {
               <span className="inline-block bg-[#F26522] text-white px-4 py-2 rounded-full font-black text-xs uppercase tracking-wider shadow-[3px_3px_0px_#333333]">
                 Community & Partnerships
               </span>
-              
+
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-[#333333] leading-tight">
                 Collaborate with <span className="text-[#F26522]">Little Jalebis</span>
               </h1>
-              
+
               <p className="text-base sm:text-lg md:text-xl font-bold text-[#333333]/80 leading-relaxed">
                 At Little Jalebis, we’re building a community around thoughtfully curated kids’ experiences — from birthday celebrations to meaningful gatherings for parents and children.
               </p>
-              
+
               <p className="text-sm sm:text-base md:text-lg font-bold text-[#F26522] leading-relaxed">
-                We are currently open to two exciting types of collaborations: Venue & Pre-School Tie-Ups, and curated events at our Gurgaon Themed Party Venue.
+                We are currently open to two exciting types of collaborations: Venue & Pre-School Tie-Ups, and curated events at our Gurgaon Kids Party Venue.
               </p>
 
               <div className="flex flex-col sm:flex-row flex-wrap gap-3 pt-4 justify-center md:justify-start">
@@ -120,7 +120,7 @@ const CollaborationPage = () => {
             {/* Image Side */}
             <div className="order-1 md:order-2 relative flex justify-center items-center group">
               <div className="relative z-10 w-full max-w-xs sm:max-w-sm md:max-w-md aspect-square rounded-[1.5rem] md:rounded-[2rem] border-4 border-[#333333] overflow-hidden shadow-[6px_6px_0px_#F26522] md:shadow-[8px_8px_0px_#F26522] transition-transform group-hover:scale-[1.02]">
-                <Image 
+                <Image
                   src="/images/services/Catering_Img_6_c0lus9.avif"
                   alt="Collaborations with Little Jalebis"
                   fill
@@ -225,13 +225,13 @@ const CollaborationPage = () => {
                   Option 2
                 </span>
                 <h3 className="text-2xl md:text-3xl font-black text-[#333333] mb-2 leading-tight">
-                  Themed Party Venue Collaborations (Gurgaon)
+                  Kids Party Venue Collaborations (Gurgaon)
                 </h3>
                 <h4 className="text-base md:text-lg font-bold text-[#F26522] mb-4">
                   Use our space to host engaging, meaningful events
                 </h4>
                 <p className="font-bold text-[#333333]/80 mb-6 leading-relaxed">
-                  Our Themed Party Venue in Gurgaon is designed for curated experiences beyond birthdays. We collaborate with individuals and brands who want to host memorable community events.
+                  Our Kids Party Venue in Gurgaon is designed for curated experiences beyond birthdays. We collaborate with individuals and brands who want to host memorable community events.
                 </p>
 
                 {/* We collaborate with... */}
@@ -266,7 +266,7 @@ const CollaborationPage = () => {
           <h2 className="text-3xl sm:text-4xl md:text-6xl font-black text-[#333333] mb-10 leading-tight">
             Why Collaborate <span className="text-[#F26522]">With Us?</span>
           </h2>
-          
+
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {[
               { title: "Ready-to-Use Space", desc: "A thoughtfully designed, highly child-friendly environment", icon: "🧸" },
@@ -307,7 +307,7 @@ const CollaborationPage = () => {
           </div>
 
           <form onSubmit={handleSubmit} className="bg-[#FFF9F2] border-4 border-[#333333] p-6 md:p-10 rounded-3xl shadow-[8px_8px_0px_#333333] space-y-6">
-            
+
             {/* Section 1: Collab Type */}
             <div className="p-4 bg-white border-3 border-[#333333] rounded-2xl">
               <label className="block text-base font-black text-[#333333] mb-3">
@@ -316,15 +316,14 @@ const CollaborationPage = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {[
                   'Venue / Pre-school Tie-Up',
-                  'Themed Party Venue Collaboration'
+                  'Kids Party Venue Collaboration'
                 ].map((typeOption) => (
                   <label
                     key={typeOption}
-                    className={`flex items-center gap-3 p-3 rounded-xl border-3 cursor-pointer transition-all ${
-                      formData.collabType === typeOption
+                    className={`flex items-center gap-3 p-3 rounded-xl border-3 cursor-pointer transition-all ${formData.collabType === typeOption
                         ? 'border-[#F26522] bg-[#F26522]/10 text-[#333333]'
                         : 'border-[#333333] hover:bg-gray-50'
-                    }`}
+                      }`}
                   >
                     <input
                       type="radio"
@@ -345,7 +344,7 @@ const CollaborationPage = () => {
               <h3 className="font-black text-lg md:text-xl text-[#333333] border-b-3 border-[#333333]/20 pb-1">
                 Contact & Business Information
               </h3>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {/* 2. Business Name */}
                 <div>

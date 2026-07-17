@@ -2,10 +2,10 @@
 
 import React, { useRef, Suspense, memo, useMemo } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { 
-  Float, 
-  PerspectiveCamera, 
-  ScrollControls, 
+import {
+  Float,
+  PerspectiveCamera,
+  ScrollControls,
   Scroll,
   useScroll
 } from '@react-three/drei'
@@ -20,22 +20,22 @@ const MOBILE_VIEWPORT_WIDTH_THRESHOLD = 6
 function JalebiShape() {
   const shape = useMemo(() => {
     const points = []
-    const loops = 4.5 
+    const loops = 4.5
     const pointsPerLoop = 64
     const totalPoints = loops * pointsPerLoop
-    
+
     for (let i = 0; i <= totalPoints; i++) {
       const angle = (i / pointsPerLoop) * Math.PI * 2
       // Reduced max radius to ~1.1 to match the original torus scale
-      const radius = 0.1 + (i / totalPoints) * 1.5 
+      const radius = 0.1 + (i / totalPoints) * 1.5
       const x = Math.cos(angle) * radius
       const y = Math.sin(angle) * radius
       // Subtle organic wobble
-      const z = Math.sin(i * 0.5) * 0.04 
-      
+      const z = Math.sin(i * 0.5) * 0.04
+
       points.push(new THREE.Vector3(x, y, z))
     }
-    
+
     const path = new THREE.CatmullRomCurve3(points)
     // Radius set to 0.12 for a sleeker "piped" look that fits the smaller scale
     return new THREE.TubeGeometry(path, 128, 0.15, 12, false)
@@ -44,8 +44,8 @@ function JalebiShape() {
   return (
     <mesh geometry={shape}>
       <meshStandardMaterial
-        color="#F26522" 
-        emissive="#e38b19" 
+        color="#F26522"
+        emissive="#e38b19"
         emissiveIntensity={0.6}
         roughness={0.2}
         metalness={0.1}
@@ -70,7 +70,7 @@ function SceneContent() {
   const lastDispatchedOffset = useRef(-1)
 
   useFrame((state) => {
-    const scrollOffset = scroll.offset 
+    const scrollOffset = scroll.offset
 
     if (Math.abs(scrollOffset - lastDispatchedOffset.current) > 0.001) {
       window.dispatchEvent(
@@ -80,17 +80,17 @@ function SceneContent() {
       )
       lastDispatchedOffset.current = scrollOffset
     }
-    
+
     if (meshRef.current) {
       meshRef.current.rotation.x = scrollOffset * Math.PI
       meshRef.current.rotation.y = scrollOffset * Math.PI * 2
-      
+
       const isMobile = state.viewport.width < MOBILE_VIEWPORT_WIDTH_THRESHOLD
-      
+
       // Matching your original positioning logic exactly
       meshRef.current.position.x = isMobile ? 0 : THREE.MathUtils.lerp(0, -2.8, scrollOffset)
       meshRef.current.position.y = isMobile ? THREE.MathUtils.lerp(0.8, 1.2, scrollOffset) : 0
-      
+
       const s = isMobile ? 0.5 : 1
       meshRef.current.scale.set(s, s, s)
     }
@@ -117,18 +117,18 @@ function SceneContent() {
 
 const ScrollContent = memo(() => (
   <div className="w-screen text-[#333333] selection:bg-[#FFCB05]">
-    
+
     {/* --- Section 1: Hero --- */}
     <section className="h-screen flex flex-col justify-center px-6 md:px-[12%]">
       <div className="max-w-3xl mt-24 md:mt-0">
         <span className="bg-[#FFCB05] px-4 py-1 rounded-full text-sm font-bold uppercase tracking-wider mb-4 inline-block">
           The Sweetest Host in Town
         </span>
-          <div className="text-6xl md:text-[6vw] font-bold leading-[0.9] tracking-tight drop-shadow-[0_2px_8px_rgba(255,255,255,0.35)]" aria-hidden="true">
-            Little <span className="text-[#F26522] drop-shadow-[0_2px_8px_rgba(255,255,255,0.35)]">Jalebis</span>
-          </div>
+        <div className="text-6xl md:text-[6vw] font-bold leading-[0.9] tracking-tight drop-shadow-[0_2px_8px_rgba(255,255,255,0.35)]" aria-hidden="true">
+          Little <span className="text-[#F26522] drop-shadow-[0_2px_8px_rgba(255,255,255,0.35)]">Jalebis</span>
+        </div>
         <p className="text-xl md:text-[2.2vw] mt-6 font-bold opacity-90 leading-relaxed max-w-lg">
-          India&apos;s First Tech-Driven, <br className="hidden md:block"/>
+          India&apos;s First Tech-Driven, <br className="hidden md:block" />
           <span className="underline decoration-[#FFCB05] decoration-4">Kids Centric</span> Catering Company.
         </p>
         <a href="/contact" className="mt-10 px-10 py-4 bg-[#F26522] text-white rounded-full font-bold text-lg hover:bg-[#d6561d] transition-all w-fit shadow-[6px_6px_0px_#333333] active:translate-y-1 active:shadow-none inline-block">
@@ -136,22 +136,22 @@ const ScrollContent = memo(() => (
         </a>
       </div>
     </section>
-    
+
     {/* --- Section 2: Services --- */}
     <section className="h-[150vh] md:h-screen flex flex-col justify-center items-end px-6 md:px-[12%]">
       <div className="w-full md:w-1/2 flex flex-col gap-8">
         <div className="text-right">
-            <h2 className="text-4xl md:text-[4vw] font-bold leading-tight">
-              One Stop <br/>
-              <span className="text-[#F26522] drop-shadow-[0_2px_8px_rgba(255,255,255,0.35)]">Party Magic</span>
-            </h2>
-            <p className="font-bold opacity-100 mt-2">Everything you need, all in one loop.</p>
+          <h2 className="text-4xl md:text-[4vw] font-bold leading-tight">
+            One Stop <br />
+            <span className="text-[#F26522] drop-shadow-[0_2px_8px_rgba(255,255,255,0.35)]">Party Magic</span>
+          </h2>
+          <p className="font-bold opacity-100 mt-2">Everything you need, all in one loop.</p>
         </div>
 
         <div className="space-y-6 mt-4">
           {[
             { emoji: '🍕', title: "Catering", desc: "Kid-approved menus that adults love too.", link: "/services/kids-party-catering" },
-            { emoji: '🏠', title: "Themed Party Venue", desc: "Magical spaces designed for play and laughter.", link: "/services/themed-party-venue" },
+            { emoji: '🏠', title: "Kids Party Venue", desc: "Magical spaces designed for play and laughter.", link: "/services/kids-party-venue" },
             { emoji: '🍱', title: "Food Delivery & Boxes", desc: "Fresh, fun, and balanced meals delivered.", link: "/services/food-boxes" }
           ].map((service, i) => (
             <a
@@ -251,29 +251,29 @@ export default function Hero() {
     <>
       <div className="relative h-screen bg-[#FFF9F2] text-[#333333] overflow-hidden" style={{ touchAction: 'pan-y' }}>
         {canvasMounted && (
-        <Canvas
-          shadows
-          dpr={isMobileDevice ? [1, 1.5] : [1, 2]}
-          gl={{ alpha: true }}
-          style={{ touchAction: 'pan-y', background: 'transparent' }}
-        >
-          <PerspectiveCamera makeDefault position={[0, 0, CAMERA_Z]} fov={CAMERA_FOV} />
-          <>
-            <ambientLight intensity={1.5} />
-            <directionalLight position={[5, 5, 5]} intensity={2} color="#fff9f2" />
-          </>
-          
-          <Suspense fallback={null}>
-            <ScrollControls pages={pages} damping={damping}>
-              <SceneContent />
-              <Scroll html>
-                <div ref={setScrollContentEl} style={{ touchAction: 'pan-y', WebkitOverflowScrolling: 'touch' }}>
-                  <ScrollContent />
-                </div>
-              </Scroll>
-            </ScrollControls>
-          </Suspense>
-        </Canvas>
+          <Canvas
+            shadows
+            dpr={isMobileDevice ? [1, 1.5] : [1, 2]}
+            gl={{ alpha: true }}
+            style={{ touchAction: 'pan-y', background: 'transparent' }}
+          >
+            <PerspectiveCamera makeDefault position={[0, 0, CAMERA_Z]} fov={CAMERA_FOV} />
+            <>
+              <ambientLight intensity={1.5} />
+              <directionalLight position={[5, 5, 5]} intensity={2} color="#fff9f2" />
+            </>
+
+            <Suspense fallback={null}>
+              <ScrollControls pages={pages} damping={damping}>
+                <SceneContent />
+                <Scroll html>
+                  <div ref={setScrollContentEl} style={{ touchAction: 'pan-y', WebkitOverflowScrolling: 'touch' }}>
+                    <ScrollContent />
+                  </div>
+                </Scroll>
+              </ScrollControls>
+            </Suspense>
+          </Canvas>
         )}
       </div>
     </>

@@ -12,8 +12,8 @@ const FinalCall = () => {
           <a href="/services/kids-party-catering" className="px-6 sm:px-8 md:px-10 py-3 md:py-4 border-4 border-[#F26522] text-[#F26522] rounded-xl md:rounded-2xl font-bold text-base sm:text-lg md:text-xl hover:bg-[#F26522] hover:text-white transition-all transform hover:-rotate-2">
             Catering
           </a>
-          <a href="/services/themed-party-venue" className="px-6 sm:px-8 md:px-10 py-3 md:py-4 border-4 border-[#333333] text-[#333333] rounded-xl md:rounded-2xl font-bold text-base sm:text-lg md:text-xl hover:bg-[#333333] hover:text-white transition-all transform hover:-rotate-2">
-            Themed Party Venue
+          <a href="/services/kids-party-venue" className="px-6 sm:px-8 md:px-10 py-3 md:py-4 border-4 border-[#333333] text-[#333333] rounded-xl md:rounded-2xl font-bold text-base sm:text-lg md:text-xl hover:bg-[#333333] hover:text-white transition-all transform hover:-rotate-2">
+            Kids Party Venue
           </a>
           <a href="/services/food-boxes" className="px-6 sm:px-8 md:px-10 py-3 md:py-4 border-4 border-[#FFCB05] text-[#333333] rounded-xl md:rounded-2xl font-bold text-base sm:text-lg md:text-xl hover:bg-[#FFCB05] transition-all transform hover:-rotate-2">
             Food Delivery & Boxes

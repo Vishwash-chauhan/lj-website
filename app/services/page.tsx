@@ -13,7 +13,7 @@ interface ServicesPageProps {
 export const metadata: Metadata = {
   title: 'Our Services | Little Jalebis',
   description:
-    'Explore kids party catering, our themed party venue, and fun food boxes in Gurgaon and Delhi NCR with Little Jalebis.',
+    'Explore kids party catering, our Kids Party Venue, and fun food boxes in Gurgaon and Delhi NCR with Little Jalebis.',
   alternates: {
     canonical: 'https://littlejalebis.com/services',
   },
@@ -36,7 +36,7 @@ export default async function ServicesPage({ searchParams }: ServicesPageProps) 
           Services for joyful kids parties
         </h1>
         <p className="mx-auto mt-5 max-w-3xl text-base font-bold text-[#333333]/80 sm:text-lg md:text-xl">
-          From in-house catering to our dedicated themed party venue and ready-to-order food boxes, pick what fits your celebration.
+          From in-house catering to our dedicated Kids Party Venue and ready-to-order food boxes, pick what fits your celebration.
         </p>
       </section>
 

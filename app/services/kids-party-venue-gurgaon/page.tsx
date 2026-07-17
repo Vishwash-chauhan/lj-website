@@ -5,7 +5,7 @@ import KidsPartyVenueGurgaonContent from '@/app/components/KidsPartyVenueGurgaon
 const PAGE_URL = 'https://littlejalebis.com/services/kids-party-venue-gurgaon'
 const PAGE_TITLE = 'Kids Party Venue in Gurgaon | Best Birthday Party House with Catering - Little Jalebis'
 const PAGE_DESCRIPTION =
-  'Looking for the best kids party venue with delicious and healthy food in Gurgaon? Little Jalebis Themed Party Venue in DLF Phase 1 offers a customizable space for up to 100 guests with in-house kids catering, setup & hassle-free experience. Book your birthday party today!'
+  'Looking for the best kids party venue with delicious and healthy food in Gurgaon? Little Jalebis Kids Party Venue in DLF Phase 1 offers a customizable space for up to 100 guests with in-house kids catering, setup & hassle-free experience. Book your birthday party today!'
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,

@@ -117,7 +117,7 @@ const Footer = () => {
               </div>
               <div className="rounded-2xl bg-[#FFF8EF] p-4">
                 <div className="mb-2 text-sm font-black uppercase tracking-wide text-[#F26522]">
-                  Themed Party Venue
+                  Kids Party Venue
                 </div>
                 <div className="flex gap-3 text-[#333333]">
                   <MapPin className="shrink-0 text-[#F26522]" size={20} />
