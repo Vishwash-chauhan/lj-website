@@ -58,8 +58,8 @@ const ThemedPartyVenueSections = () => {
   return (
     <div className="space-y-12 md:space-y-16 mt-8 md:mt-12" style={{ fontFamily: "'Comic Neue', cursive" }}>
       {/* 1. More Than Just a Party Hall Section */}
-      <section className="px-4 sm:px-0">
-        <div className="bg-white border-4 border-[#333333] rounded-[2rem] md:rounded-[3rem] p-6 md:p-12 shadow-[6px_6px_0px_#333333] md:shadow-[10px_10px_0px_#333333]">
+      <section className="w-full">
+        <div className="bg-white border-4 border-[#333333] rounded-[2rem] md:rounded-[3rem] p-5 sm:p-6 md:p-16 shadow-[7px_7px_0px_#333333] md:shadow-[12px_12px_0px_#333333]">
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             <div>
               <span className="inline-block bg-[#F26522] text-white px-4 py-1.5 rounded-full font-black text-xs uppercase tracking-wider shadow-[3px_3px_0px_#333333]">
@@ -111,7 +111,7 @@ const ThemedPartyVenueSections = () => {
       </section>
 
       {/* 2. Theme For Every Imagination Section */}
-      <section className="px-4 sm:px-0">
+      <section className="w-full">
         <div className="text-center mb-6 md:mb-8">
           <h2 className="text-2xl sm:text-3xl md:text-5xl font-black text-[#333333]">
             A Theme for Every <span className="text-[#F26522]">Imagination</span>
@@ -146,8 +146,8 @@ const ThemedPartyVenueSections = () => {
       </section>
 
       {/* 3. Fresh Food Section */}
-      <section className="px-4 sm:px-0">
-        <div className="bg-white border-4 border-[#333333] rounded-[2rem] md:rounded-[3rem] p-6 md:p-12 shadow-[6px_6px_0px_#333333] md:shadow-[10px_10px_0px_#333333]">
+      <section className="w-full">
+        <div className="bg-white border-4 border-[#333333] rounded-[2rem] md:rounded-[3rem] p-5 sm:p-6 md:p-16 shadow-[7px_7px_0px_#333333] md:shadow-[12px_12px_0px_#333333]">
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             <div className="order-2 md:order-1 bg-[#FFF9F2] border-4 border-[#333333] rounded-3xl p-5 md:p-8 shadow-[6px_6px_0px_#FFCB05] space-y-4">
               <div className="flex items-start gap-3">
@@ -196,7 +196,7 @@ const ThemedPartyVenueSections = () => {
       </section>
 
       {/* 4. Everything You Need in One Place Section */}
-      {/* <section className="px-4 sm:px-0">
+      {/* <section className="w-full">
         <div className="text-center mb-6 md:mb-10">
           <h2 className="text-2xl sm:text-3xl md:text-5xl font-black text-[#333333]">
             Everything You Need in <span className="text-[#FFCB05] bg-[#333333] px-3 py-1 rounded-lg inline-block rotate-1">One Place</span>
@@ -221,7 +221,7 @@ const ThemedPartyVenueSections = () => {
       </section> */}
 
       {/* 5. Perfect for Every Milestone Section */}
-      <section className="px-4 sm:px-0">
+      <section className="w-full">
         <div className="text-center mb-6 md:mb-10">
           <h2 className="text-2xl sm:text-3xl md:text-5xl font-black text-[#333333]">
             Perfect for Every <span className="text-[#F26522]">Milestone</span>

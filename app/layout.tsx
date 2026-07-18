@@ -12,6 +12,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://littlejalebis.com"),
   title: "Little Jalebis | Kids Party House & Catering Co. | Delhi & NCR",
   description: "Award-winning kids party venue and catering company in Delhi, NCR, Gurgaon, Noida, Faridabad, Ghaziabad. Unforgettable parties with delicious food, entertainment packages, and party venue.",
 

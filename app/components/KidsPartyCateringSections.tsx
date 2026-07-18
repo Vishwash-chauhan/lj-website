@@ -67,8 +67,8 @@ const KidsPartyCateringSections = () => {
   return (
     <div className="space-y-12 md:space-y-16 mt-8 md:mt-12" style={{ fontFamily: "'Comic Neue', cursive" }}>
       {/* 1. Philosophy: Made for Kids */}
-      <section className="px-4 sm:px-0">
-        <div className="bg-white border-4 border-[#333333] rounded-[2rem] md:rounded-[3rem] p-6 md:p-12 shadow-[6px_6px_0px_#333333] md:shadow-[10px_10px_0px_#333333]">
+      <section className="w-full">
+        <div className="bg-white border-4 border-[#333333] rounded-[2rem] md:rounded-[3rem] p-5 sm:p-6 md:p-16 shadow-[7px_7px_0px_#333333] md:shadow-[12px_12px_0px_#333333]">
           <div className="grid md:grid-cols-2 gap-6 md:gap-10 items-center">
             <div>
               <span className="inline-block bg-[#F26522] text-white px-4 py-1.5 rounded-full font-black text-xs uppercase tracking-wider shadow-[3px_3px_0px_#333333]">
@@ -97,7 +97,7 @@ const KidsPartyCateringSections = () => {
       </section>
 
       {/* 2. Menu Comparison Section: Kids' Favourites vs Adults' Options */}
-      <section className="px-4 sm:px-0">
+      <section className="w-full">
         <div className="grid md:grid-cols-2 gap-6 md:gap-8 max-w-6xl mx-auto">
           {/* Kids Favourites */}
           <div className="bg-[#FFFDE7] border-4 border-[#333333] p-6 md:p-10 rounded-[2rem] shadow-[6px_6px_0px_#333333] flex flex-col justify-between">
@@ -160,7 +160,7 @@ const KidsPartyCateringSections = () => {
       </section>
 
       {/* 3. Live Food Stations Section */}
-      <section className="px-4 sm:px-0">
+      <section className="w-full">
         <div className="text-center mb-6 md:mb-8">
           <h2 className="text-2xl sm:text-3xl md:text-5xl font-black text-[#333333]">
             Interactive <span className="text-[#F26522]">Live Food Stations</span>
@@ -188,8 +188,8 @@ const KidsPartyCateringSections = () => {
       </section>
 
       {/* 4. Why Parents Love Our Catering */}
-      {/* <section className="px-4 sm:px-0">
-        <div className="bg-white border-4 border-[#333333] rounded-[2rem] md:rounded-[3rem] p-6 md:p-12 shadow-[6px_6px_0px_#333333] md:shadow-[10px_10px_0px_#333333]">
+      {/* <section className="w-full">
+        <div className="bg-white border-4 border-[#333333] rounded-[2rem] md:rounded-[3rem] p-5 sm:p-6 md:p-16 shadow-[7px_7px_0px_#333333] md:shadow-[12px_12px_0px_#333333]">
           <div className="text-center mb-8 md:mb-10">
             <h2 className="text-2xl sm:text-3xl md:text-5xl font-black text-[#333333]">
               Why Parents <span className="text-[#F26522]">Love</span> Our Catering
@@ -220,7 +220,7 @@ const KidsPartyCateringSections = () => {
       </section> */}
 
       {/* 5. Where We Cater Section */}
-      {/* <section className="px-4 sm:px-0">
+      {/* <section className="w-full">
         <div className="bg-[#E0F7FA] border-4 border-[#333333] rounded-[2rem] p-6 md:p-10 shadow-[6px_6px_0px_#333333] flex flex-col md:flex-row items-center gap-6 md:gap-10">
           <div className="w-16 h-16 rounded-full bg-white border-4 border-[#333333] flex items-center justify-center text-3xl shrink-0 shadow-[3px_3px_0px_#333333] rotate-3">
             🚚
@@ -251,7 +251,7 @@ const KidsPartyCateringSections = () => {
       </section> */}
 
       {/* 6. Perfect for Every Celebration (Milestones) */}
-      <section className="px-4 sm:px-0">
+      <section className="w-full">
         <div className="text-center mb-6 md:mb-10">
           <h2 className="text-2xl sm:text-3xl md:text-5xl font-black text-[#333333]">
             Perfect for Every <span className="text-[#FFCB05] bg-[#333333] px-3 py-1 rounded-lg inline-block -rotate-1">Celebration</span>
@@ -280,8 +280,8 @@ const KidsPartyCateringSections = () => {
       </section>
 
       {/* 7. Call to Action */}
-      {/* <section className="px-4 sm:px-0">
-        <div className="bg-white border-4 border-[#333333] rounded-[2rem] md:rounded-[3rem] p-6 md:p-12 text-center shadow-[8px_8px_0px_#FFCB05] md:shadow-[10px_10px_0px_#FFCB05] max-w-4xl mx-auto">
+      {/* <section className="w-full">
+        <div className="bg-white border-4 border-[#333333] rounded-[2rem] md:rounded-[3rem] p-5 sm:p-6 md:p-16 text-center shadow-[7px_7px_0px_#333333] md:shadow-[12px_12px_0px_#333333] max-w-4xl mx-auto">
           <span className="text-3xl md:text-4xl">🍕</span>
           <h2 className="mt-4 text-2xl sm:text-3xl md:text-5xl font-black text-[#333333] leading-tight">
             Ready to Plan the Perfect Kids Birthday Menu?
