@@ -13,7 +13,7 @@ export const SERVICES = {
     title: 'Catering',
     tagline: 'Deliciously Fun, Nutritiously Balanced',
     description:
-      'Fully Customisable Catering Options. Our menus are designed keeping children in mind — kid-friendly, hygienic, and flavour-balanced. Our kitchen focuses on fresh ingredients and playful presentation.',
+      "We specialise in kids birthday catering that's thoughtfully planned for young guests while ensuring parents and adults enjoy an equally satisfying dining experience.\n\nWhether you're celebrating at home, in a clubhouse, or at our Kids Party House in Gurgaon, we make catering simple, flexible, and stress-free.",
     features: ['Fully Customisable', 'Live Food Counters', 'Signature In-House Catering', 'Hygienic'],
     cta: 'View Menu',
     color: '#FFCB05',
@@ -69,7 +69,7 @@ export const SERVICES = {
     metadata: {
       title: 'Kids Party Catering in Delhi NCR | Little Jalebis',
       description:
-        'Little Jalebis for kids party catering in Delhi NCR. Fun menus, live counters & hassle-free birthday setups for kids and families. For booking, call us today!',
+        'Fresh, delicious kids birthday catering in Delhi NCR by Little Jalebis. Curated kids menus, adult options, live food stations, and flexible quantity-based ordering. Book now!',
     },
   },
   venue: {

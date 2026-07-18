@@ -14,6 +14,7 @@ import FoodBoxesMenu from '../components/FoodBoxesMenu'
 import CateringProcess from '../components/CateringProcess'
 import NotAPlayzone from '../components/NotAPlayZone'
 import ThemedPartyVenueSections from '../components/ThemedPartyVenueSections'
+import KidsPartyCateringSections from '../components/KidsPartyCateringSections'
 import GalleryComponent from '../components/GalleryComponent'
 import Faq from '../components/Faq'
 import FaqSchema from '../components/FaqSchema'
@@ -74,8 +75,8 @@ const ServicesClient = ({ serviceKey }: ServicesClientProps) => {
   const activeServiceFaqs = 'faqs' in activeService ? activeService.faqs : undefined
 
   const h1Labels: Record<ServiceKey, { prefix: string; highlight: string; subtitle: string }> = {
-    venue: { prefix: 'Kids Party', highlight: 'Venue', subtitle: 'Where Every Birthday Becomes a Beautiful Memory. A warm, welcoming Theamed Party Venue' },
-    catering: { prefix: 'Kids Party', highlight: 'Catering', subtitle: 'Kid-friendly menus, live counters & hassle-free birthday catering across Delhi NCR.' },
+    venue: { prefix: 'Themed Party', highlight: 'Venue', subtitle: 'Where Every Birthday Becomes a Beautiful Memory. A warm, welcoming Kids Party House in DLF Phase 1, Gurgaon.' },
+    catering: { prefix: 'Kids Party', highlight: 'Catering', subtitle: 'Fresh, Delicious Catering Designed Especially for Children\'s Celebrations across Delhi NCR.' },
     boxes: { prefix: 'Food Delivery', highlight: '& Boxes', subtitle: 'Hygienic, individually packed meals delivered to your door for parties, schools & events.' },
   }
 
@@ -167,6 +168,7 @@ const ServicesClient = ({ serviceKey }: ServicesClientProps) => {
               )}
               {activeTab === 'catering' && (
                 <div className="mt-8 md:mt-12">
+                  <KidsPartyCateringSections />
                   <CateringProcess />
                 </div>
               )}
