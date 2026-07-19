@@ -15,6 +15,7 @@ import CateringProcess from '../components/CateringProcess'
 import NotAPlayzone from '../components/NotAPlayZone'
 import ThemedPartyVenueSections from '../components/ThemedPartyVenueSections'
 import KidsPartyCateringSections from '../components/KidsPartyCateringSections'
+import FoodBoxesSections from '../components/FoodBoxesSections'
 import GalleryComponent from '../components/GalleryComponent'
 import Faq from '../components/Faq'
 import FaqSchema from '../components/FaqSchema'
@@ -41,6 +42,9 @@ const ServicesClient = ({ serviceKey }: ServicesClientProps) => {
 
   useEffect(() => {
     setIsMounted(true)
+    const handleOpenFoodBoxes = () => setIsFoodBoxesOpen(true)
+    window.addEventListener('open-food-boxes', handleOpenFoodBoxes)
+    return () => window.removeEventListener('open-food-boxes', handleOpenFoodBoxes)
   }, [])
 
   useEffect(() => {
@@ -77,7 +81,7 @@ const ServicesClient = ({ serviceKey }: ServicesClientProps) => {
   const h1Labels: Record<ServiceKey, { prefix: string; highlight: string; subtitle: string }> = {
     venue: { prefix: 'Themed Party', highlight: 'Venue', subtitle: 'Where Every Birthday Becomes a Beautiful Memory. A warm, welcoming Kids Party House in DLF Phase 1, Gurgaon.' },
     catering: { prefix: 'Kids Party', highlight: 'Catering', subtitle: 'Fresh, Delicious Catering Designed Especially for Children\'s Celebrations across Delhi NCR.' },
-    boxes: { prefix: 'Food Delivery', highlight: '& Boxes', subtitle: 'Hygienic, individually packed meals delivered to your door for parties, schools & events.' },
+    boxes: { prefix: 'Food Delivery', highlight: '& Boxes', subtitle: 'Freshly Packed, Perfectly Portioned & Loved by Kids. Convenient, hygienic & delicious food boxes delivered across Delhi NCR.' },
   }
 
   return (
@@ -170,6 +174,11 @@ const ServicesClient = ({ serviceKey }: ServicesClientProps) => {
                 <div className="mt-8 md:mt-12">
                   <KidsPartyCateringSections />
                   <CateringProcess />
+                </div>
+              )}
+              {activeTab === 'boxes' && (
+                <div className="mt-8 md:mt-12">
+                  <FoodBoxesSections />
                 </div>
               )}
             </>

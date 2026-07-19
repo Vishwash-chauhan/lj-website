@@ -159,7 +159,7 @@ export const SERVICES = {
     title: 'Fun Food Boxes',
     tagline: 'Healthy Meals, Delivered in Style',
     description:
-      'Perfect for school events, birthday picnics, or outdoor trips. Our lunch boxes are packed with love, nutrition, and playful presentation to make healthy bites feel like a treat.',
+      "Freshly prepared in our kitchen and thoughtfully packed for easy serving, our food boxes offer a convenient, hygienic, and delicious solution for birthdays at home, playdates, picnics, or school events.\n\nDesigned especially for children, they make hosting effortless for parents and dining enjoyable for little guests.",
     features: ['Individual Portioning', 'Hygienic Packaging', 'Fully Customisable', 'On-Demand Delivery'],
     cta: 'View Food Box Menu',
     color: '#333333',
@@ -168,7 +168,7 @@ export const SERVICES = {
     metadata: {
       title: 'Kids Food Boxes for Parties | Little Jalebis',
       description:
-        'Kids food boxes for parties from Little Jalebis. Hygienic, fun & hassle-free meals delivered across Delhi NCR for birthdays & events. For more info. Call now!',
+        'Fresh, hygienic, and perfectly portioned kids food boxes for birthday parties, school events, and playdates by Little Jalebis. Convenient delivery across Delhi NCR. Order now!',
     },
   },
 } as const satisfies Record<ServiceKey, {
