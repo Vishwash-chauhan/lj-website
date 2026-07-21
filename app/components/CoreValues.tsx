@@ -5,29 +5,29 @@ import React from 'react'
 const CoreValues = () => {
   const values = [
     {
-      icon: "🎉",
-      title: "Party Perfection",
-      desc: "Every detail is crafted to make your celebration unforgettable and stress-free."
+      icon: "👶",
+      title: "Children Come First",
+      desc: "Every menu, experience, and celebration is designed around what children genuinely enjoy."
     },
     {
-      icon: "🌟",
-      title: "Premium Quality",
-      desc: "Only the finest ingredients sourced from trusted suppliers for exceptional taste."
+      icon: "🥗",
+      title: "Fresh Food Matters",
+      desc: "Every order is freshly prepared using quality ingredients because great celebrations deserve great food."
     },
     {
-      icon: "🚀",
-      title: "Lightning Fast",
-      desc: "Quick turnaround times without compromising on quality or freshness."
+      icon: "🤝",
+      title: "Hospitality Difference",
+      desc: "Professional service, attention to detail, and genuine care are just as important as the menu itself."
     },
     {
-      icon: "❤️",
-      title: "Made with Love",
-      desc: "Every dish is prepared with care and attention to bring joy to your guests."
+      icon: "🎯",
+      title: "Every Party is Personal",
+      desc: "No two birthdays are alike. We take time to understand your vision before recommending the right plan."
     }
   ]
 
   return (
-    <section className="py-10 md:py-12 px-4 sm:px-6 bg-[#FFF9F2]" style={{ fontFamily: "'Comic Neue', cursive" }}>
+    <section className="py-10 md:py-16 px-4 sm:px-6 bg-[#FFF9F2]" style={{ fontFamily: "'Comic Neue', cursive" }}>
       <div className="max-w-6xl mx-auto">
         
         <div className="bg-[#F26522] border-4 border-[#333333] rounded-[2rem] md:rounded-[3rem] p-6 sm:p-8 md:p-16 text-white relative overflow-hidden shadow-[8px_8px_0px_#333333] md:shadow-[12px_12px_0px_#333333]">
@@ -40,12 +40,12 @@ const CoreValues = () => {
             
             {/* Left Side: Big Heading */}
             <div className="lg:w-1/3 flex flex-col justify-center">
-              <span className="text-[#FFCB05] font-black uppercase tracking-[0.2em] md:tracking-widest text-xs sm:text-sm mb-3 md:mb-4">Our DNA</span>
+              <span className="text-[#FFCB05] font-black uppercase tracking-[0.2em] md:tracking-widest text-xs sm:text-sm mb-3 md:mb-4">Our Principles</span>
               <h3 className="text-3xl sm:text-4xl md:text-6xl font-black leading-tight mb-4 md:mb-6">
-                What We <span className="hidden md:inline"><br /></span>Stand For
+                What We <span className="hidden md:inline"><br /></span>Believe
               </h3>
-              <p className="font-bold text-white/80 text-sm sm:text-base md:text-lg">
-                India's first tech-driven, kids centric catering company
+              <p className="font-bold text-white/90 text-sm sm:text-base md:text-lg">
+                Simple, uncompromising standards that guide every birthday party we cater and host.
               </p>
             </div>
 
