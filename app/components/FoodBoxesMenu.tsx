@@ -20,8 +20,8 @@ const CompactFoodMenu = () => {
   ]
 
   return (
-    <section className="py-10 md:py-12 px-4 sm:px-5 bg-[#FFF9F2]" style={{ fontFamily: "'Comic Neue', cursive" }}>
-      <div className="max-w-6xl mx-auto">
+    <section className="bg-white border-4 border-[#333333] rounded-[2rem] md:rounded-[3rem] p-5 sm:p-6 md:p-12 shadow-[7px_7px_0px_#333333] md:shadow-[12px_12px_0px_#333333] max-w-6xl mx-auto" style={{ fontFamily: "'Comic Neue', cursive" }}>
+      <div className="w-full">
         
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 md:mb-8 gap-4 md:gap-6 border-b-4 border-[#333333] pb-6 md:pb-8">

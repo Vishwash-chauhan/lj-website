@@ -3,21 +3,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-
-const BOX_ITEMS = [
-  { name: 'Mini Burgers', emoji: '🍔' },
-  { name: 'Mini Pizzas', emoji: '🍕' },
-  { name: 'Pasta', emoji: '🍝' },
-  { name: 'Noodles', emoji: '🍜' },
-  { name: 'Sandwiches', emoji: '🥪' },
-  { name: 'Wraps', emoji: '🌯' },
-  { name: 'French Fries', emoji: '🍟' },
-  { name: 'Fresh Fruit', emoji: '🍎' },
-  { name: 'Brownies', emoji: '🍫' },
-  { name: 'Cupcakes', emoji: '🧁' },
-  { name: 'Juice Boxes', emoji: '🧃' },
-  { name: 'Cookies', emoji: '🍪' },
-]
+import FoodBoxesMenu from './FoodBoxesMenu'
 
 const OCCASIONS = [
   { title: 'Birthday Parties', emoji: '🎂', desc: 'A clean, mess-free individual dining option children love.' },
@@ -77,39 +63,11 @@ const FoodBoxesSections = () => {
         </div>
       </section>
 
-      {/* 2. Designed Especially for Kids */}
-      <section className="w-full">
-        <div className="bg-white border-4 border-[#333333] rounded-[2rem] md:rounded-[3rem] p-5 sm:p-6 md:p-16 shadow-[7px_7px_0px_#333333] md:shadow-[12px_12px_0px_#333333]">
-          <span className="inline-block bg-[#FFCB05] border-2 border-[#333333] text-[#333333] px-3.5 py-1 rounded-full font-black text-xs uppercase tracking-wider">
-            Kids Favourites
-          </span>
-          <h2 className="mt-3 text-2xl sm:text-3xl md:text-5xl font-black text-[#333333] leading-tight">
-            Designed Especially for Kids
-          </h2>
-          <p className="mt-2 text-sm sm:text-base font-bold text-[#333333]/70 max-w-2xl">
-            Children enjoy meals that are colourful, familiar, and easy to hold. Each box is packed with kid-approved treats, prepared fresh using quality ingredients:
-          </p>
-
-          <div className="mt-6 sm:mt-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
-            {BOX_ITEMS.map((item) => (
-              <div
-                key={item.name}
-                className="bg-[#FFF9F2] border-2 border-[#333333] p-3 sm:p-4 rounded-xl shadow-[3px_3px_0px_#333333] flex items-center gap-2.5 hover:-translate-y-0.5 transition-transform"
-              >
-                <span className="text-xl sm:text-2xl shrink-0">{item.emoji}</span>
-                <span className="font-black text-[#333333] text-xs sm:text-sm">{item.name}</span>
-              </div>
-            ))}
-          </div>
-
-          <p className="mt-6 text-xs sm:text-sm font-black text-[#F26522] uppercase tracking-wide">
-            ★ Customise combinations based on the age group and party theme!
-          </p>
-        </div>
-      </section>
+      {/* 2. Food Boxes Menu */}
+      <FoodBoxesMenu />
 
       {/* 3. Customise Your Box */}
-      <section className="w-full">
+      {/* <section className="w-full">
         <div className="text-center mb-6 md:mb-10">
           <h2 className="text-2xl sm:text-3xl md:text-5xl font-black text-[#333333]">
             Customise <span className="text-[#F26522]">Your Box</span>
@@ -135,7 +93,7 @@ const FoodBoxesSections = () => {
             </div>
           ))}
         </div>
-      </section>
+      </section> */}
 
       {/* 4. Simple to Serve. Easy to Enjoy. */}
       {/* <section className="w-full">
