@@ -49,7 +49,7 @@ const FoodBoxesSections = () => {
                 Zero Hassle
               </span>
               <h2 className="mt-4 text-2xl sm:text-3xl md:text-5xl font-black text-[#333333] leading-tight">
-                Why Choose Food Boxes?
+                Why Choose Little Jalebies Food Boxes?
               </h2>
               <p className="mt-4 text-sm sm:text-base md:text-lg font-bold text-[#333333]/80 leading-relaxed">
                 Not every celebration needs a buffet. Sometimes, the simplest ideas create the happiest memories.
@@ -59,12 +59,19 @@ const FoodBoxesSections = () => {
               </p>
             </div>
 
-            <div className="bg-[#FFFDE7] border-4 border-[#333333] p-6 md:p-8 rounded-[2rem] shadow-[4px_4px_0px_#333333] text-center">
-              <span className="text-5xl">🎁</span>
-              <h3 className="mt-3 text-xl md:text-2xl font-black text-[#333333]">Hygienic & Fresh</h3>
-              <p className="mt-2 font-bold text-[#333333]/70 text-sm md:text-base leading-relaxed">
-                Every box is prepared fresh in our kitchen using quality ingredients, then packed with care to maintain hygiene, presentation, and warmth until serving time.
-              </p>
+            <div className="relative w-full max-w-xs md:max-w-sm mx-auto aspect-[9/16] rounded-[2rem] md:rounded-[2.5rem] border-4 border-[#333333] shadow-[6px_6px_0px_#333333] md:shadow-[10px_10px_0px_#333333] overflow-hidden">
+              <video
+                src="/videos/little_jalebies_food_boxes.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                title="Little Jalebis Kids Food Boxes"
+                aria-label="Little Jalebis Kids Food Boxes"
+                className="w-full h-full object-cover"
+              >
+                Little Jalebis Kids Food Boxes
+              </video>
             </div>
           </div>
         </div>

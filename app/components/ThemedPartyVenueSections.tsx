@@ -104,7 +104,9 @@ const ThemedPartyVenueSections = () => {
                 title="Kids playing and celebrating at Little Jalebis themed birthday party venue"
                 aria-label="Kids playing and celebrating at Little Jalebis themed birthday party venue"
                 className="w-full h-full object-cover rounded-[2rem] md:rounded-[3rem] border-4 border-[#333333] shadow-[6px_6px_0px_#333333] md:shadow-[10px_10px_0px_#333333]"
-              />
+              >
+                Kids playing and celebrating at Little Jalebis themed birthday party venue
+              </video>
             </div>
           </div>
         </div>
