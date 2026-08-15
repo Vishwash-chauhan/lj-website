@@ -30,13 +30,13 @@ export async function generateMetadata({
         url: `https://littlejalebis.com/blog/${slug}`,
         images: post.image
           ? [{ url: post.image, alt: post.imageAlt || post.title }]
-          : undefined,
+          : [{ url: "https://littlejalebis.com/favicon.png", width: 192, height: 192, alt: title }],
       },
       twitter: {
         card: "summary_large_image",
         title,
         description,
-        images: post.image ? [post.image] : undefined,
+        images: post.image ? [post.image] : ["https://littlejalebis.com/favicon.png"],
       },
       alternates: {
         canonical: `https://littlejalebis.com/blog/${slug}`,

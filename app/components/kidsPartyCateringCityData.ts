@@ -27,11 +27,20 @@ function createCityLandingMetadata(seo: CityLandingSeo): Metadata {
       siteName: 'Little Jalebis',
       locale: 'en_IN',
       type: 'website',
+      images: [
+        {
+          url: 'https://littlejalebis.com/favicon.png',
+          width: 192,
+          height: 192,
+          alt: seo.title,
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title: seo.title,
       description: seo.description,
+      images: ['https://littlejalebis.com/favicon.png'],
     },
   }
 }

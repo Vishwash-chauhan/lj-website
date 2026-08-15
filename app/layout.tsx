@@ -32,11 +32,20 @@ export const metadata: Metadata = {
     siteName: "Little Jalebis",
     locale: "en_IN",
     type: "website",
+    images: [
+      {
+        url: "https://littlejalebis.com/favicon.png",
+        width: 192,
+        height: 192,
+        alt: "Little Jalebis",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Little Jalebis | Kids Party Venue & Catering",
     description: "Award-winning Kids party venue and catering company in Delhi & Gurgaon.",
+    images: ["https://littlejalebis.com/favicon.png"],
   },
   robots: "index, follow",
 };

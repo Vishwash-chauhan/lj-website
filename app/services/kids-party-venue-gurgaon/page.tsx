@@ -20,11 +20,20 @@ export const metadata: Metadata = {
     siteName: 'Little Jalebis',
     locale: 'en_IN',
     type: 'website',
+    images: [
+      {
+        url: 'https://littlejalebis.com/favicon.png',
+        width: 192,
+        height: 192,
+        alt: PAGE_TITLE,
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
+    images: ['https://littlejalebis.com/favicon.png'],
   },
 }
 

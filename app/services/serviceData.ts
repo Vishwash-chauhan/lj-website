@@ -229,11 +229,20 @@ export function getServiceMetadata(serviceKey: ServiceKey): Metadata {
       siteName: 'Little Jalebis',
       locale: 'en_IN',
       type: 'website',
+      images: [
+        {
+          url: 'https://littlejalebis.com/favicon.png',
+          width: 192,
+          height: 192,
+          alt: service.metadata.title,
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title: service.metadata.title,
       description: service.metadata.description,
+      images: ['https://littlejalebis.com/favicon.png'],
     },
   }
 }
