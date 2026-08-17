@@ -33,6 +33,7 @@ const footerLinks = [
   { href: '/services', label: 'Services' },
   { href: '/contact', label: 'Contact' },
   { href: '/collaboration', label: 'Collaboration' },
+  { href: '/food-safety', label: 'Food Safety & Hygiene' },
   { href: '/terms&conditions', label: 'Terms & Conditions' },
 ];
 
