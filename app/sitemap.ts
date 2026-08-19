@@ -23,7 +23,7 @@ const staticRoutes: Array<{
   { path: '/services/kids-party-catering-gurgaon', changeFrequency: 'weekly', priority: 0.9 },
   { path: getServicePath('venue'), changeFrequency: 'weekly', priority: 0.9 },
   { path: getServicePath('boxes'), changeFrequency: 'weekly', priority: 0.9 },
-  { path: '/food-safety', changeFrequency: 'monthly', priority: 0.8 },
+  { path: '/our-promise', changeFrequency: 'monthly', priority: 0.8 },
 ]
 
 export default function sitemap(): MetadataRoute.Sitemap {

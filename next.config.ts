@@ -31,6 +31,16 @@ const nextConfig: NextConfig = {
         destination: "/services/kids-party-venue",
         permanent: true,
       },
+      {
+        source: "/food-safety",
+        destination: "/our-promise",
+        permanent: true,
+      },
+      {
+        source: "/standards",
+        destination: "/our-promise",
+        permanent: true,
+      },
     ];
   },
   rewrites: async () => {

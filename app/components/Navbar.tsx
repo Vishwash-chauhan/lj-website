@@ -142,6 +142,7 @@ const Navbar = () => {
     // { name: 'Contact', href: '/contact' },
     { name: 'Testimonials', href: '/testimonials' },
     { name: 'Collaboration', href: '/collaboration' },
+    { name: 'Our Promise', href: '/our-promise' },
   ];
 
   const isActiveLink = (href: string) =>
@@ -288,6 +289,7 @@ const Navbar = () => {
           {/* <Link href="/contact" onClick={() => setIsOpen(false)} className="text-[#333333] font-bold text-3xl uppercase tracking-tight">Contact</Link> */}
           <Link href="/testimonials" onClick={() => setIsOpen(false)} className="text-[#333333] font-bold text-3xl uppercase tracking-tight">Testimonials</Link>
           <Link href="/collaboration" onClick={() => setIsOpen(false)} className="text-[#333333] font-bold text-3xl uppercase tracking-tight">Collaboration</Link>
+          <Link href="/our-promise" onClick={() => setIsOpen(false)} className="text-[#333333] font-bold text-3xl uppercase tracking-tight">Our Promise</Link>
 
           <Link
             href="/contact"
