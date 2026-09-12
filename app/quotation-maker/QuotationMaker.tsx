@@ -135,7 +135,6 @@ export default function QuotationMaker() {
   const [pax, setPax] = useState('')
   const [location, setLocation] = useState('')
   const [quoteId, setQuoteId] = useState('')
-  const [paxAutoStatus, setPaxAutoStatus] = useState('')
 
   // --- Webhook ---
   const [webhookUrl] = useState(DEFAULT_WEBHOOK_URL)
@@ -442,80 +441,6 @@ export default function QuotationMaker() {
       setTimeout(() => setStatusMessage(''), 3000)
     } catch (err: any) {
       setStatusMessage(`Error loading quotation: ${err.message}`)
-    }
-  }
-
-  // PAX Auto Load matching
-  const handleAutoLoadPax = async () => {
-    if (!pax.trim()) {
-      alert('Please enter a PAX value first (e.g., "15 Kids 10 Adults").')
-      return
-    }
-
-    let samples = quotationSamples
-    // If no local samples, try to fetch top quotations from Supabase
-    if (!samples || samples.length === 0) {
-      try {
-        const res = await fetch(`${SUPABASE_URL}?select=*&limit=30&order=created_at.desc`, {
-          headers: {
-            apikey: SUPABASE_KEY,
-            Authorization: `Bearer ${SUPABASE_KEY}`,
-          },
-        })
-        if (res.ok) {
-          samples = await res.json()
-          setQuotationSamples(samples)
-        }
-      } catch {
-        // Continue
-      }
-    }
-
-    if (!samples || samples.length === 0) {
-      alert('No previous quotations available for auto-loading menu.')
-      return
-    }
-
-    const target = parsePaxNumbers(pax)
-    if (target.total === 0) {
-      alert('Could not determine number of guests from PAX text. Try e.g. "15 Kids 10 Adults".')
-      return
-    }
-
-    const scored = samples
-      .map((s: any) => {
-        const sp = parsePaxNumbers(s.pax)
-        let dist = 0
-        if (target.kids > 0 && target.adults > 0 && sp.kids > 0 && sp.adults > 0) {
-          dist =
-            Math.abs(target.kids - sp.kids) * 1.5 +
-            Math.abs(target.adults - sp.adults) +
-            Math.abs(target.total - sp.total) * 0.5
-        } else {
-          dist = Math.abs(target.total - sp.total)
-        }
-
-        let items = s.items || []
-        if (typeof items === 'string') {
-          try {
-            items = JSON.parse(items)
-          } catch {
-            items = []
-          }
-        }
-        return { dist, itemCount: items.length, data: { ...s, items } }
-      })
-      .filter((s: any) => s.itemCount > 0)
-
-    scored.sort((a: any, b: any) => (a.dist !== b.dist ? a.dist - b.dist : b.itemCount - a.itemCount))
-
-    if (scored.length > 0) {
-      const best = scored[0].data
-      populateFormData(best, { skipCustomerDetails: true })
-      setPaxAutoStatus('✓ Menu Auto-Loaded')
-      setTimeout(() => setPaxAutoStatus(''), 4000)
-    } else {
-      alert(`No matching quotation found for PAX "${pax}".`)
     }
   }
 
@@ -1080,32 +1005,14 @@ export default function QuotationMaker() {
           />
         </div>
         <div>
-          <div className="flex justify-between items-center mb-1">
-            <label className="text-xs font-bold text-gray-700">Pax</label>
-            {paxAutoStatus && (
-              <span className="text-xs font-bold text-emerald-600 animate-pulse">
-                {paxAutoStatus}
-              </span>
-            )}
-          </div>
-          <div className="flex gap-2">
-            <input
-              type="text"
-              value={pax}
-              onChange={(e) => setPax(e.target.value)}
-              placeholder="e.g. 15 Kids 10 Adults"
-              className="flex-1 p-2.5 text-sm border border-gray-300 rounded-lg focus:outline-none focus:border-[#2D3E50]"
-            />
-            <button
-              type="button"
-              onClick={handleAutoLoadPax}
-              className="bg-[#F6B27A] hover:bg-[#e09e66] text-[#2D3E50] font-bold text-xs px-3 rounded-lg flex items-center gap-1 shadow-sm transition-all"
-              title="Zero-click instant auto load matching menu"
-            >
-              <Sparkles className="w-3.5 h-3.5" />
-              Auto Load
-            </button>
-          </div>
+          <label className="block text-xs font-bold text-gray-700 mb-1">Pax</label>
+          <input
+            type="text"
+            value={pax}
+            onChange={(e) => setPax(e.target.value)}
+            placeholder="e.g. 15 Kids 10 Adults"
+            className="w-full p-2.5 text-sm border border-gray-300 rounded-lg focus:outline-none focus:border-[#2D3E50]"
+          />
         </div>
         <div>
           <label className="block text-xs font-bold text-gray-700 mb-1">Location</label>
