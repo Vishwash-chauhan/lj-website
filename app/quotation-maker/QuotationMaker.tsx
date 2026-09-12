@@ -750,41 +750,75 @@ export default function QuotationMaker() {
     })
   }, [searchQuery, currentCategoryFilter])
 
+  // Group filtered menu list by category order
+  const groupedFilteredMenuList = useMemo(() => {
+    const map = new Map<string, Array<{ item: MenuItem; originalIndex: number }>>()
+    const categoriesToInclude = currentCategoryFilter
+      ? [currentCategoryFilter]
+      : categoryOrder
+
+    categoriesToInclude.forEach((cat) => map.set(cat, []))
+
+    filteredMenuList.forEach((item, mapIdx) => {
+      const originalIndex = menuItems.findIndex(
+        (m) =>
+          m.Name === item.Name &&
+          m.VegNonVeg === item.VegNonVeg &&
+          m.Category === item.Category
+      )
+      const effectiveIndex = originalIndex !== -1 ? originalIndex : mapIdx
+      const cat = normalizeCategory(item.Category)
+      if (!map.has(cat)) map.set(cat, [])
+      map.get(cat)!.push({ item, originalIndex: effectiveIndex })
+    })
+
+    return Array.from(map.entries()).filter(([_, items]) => items.length > 0)
+  }, [filteredMenuList, currentCategoryFilter])
+
   // Construct n8n payload
   const buildPayload = () => {
-    const itemsPayload = selectedItems.map((item) => {
-      const isLive = normalizeCategory(item.Category) === 'Live Stations'
-      if (isLive) {
-        const amt = (item.Setup || 0) + (item.Rate || 0) * (item.NoOfPeople || 0)
-        return {
-          Name: item.Name,
-          Description: item.Description,
-          Category: item.Category,
-          VegNonVeg: item.VegNonVeg,
-          Setup: item.Setup,
-          Rate: item.Rate,
-          NoOfPeople: item.NoOfPeople,
-          Amount: amt,
+    // Collect items grouped in category order: Snacks -> Main Course -> Rice -> Noodles -> Dessert -> Drinks -> Live Stations
+    const itemsPayload: any[] = []
+
+    groupedSelectedItems.forEach(([_, groupItems]) => {
+      groupItems.forEach(({ item }) => {
+        const normCat = normalizeCategory(item.Category)
+        const isLive = normCat === 'Live Stations'
+        // n8n expects 'Snacks' rather than 'Table Snacks'
+        const categoryForN8n = normCat === 'Table Snacks' ? 'Snacks' : normCat
+
+        if (isLive) {
+          const amt = (item.Setup || 0) + (item.Rate || 0) * (item.NoOfPeople || 0)
+          itemsPayload.push({
+            Name: item.Name,
+            Description: item.Description,
+            Category: categoryForN8n,
+            VegNonVeg: item.VegNonVeg,
+            Setup: item.Setup,
+            Rate: item.Rate,
+            NoOfPeople: item.NoOfPeople,
+            Amount: amt,
+          })
+        } else {
+          let pcsDisplay = item.PcsDisplay
+          if (item.Calculate === '1') {
+            const baseNum = extractNumber(item.PcsDisplay)
+            pcsDisplay = String(baseNum * item.Portions)
+          }
+          itemsPayload.push({
+            Name: item.Name,
+            Description: item.Description,
+            Category: categoryForN8n,
+            VegNonVeg: item.VegNonVeg,
+            Portions: item.Portions,
+            PcsDisplay: pcsDisplay,
+            Unit: item.Unit,
+            Rate: item.Rate,
+            Amount: item.Portions * item.Rate,
+            Calculate: item.Calculate,
+          })
         }
-      } else {
-        let pcsDisplay = item.PcsDisplay
-        if (item.Calculate === '1') {
-          const baseNum = extractNumber(item.PcsDisplay)
-          pcsDisplay = String(baseNum * item.Portions)
-        }
-        return {
-          Name: item.Name,
-          Description: item.Description,
-          Category: item.Category,
-          VegNonVeg: item.VegNonVeg,
-          Portions: item.Portions,
-          PcsDisplay: pcsDisplay,
-          Unit: item.Unit,
-          Rate: item.Rate,
-          Amount: item.Portions * item.Rate,
-          Calculate: item.Calculate,
-        }
-      }
+      })
     })
 
     let dateFormatted = ''
@@ -913,19 +947,6 @@ export default function QuotationMaker() {
     }
   }
 
-  // Download raw payload JSON
-  const handleDownloadJson = () => {
-    const payload = buildPayload()
-    const blob = new Blob([JSON.stringify(payload, null, 2)], {
-      type: 'application/json',
-    })
-    const url = URL.createObjectURL(blob)
-    const a = document.createElement('a')
-    a.href = url
-    a.download = `quotation_${quoteId || 'draft'}.json`
-    a.click()
-    URL.revokeObjectURL(url)
-  }
 
   return (
     <div className="max-w-6xl mx-auto bg-white rounded-2xl shadow-xl border border-[#2D3E50]/10 p-4 sm:p-8 text-[#2D3E50]">
@@ -961,6 +982,18 @@ export default function QuotationMaker() {
                 type="text"
                 value={quotationSearch}
                 onChange={(e) => handleQuotationSearch(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    e.preventDefault()
+                    if (selectedQuoteIdToLoad) {
+                      loadQuotation(selectedQuoteIdToLoad)
+                    } else if (displayedQuotations.length > 0) {
+                      const firstId = displayedQuotations[0].quotation_id
+                      setSelectedQuoteIdToLoad(firstId)
+                      loadQuotation(firstId)
+                    }
+                  }
+                }}
                 placeholder="Search quotations by name, date, ID..."
                 className="w-full pl-9 pr-3 py-2 text-sm bg-white border border-gray-300 rounded-lg focus:outline-none focus:border-[#2D3E50] focus:ring-1 focus:ring-[#2D3E50]"
               />
@@ -974,8 +1007,8 @@ export default function QuotationMaker() {
               className="flex-1 min-w-[220px] py-2 px-3 text-sm bg-white border border-gray-300 rounded-lg focus:outline-none focus:border-[#2D3E50]"
             >
               <option value="">-- Select or Start New Quotation --</option>
-              {displayedQuotations.map((q) => (
-                <option key={q.quotation_id} value={q.quotation_id}>
+              {displayedQuotations.map((q, idx) => (
+                <option key={`${q.quotation_id || 'quote'}-${idx}`} value={q.quotation_id}>
                   {q.quotation_id} - {q.host_name || 'Unknown'} ({q.event_date || 'No Date'})
                 </option>
               ))}
@@ -1089,9 +1122,9 @@ export default function QuotationMaker() {
           <input
             type="text"
             value={quoteId}
-            onChange={(e) => setQuoteId(e.target.value)}
-            placeholder="Generated upon entering Host Name"
-            className="w-full p-2.5 text-sm border border-gray-300 rounded-lg font-mono bg-gray-50 focus:outline-none focus:border-[#2D3E50]"
+            readOnly
+            placeholder="Auto-generated on Host Name"
+            className="w-full p-2.5 text-sm border border-gray-200 rounded-lg font-mono bg-gray-100 text-gray-700 cursor-not-allowed focus:outline-none select-all"
           />
         </div>
 
@@ -1169,69 +1202,84 @@ export default function QuotationMaker() {
         </div>
 
         {/* Menu Items Scroll Box */}
-        <div className="max-h-72 overflow-y-auto border border-gray-200 rounded-xl p-3 bg-gray-50/50">
-          {filteredMenuList.length === 0 ? (
+        <div className="max-h-80 overflow-y-auto border border-gray-200 rounded-xl p-3 bg-gray-50/50">
+          {groupedFilteredMenuList.length === 0 ? (
             <div className="text-center py-6 text-sm text-gray-400">
               No menu items match your search.
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-              {filteredMenuList.map((item) => {
-                const originalIndex = menuItems.findIndex((m) => m.Name === item.Name)
-                const isSelected = selectedItems.some((s) => s.menuIdx === originalIndex)
-                const isNonVeg = item.VegNonVeg?.toLowerCase().includes('non')
+            <div className="space-y-4">
+              {groupedFilteredMenuList.map(([category, items]) => (
+                <div key={category} className="space-y-2">
+                  <div className="flex items-center gap-2 px-1 pt-1">
+                    <span className="text-xs font-black uppercase tracking-wider text-[#2D3E50] bg-gray-200/90 px-2.5 py-0.5 rounded-md border border-gray-300">
+                      {category}
+                    </span>
+                    <div className="flex-1 h-px bg-gray-200" />
+                    <span className="text-[10px] font-semibold text-gray-500">
+                      {items.length} {items.length === 1 ? 'item' : 'items'}
+                    </span>
+                  </div>
 
-                return (
-                  <label
-                    key={item.Name}
-                    className={`flex items-start gap-2.5 p-2 rounded-lg border text-xs cursor-pointer transition-colors ${
-                      isSelected
-                        ? 'bg-amber-50 border-amber-300 shadow-xs'
-                        : 'bg-white border-gray-200 hover:bg-gray-50'
-                    }`}
-                  >
-                    <input
-                      type="checkbox"
-                      checked={isSelected}
-                      onChange={() => toggleMenuItem(item, originalIndex)}
-                      className="mt-0.5 w-4 h-4 rounded text-[#2D3E50] focus:ring-0 cursor-pointer"
-                    />
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-1.5">
-                        <span
-                          className={`w-2 h-2 rounded-full flex-shrink-0 ${
-                            isNonVeg ? 'bg-red-500' : 'bg-emerald-600'
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                    {items.map(({ item, originalIndex }) => {
+                      const isSelected = selectedItems.some((s) => s.menuIdx === originalIndex)
+                      const isNonVeg = item.VegNonVeg?.toLowerCase().includes('non')
+
+                      return (
+                        <label
+                          key={`${item.Category}-${item.Name}-${item.VegNonVeg}-${originalIndex}`}
+                          className={`flex items-start gap-2.5 p-2 rounded-lg border text-xs cursor-pointer transition-colors ${
+                            isSelected
+                              ? 'bg-amber-50 border-amber-300 shadow-xs'
+                              : 'bg-white border-gray-200 hover:bg-gray-50'
                           }`}
-                        />
-                        <span className="font-bold text-gray-900 truncate">
-                          {item.Name}
-                        </span>
-                      </div>
-                      {item.Description && (
-                        <p className="text-[11px] text-gray-500 line-clamp-1 mt-0.5">
-                          {item.Description}
-                        </p>
-                      )}
-                    </div>
-                    <div className="text-right whitespace-nowrap pl-1">
-                      {item.Rate ? (
-                        <div className="font-bold text-gray-800">
-                          {formatCurrency(item.Rate)}
-                        </div>
-                      ) : item.Setup ? (
-                        <div className="font-bold text-gray-800">
-                          Setup {formatCurrency(item.Setup)}
-                        </div>
-                      ) : null}
-                      {item.PcsDisplay && (
-                        <div className="text-[10px] text-gray-500">
-                          {item.PcsDisplay} {item.Unit}
-                        </div>
-                      )}
-                    </div>
-                  </label>
-                )
-              })}
+                        >
+                          <input
+                            type="checkbox"
+                            checked={isSelected}
+                            onChange={() => toggleMenuItem(item, originalIndex)}
+                            className="mt-0.5 w-4 h-4 rounded text-[#2D3E50] focus:ring-0 cursor-pointer"
+                          />
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center gap-1.5">
+                              <span
+                                className={`w-2 h-2 rounded-full flex-shrink-0 ${
+                                  isNonVeg ? 'bg-red-500' : 'bg-emerald-600'
+                                }`}
+                              />
+                              <span className="font-bold text-gray-900 truncate">
+                                {item.Name}
+                              </span>
+                            </div>
+                            {item.Description && (
+                              <p className="text-[11px] text-gray-500 line-clamp-1 mt-0.5">
+                                {item.Description}
+                              </p>
+                            )}
+                          </div>
+                          <div className="text-right whitespace-nowrap pl-1">
+                            {item.Rate ? (
+                              <div className="font-bold text-gray-800">
+                                {formatCurrency(item.Rate)}
+                              </div>
+                            ) : item.Setup ? (
+                              <div className="font-bold text-gray-800">
+                                Setup {formatCurrency(item.Setup)}
+                              </div>
+                            ) : null}
+                            {item.PcsDisplay && (
+                              <div className="text-[10px] text-gray-500">
+                                {item.PcsDisplay} {item.Unit}
+                              </div>
+                            )}
+                          </div>
+                        </label>
+                      )
+                    })}
+                  </div>
+                </div>
+              ))}
             </div>
           )}
         </div>
@@ -1951,14 +1999,6 @@ export default function QuotationMaker() {
           )}
         </button>
 
-        <button
-          type="button"
-          onClick={handleDownloadJson}
-          className="w-full sm:w-auto bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold text-sm px-4 py-3 rounded-lg border border-gray-300 transition-colors flex items-center justify-center gap-2"
-        >
-          <Download className="w-4 h-4" />
-          Download JSON
-        </button>
 
         {statusMessage && (
           <div className="text-xs sm:text-sm font-semibold text-[#2D3E50] flex items-center gap-2 animate-fadeIn">
