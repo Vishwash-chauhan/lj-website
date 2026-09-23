@@ -76,6 +76,16 @@ function extractNumber(val: string | number | undefined | null): number {
   return Number(match[0].replace(/,/g, '')) || 0
 }
 
+function formatServiceForPayload(val: string | number | undefined | null): string {
+  if (!val) return ''
+  const str = String(val).trim()
+  const num = extractNumber(str)
+  if (num > 0) {
+    return `₹${num}`
+  }
+  return str
+}
+
 interface QuotationSummary {
   quotation_id: string
   host_name?: string
@@ -524,12 +534,12 @@ export default function QuotationMakerAI() {
       Items: itemsPayload,
       Total: itemsSubtotal,
       GrandTotal: subtotalWithServices,
-      ChefServers: chefServers,
-      TableDecor: tableDecor,
-      Cutlery: cutlery,
-      Chaffing: chaffing,
-      Conveyance: conveyance,
-      VenueCharges: venueCharges,
+      ChefServers: formatServiceForPayload(chefServers),
+      TableDecor: formatServiceForPayload(tableDecor),
+      Cutlery: formatServiceForPayload(cutlery),
+      Chaffing: formatServiceForPayload(chaffing),
+      Conveyance: formatServiceForPayload(conveyance),
+      VenueCharges: formatServiceForPayload(venueCharges),
       Tables: tables,
       KitchenSpace: kitchenSpace,
       ImageGrid: selectedImages.slice(0, 9),
