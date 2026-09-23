@@ -137,17 +137,17 @@ export default function QuotationMakerAI() {
   // In AI mode, user selects items by their exact menu index
   const [selectedMenuIndices, setSelectedMenuIndices] = useState<number[]>([])
 
-  // --- Services (Fixed standard defaults) ---
-  const [chefServers] = useState('₹4,000')
-  const [tableDecor] = useState('Included')
-  const [cutlery] = useState('₹100')
-  const [chaffing] = useState('₹100')
-  const [conveyance] = useState('As Per Actual')
-  const [venueCharges] = useState('₹0')
+  // --- Services (Editable standard defaults) ---
+  const [chefServers, setChefServers] = useState('₹4,000')
+  const [tableDecor, setTableDecor] = useState('Included')
+  const [cutlery, setCutlery] = useState('₹100')
+  const [chaffing, setChaffing] = useState('₹100')
+  const [conveyance, setConveyance] = useState('As Per Actual')
+  const [venueCharges, setVenueCharges] = useState('₹0')
 
   // --- Host Requirements ---
-  const [tables] = useState('As Required')
-  const [kitchenSpace] = useState('As Required')
+  const [tables, setTables] = useState('As Required')
+  const [kitchenSpace, setKitchenSpace] = useState('As Required')
 
   // --- Status & PDF Modal State ---
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -315,6 +315,16 @@ export default function QuotationMakerAI() {
         if (aMatch) setAdultsCount(parseInt(aMatch[1]))
       }
 
+      setChefServers(quote.chef_servers ?? quote.ChefServers ?? '₹4,000')
+      setTableDecor(quote.table_decor ?? quote.TableDecor ?? 'Included')
+      setCutlery(quote.cutlery ?? quote.Cutlery ?? '₹100')
+      setChaffing(quote.chaffing ?? quote.Chaffing ?? '₹100')
+      setConveyance(quote.conveyance ?? quote.Conveyance ?? 'As Per Actual')
+      setVenueCharges(quote.venue_charges ?? quote.VenueCharges ?? '₹0')
+
+      setTables(quote.tables ?? quote.Tables ?? 'As Required')
+      setKitchenSpace(quote.kitchen_space ?? quote.KitchenSpace ?? 'As Required')
+
       // Map loaded items to menu indices
       let rawItems = quote.items
       if (typeof rawItems === 'string') {
@@ -409,17 +419,28 @@ export default function QuotationMakerAI() {
     return computedItems.reduce((sum, it) => sum + it.amount, 0)
   }, [computedItems])
 
-  // Fixed Services values
+  // Services values
+  const servicesValues = useMemo(() => {
+    return {
+      chef: extractNumber(chefServers),
+      decor: extractNumber(tableDecor),
+      cutlery: extractNumber(cutlery),
+      chaffing: extractNumber(chaffing),
+      conveyance: extractNumber(conveyance),
+      venue: extractNumber(venueCharges),
+    }
+  }, [chefServers, tableDecor, cutlery, chaffing, conveyance, venueCharges])
+
   const servicesTotal = useMemo(() => {
     return (
-      extractNumber(chefServers) +
-      extractNumber(tableDecor) +
-      extractNumber(cutlery) +
-      extractNumber(chaffing) +
-      extractNumber(conveyance) +
-      extractNumber(venueCharges)
+      servicesValues.chef +
+      servicesValues.decor +
+      servicesValues.cutlery +
+      servicesValues.chaffing +
+      servicesValues.conveyance +
+      servicesValues.venue
     )
-  }, [chefServers, tableDecor, cutlery, chaffing, conveyance, venueCharges])
+  }, [servicesValues])
 
   const subtotalWithServices = itemsSubtotal + servicesTotal
   const gstAmount = subtotalWithServices * 0.05
@@ -1153,10 +1174,83 @@ export default function QuotationMakerAI() {
         </div>
       </div>
 
+      {/* Other Services Section */}
+      <div className="border-t border-[#2D3E50]/10 pt-6 mb-8">
+        <h2 className="text-lg font-bold text-[#2D3E50] mb-3">Other Services</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          <div>
+            <label className="block text-xs font-bold text-gray-700 mb-1">
+              Chef + Servers + Helper
+            </label>
+            <input
+              type="text"
+              value={chefServers}
+              onChange={(e) => setChefServers(e.target.value)}
+              className="w-full p-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2D3E50] focus:border-transparent outline-none"
+            />
+          </div>
+          <div>
+            <label className="block text-xs font-bold text-gray-700 mb-1">
+              Table Décor (As Per Theme)
+            </label>
+            <input
+              type="text"
+              value={tableDecor}
+              onChange={(e) => setTableDecor(e.target.value)}
+              className="w-full p-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2D3E50] focus:border-transparent outline-none"
+            />
+          </div>
+          <div>
+            <label className="block text-xs font-bold text-gray-700 mb-1">
+              Cutlery & Crockery
+            </label>
+            <input
+              type="text"
+              value={cutlery}
+              onChange={(e) => setCutlery(e.target.value)}
+              className="w-full p-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2D3E50] focus:border-transparent outline-none"
+            />
+          </div>
+          <div>
+            <label className="block text-xs font-bold text-gray-700 mb-1">
+              Chaffing Dishes & Snack Warmers
+            </label>
+            <input
+              type="text"
+              value={chaffing}
+              onChange={(e) => setChaffing(e.target.value)}
+              className="w-full p-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2D3E50] focus:border-transparent outline-none"
+            />
+          </div>
+          <div>
+            <label className="block text-xs font-bold text-gray-700 mb-1">
+              Conveyance
+            </label>
+            <input
+              type="text"
+              value={conveyance}
+              onChange={(e) => setConveyance(e.target.value)}
+              className="w-full p-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2D3E50] focus:border-transparent outline-none"
+            />
+          </div>
+          <div>
+            <label className="block text-xs font-bold text-gray-700 mb-1">
+              Venue Charges
+            </label>
+            <input
+              type="text"
+              value={venueCharges}
+              onChange={(e) => setVenueCharges(e.target.value)}
+              className="w-full p-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2D3E50] focus:border-transparent outline-none"
+            />
+          </div>
+        </div>
+      </div>
+
       {/* Services, Taxes & Grand Total */}
       <div className="border-t border-[#2D3E50]/10 pt-6 mb-8">
         <h2 className="text-lg font-bold text-[#2D3E50] mb-3">
-          Summary & Standard Services
+          Summary & Total
         </h2>
         <div className="overflow-x-auto border border-gray-200 rounded-xl">
           <table className="w-full text-xs">
@@ -1169,27 +1263,39 @@ export default function QuotationMakerAI() {
               </tr>
               <tr>
                 <td className="p-2.5 text-gray-600">Chef + Servers + Helper</td>
-                <td className="p-2.5 text-right text-gray-800">{chefServers}</td>
+                <td className="p-2.5 text-right text-gray-800">
+                  {servicesValues.chef > 0 ? formatCurrency(servicesValues.chef) : chefServers || '—'}
+                </td>
               </tr>
               <tr>
                 <td className="p-2.5 text-gray-600">Table Décor (As Per Theme)</td>
-                <td className="p-2.5 text-right text-gray-800">{tableDecor}</td>
+                <td className="p-2.5 text-right text-gray-800">
+                  {servicesValues.decor > 0 ? formatCurrency(servicesValues.decor) : tableDecor || '—'}
+                </td>
               </tr>
               <tr>
                 <td className="p-2.5 text-gray-600">Cutlery & Crockery</td>
-                <td className="p-2.5 text-right text-gray-800">{cutlery}</td>
+                <td className="p-2.5 text-right text-gray-800">
+                  {servicesValues.cutlery > 0 ? formatCurrency(servicesValues.cutlery) : cutlery || '—'}
+                </td>
               </tr>
               <tr>
                 <td className="p-2.5 text-gray-600">Chaffing Dishes & Snack Warmers</td>
-                <td className="p-2.5 text-right text-gray-800">{chaffing}</td>
+                <td className="p-2.5 text-right text-gray-800">
+                  {servicesValues.chaffing > 0 ? formatCurrency(servicesValues.chaffing) : chaffing || '—'}
+                </td>
               </tr>
               <tr>
                 <td className="p-2.5 text-gray-600">Conveyance</td>
-                <td className="p-2.5 text-right text-gray-800">{conveyance}</td>
+                <td className="p-2.5 text-right text-gray-800">
+                  {servicesValues.conveyance > 0 ? formatCurrency(servicesValues.conveyance) : conveyance || '—'}
+                </td>
               </tr>
               <tr>
                 <td className="p-2.5 text-gray-600">Venue Charges</td>
-                <td className="p-2.5 text-right text-gray-800">{venueCharges}</td>
+                <td className="p-2.5 text-right text-gray-800">
+                  {servicesValues.venue > 0 ? formatCurrency(servicesValues.venue) : venueCharges || '—'}
+                </td>
               </tr>
               <tr className="bg-gray-50 font-bold">
                 <td className="p-2.5 text-gray-800">Subtotal (With Services)</td>
@@ -1209,6 +1315,35 @@ export default function QuotationMakerAI() {
               </tr>
             </tbody>
           </table>
+        </div>
+      </div>
+
+      {/* To Be Provided By Host */}
+      <div className="border-t border-[#2D3E50]/10 pt-6 mb-8">
+        <h2 className="text-lg font-bold text-[#2D3E50] mb-3">To Be Provided By Host</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label className="block text-xs font-bold text-gray-700 mb-1">
+              Tables with covers for the food display
+            </label>
+            <input
+              type="text"
+              value={tables}
+              onChange={(e) => setTables(e.target.value)}
+              className="w-full p-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2D3E50] focus:border-transparent outline-none"
+            />
+          </div>
+          <div>
+            <label className="block text-xs font-bold text-gray-700 mb-1">
+              Kitchen Space & Table to be provided
+            </label>
+            <input
+              type="text"
+              value={kitchenSpace}
+              onChange={(e) => setKitchenSpace(e.target.value)}
+              className="w-full p-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2D3E50] focus:border-transparent outline-none"
+            />
+          </div>
         </div>
       </div>
 
