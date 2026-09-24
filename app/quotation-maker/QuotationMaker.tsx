@@ -288,17 +288,61 @@ export default function QuotationMaker() {
     }, 300)
   }
 
-  // Quote ID auto generation on host name change
-  const handleHostNameBlur = () => {
-    if (!hostName.trim()) return
+  // Quote ID auto generation on host name change with live Supabase lookup & Date format
+  const handleHostNameBlur = async () => {
+    const cleanHost = hostName.trim().replace(/[^A-Za-z0-9]/g, '')
+    if (!cleanHost) return
+    // Keep existing quoteId if it already matches this host
+    if (quoteId && quoteId.toLowerCase().startsWith(cleanHost.toLowerCase())) return
+
+    const now = new Date()
+    const yy = String(now.getFullYear()).slice(-2)
+    const mm = String(now.getMonth() + 1).padStart(2, '0')
+    const dateCode = `${yy}${mm}`
+    const prefix = `${cleanHost}-${dateCode}-`
+
     try {
-      const key = `quoteCounter_${hostName.trim()}`
-      let count = localStorage.getItem(key)
-      const nextCount = (parseInt(count || '0') || 0) + 1
-      localStorage.setItem(key, String(nextCount))
-      setQuoteId(`${hostName.trim()}${String(nextCount).padStart(3, '0')}`)
+      // Query Supabase live for highest counter matching prefix
+      const searchPattern = `${encodeURIComponent(cleanHost)}-${dateCode}-*`
+      const res = await fetch(
+        `${SUPABASE_URL}?select=quotation_id&quotation_id=ilike.${searchPattern}&order=created_at.desc&limit=50`,
+        {
+          headers: {
+            apikey: SUPABASE_KEY,
+            Authorization: `Bearer ${SUPABASE_KEY}`,
+          },
+        }
+      )
+
+      let nextCount = 1
+      if (res.ok) {
+        const data = await res.json()
+        if (Array.isArray(data) && data.length > 0) {
+          let maxNum = 0
+          data.forEach((q: any) => {
+            const qId = q.quotation_id || ''
+            if (qId.toLowerCase().startsWith(prefix.toLowerCase())) {
+              const parts = qId.split('-')
+              const numPart = parseInt(parts[parts.length - 1], 10)
+              if (!isNaN(numPart) && numPart > maxNum) {
+                maxNum = numPart
+              }
+            }
+          })
+          nextCount = maxNum + 1
+        }
+      } else {
+        // Fallback: use localStorage counter if network fetch fails
+        const key = `quoteCounter_${cleanHost.toLowerCase()}_${dateCode}`
+        const localCount = parseInt(localStorage.getItem(key) || '0', 10) || 0
+        nextCount = localCount + 1
+        localStorage.setItem(key, String(nextCount))
+      }
+
+      setQuoteId(`${cleanHost}-${dateCode}-${String(nextCount).padStart(2, '0')}`)
     } catch {
-      setQuoteId(`${hostName.trim()}001`)
+      // Ultimate fallback
+      setQuoteId(`${cleanHost}-${dateCode}-01`)
     }
   }
 
