@@ -146,8 +146,8 @@ const menuItems: MenuItem[] = [
   { Name: "Marshmallows with Hot Chocolate Fondue", Description: "Soft, fluffy marshmallows dipped in rich, velvety hot chocolate fondue for a sweet and indulgent treat.", PcsDisplay: "30", Unit: "PCS", Calculate: "1", Rate: 1999, Category: "Dessert", VegNonVeg: "Veg" },
 
   // DRINKS & SOUPS
-  { Name: "Fresh Lemonade", Description: "A refreshing blend of lemons, chilled water, and a hint of sweetness, perfect thirst-quenching drink.", PcsDisplay: "200", Unit: "ML", Calculate: "0", Rate: 39, Category: "Drinks", VegNonVeg: "Veg" },
-  { Name: "Boba Burst Lemonade", Description: "Choice of Mango / Blueberry / Strawberry. Zesty, refreshing lemonade with juicy popping boba that bursts with flavour in every sip.", PcsDisplay: "200", Unit: "ML", Calculate: "0", Rate: 69, Category: "Drinks", VegNonVeg: "Veg" },
+  { Name: "Fresh Lemonade", Description: "A refreshing blend of lemons, chilled water, and a hint of sweetness, perfect thirst-quenching drink.", PcsDisplay: "200", Unit: "ML", Calculate: "0", Rate: 49, Category: "Drinks", VegNonVeg: "Veg" },
+  { Name: "Boba Burst Lemonade", Description: "Choice of Mango / Blueberry / Strawberry. Zesty, refreshing lemonade with juicy popping boba that bursts with flavour in every sip.", PcsDisplay: "200", Unit: "ML", Calculate: "0", Rate: 99, Category: "Drinks", VegNonVeg: "Veg" },
   { Name: "Lemon Ice Tea", Description: "A crisp and refreshing iced tea infused with a zesty lemon flavor, served cold for a cool experience.", PcsDisplay: "200", Unit: "ML", Calculate: "0", Rate: 49, Category: "Drinks", VegNonVeg: "Veg" },
   { Name: "Blue Curacao", Description: "Blue curacao is like a splash of tropical paradise! Perfect for adding a fun twist to any drink!", PcsDisplay: "200", Unit: "ML", Calculate: "0", Rate: 79, Category: "Drinks", VegNonVeg: "Veg" },
   { Name: "Vanilla/Chocolate/Strawberry Smoothies", Description: "Choise of Vanilla, Chocolate, or Strawberry. Perfectly blended for a smooth, indulgent treat that's fully satisfying.", PcsDisplay: "200", Unit: "ML", Calculate: "0", Rate: 99, Category: "Drinks", VegNonVeg: "Veg" },
