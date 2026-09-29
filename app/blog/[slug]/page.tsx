@@ -64,8 +64,34 @@ export default async function BlogPostPage({
     notFound();
   }
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": post.title,
+    "description": post.description || post.metaDescription,
+    "datePublished": post.date,
+    "author": {
+      "@type": "Organization",
+      "name": post.author || "Little Jalebis Team",
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Little Jalebis",
+      "url": "https://littlejalebis.com",
+    },
+    "image": post.image ? (post.image.startsWith("http") ? post.image : `https://littlejalebis.com${post.image}`) : undefined,
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://littlejalebis.com/blog/${slug}`,
+    },
+  };
+
   return (
     <div className="min-h-screen bg-white pt-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <article className="max-w-3xl mx-auto px-4 py-5">
         <Link href="/blog" className="text-orange-500 font-semibold mb-8 inline-block">
           ← Back to Blog

@@ -5,6 +5,8 @@ author: "Little Jalebis Team"
 description: "Discover 15 kid-friendly party food ideas that keep picky eaters happy and reduce waste at Delhi NCR birthday parties."
 metaTitle: "No More Leftovers: Kids Party Food Ideas Delhi NCR"
 metaDescription: "Planning a kids party in Delhi, Gurgaon, or Noida? Try these 15 easy, kid-approved food ideas that are built for little hands and big smiles."
+image: "/images/services/Catering_Img_4_rynoqn.avif"
+imageAlt: "Kids Party Food Setup by Little Jalebis"
 ---
 
 Planning a kids’ birthday party is an absolute blast—right up until you have to decide on the menu.

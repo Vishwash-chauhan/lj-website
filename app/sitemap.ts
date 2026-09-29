@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next'
 
+import { getBlogPostSlugs } from '@/lib/blog'
 import { getServicePath } from './services/serviceData'
 
 const SITE_URL = 'https://littlejalebis.com'
@@ -10,6 +11,7 @@ const staticRoutes: Array<{
   priority: number
 }> = [
   { path: '/', changeFrequency: 'weekly', priority: 1 },
+  { path: '/blog', changeFrequency: 'weekly', priority: 0.8 },
   { path: '/about', changeFrequency: 'monthly', priority: 0.6 },
   { path: '/menu', changeFrequency: 'monthly', priority: 0.8 },
   { path: '/contact', changeFrequency: 'monthly', priority: 0.8 },
@@ -29,10 +31,20 @@ const staticRoutes: Array<{
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date()
 
-  return staticRoutes.map((route) => ({
-    url: `${SITE_URL}${route.path}`,
+  const blogRoutes = getBlogPostSlugs().map((slug) => ({
+    url: `${SITE_URL}/blog/${slug}`,
     lastModified,
-    changeFrequency: route.changeFrequency,
-    priority: route.priority,
+    changeFrequency: 'monthly' as MetadataRoute.Sitemap[number]['changeFrequency'],
+    priority: 0.7,
   }))
+
+  return [
+    ...staticRoutes.map((route) => ({
+      url: `${SITE_URL}${route.path}`,
+      lastModified,
+      changeFrequency: route.changeFrequency,
+      priority: route.priority,
+    })),
+    ...blogRoutes,
+  ]
 }
