@@ -8,6 +8,7 @@ import {
   normalizeCategory,
 } from '@/lib/menuData'
 import { predictPortions } from '@/lib/aiQuotationModel'
+import { predictPortionsV2, autoPopulateMenuV2 } from '@/lib/aiQuotationModelV2'
 import {
   Search,
   RefreshCw,
@@ -27,6 +28,8 @@ import {
   MapPin,
   Phone,
   User,
+  Wand2,
+  CheckCircle2,
 } from 'lucide-react'
 
 // --- Configuration Constants ---
@@ -116,6 +119,11 @@ export default function QuotationMakerAI() {
   const pax = useMemo(() => {
     return `${kidsCount} Kids ${adultsCount} Adults`
   }, [kidsCount, adultsCount])
+
+  // --- AI Engine Version & Preference ---
+  const [engineVersion, setEngineVersion] = useState<'v1' | 'v2'>('v2')
+  const [dietaryPreference, setDietaryPreference] = useState<'veg' | 'all'>('veg')
+  const [autoPopulateStatus, setAutoPopulateStatus] = useState<string>('')
 
   // --- Webhook ---
   const [webhookUrl] = useState(DEFAULT_WEBHOOK_URL)
@@ -407,16 +415,39 @@ export default function QuotationMakerAI() {
     })
   }
 
-  // Computed item list using the AI Linear Regression Model
+  // Auto-populate menu using Engine v2
+  const handleAutoPopulateMenu = () => {
+    if (kidsCount <= 0 && adultsCount <= 0) {
+      alert('Please enter at least 1 Kid or Adult guest count first.')
+      return
+    }
+
+    const prediction = autoPopulateMenuV2(kidsCount, adultsCount, dietaryPreference)
+    if (!prediction || prediction.selectedMenuIndices.length === 0) {
+      alert('No matching menu items found for this PAX.')
+      return
+    }
+
+    setSelectedMenuIndices(prediction.selectedMenuIndices)
+    if (prediction.suggestedChefServers) {
+      setChefServers(prediction.suggestedChefServers)
+    }
+
+    setAutoPopulateStatus(`✓ Menu Auto-Populated (${prediction.selectedMenuIndices.length} items from ${prediction.bestMatchPax} historical match)`)
+    setTimeout(() => setAutoPopulateStatus(''), 5000)
+  }
+
+  // Computed item list using the AI Linear Regression Model (v1 or v2)
   const computedItems = useMemo(() => {
     return selectedMenuIndices.map((idx) => {
       const item = menuItems[idx]
       const normCat = normalizeCategory(item.Category)
       const isLive = normCat === 'Live Stations'
 
-      // Predict portions using the linear regression model:
-      // portions = w_adult * adults + w_kids * kids + bias
-      const aiPortions = predictPortions(item.Name, normCat, kidsCount, adultsCount)
+      // Predict portions using the selected engine model
+      const aiPortions = engineVersion === 'v2'
+        ? predictPortionsV2(item.Name, normCat, kidsCount, adultsCount)
+        : predictPortions(item.Name, normCat, kidsCount, adultsCount)
 
       // Calculate total pieces if Calculate is "1"
       let calculatedPcs = ''
@@ -442,7 +473,7 @@ export default function QuotationMakerAI() {
         amount,
       }
     })
-  }, [selectedMenuIndices, kidsCount, adultsCount])
+  }, [selectedMenuIndices, kidsCount, adultsCount, engineVersion])
 
   // Group items by standard category sequence
   const groupedItems = useMemo(() => {
@@ -794,23 +825,95 @@ export default function QuotationMakerAI() {
       </div>
 
       {/* Guest Count & AI Estimator Banner */}
-      <div className="mb-6 p-4 rounded-xl bg-linear-to-r from-amber-50 to-orange-50 border border-amber-200">
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-          <div className="flex items-center gap-2.5">
-            <div className="w-10 h-10 rounded-xl bg-[#FFCB05] text-[#2D3E50] flex items-center justify-center font-bold shadow-xs">
-              <Users className="w-5 h-5" />
+      <div className="mb-6 p-4 sm:p-5 rounded-2xl bg-linear-to-r from-amber-50/90 via-orange-50/80 to-amber-100/60 border border-amber-200/90 shadow-sm">
+        {/* Top Header & Version Switcher */}
+        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-3 pb-3 border-b border-amber-200/70">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-linear-to-br from-[#FFCB05] to-amber-500 text-[#2D3E50] flex items-center justify-center font-bold shadow-sm">
+              <Sparkles className="w-5 h-5 text-gray-900" />
             </div>
             <div>
-              <h2 className="font-extrabold text-sm text-gray-900">
-                AI Guest Count & Portion Engine
-              </h2>
+              <div className="flex items-center gap-2">
+                <h2 className="font-extrabold text-sm sm:text-base text-gray-900">
+                  AI Quotation Engine
+                </h2>
+                <span className="px-2 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-amber-200 text-amber-900">
+                  {engineVersion === 'v2' ? 'v2 Model Active' : 'v1 Legacy'}
+                </span>
+              </div>
               <p className="text-xs text-gray-600">
-                Adjust Kids and Adults count below — dish portions update automatically using linear regression.
+                {engineVersion === 'v2'
+                  ? 'Trained on 784 historical Little Jalebis quotations. Auto-populates menu & models portions.'
+                  : 'Manual dish selection with legacy linear portion regression.'}
               </p>
             </div>
           </div>
 
-          <div className="flex items-center gap-4 bg-white px-4 py-2 rounded-xl border border-amber-300 shadow-xs">
+          {/* Engine Selector & Dietary Filter */}
+          <div className="flex flex-wrap items-center gap-2 w-full lg:w-auto">
+            {/* Engine v1 / v2 Toggle */}
+            <div className="flex items-center bg-white/90 p-1 rounded-xl border border-amber-300 shadow-2xs">
+              <button
+                type="button"
+                onClick={() => setEngineVersion('v2')}
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
+                  engineVersion === 'v2'
+                    ? 'bg-[#2D3E50] text-white shadow-xs'
+                    : 'text-gray-600 hover:text-gray-900'
+                }`}
+                title="New engine trained on historical quotation data with menu auto-population"
+              >
+                <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+                Engine v2
+              </button>
+              <button
+                type="button"
+                onClick={() => setEngineVersion('v1')}
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                  engineVersion === 'v1'
+                    ? 'bg-gray-700 text-white shadow-xs'
+                    : 'text-gray-600 hover:text-gray-900'
+                }`}
+                title="Legacy portion estimation model"
+              >
+                Engine v1
+              </button>
+            </div>
+
+            {/* Dietary Preference Toggle */}
+            <div className="flex items-center bg-white/90 p-1 rounded-xl border border-amber-300 shadow-2xs">
+              <button
+                type="button"
+                onClick={() => setDietaryPreference('veg')}
+                className={`px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1 ${
+                  dietaryPreference === 'veg'
+                    ? 'bg-emerald-600 text-white shadow-xs'
+                    : 'text-gray-600 hover:text-gray-900'
+                }`}
+                title="Filter recommendations to pure vegetarian dishes"
+              >
+                🥦 Veg Only
+              </button>
+              <button
+                type="button"
+                onClick={() => setDietaryPreference('all')}
+                className={`px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1 ${
+                  dietaryPreference === 'all'
+                    ? 'bg-amber-600 text-white shadow-xs'
+                    : 'text-gray-600 hover:text-gray-900'
+                }`}
+                title="Include both veg & non-veg options in recommendations"
+              >
+                🍖 Veg & Non-Veg
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Controls: Guest Count & Auto-Populate Button */}
+        <div className="mt-3.5 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+          {/* Guest Count Inputs */}
+          <div className="flex items-center gap-3 bg-white/95 px-3.5 py-2 rounded-xl border border-amber-300/80 shadow-2xs">
             <div className="flex items-center gap-2">
               <label className="text-xs font-bold text-gray-700">Kids:</label>
               <input
@@ -818,7 +921,7 @@ export default function QuotationMakerAI() {
                 min="0"
                 value={kidsCount}
                 onChange={(e) => setKidsCount(Math.max(0, parseInt(e.target.value) || 0))}
-                className="w-16 p-1.5 text-center text-sm font-bold border border-gray-300 rounded-lg focus:outline-none focus:border-[#2D3E50]"
+                className="w-16 p-1 text-center text-sm font-bold border border-gray-300 rounded-lg focus:outline-none focus:border-[#2D3E50]"
               />
             </div>
             <div className="h-5 w-px bg-gray-300" />
@@ -829,15 +932,47 @@ export default function QuotationMakerAI() {
                 min="0"
                 value={adultsCount}
                 onChange={(e) => setAdultsCount(Math.max(0, parseInt(e.target.value) || 0))}
-                className="w-16 p-1.5 text-center text-sm font-bold border border-gray-300 rounded-lg focus:outline-none focus:border-[#2D3E50]"
+                className="w-16 p-1 text-center text-sm font-bold border border-gray-300 rounded-lg focus:outline-none focus:border-[#2D3E50]"
               />
             </div>
             <div className="h-5 w-px bg-gray-300" />
-            <span className="text-xs font-mono font-bold text-[#2D3E50] whitespace-nowrap">
+            <span className="text-xs font-mono font-bold text-[#2D3E50] whitespace-nowrap bg-amber-100/70 px-2 py-0.5 rounded-md">
               Total: {kidsCount + adultsCount} Pax
             </span>
           </div>
+
+          {/* Action Buttons: Auto-Populate & Status */}
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={handleAutoPopulateMenu}
+              className="flex-1 sm:flex-initial px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-linear-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white shadow-md shadow-amber-500/20 active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer"
+              title="Auto populate the menu based on PAX using Engine v2 model"
+            >
+              <Wand2 className="w-4 h-4 text-amber-100" />
+              <span>Auto-Populate Menu (v2)</span>
+            </button>
+
+            {selectedMenuIndices.length > 0 && (
+              <button
+                type="button"
+                onClick={() => setSelectedMenuIndices([])}
+                className="px-3 py-2.5 text-xs font-medium text-gray-500 hover:text-red-600 hover:bg-red-50 rounded-xl transition-colors border border-transparent hover:border-red-200"
+                title="Clear current menu selection"
+              >
+                Clear
+              </button>
+            )}
+          </div>
         </div>
+
+        {/* Live Status Feedback Banner */}
+        {autoPopulateStatus && (
+          <div className="mt-2.5 flex items-center gap-2 text-xs font-bold text-emerald-800 bg-emerald-50 px-3 py-1.5 rounded-lg border border-emerald-200 animate-fadeIn">
+            <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+            <span>{autoPopulateStatus}</span>
+          </div>
+        )}
       </div>
 
       {/* Event Details Grid */}
