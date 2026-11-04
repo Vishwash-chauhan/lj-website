@@ -506,7 +506,12 @@ export default function QuotationMaker() {
       setSelectedItems((prev) => prev.filter((_, i) => i !== existingIndex))
     } else {
       // Add item
-      const normCat = normalizeCategory(menuItem.Category)
+      const baseCat = normalizeCategory(menuItem.Category)
+      const normCat =
+        currentCategoryFilter === 'Snacks & Mains' &&
+        (baseCat === 'Table Snacks' || baseCat === 'Main Course')
+          ? 'Snacks & Mains'
+          : baseCat
       const newItem: SelectedItem = {
         id: `item_${idx}_${Date.now()}`,
         menuIdx: idx,
@@ -720,7 +725,10 @@ export default function QuotationMaker() {
     return menuItems.filter((item) => {
       const cat = normalizeCategory(item.Category)
       const matchesCategory =
-        currentCategoryFilter === null || cat === currentCategoryFilter
+        currentCategoryFilter === null ||
+        cat === currentCategoryFilter ||
+        (currentCategoryFilter === 'Snacks & Mains' &&
+          (cat === 'Table Snacks' || cat === 'Main Course'))
       const matchesSearch =
         !q ||
         item.Name.toLowerCase().includes(q) ||
@@ -733,7 +741,9 @@ export default function QuotationMaker() {
   const groupedFilteredMenuList = useMemo(() => {
     const map = new Map<string, Array<{ item: MenuItem; originalIndex: number }>>()
     const categoriesToInclude = currentCategoryFilter
-      ? [currentCategoryFilter]
+      ? currentCategoryFilter === 'Snacks & Mains'
+        ? ['Snacks & Mains', 'Table Snacks', 'Main Course']
+        : [currentCategoryFilter]
       : categoryOrder
 
     categoriesToInclude.forEach((cat) => map.set(cat, []))

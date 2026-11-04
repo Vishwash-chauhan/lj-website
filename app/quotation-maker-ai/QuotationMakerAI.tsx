@@ -144,6 +144,7 @@ export default function QuotationMakerAI() {
   // --- Selected Item Identifiers ---
   // In AI mode, user selects items by their exact menu index
   const [selectedMenuIndices, setSelectedMenuIndices] = useState<number[]>([])
+  const [itemCategoryOverrides, setItemCategoryOverrides] = useState<Record<number, string>>({})
 
   // --- Services (Editable standard defaults) ---
   const [chefServers, setChefServers] = useState('₹4,000')
@@ -307,6 +308,7 @@ export default function QuotationMakerAI() {
     setLocation('')
     setQuoteId('')
     setSelectedMenuIndices([])
+    setItemCategoryOverrides({})
     setSelectedImages(DEFAULT_GALLERY_IMAGES)
     setSelectedQuoteIdToLoad('')
     setStatusMessage('')
@@ -388,13 +390,18 @@ export default function QuotationMakerAI() {
       }
       if (Array.isArray(rawItems)) {
         const indices: number[] = []
+        const overrides: Record<number, string> = {}
         rawItems.forEach((it: any) => {
           const foundIdx = menuItems.findIndex((m) => m.Name === it.Name)
           if (foundIdx !== -1 && !indices.includes(foundIdx)) {
             indices.push(foundIdx)
+            if (it.Category) {
+              overrides[foundIdx] = normalizeCategory(it.Category)
+            }
           }
         })
         setSelectedMenuIndices(indices)
+        setItemCategoryOverrides(overrides)
       }
 
       setStatusMessage('✓ Quotation loaded successfully!')
@@ -410,6 +417,12 @@ export default function QuotationMakerAI() {
       if (prev.includes(originalIndex)) {
         return prev.filter((i) => i !== originalIndex)
       } else {
+        if (currentCategoryFilter === 'Snacks & Mains') {
+          const baseCat = normalizeCategory(menuItems[originalIndex]?.Category || '')
+          if (baseCat === 'Table Snacks' || baseCat === 'Main Course') {
+            setItemCategoryOverrides((o) => ({ ...o, [originalIndex]: 'Snacks & Mains' }))
+          }
+        }
         return [...prev, originalIndex]
       }
     })
@@ -441,13 +454,16 @@ export default function QuotationMakerAI() {
   const computedItems = useMemo(() => {
     return selectedMenuIndices.map((idx) => {
       const item = menuItems[idx]
-      const normCat = normalizeCategory(item.Category)
+      const baseCat = normalizeCategory(item.Category)
+      const normCat = itemCategoryOverrides[idx]
+        ? normalizeCategory(itemCategoryOverrides[idx])
+        : baseCat
       const isLive = normCat === 'Live Stations'
 
       // Predict portions using the selected engine model
       const aiPortions = engineVersion === 'v2'
-        ? predictPortionsV2(item.Name, normCat, kidsCount, adultsCount)
-        : predictPortions(item.Name, normCat, kidsCount, adultsCount)
+        ? predictPortionsV2(item.Name, baseCat, kidsCount, adultsCount)
+        : predictPortions(item.Name, baseCat, kidsCount, adultsCount)
 
       // Calculate total pieces if Calculate is "1"
       let calculatedPcs = ''
@@ -473,7 +489,7 @@ export default function QuotationMakerAI() {
         amount,
       }
     })
-  }, [selectedMenuIndices, kidsCount, adultsCount, engineVersion])
+  }, [selectedMenuIndices, itemCategoryOverrides, kidsCount, adultsCount, engineVersion])
 
   // Group items by standard category sequence
   const groupedItems = useMemo(() => {
@@ -527,7 +543,10 @@ export default function QuotationMakerAI() {
     return menuItems.filter((item) => {
       const cat = normalizeCategory(item.Category)
       const matchesCategory =
-        currentCategoryFilter === null || cat === currentCategoryFilter
+        currentCategoryFilter === null ||
+        cat === currentCategoryFilter ||
+        (currentCategoryFilter === 'Snacks & Mains' &&
+          (cat === 'Table Snacks' || cat === 'Main Course'))
       const matchesSearch =
         !q ||
         item.Name.toLowerCase().includes(q) ||
@@ -540,7 +559,9 @@ export default function QuotationMakerAI() {
   const groupedFilteredMenuList = useMemo(() => {
     const map = new Map<string, Array<{ item: MenuItem; originalIndex: number }>>()
     const categoriesToInclude = currentCategoryFilter
-      ? [currentCategoryFilter]
+      ? currentCategoryFilter === 'Snacks & Mains'
+        ? ['Snacks & Mains', 'Table Snacks', 'Main Course']
+        : [currentCategoryFilter]
       : categoryOrder
 
     categoriesToInclude.forEach((cat) => map.set(cat, []))
@@ -566,9 +587,8 @@ export default function QuotationMakerAI() {
     const itemsPayload: any[] = []
 
     groupedItems.forEach(([_, groupItems]) => {
-      groupItems.forEach(({ item, isLive, aiPortions, calculatedPcs, amount }) => {
-        const normCat = normalizeCategory(item.Category)
-        const categoryForN8n = normCat === 'Table Snacks' ? 'Snacks' : normCat
+      groupItems.forEach(({ item, normCategory, isLive, aiPortions, calculatedPcs, amount }) => {
+        const categoryForN8n = normCategory === 'Table Snacks' ? 'Snacks' : normCategory
 
         if (isLive) {
           itemsPayload.push({
@@ -1248,7 +1268,7 @@ export default function QuotationMakerAI() {
                       </tr>
 
                       {/* Items */}
-                      {items.map(({ menuIdx, item, isLive, aiPortions, calculatedPcs, amount }) => {
+                      {items.map(({ menuIdx, item, normCategory, isLive, aiPortions, calculatedPcs, amount }) => {
                         const isNonVeg = item.VegNonVeg?.toLowerCase().includes('non')
 
                         return (
@@ -1257,7 +1277,7 @@ export default function QuotationMakerAI() {
                             className="border-b border-gray-200 hover:bg-gray-50/50"
                           >
                             <td className="p-2.5">
-                              <div className="flex items-center gap-1.5">
+                              <div className="flex items-center gap-1.5 flex-wrap">
                                 <span
                                   className={`w-2 h-2 rounded-full flex-shrink-0 ${
                                     isNonVeg ? 'bg-red-500' : 'bg-emerald-600'
@@ -1266,6 +1286,22 @@ export default function QuotationMakerAI() {
                                 <span className="font-bold text-gray-900">
                                   {item.Name}
                                 </span>
+                                <select
+                                  value={normCategory}
+                                  onChange={(e) =>
+                                    setItemCategoryOverrides((prev) => ({
+                                      ...prev,
+                                      [menuIdx]: e.target.value,
+                                    }))
+                                  }
+                                  className="text-[10px] py-0.5 px-1 border border-gray-300 rounded bg-white text-gray-700"
+                                >
+                                  {categoryOrder.map((c) => (
+                                    <option key={c} value={c}>
+                                      {c}
+                                    </option>
+                                  ))}
+                                </select>
                               </div>
                               {item.Description && (
                                 <p className="text-[11px] text-gray-500 mt-0.5 line-clamp-1">

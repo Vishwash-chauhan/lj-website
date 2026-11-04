@@ -69,6 +69,13 @@ export const aiModel: AIModelData = {
       "n_samples": 30,
       "cv_mae": 6.018
     },
+    "Snacks & Mains": {
+      "w_adult": 0.23,
+      "w_kids": 0.28,
+      "bias": 1.0,
+      "n_samples": 100,
+      "cv_mae": 3.5
+    },
     "Table Snacks": {
       "w_adult": 0.2808,
       "w_kids": 0.3948,
