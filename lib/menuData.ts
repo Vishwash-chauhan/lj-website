@@ -68,7 +68,7 @@ export const menuItems: MenuItem[] = [
   { Name: "Cheesy Corn Spring Roll Twirls", Description: "Golden crispy rolls filled with cheesy corn joy.", PcsDisplay: "6", Unit: "PCS", Calculate: "1", Rate: 459, Category: "Table Snacks", VegNonVeg: "Veg" },
   { Name: "Mini Chaat Canapes", Description: "Cripy canapés loaded with zesty chaat for a burst of flavours in every nibble!", PcsDisplay: "6", Unit: "PCS", Calculate: "1", Rate: 299, Category: "Table Snacks", VegNonVeg: "Veg" },
   { Name: "Mini Paneer Popsicle Tikka Rolls", Description: "Mini paneer popsicle tikka rolls - a fun twist on classic tikka!", PcsDisplay: "3", Unit: "PCS", Calculate: "1", Rate: 299, Category: "Table Snacks", VegNonVeg: "Veg" },
-  { Name: "Gol Gappe Shots", Description: "Gol Gappas served as bite-sized shots filled with tangy water - a burst of fun in every sip & crunch!", PcsDisplay: "", Unit: "", Calculate: "0", Rate: 199, Category: "Table Snacks", VegNonVeg: "Veg" },
+  { Name: "Gol Gappe Shots", Description: "Gol Gappas served as bite-sized shots filled with tangy water - a burst of fun in every sip & crunch!", PcsDisplay: "6", Unit: "PCS", Calculate: "1", Rate: 199, Category: "Table Snacks", VegNonVeg: "Veg" },
 
   // TABLE SNACKS - NON-VEG
   { Name: "Starship Chicken Nuggets", Description: "Chicken nuggets - on a tasty mission! Star-shaped nuggets for flavorful space rides.", PcsDisplay: "6", Unit: "PCS", Calculate: "1", Rate: 189, Category: "Table Snacks", VegNonVeg: "Non-Veg" },
