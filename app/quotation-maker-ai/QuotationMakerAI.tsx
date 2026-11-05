@@ -15,6 +15,9 @@ import {
   Upload,
   Image as ImageIcon,
   Check,
+  ChevronUp,
+  ChevronDown,
+  Plus,
   Trash2,
   Download,
   X,
@@ -89,6 +92,24 @@ function formatServiceForPayload(val: string | number | undefined | null): strin
   return str
 }
 
+export interface SelectedItem {
+  id: string
+  menuIdx?: number
+  isCustom?: boolean
+  portionOverridden?: boolean
+  Name: string
+  Description: string
+  Category: string
+  VegNonVeg: string
+  Portions: number
+  Rate: number
+  PcsDisplay: string
+  Unit: string
+  Calculate: string // "0" | "1"
+  Setup: number
+  NoOfPeople: number
+}
+
 interface QuotationSummary {
   quotation_id: string
   host_name?: string
@@ -141,10 +162,19 @@ export default function QuotationMakerAI() {
   const [currentCategoryFilter, setCurrentCategoryFilter] = useState<string | null>(null)
   const [searchQuery, setSearchQuery] = useState('')
 
-  // --- Selected Item Identifiers ---
-  // In AI mode, user selects items by their exact menu index
-  const [selectedMenuIndices, setSelectedMenuIndices] = useState<number[]>([])
-  const [itemCategoryOverrides, setItemCategoryOverrides] = useState<Record<number, string>>({})
+  // --- Selected Items in Table (AI-populated, fully editable by user) ---
+  const [selectedItems, setSelectedItems] = useState<SelectedItem[]>([])
+
+  // --- Custom Item State ---
+  const [customName, setCustomName] = useState('')
+  const [customDesc, setCustomDesc] = useState('')
+  const [customCategory, setCustomCategory] = useState('Table Snacks')
+  const [customVegNonVeg, setCustomVegNonVeg] = useState('Veg')
+  const [customPcs, setCustomPcs] = useState('')
+  const [customPortions, setCustomPortions] = useState(1)
+  const [customRate, setCustomRate] = useState('')
+  const [customSetup, setCustomSetup] = useState(0)
+  const [customNoPeople, setCustomNoPeople] = useState(0)
 
   // --- Services (Editable standard defaults) ---
   const [chefServers, setChefServers] = useState('₹4,000')
@@ -297,6 +327,87 @@ export default function QuotationMakerAI() {
     }
   }
 
+  // Helper to predict portions via active AI model
+  const computeAiPortions = useCallback(
+    (
+      itemName: string,
+      category: string,
+      kCount: number = kidsCount,
+      aCount: number = adultsCount,
+      ver: 'v1' | 'v2' = engineVersion
+    ) => {
+      const baseCat = normalizeCategory(category)
+      return ver === 'v2'
+        ? predictPortionsV2(itemName, baseCat, kCount, aCount)
+        : predictPortions(itemName, baseCat, kCount, aCount)
+    },
+    [kidsCount, adultsCount, engineVersion]
+  )
+
+  // Automatically scale non-overridden items whenever PAX or AI Engine changes
+  useEffect(() => {
+    setSelectedItems((prev) => {
+      if (prev.length === 0) return prev
+      let changed = false
+      const next = prev.map((item) => {
+        if (item.portionOverridden) return item
+        const baseCat =
+          item.menuIdx !== undefined && menuItems[item.menuIdx]
+            ? normalizeCategory(menuItems[item.menuIdx].Category)
+            : normalizeCategory(item.Category)
+        const predicted = computeAiPortions(
+          item.Name,
+          baseCat,
+          kidsCount,
+          adultsCount,
+          engineVersion
+        )
+        const isLive = normalizeCategory(item.Category) === 'Live Stations'
+        if (isLive) {
+          if (item.NoOfPeople !== predicted) {
+            changed = true
+            return { ...item, NoOfPeople: predicted }
+          }
+        } else {
+          if (item.Portions !== predicted) {
+            changed = true
+            return { ...item, Portions: predicted }
+          }
+        }
+        return item
+      })
+      return changed ? next : prev
+    })
+  }, [kidsCount, adultsCount, engineVersion, computeAiPortions])
+
+  // Recalculate all selected items' portions using the AI model
+  const handleRecalculateAllPortions = () => {
+    setSelectedItems((prev) =>
+      prev.map((item) => {
+        const baseCat =
+          item.menuIdx !== undefined && menuItems[item.menuIdx]
+            ? normalizeCategory(menuItems[item.menuIdx].Category)
+            : normalizeCategory(item.Category)
+        const predicted = computeAiPortions(
+          item.Name,
+          baseCat,
+          kidsCount,
+          adultsCount,
+          engineVersion
+        )
+        const isLive = normalizeCategory(item.Category) === 'Live Stations'
+        return {
+          ...item,
+          portionOverridden: false,
+          Portions: isLive ? 1 : predicted,
+          NoOfPeople: isLive ? predicted : item.NoOfPeople,
+        }
+      })
+    )
+    setAutoPopulateStatus('✓ All item portions recalculated by AI model')
+    setTimeout(() => setAutoPopulateStatus(''), 3500)
+  }
+
   // Clear form
   const handleClearForm = () => {
     setEventDate('')
@@ -307,8 +418,15 @@ export default function QuotationMakerAI() {
     setAdultsCount(10)
     setLocation('')
     setQuoteId('')
-    setSelectedMenuIndices([])
-    setItemCategoryOverrides({})
+    setSelectedItems([])
+    setChefServers('₹4,000')
+    setTableDecor('Included')
+    setCutlery('₹100')
+    setChaffing('₹100')
+    setConveyance('As Per Actual')
+    setVenueCharges('₹0')
+    setTables('As Required')
+    setKitchenSpace('As Required')
     setSelectedImages(DEFAULT_GALLERY_IMAGES)
     setSelectedQuoteIdToLoad('')
     setStatusMessage('')
@@ -369,6 +487,18 @@ export default function QuotationMakerAI() {
         if (aMatch) setAdultsCount(parseInt(aMatch[1]))
       }
 
+      let rawImages = quote.image_grid
+      if (typeof rawImages === 'string') {
+        try {
+          rawImages = JSON.parse(rawImages)
+        } catch {
+          rawImages = []
+        }
+      }
+      if (Array.isArray(rawImages) && rawImages.length > 0) {
+        setSelectedImages(rawImages.slice(0, 9))
+      }
+
       setChefServers(quote.chef_servers ?? quote.ChefServers ?? '₹4,000')
       setTableDecor(quote.table_decor ?? quote.TableDecor ?? 'Included')
       setCutlery(quote.cutlery ?? quote.Cutlery ?? '₹100')
@@ -379,7 +509,7 @@ export default function QuotationMakerAI() {
       setTables(quote.tables ?? quote.Tables ?? 'As Required')
       setKitchenSpace(quote.kitchen_space ?? quote.KitchenSpace ?? 'As Required')
 
-      // Map loaded items to menu indices
+      // Map loaded items to editable SelectedItem objects
       let rawItems = quote.items
       if (typeof rawItems === 'string') {
         try {
@@ -389,43 +519,103 @@ export default function QuotationMakerAI() {
         }
       }
       if (Array.isArray(rawItems)) {
-        const indices: number[] = []
-        const overrides: Record<number, string> = {}
-        rawItems.forEach((it: any) => {
-          const foundIdx = menuItems.findIndex((m) => m.Name === it.Name)
-          if (foundIdx !== -1 && !indices.includes(foundIdx)) {
-            indices.push(foundIdx)
-            if (it.Category) {
-              overrides[foundIdx] = normalizeCategory(it.Category)
-            }
+        const loadedSelected: SelectedItem[] = rawItems.map((it: any, i: number) => {
+          const normCat = normalizeCategory(it.Category || '')
+          const matchedIdx = menuItems.findIndex((m) => m.Name === it.Name)
+
+          let basePcs =
+            it.PcsDisplay ||
+            (matchedIdx !== -1 ? menuItems[matchedIdx].PcsDisplay : '') ||
+            ''
+          const portions = Number(it.Portions) || 1
+          const calcFlag = String(
+            it.Calculate ??
+              (matchedIdx !== -1 ? menuItems[matchedIdx].Calculate : '0')
+          )
+          if (calcFlag === '1' && portions && basePcs) {
+            const num = extractNumber(basePcs)
+            if (num) basePcs = String(num / portions)
+          }
+
+          return {
+            id: `loaded_${i}_${Date.now()}`,
+            menuIdx: matchedIdx !== -1 ? matchedIdx : undefined,
+            isCustom: matchedIdx === -1,
+            portionOverridden: true,
+            Name: it.Name || 'Unnamed Item',
+            Description:
+              it.Description ||
+              (matchedIdx !== -1 ? menuItems[matchedIdx].Description : '') ||
+              '',
+            Category: normCat,
+            VegNonVeg:
+              it.VegNonVeg ||
+              (matchedIdx !== -1 ? menuItems[matchedIdx].VegNonVeg : 'Veg') ||
+              'Veg',
+            Portions: portions,
+            Rate:
+              Number(it.Rate) ||
+              (matchedIdx !== -1 ? menuItems[matchedIdx].Rate : 0) ||
+              0,
+            PcsDisplay: basePcs,
+            Unit:
+              it.Unit ||
+              (matchedIdx !== -1 ? menuItems[matchedIdx].Unit : 'PCS') ||
+              'PCS',
+            Calculate: calcFlag,
+            Setup:
+              Number(it.Setup) ||
+              (matchedIdx !== -1 ? menuItems[matchedIdx].Setup : 0) ||
+              0,
+            NoOfPeople: Number(it.NoOfPeople) || 0,
           }
         })
-        setSelectedMenuIndices(indices)
-        setItemCategoryOverrides(overrides)
+        setSelectedItems(loadedSelected)
       }
 
-      setStatusMessage('✓ Quotation loaded successfully!')
+      setStatusMessage('✓ Quotation loaded successfully! You can now edit any item.')
       setTimeout(() => setStatusMessage(''), 3000)
     } catch (err: any) {
       setStatusMessage(`Error loading quotation: ${err.message}`)
     }
   }
 
-  // Toggle item selection
+  // Toggle item selection from menu picker
   const toggleMenuItem = (originalIndex: number) => {
-    setSelectedMenuIndices((prev) => {
-      if (prev.includes(originalIndex)) {
-        return prev.filter((i) => i !== originalIndex)
-      } else {
-        if (currentCategoryFilter === 'Snacks & Mains') {
-          const baseCat = normalizeCategory(menuItems[originalIndex]?.Category || '')
-          if (baseCat === 'Table Snacks' || baseCat === 'Main Course') {
-            setItemCategoryOverrides((o) => ({ ...o, [originalIndex]: 'Snacks & Mains' }))
-          }
-        }
-        return [...prev, originalIndex]
+    const existingIdx = selectedItems.findIndex((item) => item.menuIdx === originalIndex)
+    if (existingIdx !== -1) {
+      setSelectedItems((prev) => prev.filter((_, i) => i !== existingIdx))
+    } else {
+      const menuItem = menuItems[originalIndex]
+      if (!menuItem) return
+      const baseCat = normalizeCategory(menuItem.Category)
+      const normCat =
+        currentCategoryFilter === 'Snacks & Mains' &&
+        (baseCat === 'Table Snacks' || baseCat === 'Main Course')
+          ? 'Snacks & Mains'
+          : baseCat
+      const isLive = normCat === 'Live Stations'
+      const aiPortions = computeAiPortions(menuItem.Name, baseCat)
+
+      const newItem: SelectedItem = {
+        id: `ai_item_${originalIndex}_${Date.now()}`,
+        menuIdx: originalIndex,
+        isCustom: false,
+        portionOverridden: false,
+        Name: menuItem.Name,
+        Description: menuItem.Description || '',
+        Category: normCat,
+        VegNonVeg: menuItem.VegNonVeg || 'Veg',
+        Portions: isLive ? 1 : aiPortions,
+        Rate: menuItem.Rate || 0,
+        PcsDisplay: menuItem.PcsDisplay || '',
+        Unit: menuItem.Unit || 'PCS',
+        Calculate: menuItem.Calculate ? String(menuItem.Calculate) : '0',
+        Setup: menuItem.Setup || 0,
+        NoOfPeople: isLive ? aiPortions : 0,
       }
-    })
+      setSelectedItems((prev) => [...prev, newItem])
+    }
   }
 
   // Auto-populate menu using Engine v2
@@ -441,74 +631,150 @@ export default function QuotationMakerAI() {
       return
     }
 
-    setSelectedMenuIndices(prediction.selectedMenuIndices)
+    const populatedItems: SelectedItem[] = prediction.selectedMenuIndices
+      .map((idx, i) => {
+        const menuItem = menuItems[idx]
+        if (!menuItem) return null
+        const baseCat = normalizeCategory(menuItem.Category)
+        const isLive = baseCat === 'Live Stations'
+        const aiPortions = computeAiPortions(menuItem.Name, baseCat)
+
+        return {
+          id: `auto_${idx}_${i}_${Date.now()}`,
+          menuIdx: idx,
+          isCustom: false,
+          portionOverridden: false,
+          Name: menuItem.Name,
+          Description: menuItem.Description || '',
+          Category: baseCat,
+          VegNonVeg: menuItem.VegNonVeg || 'Veg',
+          Portions: isLive ? 1 : aiPortions,
+          Rate: menuItem.Rate || 0,
+          PcsDisplay: menuItem.PcsDisplay || '',
+          Unit: menuItem.Unit || 'PCS',
+          Calculate: menuItem.Calculate ? String(menuItem.Calculate) : '0',
+          Setup: menuItem.Setup || 0,
+          NoOfPeople: isLive ? aiPortions : 0,
+        } as SelectedItem
+      })
+      .filter((x): x is SelectedItem => x !== null)
+
+    setSelectedItems(populatedItems)
     if (prediction.suggestedChefServers) {
       setChefServers(prediction.suggestedChefServers)
     }
 
-    setAutoPopulateStatus(`✓ Menu Auto-Populated (${prediction.selectedMenuIndices.length} items from ${prediction.bestMatchPax} historical match)`)
+    setAutoPopulateStatus(
+      `✓ Menu Auto-Populated (${populatedItems.length} items from ${prediction.bestMatchPax} historical match) — Fully editable below!`
+    )
     setTimeout(() => setAutoPopulateStatus(''), 5000)
   }
 
-  // Computed item list using the AI Linear Regression Model (v1 or v2)
-  const computedItems = useMemo(() => {
-    return selectedMenuIndices.map((idx) => {
-      const item = menuItems[idx]
-      const baseCat = normalizeCategory(item.Category)
-      const normCat = itemCategoryOverrides[idx]
-        ? normalizeCategory(itemCategoryOverrides[idx])
-        : baseCat
-      const isLive = normCat === 'Live Stations'
+  // Add custom item
+  const handleAddCustomItem = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!customName.trim()) {
+      alert('Please enter an item name.')
+      return
+    }
 
-      // Predict portions using the selected engine model
-      const aiPortions = engineVersion === 'v2'
-        ? predictPortionsV2(item.Name, baseCat, kidsCount, adultsCount)
-        : predictPortions(item.Name, baseCat, kidsCount, adultsCount)
+    const normCat = normalizeCategory(customCategory)
+    const isLive = normCat === 'Live Stations'
 
-      // Calculate total pieces if Calculate is "1"
-      let calculatedPcs = ''
-      if (item.Calculate === '1' && item.PcsDisplay) {
-        const baseNum = extractNumber(item.PcsDisplay)
-        calculatedPcs = String(baseNum * aiPortions)
-      }
+    const newItem: SelectedItem = {
+      id: `custom_${Date.now()}`,
+      isCustom: true,
+      portionOverridden: true,
+      Name: customName.trim(),
+      Description: customDesc.trim(),
+      Category: normCat,
+      VegNonVeg: customVegNonVeg,
+      Portions: isLive ? 1 : Number(customPortions) || 1,
+      Rate: Number(customRate) || 0,
+      PcsDisplay: isLive ? '' : customPcs.trim(),
+      Unit: isLive ? '' : 'PCS',
+      Calculate: '0',
+      Setup: isLive ? Number(customSetup) || 0 : 0,
+      NoOfPeople: isLive ? Number(customNoPeople) || 0 : 0,
+    }
 
-      // Amount:
-      // Regular: portions * rate
-      // Live Stations: Setup + (rate * aiPortions)
-      const amount = isLive
-        ? (item.Setup || 0) + (item.Rate || 0) * aiPortions
-        : aiPortions * (item.Rate || 0)
+    setSelectedItems((prev) => [...prev, newItem])
+    setCustomName('')
+    setCustomDesc('')
+    setCustomPcs('')
+    setCustomPortions(1)
+    setCustomRate('')
+    setCustomSetup(0)
+    setCustomNoPeople(0)
+  }
 
-      return {
-        menuIdx: idx,
-        item,
-        normCategory: normCat,
-        isLive,
-        aiPortions,
-        calculatedPcs,
-        amount,
-      }
+  // Update a selected item
+  const updateSelectedItem = (id: string, updates: Partial<SelectedItem>) => {
+    setSelectedItems((prev) =>
+      prev.map((item) => {
+        if (item.id !== id) return item
+        return { ...item, ...updates }
+      })
+    )
+  }
+
+  // Delete item
+  const deleteSelectedItem = (id: string) => {
+    setSelectedItems((prev) => prev.filter((item) => item.id !== id))
+  }
+
+  // Move item up or down within entire list
+  const moveItem = (index: number, direction: 'up' | 'down') => {
+    setSelectedItems((prev) => {
+      const copy = [...prev]
+      const targetIndex = direction === 'up' ? index - 1 : index + 1
+      if (targetIndex < 0 || targetIndex >= copy.length) return prev
+      const temp = copy[index]
+      copy[index] = copy[targetIndex]
+      copy[targetIndex] = temp
+      return copy
     })
-  }, [selectedMenuIndices, itemCategoryOverrides, kidsCount, adultsCount, engineVersion])
+  }
 
-  // Group items by standard category sequence
-  const groupedItems = useMemo(() => {
-    const map = new Map<string, typeof computedItems>()
+  // Cycle Veg/Non-Veg
+  const cycleVeg = (id: string, current: string) => {
+    let next = 'Veg'
+    if (current === 'Veg') next = 'Non-Veg'
+    else if (current === 'Non-Veg') next = 'Veg & Non-Veg'
+    else next = 'Veg'
+    updateSelectedItem(id, { VegNonVeg: next })
+  }
+
+  // Switch item category
+  const changeItemCategory = (id: string, newCat: string) => {
+    const norm = normalizeCategory(newCat)
+    updateSelectedItem(id, { Category: norm })
+  }
+
+  // Group selected items by standard category sequence
+  const groupedSelectedItems = useMemo(() => {
+    const map = new Map<string, { item: SelectedItem; globalIndex: number }[]>()
     categoryOrder.forEach((cat) => map.set(cat, []))
 
-    computedItems.forEach((comp) => {
-      const cat = comp.normCategory
+    selectedItems.forEach((item, globalIndex) => {
+      const cat = normalizeCategory(item.Category)
       if (!map.has(cat)) map.set(cat, [])
-      map.get(cat)!.push(comp)
+      map.get(cat)!.push({ item, globalIndex })
     })
 
     return Array.from(map.entries()).filter(([_, items]) => items.length > 0)
-  }, [computedItems])
+  }, [selectedItems])
 
   // Subtotal of Items
   const itemsSubtotal = useMemo(() => {
-    return computedItems.reduce((sum, it) => sum + it.amount, 0)
-  }, [computedItems])
+    return selectedItems.reduce((sum, item) => {
+      const isLive = normalizeCategory(item.Category) === 'Live Stations'
+      const amt = isLive
+        ? (item.Setup || 0) + (item.Rate || 0) * (item.NoOfPeople || 0)
+        : (item.Portions || 0) * (item.Rate || 0)
+      return sum + amt
+    }, 0)
+  }, [selectedItems])
 
   // Services values
   const servicesValues = useMemo(() => {
@@ -586,11 +852,12 @@ export default function QuotationMakerAI() {
   const buildPayload = () => {
     const itemsPayload: any[] = []
 
-    groupedItems.forEach(([_, groupItems]) => {
-      groupItems.forEach(({ item, normCategory, isLive, aiPortions, calculatedPcs, amount }) => {
-        const categoryForN8n = normCategory === 'Table Snacks' ? 'Snacks' : normCategory
-
+    groupedSelectedItems.forEach(([category, groupItems]) => {
+      const categoryForN8n = category === 'Table Snacks' ? 'Snacks' : category
+      groupItems.forEach(({ item }) => {
+        const isLive = normalizeCategory(item.Category) === 'Live Stations'
         if (isLive) {
+          const amount = (item.Setup || 0) + (item.Rate || 0) * (item.NoOfPeople || 0)
           itemsPayload.push({
             Name: item.Name,
             Description: item.Description || '',
@@ -598,21 +865,22 @@ export default function QuotationMakerAI() {
             VegNonVeg: item.VegNonVeg || 'Veg',
             Setup: item.Setup || 0,
             Rate: item.Rate || 0,
-            NoOfPeople: aiPortions,
+            NoOfPeople: item.NoOfPeople || 0,
             Amount: amount,
           })
         } else {
+          const amount = (item.Portions || 0) * (item.Rate || 0)
           let pcsDisplay = item.PcsDisplay || ''
           if (item.Calculate === '1') {
             const baseNum = extractNumber(item.PcsDisplay)
-            pcsDisplay = String(baseNum * aiPortions)
+            pcsDisplay = String(baseNum * (item.Portions || 0))
           }
           itemsPayload.push({
             Name: item.Name,
             Description: item.Description || '',
             Category: categoryForN8n,
             VegNonVeg: item.VegNonVeg || 'Veg',
-            Portions: aiPortions,
+            Portions: item.Portions || 0,
             PcsDisplay: pcsDisplay,
             Unit: item.Unit || 'PCS',
             Rate: item.Rate || 0,
@@ -764,7 +1032,7 @@ export default function QuotationMakerAI() {
               </span>
             </div>
             <p className="text-sm text-gray-500 mt-1">
-              Select dishes — quantities are estimated automatically by our trained catering model, with locked official rates.
+              Auto-populate or select dishes — AI estimates initial quantities with full manual editing control over items, rates, and portions.
             </p>
           </div>
           <button
@@ -973,15 +1241,26 @@ export default function QuotationMakerAI() {
               <span>Auto-Populate Menu (v2)</span>
             </button>
 
-            {selectedMenuIndices.length > 0 && (
-              <button
-                type="button"
-                onClick={() => setSelectedMenuIndices([])}
-                className="px-3 py-2.5 text-xs font-medium text-gray-500 hover:text-red-600 hover:bg-red-50 rounded-xl transition-colors border border-transparent hover:border-red-200"
-                title="Clear current menu selection"
-              >
-                Clear
-              </button>
+            {selectedItems.length > 0 && (
+              <>
+                <button
+                  type="button"
+                  onClick={handleRecalculateAllPortions}
+                  className="px-3 py-2.5 text-xs font-semibold text-amber-800 bg-amber-100 hover:bg-amber-200 rounded-xl transition-colors border border-amber-300 flex items-center gap-1"
+                  title="Reset all portions to AI predictions for current PAX"
+                >
+                  <Sparkles className="w-3.5 h-3.5" />
+                  <span>Recalculate Portions</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setSelectedItems([])}
+                  className="px-3 py-2.5 text-xs font-medium text-gray-500 hover:text-red-600 hover:bg-red-50 rounded-xl transition-colors border border-transparent hover:border-red-200"
+                  title="Clear current menu selection"
+                >
+                  Clear
+                </button>
+              </>
             )}
           </div>
         </div>
@@ -1091,8 +1370,8 @@ export default function QuotationMakerAI() {
           <h2 className="text-lg font-bold text-[#2D3E50]">
             Select Items from Menu
           </h2>
-          <span className="text-xs text-emerald-700 font-semibold bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200 flex items-center gap-1">
-            <Lock className="w-3 h-3" /> Rates & Setup Locked
+          <span className="text-xs text-gray-500">
+            Click to add or remove items ({selectedItems.length} selected)
           </span>
         </div>
 
@@ -1159,7 +1438,7 @@ export default function QuotationMakerAI() {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                     {items.map(({ item, originalIndex }) => {
-                      const isSelected = selectedMenuIndices.includes(originalIndex)
+                      const isSelected = selectedItems.some((s) => s.menuIdx === originalIndex)
                       const isNonVeg = item.VegNonVeg?.toLowerCase().includes('non')
 
                       return (
@@ -1221,19 +1500,19 @@ export default function QuotationMakerAI() {
         </div>
       </div>
 
-      {/* Selected Items Table (Locked Prices + AI Predicted Portions) */}
+      {/* Selected Items Table (AI Predicted + Fully Editable) */}
       <div className="border-t border-[#2D3E50]/10 pt-6 mb-8">
-        <div className="flex justify-between items-center mb-3">
+        <div className="flex flex-wrap justify-between items-center gap-2 mb-3">
           <div className="flex items-center gap-2">
             <h2 className="text-lg font-bold text-[#2D3E50]">
-              Selected Items ({computedItems.length})
+              Selected Items ({selectedItems.length})
             </h2>
             <span className="text-xs bg-amber-100 text-amber-900 font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
-              <Sparkles className="w-3 h-3" /> Auto-filled by Model
+              <Sparkles className="w-3 h-3" /> AI + Full Manual Edit
             </span>
           </div>
           <span className="text-xs text-gray-500">
-            Portions dynamically scale with PAX count
+            Edit names, portions, rates, or reorder items freely
           </span>
         </div>
 
@@ -1241,59 +1520,222 @@ export default function QuotationMakerAI() {
           <table className="w-full text-left text-xs border-collapse">
             <thead>
               <tr className="bg-gray-100 text-gray-700 font-bold border-b border-gray-300">
-                <th className="p-2.5 min-w-[220px]">Item</th>
-                <th className="p-2.5 w-24 text-center">AI Portions</th>
-                <th className="p-2.5 w-24 text-right">Locked Rate</th>
+                <th className="p-2.5 min-w-[220px]">Item Details</th>
+                <th className="p-2.5 w-16 text-center">Portions</th>
+                <th className="p-2.5 w-20 text-right">Rate</th>
                 <th className="p-2.5 w-24 text-right">Amount</th>
-                <th className="p-2.5 w-24 text-center">Pcs / Serving</th>
-                <th className="p-2.5 w-16 text-center">Remove</th>
+                <th className="p-2.5 w-20 text-center">Pcs.</th>
+                <th className="p-2.5 w-20 text-center">Unit</th>
+                <th className="p-2.5 w-12 text-center" title="Auto calculate PCS × Portions">
+                  Calc.
+                </th>
+                <th className="p-2.5 w-24 text-center">Actions</th>
               </tr>
             </thead>
             <tbody>
-              {computedItems.length === 0 ? (
+              {selectedItems.length === 0 ? (
                 <tr>
-                  <td colSpan={6} className="p-8 text-center text-gray-400 text-sm">
-                    No items selected. Pick dishes from the menu above.
+                  <td colSpan={8} className="p-8 text-center text-gray-400 text-sm">
+                    No items selected yet. Auto-populate with AI above, pick dishes from the menu, or add a custom item below.
                   </td>
                 </tr>
               ) : (
-                groupedItems.map(([category, items]) => {
+                groupedSelectedItems.map(([category, items]) => {
+                  const isLiveStationCat = category === 'Live Stations'
+
                   return (
                     <React.Fragment key={category}>
-                      {/* Category Header */}
+                      {/* Category Header Row */}
                       <tr className="bg-gray-100/80 font-bold text-gray-800 border-t border-b border-gray-300">
-                        <td colSpan={6} className="p-2 text-xs uppercase tracking-wider">
-                          {category}
-                        </td>
+                        {isLiveStationCat ? (
+                          <>
+                            <td colSpan={2} className="p-2 text-xs uppercase tracking-wider">
+                              {category}
+                            </td>
+                            <td className="p-2 text-center text-[11px]">Setup (₹)</td>
+                            <td className="p-2 text-center text-[11px]">Rate (₹)</td>
+                            <td className="p-2 text-center text-[11px]">No. People</td>
+                            <td className="p-2 text-right text-[11px]">Amount</td>
+                            <td colSpan={2} className="p-2 text-center text-[11px]">
+                              Actions
+                            </td>
+                          </>
+                        ) : (
+                          <td colSpan={8} className="p-2 text-xs uppercase tracking-wider">
+                            {category}
+                          </td>
+                        )}
                       </tr>
 
-                      {/* Items */}
-                      {items.map(({ menuIdx, item, normCategory, isLive, aiPortions, calculatedPcs, amount }) => {
-                        const isNonVeg = item.VegNonVeg?.toLowerCase().includes('non')
+                      {/* Items in Category */}
+                      {items.map(({ item, globalIndex }) => {
+                        const isLive = normalizeCategory(item.Category) === 'Live Stations'
+                        const isNonVeg = item.VegNonVeg.toLowerCase().includes('non')
+                        const itemAmount = isLive
+                          ? (item.Setup || 0) + (item.Rate || 0) * (item.NoOfPeople || 0)
+                          : (item.Portions || 0) * (item.Rate || 0)
 
+                        const calculatedPcs =
+                          item.Calculate === '1'
+                            ? String(extractNumber(item.PcsDisplay) * item.Portions)
+                            : ''
+
+                        if (isLive) {
+                          return (
+                            <tr
+                              key={item.id}
+                              className="border-b border-gray-200 hover:bg-gray-50/50"
+                            >
+                              <td colSpan={2} className="p-2">
+                                <div className="flex items-center gap-1.5 flex-wrap">
+                                  <input
+                                    type="text"
+                                    value={item.Name}
+                                    onChange={(e) =>
+                                      updateSelectedItem(item.id, { Name: e.target.value })
+                                    }
+                                    className="font-bold text-gray-900 border-none bg-transparent flex-1 min-w-[130px] p-0 text-xs focus:ring-0"
+                                  />
+                                  <button
+                                    type="button"
+                                    onClick={() => cycleVeg(item.id, item.VegNonVeg)}
+                                    className={`px-1.5 py-0.5 rounded-full text-[10px] font-bold border transition-colors ${
+                                      isNonVeg
+                                        ? 'bg-red-50 text-red-700 border-red-200'
+                                        : 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                                    }`}
+                                  >
+                                    {item.VegNonVeg}
+                                  </button>
+                                  <select
+                                    value={normalizeCategory(item.Category)}
+                                    onChange={(e) => changeItemCategory(item.id, e.target.value)}
+                                    className="text-[10px] py-0.5 px-1 border border-gray-300 rounded bg-white text-gray-700"
+                                  >
+                                    {categoryOrder.map((c) => (
+                                      <option key={c} value={c}>
+                                        {c}
+                                      </option>
+                                    ))}
+                                  </select>
+                                </div>
+                                <textarea
+                                  value={item.Description}
+                                  onChange={(e) =>
+                                    updateSelectedItem(item.id, { Description: e.target.value })
+                                  }
+                                  placeholder="Description..."
+                                  rows={1}
+                                  className="w-full mt-1 p-1 text-[11px] text-gray-600 border border-gray-200 rounded focus:border-[#2D3E50]"
+                                />
+                              </td>
+                              <td className="p-2 text-center">
+                                <input
+                                  type="number"
+                                  min="0"
+                                  value={item.Setup}
+                                  onChange={(e) =>
+                                    updateSelectedItem(item.id, {
+                                      Setup: Number(e.target.value) || 0,
+                                    })
+                                  }
+                                  className="w-16 p-1 text-right text-xs border border-gray-300 rounded"
+                                />
+                              </td>
+                              <td className="p-2 text-center">
+                                <input
+                                  type="number"
+                                  min="0"
+                                  value={item.Rate}
+                                  onChange={(e) =>
+                                    updateSelectedItem(item.id, {
+                                      Rate: Number(e.target.value) || 0,
+                                    })
+                                  }
+                                  className="w-16 p-1 text-right text-xs border border-gray-300 rounded"
+                                />
+                              </td>
+                              <td className="p-2 text-center">
+                                <input
+                                  type="number"
+                                  min="0"
+                                  value={item.NoOfPeople}
+                                  onChange={(e) =>
+                                    updateSelectedItem(item.id, {
+                                      NoOfPeople: Number(e.target.value) || 0,
+                                      portionOverridden: true,
+                                    })
+                                  }
+                                  className="w-14 p-1 text-center text-xs border border-gray-300 rounded"
+                                />
+                              </td>
+                              <td className="p-2 text-right font-bold text-gray-900 whitespace-nowrap">
+                                {formatCurrency(itemAmount)}
+                              </td>
+                              <td colSpan={2} className="p-2 text-center">
+                                <div className="flex items-center justify-center gap-1">
+                                  <button
+                                    type="button"
+                                    onClick={() => moveItem(globalIndex, 'up')}
+                                    disabled={globalIndex === 0}
+                                    className="p-1 text-gray-500 hover:text-[#2D3E50] disabled:opacity-30"
+                                    title="Move up"
+                                  >
+                                    <ChevronUp className="w-3.5 h-3.5" />
+                                  </button>
+                                  <button
+                                    type="button"
+                                    onClick={() => moveItem(globalIndex, 'down')}
+                                    disabled={globalIndex === selectedItems.length - 1}
+                                    className="p-1 text-gray-500 hover:text-[#2D3E50] disabled:opacity-30"
+                                    title="Move down"
+                                  >
+                                    <ChevronDown className="w-3.5 h-3.5" />
+                                  </button>
+                                  <button
+                                    type="button"
+                                    onClick={() => deleteSelectedItem(item.id)}
+                                    className="p-1 text-red-500 hover:text-red-700"
+                                    title="Delete"
+                                  >
+                                    <Trash2 className="w-3.5 h-3.5" />
+                                  </button>
+                                </div>
+                              </td>
+                            </tr>
+                          )
+                        }
+
+                        // Regular Item Row
                         return (
                           <tr
-                            key={`${item.Name}-${menuIdx}`}
+                            key={item.id}
                             className="border-b border-gray-200 hover:bg-gray-50/50"
                           >
-                            <td className="p-2.5">
+                            <td className="p-2">
                               <div className="flex items-center gap-1.5 flex-wrap">
-                                <span
-                                  className={`w-2 h-2 rounded-full flex-shrink-0 ${
-                                    isNonVeg ? 'bg-red-500' : 'bg-emerald-600'
-                                  }`}
-                                />
-                                <span className="font-bold text-gray-900">
-                                  {item.Name}
-                                </span>
-                                <select
-                                  value={normCategory}
+                                <input
+                                  type="text"
+                                  value={item.Name}
                                   onChange={(e) =>
-                                    setItemCategoryOverrides((prev) => ({
-                                      ...prev,
-                                      [menuIdx]: e.target.value,
-                                    }))
+                                    updateSelectedItem(item.id, { Name: e.target.value })
                                   }
+                                  className="font-bold text-gray-900 border-none bg-transparent flex-1 min-w-[130px] p-0 text-xs focus:ring-0"
+                                />
+                                <button
+                                  type="button"
+                                  onClick={() => cycleVeg(item.id, item.VegNonVeg)}
+                                  className={`px-1.5 py-0.5 rounded-full text-[10px] font-bold border transition-colors ${
+                                    isNonVeg
+                                      ? 'bg-red-50 text-red-700 border-red-200'
+                                      : 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                                  }`}
+                                >
+                                  {item.VegNonVeg}
+                                </button>
+                                <select
+                                  value={normalizeCategory(item.Category)}
+                                  onChange={(e) => changeItemCategory(item.id, e.target.value)}
                                   className="text-[10px] py-0.5 px-1 border border-gray-300 rounded bg-white text-gray-700"
                                 >
                                   {categoryOrder.map((c) => (
@@ -1303,66 +1745,121 @@ export default function QuotationMakerAI() {
                                   ))}
                                 </select>
                               </div>
-                              {item.Description && (
-                                <p className="text-[11px] text-gray-500 mt-0.5 line-clamp-1">
-                                  {item.Description}
-                                </p>
-                              )}
+                              <textarea
+                                value={item.Description}
+                                onChange={(e) =>
+                                  updateSelectedItem(item.id, { Description: e.target.value })
+                                }
+                                placeholder="Description..."
+                                rows={1}
+                                className="w-full mt-1 p-1 text-[11px] text-gray-600 border border-gray-200 rounded focus:border-[#2D3E50]"
+                              />
                             </td>
-
-                            {/* AI Estimated Portions */}
-                            <td className="p-2.5 text-center">
-                              <span className="inline-flex items-center gap-1 px-2.5 py-1 bg-amber-50 text-amber-900 border border-amber-200 rounded-lg font-black text-xs">
-                                <Sparkles className="w-3 h-3 text-amber-600" />
-                                {aiPortions} {isLive ? 'Guests' : 'Portions'}
-                              </span>
+                            <td className="p-2 text-center">
+                              <input
+                                type="number"
+                                min="0"
+                                value={item.Portions}
+                                onChange={(e) =>
+                                  updateSelectedItem(item.id, {
+                                    Portions: Number(e.target.value) || 0,
+                                    portionOverridden: true,
+                                  })
+                                }
+                                className="w-14 p-1 text-center text-xs border border-gray-300 rounded"
+                              />
                             </td>
-
-                            {/* Locked Rate */}
-                            <td className="p-2.5 text-right font-semibold text-gray-700 whitespace-nowrap">
-                              <span className="inline-flex items-center gap-1 text-gray-600 font-mono text-xs">
-                                <Lock className="w-2.5 h-2.5 text-gray-400" />
-                                {isLive ? (
-                                  item.Setup ? `Setup ${formatCurrency(item.Setup)}` : formatCurrency(item.Rate)
-                                ) : (
-                                  formatCurrency(item.Rate)
-                                )}
-                              </span>
+                            <td className="p-2 text-right">
+                              <input
+                                type="number"
+                                min="0"
+                                step="0.01"
+                                value={item.Rate}
+                                onChange={(e) =>
+                                  updateSelectedItem(item.id, {
+                                    Rate: Number(e.target.value) || 0,
+                                  })
+                                }
+                                className="w-16 p-1 text-right text-xs border border-gray-300 rounded"
+                              />
                             </td>
-
-                            {/* Amount */}
-                            <td className="p-2.5 text-right font-bold text-gray-900 whitespace-nowrap">
-                              {formatCurrency(amount)}
+                            <td className="p-2 text-right font-bold text-gray-900 whitespace-nowrap">
+                              {formatCurrency(itemAmount)}
                             </td>
-
-                            {/* Pieces / Serving */}
-                            <td className="p-2.5 text-center text-gray-600">
-                              {calculatedPcs ? (
-                                <div>
-                                  <span className="font-bold text-gray-900">
-                                    {calculatedPcs} {item.Unit}
-                                  </span>
-                                  <div className="text-[10px] text-gray-400">
-                                    ({item.PcsDisplay} {item.Unit} × {aiPortions})
-                                  </div>
+                            <td className="p-2 text-center">
+                              <input
+                                type="text"
+                                value={item.PcsDisplay}
+                                onChange={(e) =>
+                                  updateSelectedItem(item.id, { PcsDisplay: e.target.value })
+                                }
+                                placeholder="0"
+                                className="w-12 p-1 text-center text-xs border border-gray-300 rounded"
+                              />
+                              {calculatedPcs && (
+                                <div className="text-[10px] text-gray-500 font-semibold mt-0.5">
+                                  → {calculatedPcs}
                                 </div>
-                              ) : item.PcsDisplay ? (
-                                `${item.PcsDisplay} ${item.Unit}`
-                              ) : (
-                                '—'
                               )}
                             </td>
-
-                            {/* Delete Action */}
-                            <td className="p-2.5 text-center">
-                              <button
-                                type="button"
-                                onClick={() => toggleMenuItem(menuIdx)}
-                                className="p-1 text-red-500 hover:text-red-700 transition-colors"
-                                title="Remove item"
+                            <td className="p-2 text-center">
+                              <select
+                                value={item.Unit}
+                                onChange={(e) =>
+                                  updateSelectedItem(item.id, { Unit: e.target.value })
+                                }
+                                className="w-16 p-1 text-xs border border-gray-300 rounded"
                               >
-                                <Trash2 className="w-3.5 h-3.5" />
-                              </button>
+                                <option value="">NA</option>
+                                <option value="PCS">PCS</option>
+                                <option value="PC">PC</option>
+                                <option value="GMS">GMS</option>
+                                <option value="ML">ML</option>
+                                <option value="ml per portion">ml/portion</option>
+                              </select>
+                            </td>
+                            <td className="p-2 text-center">
+                              <input
+                                type="checkbox"
+                                checked={item.Calculate === '1'}
+                                onChange={(e) =>
+                                  updateSelectedItem(item.id, {
+                                    Calculate: e.target.checked ? '1' : '0',
+                                  })
+                                }
+                                className="w-4 h-4 rounded text-[#2D3E50] cursor-pointer"
+                                title="Auto calculate PCS × Portions"
+                              />
+                            </td>
+                            <td className="p-2 text-center">
+                              <div className="flex items-center justify-center gap-1">
+                                <button
+                                  type="button"
+                                  onClick={() => moveItem(globalIndex, 'up')}
+                                  disabled={globalIndex === 0}
+                                  className="p-1 text-gray-500 hover:text-[#2D3E50] disabled:opacity-30"
+                                  title="Move up"
+                                >
+                                  <ChevronUp className="w-3.5 h-3.5" />
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={() => moveItem(globalIndex, 'down')}
+                                  disabled={globalIndex === selectedItems.length - 1}
+                                  className="p-1 text-gray-500 hover:text-[#2D3E50] disabled:opacity-30"
+                                  title="Move down"
+                                >
+                                  <ChevronDown className="w-3.5 h-3.5" />
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={() => deleteSelectedItem(item.id)}
+                                  className="p-1 text-red-500 hover:text-red-700"
+                                  title="Delete"
+                                >
+                                  <Trash2 className="w-3.5 h-3.5" />
+                                </button>
+                              </div>
                             </td>
                           </tr>
                         )
@@ -1372,7 +1869,7 @@ export default function QuotationMakerAI() {
                 })
               )}
             </tbody>
-            {computedItems.length > 0 && (
+            {selectedItems.length > 0 && (
               <tfoot>
                 <tr className="bg-gray-100 font-bold text-gray-900 border-t-2 border-gray-300">
                   <td colSpan={3} className="p-2.5 text-right">
@@ -1381,11 +1878,154 @@ export default function QuotationMakerAI() {
                   <td className="p-2.5 text-right text-sm text-[#2D3E50]">
                     {formatCurrency(itemsSubtotal)}
                   </td>
-                  <td colSpan={2} className="p-2.5"></td>
+                  <td colSpan={4} className="p-2.5"></td>
                 </tr>
               </tfoot>
             )}
           </table>
+        </div>
+
+        {/* Add Custom Item Box */}
+        <div className="mt-6 p-4 border-2 border-dashed border-gray-300 rounded-xl bg-gray-50/50">
+          <h3 className="font-bold text-sm text-[#2D3E50] mb-3 flex items-center gap-1.5">
+            <Plus className="w-4 h-4" /> Add Custom Item
+          </h3>
+          <form onSubmit={handleAddCustomItem} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+            <div>
+              <label className="block text-xs font-semibold text-gray-700 mb-1">
+                Item Name
+              </label>
+              <input
+                type="text"
+                value={customName}
+                onChange={(e) => setCustomName(e.target.value)}
+                placeholder="e.g. Signature Dim Sum"
+                className="w-full p-2 text-xs border border-gray-300 rounded-lg bg-white focus:outline-none focus:border-[#2D3E50]"
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-semibold text-gray-700 mb-1">
+                Description
+              </label>
+              <input
+                type="text"
+                value={customDesc}
+                onChange={(e) => setCustomDesc(e.target.value)}
+                placeholder="Item description"
+                className="w-full p-2 text-xs border border-gray-300 rounded-lg bg-white focus:outline-none focus:border-[#2D3E50]"
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-semibold text-gray-700 mb-1">
+                Category
+              </label>
+              <select
+                value={customCategory}
+                onChange={(e) => setCustomCategory(e.target.value)}
+                className="w-full p-2 text-xs border border-gray-300 rounded-lg bg-white focus:outline-none focus:border-[#2D3E50]"
+              >
+                {categoryOrder.map((c) => (
+                  <option key={c} value={c}>
+                    {c}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="block text-xs font-semibold text-gray-700 mb-1">
+                Veg / Non-Veg
+              </label>
+              <select
+                value={customVegNonVeg}
+                onChange={(e) => setCustomVegNonVeg(e.target.value)}
+                className="w-full p-2 text-xs border border-gray-300 rounded-lg bg-white focus:outline-none focus:border-[#2D3E50]"
+              >
+                <option value="Veg">Veg</option>
+                <option value="Non-Veg">Non-Veg</option>
+                <option value="Veg & Non-Veg">Veg & Non-Veg</option>
+              </select>
+            </div>
+
+            {normalizeCategory(customCategory) === 'Live Stations' ? (
+              <>
+                <div>
+                  <label className="block text-xs font-semibold text-gray-700 mb-1">
+                    Setup (₹)
+                  </label>
+                  <input
+                    type="number"
+                    min="0"
+                    value={customSetup}
+                    onChange={(e) => setCustomSetup(Number(e.target.value) || 0)}
+                    className="w-full p-2 text-xs border border-gray-300 rounded-lg bg-white"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold text-gray-700 mb-1">
+                    No. of People
+                  </label>
+                  <input
+                    type="number"
+                    min="0"
+                    value={customNoPeople}
+                    onChange={(e) => setCustomNoPeople(Number(e.target.value) || 0)}
+                    className="w-full p-2 text-xs border border-gray-300 rounded-lg bg-white"
+                  />
+                </div>
+              </>
+            ) : (
+              <>
+                <div>
+                  <label className="block text-xs font-semibold text-gray-700 mb-1">
+                    Pcs. / Serving
+                  </label>
+                  <input
+                    type="text"
+                    value={customPcs}
+                    onChange={(e) => setCustomPcs(e.target.value)}
+                    placeholder="e.g. 6 PCS or 250 GMS"
+                    className="w-full p-2 text-xs border border-gray-300 rounded-lg bg-white"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold text-gray-700 mb-1">
+                    Portions
+                  </label>
+                  <input
+                    type="number"
+                    min="1"
+                    value={customPortions}
+                    onChange={(e) => setCustomPortions(Number(e.target.value) || 1)}
+                    className="w-full p-2 text-xs border border-gray-300 rounded-lg bg-white"
+                  />
+                </div>
+              </>
+            )}
+
+            <div>
+              <label className="block text-xs font-semibold text-gray-700 mb-1">
+                Rate (₹)
+              </label>
+              <input
+                type="number"
+                min="0"
+                step="0.01"
+                value={customRate}
+                onChange={(e) => setCustomRate(e.target.value)}
+                placeholder="₹0"
+                className="w-full p-2 text-xs border border-gray-300 rounded-lg bg-white"
+              />
+            </div>
+
+            <div className="flex items-end">
+              <button
+                type="submit"
+                className="w-full bg-[#2D3E50] hover:bg-[#1a2535] text-white font-bold text-xs py-2 px-3 rounded-lg transition-colors"
+              >
+                + Add Custom Item
+              </button>
+            </div>
+          </form>
         </div>
       </div>
 
