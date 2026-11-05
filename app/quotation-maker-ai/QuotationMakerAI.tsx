@@ -665,7 +665,7 @@ export default function QuotationMakerAI() {
     }
 
     setAutoPopulateStatus(
-      `✓ Menu Auto-Populated (${populatedItems.length} items from ${prediction.bestMatchPax} historical match) — Fully editable below!`
+      '✓ Menu Auto-Populated'
     )
     setTimeout(() => setAutoPopulateStatus(''), 5000)
   }
