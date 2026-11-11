@@ -174,10 +174,10 @@ export const menuItems: MenuItem[] = [
   { Name: "LIVE Cotton Candy Station", Description: "Clouds of sugary sweetness spin right before your eyes, creating a magical treat that delights kids and adults alike.", PcsDisplay: "", Unit: "", Calculate: "0", Rate: 0, Category: "Live Stations", VegNonVeg: "Veg", Setup: 7999 },
   { Name: "LIVE Chocolate Fountain", Description: "Big chocolate fountain with assortments like marshmallows, brownies, strawberries on skewers.", PcsDisplay: "", Unit: "", Calculate: "0", Rate: 0, Category: "Live Stations", VegNonVeg: "Veg", Setup: 7999 },
   { Name: "LIVE Potato Spiral", Description: "Crispy spiraled potato on a stick, a crunchy treat perfect for snacking on the go.", PcsDisplay: "", Unit: "", Calculate: "0", Rate: 0, Category: "Live Stations", VegNonVeg: "Veg", Setup: 7999 },
-  { Name: "LIVE Burger Station", Description: "Mini burger station with a variety of fillings and toppings to choose from.", PcsDisplay: "", Unit: "", Calculate: "0", Rate: 300, Category: "Live Stations", VegNonVeg: "Veg", Setup: 2500 },
-  { Name: "LIVE Pizza Station", Description: "Create your own mini pizzas with a variety of toppings and sauces.", PcsDisplay: "", Unit: "", Calculate: "0", Rate: 500, Category: "Live Stations", VegNonVeg: "Veg", Setup: 5000 },
-  { Name: "LIVE Pasta Station", Description: "Fresh, hot pasta cooked live with your choice of sauce - Pink, White or Red Sauce.", PcsDisplay: "", Unit: "", Calculate: "0", Rate: 300, Category: "Live Stations", VegNonVeg: "Veg", Setup: 2500 },
-  { Name: "LIVE Dim-Sum Station", Description: "Steamed dim-sums made live with a variety of fillings.", PcsDisplay: "", Unit: "", Calculate: "0", Rate: 200, Category: "Live Stations", VegNonVeg: "Veg", Setup: 2000 },
+  { Name: "LIVE Burger Station", Description: "Mini burger station with a variety of fillings and toppings to choose from.", PcsDisplay: "", Unit: "", Calculate: "0", Rate: 200, Category: "Live Stations", VegNonVeg: "Veg", Setup: 2500 },
+  { Name: "LIVE Pizza Station", Description: "Create your own mini pizzas with a variety of toppings and sauces.", PcsDisplay: "", Unit: "", Calculate: "0", Rate: 300, Category: "Live Stations", VegNonVeg: "Veg", Setup: 3500 },
+  { Name: "LIVE Pasta Station", Description: "Fresh, hot pasta cooked live with your choice of sauce - Pink, White or Red Sauce.", PcsDisplay: "", Unit: "", Calculate: "0", Rate: 200, Category: "Live Stations", VegNonVeg: "Veg", Setup: 2500 },
+  { Name: "LIVE Dim-Sum Station", Description: "Steamed dim-sums made live with a variety of fillings.", PcsDisplay: "", Unit: "", Calculate: "0", Rate: 150, Category: "Live Stations", VegNonVeg: "Veg", Setup: 2000 },
 ]
 
 /**
